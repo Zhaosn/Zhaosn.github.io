@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>基于openwrt，探索私有家庭云打印服务的可能性</title>
+    <link href="/2022/10/10/%E5%9F%BA%E4%BA%8Eopenwrt%EF%BC%8C%E6%8E%A2%E7%B4%A2%E7%A7%81%E6%9C%89%E5%AE%B6%E5%BA%AD%E4%BA%91%E6%89%93%E5%8D%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%AF%E8%83%BD%E6%80%A7/"/>
+    <url>/2022/10/10/%E5%9F%BA%E4%BA%8Eopenwrt%EF%BC%8C%E6%8E%A2%E7%B4%A2%E7%A7%81%E6%9C%89%E5%AE%B6%E5%BA%AD%E4%BA%91%E6%89%93%E5%8D%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%AF%E8%83%BD%E6%80%A7/</url>
+    
+    <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>我所在的宿舍大家集资买了一部二手喷墨打印机，但使用率很低。其根本问题在于宿舍没有地方放，导致每次使用都需要拿出来插线连接，之后再拔掉放回去。几天前我想到可以通过我的路由器搭建网络打印服务，本文描述了通过将打印机与带usb拓展接口的openwrt系统路由器连接，通过openwrt仓库内置包实现搭建局域网云打印服务的方法。</p><h1 id="环境与硬件要求"><a href="#环境与硬件要求" class="headerlink" title="环境与硬件要求"></a>环境与硬件要求</h1><ul><li>本文系统环境基于小米路由器mini<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://openwrt.org/toh/xiaomi/miwifi_mini">[1]</span></a></sup>在openwrt官网下载的镜像</li><li>本文将路由器作为全局域网的根节点，打印机连接在路由器上，使用局域网内其他设备搭建服务的情况暂不考虑</li><li>你的路由器能正常上网以通过opkg下载包</li><li>申请打印的设备已安装了能通过有线连接进行打印的驱动</li></ul><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol><li>连接打印机与路由器</li><li>进入后台管理界面</li><li>系统-软件- Update lists…</li><li>搜索 printer</li><li>安装 kmod-usb-printer、luci-app-p910nd，我当时尝试时安装了别的包，可能是没必要的，这个自己看描述自己决定吧。</li><li>在网页最上面出现了服务下拉框，这是luci-app-* 下载下来的东西，点进 p910nd - Printer server，如果不会linux的话这里会比较复杂，如果你懂就会发现操作不难。<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">设备：当打印机开机，usb接入路由器后，linux为其挂载的地址。一般为<span class="hljs-regexp">/dev/u</span>sb/lp0，如果你不愿意深究就填这个。<br>我喜欢比较清爽的系统，所以为了确定地址究竟是什么需要ssh或者通过终端连接路由器，输入<br>ls <span class="hljs-regexp">/dev/u</span>sb <br>大概就会列出来，我是凭感觉敲得，你可能需要变通一下<br>接口：只给路由器下内网使用，我选的lan，其他高级东东我也不懂<br>端口：不改，<span class="hljs-number">9100</span><br></code></pre></div></td></tr></table></figure></li></ol><p>然后保存并应用，电脑端设置太麻烦我不想说，上网搜索电脑添加网络打印机的方法肯定有很多人写。总之需要安装驱动，寻找设备，添加设备。</p><h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://openwrt.org/toh/xiaomi/miwifi_mini">https://openwrt.org/toh/xiaomi/miwifi_mini</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+      <tag>技术</tag>
+      
+      <tag>干货</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>中柏jnb10电脑测评(预期篇)</title>
+    <link href="/2022/09/26/%E4%B8%AD%E6%9F%8Fjnb10%E7%94%B5%E8%84%91%E6%B5%8B%E8%AF%84/"/>
+    <url>/2022/09/26/%E4%B8%AD%E6%9F%8Fjnb10%E7%94%B5%E8%84%91%E6%B5%8B%E8%AF%84/</url>
+    
+    <content type="html"><![CDATA[<h3 id="购买原因"><a href="#购买原因" class="headerlink" title="购买原因"></a>购买原因</h3><ul><li>现在我使用的小新air14 2020锐龙版虽然是个轻薄本，但1.3kg左右的重量和使用2年后的续航让我十分焦虑</li><li>更别说现在电脑很多时间都至少连接了充电线、USB、耳机线，每次带出门都要和线纠缠半天</li><li>文本处理，看网页，查东西还是电脑好用</li><li>每天随身带个电脑对我来说真的很帅</li><li>有个备用机的感觉让人很安心</li><li>x86的cpu，兴许可以当个服务器<br>所以，经过几天的精挑细选，在闲鱼上买了个288的电脑，大概明后天到货。在还没收到的情况下写这种文章，到时候是惊喜还是惊吓真说不准<img src="/img/失落.png" width="10%"></li></ul><h3 id="购买期望"><a href="#购买期望" class="headerlink" title="购买期望"></a>购买期望</h3><ol><li>性能(依次上升)<ul><li>能跑动notepad++</li><li>能跑ubuntu的桌面环境，如xfce、lxde</li><li>跑动腾讯会议</li><li>能看图片</li><li>potplayer播放nas电影</li></ul></li><li>硬件(依次上升)    <ul><li>无损坏</li><li>io正常</li><li>有5Gwifi</li><li>电量消耗在合理范围</li></ul></li></ol><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul><li>文本，图片浏览</li><li>远程运维</li><li>远程桌面</li><li>学习html，python</li></ul><h3 id="拿到手后发现的优缺点"><a href="#拿到手后发现的优缺点" class="headerlink" title="拿到手后发现的优缺点"></a>拿到手后发现的优缺点</h3><h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ul><li>屏幕素质相对优秀，虽然根据网上信息其挂载了一块TN屏但可视角度与色准肉眼所见很优秀，分辨率可达视网膜屏标准</li><li>硬件性能可用，相比我之前购买的驰为Hi8，这个电脑的硬件足以带动基础上网和文本编辑功能（暂未尝试富文本编辑）：n3350的cpu，6G板载内存，60G左右的可用存储空间</li><li>网卡支持5Gwifi网络连接</li><li>被动散热，无需担心堵塞散热口，可以安心放在膝上使用</li><li>毫无发热感觉，根据拆机发现电脑内部元件分布很宽松而发热元件都在电脑左上的一块小板上。但相比结构类似、使用Z3736F的驰为Hi8发热控制好太多，在我现在使用它打下这些文字时丝毫感觉不到任何的热量</li><li>续航优秀，几天前我在基于ubuntu server系统安装xfce后的第一时间就写了两个脚本<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="提到的代码123456789101112131415#!/bin/shif [ -n &quot;$1&quot; ];thenecho &quot;current parameter: &quot;    if [ $1 -gt 0 ] &amp;&amp; [ $1 -lt 346 ];then        echo &quot;$1&quot; &gt; /sys/class/backlight/intel_backlight/brightness    elif [ ! $1 -gt 0 ];then        echo &quot;1&quot; &gt; /sys/class/backlight/intel_backlight/brightness    elif [ ! $1 -lt 346 ];then        echo &quot;345&quot; &gt; /sys/class/backlight/intel_backlight/brightness    fielse    echo &quot;no parameter input&quot;ficat /sys/class/backlight/intel_backlight/brightness;exit 0123#!/bin/bashecho cat /sys/class/power_supply/BAT0/capacity&quot; # &quot;date &gt;&gt; log_battery_life.logecho cat /sys/class/power_supply/BAT0/capacity&quot; # &quot;date ">[1]</span></a></sup>用来监测电量和调节亮度。在合理亮度下使用半天大概只掉20左右的电。根据我预测，如果续航不会在低于一定程度时迅速消失的话（经过几天使用，电量消耗线性度还算不错），要是只用来上网打字和学习linux运维，应该很容易达到10小时左右的通勤续航要求</li><li>可维修性，虽然各个配件应该会随着时间推移越来越少，但电池看起来可以与2s电池通用，充电口使用标准DC接口。因此在不受到冲击损伤的情况下，最容易损耗的部分维修应该是长期可行的</li><li>便宜，用起来不心疼</li><li>重量合理，相比老工作站虽然性能不佳但续航和便携性做到了优异水平</li><li>有hdmi接口，但是是mini hdmi</li><li>有一个sd卡读卡器和一个usb3.0接口</li><li>有一个m.2接口</li><li>键盘上方有电源、大小写和Capslock的指示灯</li><li>无可感知频闪</li></ul><h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><ul><li>笔记本电脑的“身体”（与“头”相对）在受到扭力时有可能会花屏并100%死机，重插主板侧排线没有解决，疑似存在虚焊。当花屏现象发生时只能通过长按开机键强制关机，此时若花屏状态或其诱因未接触会导致无法开机，过一段时间或因不明原因才能恢复，多数情况下强制关机后可以正常开机。因此稳定性存在极大隐患。</li><li>屏幕有漏光现象，在我尝试拆屏后疑似恶化，可能与屏幕存在应力未释放有关。拆屏难度较大：虽然只有四颗螺丝在胶垫下，但拆除胶垫有一定可能导致粘性降低，进而导致丢失；屏幕上下边通过胶黏剂粘接，无损拆除难度较大。</li><li>触控板精度差，不跟手，很明显有较大延迟，充电时可能因为充电器只有两脚导致在一段时间后触控板使用时会jiggle</li><li>没有键盘背光</li><li>网页浏览性能较差，对于动画较多的网页表现很差，如米游社的活动和地图等，但高德地图表现良好</li></ul><h3 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h3><p>此外还有两个无关紧要的问题，比如扬声器素质一般，塑料机身。但在此价格，不将其作为主力机，只将其作为玩具或EDC是优异的。相比手机，一块大屏幕和全键盘能让人更专注的完成一个任务。而搭配xfce使用和linux的高度可自定义，这部电脑可以让人在极致的简约美下闲适的专注于自己的爱好，比如学习一些只需要编辑文本的编程学习什么的，不用担心续航，不用被主力机上杂乱的各种服务、应用、和积累的媒体、文档分散注意力，真是优雅。<br>以上是我带着这部电脑在一个会场敲下的文字，之后我直接盒盖带走了电脑，此后过了大概5个小时，现在我躺在宿舍床上敲下这行文字。要是我的主力机直接合盖带走的话很多时候会睡死，电池也会掉好多电，可能是和win10的睡眠还是休眠有关，也可能和我安装的PowerToys的awake功能有关。在这部电脑上，虽然开盖几秒钟后xfce发生了卡死的情况，只有鼠标能动，但是好在可以通过&lt;ctrl&gt;+&lt;alt&gt;+&lt;F(n)&gt;按键进入linux shell。通过执行</p><blockquote><p>service restart lightdm</p></blockquote><p>解决。后来我删除了xfce-screensaver，改为使用light-locker，倒是不会卡死了，但开盖后会直接显示几秒盒盖前画面，会造成信息泄漏。</p><h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><p>这种电脑如果想用来当主力机一定不可能，它的html5网页渲染性能还不如手机（与使用骁龙865的红米k30pro相比），存储空间也小。但如果你期望拥有一部笔记本只用来写文本文档（如python、markdown、html），或者直访问静态网页，绝对没问题。根据geekbench上的搜索结果，<br>n3350有</p><blockquote><p>Single-Core Score 268<br>Multi-Core Score 613</p></blockquote><p>的成绩，而树莓派4b成绩为</p><blockquote><p>Single-Core Score 202<br>Multi-Core Score 604</p></blockquote><p>如果愿意买二手的这部电脑，那就是决定的时间了：架构选arm还是x86、是开发板还是真正的个人电脑、是买来不用还是每天爱不释手。我都选择过，但是我的树莓派买来放了两年就打开用了几次，好玩也有用，但后来没忍住诱惑加了100多元和别人换了一块ax309的FPGA开发板、一块TI的物联网开发板和一些电子耗材，更少打开了😹️</p><h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>这篇文章同样做到了在写的过程中学习markdown，通过尝试植入表情理解了html中图片标签的功能。和其他文章一样都可作为我未来写博客的参照<img src="/img/馋.png" width="10%"></p><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>提到的代码<br><figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk"><span class="hljs-comment">#!/bin/sh</span><br><span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;$1&quot;</span> ];then<br>echo <span class="hljs-string">&quot;current parameter: &quot;</span><br>    <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$1</span> -gt <span class="hljs-number">0</span> ] &amp;&amp; [ <span class="hljs-variable">$1</span> -lt <span class="hljs-number">346</span> ];then<br>        echo <span class="hljs-string">&quot;$1&quot;</span> &gt; <span class="hljs-regexp">/sys/</span>class<span class="hljs-regexp">/backlight/i</span>ntel_backlight/brightness<br>    elif [ ! <span class="hljs-variable">$1</span> -gt <span class="hljs-number">0</span> ];then<br>        echo <span class="hljs-string">&quot;1&quot;</span> &gt; <span class="hljs-regexp">/sys/</span>class<span class="hljs-regexp">/backlight/i</span>ntel_backlight/brightness<br>    elif [ ! <span class="hljs-variable">$1</span> -lt <span class="hljs-number">346</span> ];then<br>        echo <span class="hljs-string">&quot;345&quot;</span> &gt; <span class="hljs-regexp">/sys/</span>class<span class="hljs-regexp">/backlight/i</span>ntel_backlight/brightness<br>    fi<br><span class="hljs-keyword">else</span><br>    echo <span class="hljs-string">&quot;no parameter input&quot;</span><br>fi<br>cat <span class="hljs-regexp">/sys/</span>class<span class="hljs-regexp">/backlight/i</span>ntel_backlight/brightness;<br><span class="hljs-keyword">exit</span> <span class="hljs-number">0</span><br></code></pre></div></td></tr></table></figure><br><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-built_in">echo</span> <code>cat /sys/class/power_supply/BAT0/capacity</code><span class="hljs-string">&quot; # &quot;</span><code>date</code> &gt;&gt; log_battery_life.log<br><span class="hljs-built_in">echo</span> <code>cat /sys/class/power_supply/BAT0/capacity</code><span class="hljs-string">&quot; # &quot;</span><code>date</code> <br></code></pre></div></td></tr></table></figure><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+      <tag>干货</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>进军NFC</title>
+    <link href="/2022/03/28/%E8%BF%9B%E5%86%9BNFC/"/>
+    <url>/2022/03/28/%E8%BF%9B%E5%86%9BNFC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="从大创申报书到我的hacker梦想"><a href="#从大创申报书到我的hacker梦想" class="headerlink" title="从大创申报书到我的hacker梦想"></a>从大创申报书到我的hacker梦想</h1><p>这几天是一年一度写大创申报书的时候了，大二下的好多人都在整大创。</p><p>我负责i2i实验室这边的应用开发，在写申报书时突然重新萌发了对NFC的兴趣。</p><p>NFC应该是个很新的技术，而我第一次听说它不是在手机上，而是proxmark3。因为现在pm3的售价依然让我不敢买，所以便想借助这一契机深入研究下NFC功能。不过我现在还在收集资料的过程中（2022年03月28日），所以这个博客很有可能到了22年10月（大创截止的时间）能写完。</p><h1 id="资料准备"><a href="#资料准备" class="headerlink" title="资料准备"></a>资料准备</h1><p>芯片选型一直都是我最迷茫的步骤，还好有前人（稚晖君）的工作让我能够学习，他附上的开源仓库中给我了一个重要的信息：<strong>NFC的协议</strong></p><h2 id="NFC的协议"><a href="#NFC的协议" class="headerlink" title="NFC的协议"></a>NFC的协议</h2><div class="hljs code-wrapper"><pre><code class="hljs">ISO 15693 (支持芯片：ST25DV)ISO 14443 (支持芯片：ST95或者ST25T)</code></pre></div><h2 id="常见读取器的结构"><a href="#常见读取器的结构" class="headerlink" title="常见读取器的结构"></a>常见读取器的结构</h2><p>pm3<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/Proxmark/proxmark3">[1]</span></a></sup>基于FPGA，开源仓库中有其代码，计划将来研究，刚好这学期学习数电需要用到verilog语句</p><h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://github.com/Proxmark/proxmark3">https://github.com/Proxmark/proxmark3</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>树莓派apt公钥错误解决方案</title>
+    <link href="/2022/03/12/%E6%A0%91%E8%8E%93%E6%B4%BEapt%E5%85%AC%E9%92%A5%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <url>/2022/03/12/%E6%A0%91%E8%8E%93%E6%B4%BEapt%E5%85%AC%E9%92%A5%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    
+    <content type="html"><![CDATA[<p>今天试着玩了一天esp8266，发现要是只是想试一下模块通信的话需要重刷程序，flash毕竟会磨损，要是总这样造也稍微有点心疼，最主要是编译烧写太费时间。于是想到用树莓派。烧完程序打算换源的时候遇到了apt update报错。</p><p><code>W: GPG error: http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian bullseye InRelease: The following signatures couldn&#39;t be verified because the public key is not available: NO_PUBKEY [一串密钥a]</code></p><p><code>E: The repository &#39;http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian bullseye InRelease&#39; is not signed.</code></p><h3 id="解决方法（网上找的）"><a href="#解决方法（网上找的）" class="headerlink" title="解决方法（网上找的）"></a>解决方法（网上找的）</h3><p><code>先输入：gpg --keyserver  keyserver.ubuntu.com --recv-keys [刚才那一串密钥a]</code></p><p><code>然后输入：gpg --export --armor [刚才那一串密钥a] | sudo apt-key add -</code></p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>密钥可能有几个，一个一个的替换、输入。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+      <tag>干货</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>今年更严峻的疫情</title>
+    <link href="/2022/01/22/%E5%81%87%E6%9C%9F%E8%BF%87%E5%8D%8A%E5%86%85%E5%BF%83%E8%AE%B0%E5%BD%95/"/>
+    <url>/2022/01/22/%E5%81%87%E6%9C%9F%E8%BF%87%E5%8D%8A%E5%86%85%E5%BF%83%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<p>时间过的太快了，上次博客更新居然已经是</p><h1 id="一次奇遇"><a href="#一次奇遇" class="headerlink" title="一次奇遇"></a>一次奇遇</h1><p>这篇文章标题前说了一半的话是在实验室门口敲下的，随后门开了，我就进去给机械键盘润轴了（只是借电烙铁拆轴而已）。然后，当天晚上0点发消息，23号全员核酸，24号等核酸结果（其实我要是没有因为怂退了24号早上的票，就能不损失退票费并且坐高铁到家了），25号凌晨登上空调快车。</p><p>回家第一次变得难得且奇妙。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>浅析游戏看门狗2的故障艺术</title>
+    <link href="/2022/01/17/%E6%B5%85%E6%9E%90%E6%B8%B8%E6%88%8F%E7%9C%8B%E9%97%A8%E7%8B%972%E7%9A%84%E6%95%85%E9%9A%9C%E8%89%BA%E6%9C%AF/"/>
+    <url>/2022/01/17/%E6%B5%85%E6%9E%90%E6%B8%B8%E6%88%8F%E7%9C%8B%E9%97%A8%E7%8B%972%E7%9A%84%E6%95%85%E9%9A%9C%E8%89%BA%E6%9C%AF/</url>
+    
+    <content type="html"><![CDATA[<p>看门狗的美术很有趣。<br>今天猜测一下这个图片的绘制方式，希望能够抛砖引玉。（很少见到这方面的教程，不知道怎么绘制，希望能够通过Blender风格化渲染的方式实现）<br><img src="/img/WD2Art.png" alt="故障艺术"><br>这是<a href="https://youtu.be/KJGdTJUi-YE?t=71">这个视频</a>的截图。</p><ul><li>大致由后侧呈同心圆排列的点<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="关键词：halftone、半色调参考链接">[3]</span></a></sup>，同心圆被两条螺旋线遮挡，前端Dedsec文字及死神的形象。</li><li>同心圆由随机排列的点纹理组成。死神的灰度由水平翻转过的上三角灰度方块组成。</li><li>看门狗的故障艺术（仅指过场），由马赛克<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="模仿看门狗1的开头，常见于mpeg视频编码的I帧缺失，经过我的寻找有这个视频讲解了一种实现途径，关键词：“Datamosh”">[1]</span></a></sup>和与这个同心圆上的细节类似的点状纹理，以及破解组的艺术字体类似。<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="关键词：BIG TEXT Letters Font、linux的toilet工具">[2]</span></a></sup><br/></li></ul><hr><h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><p><u>看门狗游戏还有更多有趣的效果，但是作为一个blender初学者，今天坐在电脑前研究了一下午图片的效果怎么实现。</u></p><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>模仿看门狗1的开头，常见于mpeg视频编码的I帧缺失，经过我的寻找有<a href="https://youtu.be/5TtJYeZjlIM?t=304">这个视频</a>讲解了一种实现途径，关键词：“Datamosh”<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>关键词：BIG TEXT Letters Font、linux的toilet工具<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>关键词：halftone、半色调<a href="https://blenderartists.org/t/halftone-pattern-in-blender-update/1136023">参考链接</a><a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>git配置代理</title>
+    <link href="/2022/01/14/%E6%96%BD%E5%B7%A5%E4%B8%AD/"/>
+    <url>/2022/01/14/%E6%96%BD%E5%B7%A5%E4%B8%AD/</url>
+    
+    <content type="html"><![CDATA[<h1 id="git代理"><a href="#git代理" class="headerlink" title="git代理"></a>git代理</h1><p>删除命令</p><figure class="highlight brainfuck"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs brainfuck"><span class="hljs-comment">$</span> <span class="hljs-comment">git</span> <span class="hljs-comment">config</span> --<span class="hljs-comment">global</span> --<span class="hljs-comment">unset</span> <span class="hljs-title">[</span><span class="hljs-comment">name</span><span class="hljs-title">]</span><br></code></pre></div></td></tr></table></figure><p>添加git config配置</p><figure class="highlight inform7"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs inform7">$ git config --global <span class="hljs-comment">[name]</span> <span class="hljs-comment">[value]</span><br></code></pre></div></td></tr></table></figure><figure class="highlight verilog"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs verilog">git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> http<span class="hljs-variable">.proxy</span> http:<span class="hljs-comment">//127.0.0.1:7890</span><br>git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> https<span class="hljs-variable">.proxy</span> https:<span class="hljs-comment">//127.0.0.1:7890</span><br>git <span class="hljs-keyword">config</span> -l<br></code></pre></div></td></tr></table></figure><h1 id="全局代理（貌似不管用）"><a href="#全局代理（貌似不管用）" class="headerlink" title="全局代理（貌似不管用）"></a>全局代理（貌似不管用）</h1><figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros"><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">http_proxy</span>=http://127.0.0.1:7890<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">https_proxy</span>=http://127.0.0.1:7890<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">all_proxy</span>=socks5://127.0.0.1:7891<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">no_proxy</span>=<span class="hljs-string">&quot;127.0.0.1,localhost,*.local.com&quot;</span><br><br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">http_proxy</span>=http://[::]:7890<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">https_proxy</span>=http://[::]:7890<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">all_proxy</span>=socks5://[::]:7891<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">no_proxy</span>=<span class="hljs-string">&quot;127.0.0.1,localhost&quot;</span><br><br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">no_proxy</span>=<span class="hljs-string">&quot;localhost,127.0.0.0/8,*.local&quot;</span><br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">NO_PROXY</span>=<span class="hljs-string">&quot;localhost,127.0.0.0/8,*.local&quot;</span><br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">all_proxy</span>=socks://127.0.0.1:7891/<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">ALL_PROXY</span>=socks://127.0.0.1:7891/<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">http_proxy</span>=http://127.0.0.1:7890/<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">HTTP_PROXY</span>=http://127.0.0.1:7890/<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">ftp_proxy</span>=http://127.0.0.1:7890/<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">FTP_PROXY</span>=http://127.0.0.1:7890/<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">https_proxy</span>=http://127.0.0.1:7890/<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">HTTPS_PROXY</span>=http://127.0.0.1:7890/<br><br>env | grep<span class="hljs-built_in"> proxy</span><br><span class="hljs-built_in"></span><br>unset no_proxy<br>unset NO_PROXY<br>unset all_proxy<br>unset ALL_PROXY<br>unset http_proxy<br>unset HTTP_PROXY<br>unset ftp_proxy<br>unset FTP_PROXY<br>unset https_proxy<br>unset HTTPS_PROXY<br></code></pre></div></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+      <tag>技术</tag>
+      
+      <tag>干货</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>初次挖掘HID和硬件工程</title>
+    <link href="/2022/01/14/%E5%88%9D%E6%AC%A1%E6%8C%96%E6%8E%98HID%E5%92%8C%E7%A1%AC%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    <url>/2022/01/14/%E5%88%9D%E6%AC%A1%E6%8C%96%E6%8E%98HID%E5%92%8C%E7%A1%AC%E4%BB%B6%E5%B7%A5%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>谷歌了一通，之前虽然也谷歌过但是从来没找到切入点，今天找到外国论坛上别人问过的帖子，跟着跟着就来到了Digispark开发板的页面，之前就知道Arduino的Leonardo开发板支持keyboard库，也知道Digispark开发板比较便宜，但是不知道究竟怎么实现的，虽然好像可以翻库的源码，但是因为手里有esp8266，所以不想再买别的功能重复的开发板。而且当时并没有找到esp8266单板实现HID功能的，就看能不能自己实现。今天找到了<a href="https://space.bilibili.com/213123506">这个UP主</a>的<a href="https://www.bilibili.com/video/BV19U4y1j7PF">视频</a><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="过程：先以usb、嵌入式、实现 作为关键词搜索库文件，找到arduino的库，找到了这个up主的github开源项目，找到视频。说起来巧，这个up主页还有一个通过抓包蓝牙自制喵喵机的项目之前我就觉得很NB">[1]</span></a></sup>。<br/><br>再看到评论区有人提到别的芯片ch9329(up使用ch9328)，上<a href="https://www.semiee.com/">半导小芯</a>没看懂有什么区别。看来<u>芯片选型</u>也是下一步需要认真考虑的事情。<br/><br>知乎搜了一下芯片选型，他们说硬件工程师靠经验，推荐华为的硬件工程师手册。找到百度文库有但是要vip。想起来图书馆途径的百度文库可以下vip资源<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="共159页，我下下来还没细看，这个非高校版的链接供参考">[2]</span></a></sup>，然后真可以。我爱图书馆❤<br/><br><del><font color="gray">写博客真费时间，好多时间都忍不住扯点闲话，扯闲话和刚才经历以上内容一样有趣，但是写博客最多只能起到换换脑子的作用，好像没有价值啊。还有，我感觉打字好慢，这个假期要不要学下双拼🤔</font></del></p><h4 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h4><blockquote><p>上大学之前对游戏看门狗很感兴趣，由此产生对Kali Linux的浓厚“兴趣”（引号是因为到现在为止我还是不会使用它之中的工具），然后因为高中生没什么可支配的钱，为了省钱而跟着视频尝试搭建VPS，由此学了一丁点Linux的使用，也就是apt换个源这样的简单操作，还是为了Kali，感觉拥有一部“黑客手机”很帅，于是尝试编译内核，得知了AOSP，接触了LineageOS。但是，但是到现在我依然不知道怎么编译一个Linux系统，怎么才能过编译（人生中唯二两次过编译，一次是一点没改的LineageOS代码，一次是在VPS上一点没改的玩客云代码，还因为网络问题没有下载下来，跟着实例一起销毁了）。编译内核就是为了NetHunter的特色功能，我唯一认识的就是HID Duck，有两种实现途径——手机、开发板。<br/><br>手机直到这学期在闲鱼上收了一部Nexus5才尝到原生的爽，而开发板总让我意难平——手机内核模块可能存在难度，我先不去啃，但是上学期学过单片机，为什么我不能实现这么基础的功能呢？而且大一暑假末打算DIY游戏外设，由此在大二第一学期开始时打算看USB-HID。现在在学校回不去家就随便看看吧。</p></blockquote><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>过程：先以usb、嵌入式、实现 作为关键词搜索库文件，找到arduino的库，找到了这个up主的github开源项目，找到视频。说起来巧，这个up主页还有一个通过抓包蓝牙自制喵喵机的项目之前我就觉得很NB<br/><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>共159页，我下下来还没细看，这个非高校版的<a href="https://wenku.baidu.com/view/eb27a1660875f46527d3240c844769eae109a36c.html">链接</a>供参考<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>今天起定下的计划</title>
+    <link href="/2022/01/14/%E8%BD%BB%E6%9D%BE%E5%8F%88%E6%97%A0%E8%81%8A%E7%9A%84%E5%87%A0%E5%A4%A9/"/>
+    <url>/2022/01/14/%E8%BD%BB%E6%9D%BE%E5%8F%88%E6%97%A0%E8%81%8A%E7%9A%84%E5%87%A0%E5%A4%A9/</url>
+    
+    <content type="html"><![CDATA[<p>这几天浑浑噩噩的就过去了，每天都一点睡（宿舍12：30熄灯），然后早上起不来，昨天和今天都是中午12点才下床。幸好宿舍不通宵供电，因为虽然我们在有人睡觉时都会克制着不高声说话，但是现在有一点灯光我都睡不着，而且刷手机刷个不停。<br/><br>昨天晚上在图书馆看书，感觉瞬间失去了中二的感觉，突然意识到有些事情无力去做（写个网页和做个什么项目都需要长期的投入，之前我都急于求成，虽然也涨了经验，但是总好像让自己的学习过程太浮夸），图书馆的书也不是所有都绝对要看（TP区甚至还有XP系统使用相关的书，标榜着“黑客攻防”的书也不比《电脑爱好者报》有用）。<br/><br>昨天借了一本《奔跑吧Linux内核》，序页提到了《鸟哥的Linux私房菜》，刚好卫津路图书馆的孤本被我借了，这两天先把鸟哥看完之后再看点别的。<br/><br>说来还没写下来过假期的期望，刚才给宿舍拖地的时候想起来从来都没给家里做过家务，这次要是能回家，就做做扫除，每天洗洗碗，时间够的话把驾照整出来，开开家里的车(?)。要是回不去了，还得准备开学的考试，这两天注意身体健康，看些有趣的书。<br>刚才看了下硬盘里备份的上次离开家前拍的视频，破防了。就连我的手机被买来都快一年了，这一个学期论离开家可真长，论一天做了些啥学了些啥可真短。<br/><br>😭😭😭带我回家吧，写出这些东西之前还没有那么想家，只觉得无聊还有后悔于控制不住沉溺于刷b站上的娱乐视频。现在只觉得想家变成了一个情绪发泄的端口。</p><p>现在也已是2022年的10月中旬了，22年就是这样无语，一切事情都被疫情打断。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>博客建立教程备忘录</title>
+    <link href="/2022/01/12/%E4%B8%80%E4%B8%AA%E5%BC%83%E5%9D%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%8B%E6%95%99%E7%A8%8B/"/>
+    <url>/2022/01/12/%E4%B8%80%E4%B8%AA%E5%BC%83%E5%9D%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%8B%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p><font color="gray" size="2"><del>前天起计划搭建个人博客，花了一点时间就大概搞出来了，现在分享下我的流程，帮大家快速建立个人博客，以下操作需要电脑。</del></font><br/><br><del>摆烂了，根据第一个参考链接从概述开始就可以了，官方文档下面还有上传github的办法</del><br/><br/><strong>用power shell执行hexo指令时需要打全成hexo.cmd（tab键也可以补全）</strong><br/><br/></p><h1 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h1><ul><li>生成博客：hexo g</li><li>预览博客：hexo s <font color="gray">浏览器打开命令输入后出来的网址</font></li><li>上传博客：hexo d <font color="gray">github page在上传成功后需要过一会才会变化，只要最近commit的id对的上就证明没错</font></li><li>hexo clean <font color="gray">不知道有什么用</font><br><br/><br/></li></ul><p>如果hexo d 出错先检查下网络，然后看看根目录（不是themes下主题的）_config.yml的 “deploy:” 那里有没有打上git仓库信息。<br/><br/><br>分支也不要搞错，例如自己项目里分支是 main 的话不要按照教程打成 master 不知道这会不会有问题。<br/><br/></p><p>参考链接：<br/><br>1.<a href="https://hexo.io/zh-cn/docs">Hexo官方文档</a><br/><br>2.<a href="https://zhuanlan.zhihu.com/p/74778630">不需懂代码，10分钟在Github搭建免费且已成型的个人博客网站 - 知乎</a><br/><br>3.<a href="https://zhuanlan.zhihu.com/p/111832962">在Github/Gitee上搭建免费个人博客网站（进阶篇） - 知乎</a><br/></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+      <tag>技术</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>这是博客的第一篇文章</title>
+    <link href="/2022/01/11/%E8%BF%99%E6%98%AF%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <url>/2022/01/11/%E8%BF%99%E6%98%AF%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="这是博客的第一篇文章"><a href="#这是博客的第一篇文章" class="headerlink" title="这是博客的第一篇文章"></a>这是博客的第一篇文章</h1><hr><ul><li><p>昨天本该完成早上的马原考试，下午完成重修考试。今天本该完成物理考试。在8号之前我正在为这些考试而头疼，而现在需要考虑怎样对待头一个学生时代不在家的假期。疫情在20年1月开始到现在22年1月，两年时间过后首次给我带来了切身的影响。</p></li><li><p>昨天我还在考虑在假期入门CTF、ACM之类的，结果经过了昨天一晚上尝试搭建php网站打开书本附带的题目未果，今天又花了一天还是连靶场都没有搭建出来，还真不知道还有什么东西好玩了。</p></li><li><p>Blender是挺好玩的，但是没有考试的压力，摸鱼也变得没有那么有吸引力了，学习的趣味性真是相对的啊😔。</p></li><li><p>之前一直没有上传之前提过的ahk脚本的原因是空间不能放二维码，不过如果能看到我的博客的话，我先把链接放到这里</p><blockquote><p><a href="https://gitee.com/zhaosn123/auto-hot-key-my-noob-script">https://gitee.com/zhaosn123/auto-hot-key-my-noob-script</a></p></blockquote></li></ul><hr><p>最后，非常期待能够见到其他人的博客，这个假期我原本打算做些有意义的事情，但是现在又感觉动力不足了，希望能通过我的分享和您的分享让我们共同进步。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2022/01/11/hello-world/"/>
+    <url>/2022/01/11/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></div></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ hexo server<br></code></pre></div></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ hexo generate<br></code></pre></div></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></div></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
