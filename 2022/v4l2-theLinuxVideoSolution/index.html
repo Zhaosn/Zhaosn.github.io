@@ -1,0 +1,1074 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhao SN">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="linux下调用摄像头拍照的一种超级轻量的方法，从底层控制一切">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux下调用摄像头拍照-v4l2与ffmpeg">
+<meta property="og:url" content="https://zhaosn.github.io/2022/v4l2-theLinuxVideoSolution/index.html">
+<meta property="og:site_name" content="Zhaosn的博客">
+<meta property="og:description" content="linux下调用摄像头拍照的一种超级轻量的方法，从底层控制一切">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-27T06:51:27.000Z">
+<meta property="article:modified_time" content="2022-10-28T02:04:03.562Z">
+<meta property="article:author" content="Zhao SN">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="干货">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>linux下调用摄像头拍照-v4l2与ffmpeg - Zhaosn的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhaosn.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":90,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?db0474f77b68ddf3fb7cc21650cb844d";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zhaosn的博客🍔☕️</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" false
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="linux下调用摄像头拍照-v4l2与ffmpeg"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-27 14:51" pubdate>
+          2022年10月27日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="技术备忘"
+        id="heading-e9da6a8e80d43b63b2f8158805d6d525" role="tab" data-toggle="collapse" href="#collapse-e9da6a8e80d43b63b2f8158805d6d525"
+        aria-expanded="true"
+      >
+        技术备忘
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-e9da6a8e80d43b63b2f8158805d6d525"
+           role="tabpanel" aria-labelledby="heading-e9da6a8e80d43b63b2f8158805d6d525">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux"
+        id="heading-edc9f0a5a5d57797bf68e37364743831" role="tab" data-toggle="collapse" href="#collapse-edc9f0a5a5d57797bf68e37364743831"
+        aria-expanded="true"
+      >
+        Linux
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-edc9f0a5a5d57797bf68e37364743831"
+           role="tabpanel" aria-labelledby="heading-edc9f0a5a5d57797bf68e37364743831">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/charge-thresholdOfLinux/" title="linux下充电阈值设置-dkms&amp;TLP"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">linux下充电阈值设置-dkms&amp;TLP</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/v4l2-theLinuxVideoSolution/" title="linux下调用摄像头拍照-v4l2与ffmpeg"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">linux下调用摄像头拍照-v4l2与ffmpeg</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="博客"
+        id="heading-c50d13646ec66f1929da5d491f2dff0f" role="tab" data-toggle="collapse" href="#collapse-c50d13646ec66f1929da5d491f2dff0f"
+        aria-expanded="false"
+      >
+        博客
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-c50d13646ec66f1929da5d491f2dff0f"
+           role="tabpanel" aria-labelledby="heading-c50d13646ec66f1929da5d491f2dff0f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/emoji-tag/" title="GitHub的MarkDown渲染支持的emoji标签"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">GitHub的MarkDown渲染支持的emoji标签</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/SUPPORTED_LANGUAGES/" title="MarkDown指定hightlight.js代码高亮"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MarkDown指定hightlight.js代码高亮</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/blog_tutorial/" title="博客建立教程备忘录"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">博客建立教程备忘录</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/hexo-minifier/" title="开启hexo-minifier压缩博客"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">开启hexo-minifier压缩博客</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="嵌入式"
+        id="heading-62f8a8e20d03835fb846c1e03058cccb" role="tab" data-toggle="collapse" href="#collapse-62f8a8e20d03835fb846c1e03058cccb"
+        aria-expanded="true"
+      >
+        嵌入式
+        <span class="list-group-count">(6)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62f8a8e20d03835fb846c1e03058cccb"
+           role="tabpanel" aria-labelledby="heading-62f8a8e20d03835fb846c1e03058cccb">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/ESP32-pyinShell/" title="ESP32:搞定终端下MicroPython编程"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP32:搞定终端下MicroPython编程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/charge-thresholdOfLinux/" title="linux下充电阈值设置-dkms&amp;TLP"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">linux下充电阈值设置-dkms&amp;TLP</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/v4l2-theLinuxVideoSolution/" title="linux下调用摄像头拍照-v4l2与ffmpeg"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">linux下调用摄像头拍照-v4l2与ffmpeg</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/HID_firstDig/" title="初次挖掘HID和硬件工程"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">初次挖掘HID和硬件工程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/rpi-pubkeyErr/" title="树莓派apt公钥错误解决方案"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">树莓派apt公钥错误解决方案</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/NFC-imcoming/" title="进军NFC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">进军NFC</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="网络"
+        id="heading-7ddbe15c845fa27a2bab496183042ca6" role="tab" data-toggle="collapse" href="#collapse-7ddbe15c845fa27a2bab496183042ca6"
+        aria-expanded="false"
+      >
+        网络
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-7ddbe15c845fa27a2bab496183042ca6"
+           role="tabpanel" aria-labelledby="heading-7ddbe15c845fa27a2bab496183042ca6">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/git_proxySet/" title="git配置代理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">git配置代理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/tailscale-subnet-linux/" title="tailscale-linux-子网配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">tailscale-linux-子网配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/opWRThomePrint/" title="基于openwrt，建立家庭云打印服务"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">基于openwrt，建立家庭云打印服务</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">linux下调用摄像头拍照-v4l2与ffmpeg</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="我的实际操作记录"><a href="#我的实际操作记录" class="headerlink" title="我的实际操作记录"></a>我的实际操作记录</h1><h2 id="v4l2获取图像部分"><a href="#v4l2获取图像部分" class="headerlink" title="v4l2获取图像部分"></a>v4l2获取图像部分</h2><p>找到了这位大佬的博客<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://zhaoxuhui.top/blog/2021/09/23/v4l2-introduction-and-usb-camera-bayer-raw-data.html">[6]</span></a></sup>，是本文学习的基础。具体操作总结如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">v4l2-ctl --list-devices <span class="hljs-comment">#显示当前连接的摄像头设备（必须）</span><br>v4l2-ctl -d /dev/video0 <span class="hljs-comment">#连接到一个设备（必须）</span><br>v4l2-ctl -D <span class="hljs-comment">#输出设备的驱动信息</span><br>v4l2-ctl -L <span class="hljs-comment">#输出当前设备支持的控制选项</span><br>v4l2-ctl --list-formats-ext <span class="hljs-comment">#注意⚠️返回值写着摄像头支持的所有输出模式，如YUYV（必须）</span><br>v4l2-ctl --verbose --set-fmt-video=width=640,height=480,pixelformat=YUYV --stream-mmap --stream-count=1 --stream-to=test.yuv <span class="hljs-comment">#在当前位置生成图片，注意pixelformat报错时回到5️⃣（必须）</span><br></code></pre></td></tr></table></figure>
+<p>但我在第6️⃣步时没能成功输出能看的图片，于是下载了obs试试可行性，确认可行。obs作为开源软件可以方便的查看它的原代码。下附部分obs返回的调试消息<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="1234567891011121314151617181920info: v4l2-input: /dev/video1 seems to not support video captureinfo: v4l2-input: Found device &#x27;USB Camera: USB Camera&#x27; at /dev/video0info: v4l2-input: Start capture from /dev/video2error: v4l2-input: Unable to open deviceerror: v4l2-input: Initialization failed, errno: 没有那个文件或目录info: v4l2-input: Start capture from /dev/video0info: v4l2-input: Input: 0info: v4l2-input: Found input &#x27;Camera 1&#x27; (Index 0)info: v4l2-controls: setting default for Power Line Frequency to 2info: v4l2-input: Pixelformat: YUYV 4:2:2 (available)info: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)info: v4l2-input: Pixelformat: BGR3 (Emulated) (available)info: v4l2-input: Pixelformat: YU12 (Emulated) (available)info: v4l2-input: Pixelformat: YV12 (Emulated) (available)info: v4l2-input: Stepwise and Continuous framesizes are currently hardcodedinfo: v4l2-input: Resolution: 640x480info: v4l2-input: Pixelformat: YUYVinfo: v4l2-input: Linesize: 1280 Bytesinfo: v4l2-input: Framerate: 30.00 fpsinfo: v4l2-input: /dev/video0: select timeout set to 166666 (5x frame periods)">[5]</span></a></sup>。</p>
+<ol>
+<li>通过在开源代码里寻找，找到了疑似实现功能的代码片段<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/obsproject/obs-studio/blob/c5015d0e6cb180d138e1a9e2258afd903254b9ea/plugins/linux-v4l2/v4l2-input.c">[1]</span></a></sup>。但是我看不懂😵‍💫，于是搜寻其他信息</li>
+<li>我虽然知道YUV和RGB不同，却不知道还有.yuv这种格式，6️⃣步所得的结果并不能以.jpg方式打开/.yuv格式打开结果不正常，因此需要进行转换。我使用网上找到的命令(下代码块第一行)，打开能看到大概外形但是像素位置错乱。估计因为没有选择正确的”-pix_fmt”</li>
+<li>通过指定原-pix_fmt获得了正确结果(下代码块第二行)<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://stackoverflow.com/questions/70961566/how-to-convert-raw-yuv-image-to-jpg">[2]</span></a></sup><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ffmpeg -s 640x480 -i test.yuv aa.jpeg  <span class="hljs-comment">#(错误代码)</span><br>ffmpeg -y -s:v 640x480 -pix_fmt yuyv422 -i test.yuv result.jpg  <span class="hljs-comment">#(正确代码)</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>还有一段命令也是我找到的，但我没试过可行性同时也忘了记录来源:</p>
+<blockquote>
+<p>ffmpeg -s 640x480 -i bbb.yuv -ss 00:00:00 -c:v libx264 -s:v 640x480 -preset slow -t 00:08:20 output.mp4</p>
+</blockquote>
+<h2 id="创建内存盘部分"><a href="#创建内存盘部分" class="headerlink" title="创建内存盘部分"></a>创建内存盘部分</h2><h3 id="信息挖掘"><a href="#信息挖掘" class="headerlink" title="信息挖掘"></a>信息挖掘</h3><p>随后上网寻找创建内存盘的方法，参考了如下几个网站的内容</p>
+<blockquote>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/67170890">https://zhuanlan.zhihu.com/p/67170890</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linuxdashen.com/%E4%B8%BA%E4%BD%A0%E7%9A%84linux%E7%B3%BB%E7%BB%9F%E5%88%9B%E5%BB%BAram-disk">https://www.linuxdashen.com/%E4%B8%BA%E4%BD%A0%E7%9A%84linux%E7%B3%BB%E7%BB%9F%E5%88%9B%E5%BB%BAram-disk</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1767470">https://cloud.tencent.com/developer/article/1767470</a></li>
+</ol>
+</blockquote>
+<h3 id="实际执行-3-4"><a href="#实际执行-3-4" class="headerlink" title="实际执行[3][4]"></a>实际执行<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://unix.stackexchange.com/questions/26364/how-can-i-create-a-tmpfs-as-a-regular-non-root-user">[3]</span></a></sup><sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://superuser.com/questions/389500/how-can-i-mount-a-tmpfs-without-root">[4]</span></a></sup></h3><p>创建内存盘</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkdir /dev/shm/user.camcap_cache <span class="hljs-comment">#创建内存盘</span><br>ln -s /dev/shm/user.camcap_cache ./cache <span class="hljs-comment">#在当前目录下创建软链接方便使用</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h1><p>然后我写了个shell脚本，越写越上头，不负责任的说这是我写过最美的代码。<br>需要安装v4l2和ffmpeg，其他什么都不要，奏似这么轻量。<br>扩展阅读</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://chtseng.wordpress.com/2022/07/18/%E4%BD%BF%E7%94%A8v4l2-ctl%E8%AA%BF%E6%95%B4-usb-camera%E5%8F%83%E6%95%B8/">https://chtseng.wordpress.com/2022/07/18/使用v4l2-ctl調整-usb-camera參數/</a><br><a target="_blank" rel="noopener" href="http://zhaoxuhui.top/blog/2021/09/23/v4l2-introduction-and-usb-camera-bayer-raw-data.html">http://zhaoxuhui.top/blog/2021/09/23/v4l2-introduction-and-usb-camera-bayer-raw-data.html</a><br><a target="_blank" rel="noopener" href="https://silencewt.github.io/2015/04/29/v4l2%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE%E5%92%8C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/">https://silencewt.github.io/2015/04/29/v4l2的学习建议和流程解析/</a></p>
+</blockquote>
+<h2 id="脚本及执行方法"><a href="#脚本及执行方法" class="headerlink" title="脚本及执行方法"></a>脚本及执行方法</h2><p>例:复制到capcam.sh中</p>
+<ol>
+<li>chmod +x capcam.sh</li>
+<li>执行./capcam.sh</li>
+<li>结束</li>
+<li>另外，./capcam.sh clean清理目录，./capcam.sh mod手动定义捕获参数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> time<span class="hljs-comment">#移植时无需移植</span><br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>    a = os.popen(<span class="hljs-string">&#x27;./capcam.sh&#x27;</span>)<br>    time.sleep(<span class="hljs-number">1</span>)<span class="hljs-comment">#移植时无需移植</span><br>    <span class="hljs-comment">#print(a.read())</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span><br>ROM_CAPTURE_PATH=<span class="hljs-string">&quot;./rom_camcache&quot;</span>	<span class="hljs-comment">#数据暂存路径，SELECT_CACHE_LOC值选择实际数据存放的位置</span><br>SELECT_CACHE_LOC=0	<span class="hljs-comment">#可选值0 or 1，0:选择内存盘；1:选择ROM_CAPTURE_PATH指定地址</span><br>RAM_DIR_NAME=<span class="hljs-string">&quot;user.camcap_cache&quot;</span>	<span class="hljs-comment">#RAM临时文件文件名</span><br>IS_HARDCODE=1	<span class="hljs-comment">#值为1时使用程序中硬编码的摄像头捕获参数</span><br><span class="hljs-comment">###	Volatile parameter</span><br>DEVICE_LOC=2<br>CAP_WIDTH=2560<br>CAP_HEIGHT=720<br>CAP_PIXFMT=MJPG<br>CAP_SUFFIX=jpeg <span class="hljs-comment">#jpeg/raw depends on CAP_PIXFMT is MJPEG/YUYV etc.</span><br><span class="hljs-comment">###</span><br>PIX_FMT_FFMPEG=<span class="hljs-string">&quot;yuyv422&quot;</span> <span class="hljs-comment">#ffmpeg需要原像素格式的信息，我的设备只有这一种，所以我的代码就不对其他格式适配了。摄像头初始化处也需要制定像素格式，但是参数拼写不一样，需要进一步完善代码可以从这里做起。</span><br>start=`date +%s.%N`<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\nROM_CAPTURE_PATH=<span class="hljs-variable">$&#123;ROM_CAPTURE_PATH&#125;</span>\t#数据暂存路径，SELECT_CACHE_LOC值选择实际数据存放的位置\nSELECT_CACHE_LOC=<span class="hljs-variable">$&#123;SELECT_CACHE_LOC&#125;</span>\t#可选值0 or 1，0:选择内存盘；1:选择ROM_CAPTURE_PATH指定地址\nRAM_DIR_NAME=<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span>\t\t#RAM临时文件文件名\nIS_HARDCODE=<span class="hljs-variable">$&#123;IS_HARDCODE&#125;</span>\t\t#值为1时使用程序中硬编码的摄像头捕获参数\n###Volatile parameter###\nDEVICE_LOC=<span class="hljs-variable">$&#123;DEVICE_LOC&#125;</span>\nCAP_WIDTH=<span class="hljs-variable">$&#123;CAP_WIDTH&#125;</span>\nCAP_HEIGHT=<span class="hljs-variable">$&#123;CAP_HEIGHT&#125;</span>\nCAP_PIXFMT=<span class="hljs-variable">$&#123;CAP_PIXFMT&#125;</span>\n###\nPIX_FMT_FFMPEG=<span class="hljs-variable">$&#123;PIX_FMT_FFMPEG&#125;</span>&quot;</span><br><span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> ]<br><span class="hljs-keyword">then</span><br>	<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$1</span> = <span class="hljs-string">&quot;clean&quot;</span> ]<br>	<span class="hljs-keyword">then</span><br>		<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Cleaning the dir in RAM:&quot;</span><br>		rm -ir /dev/shm/<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span><br>		<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Cleaning the link to the dir in RAM:&quot;</span><br>		rm <span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span>_link<br>		<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Cleaning the dir in ROM:&quot;</span><br>		rm -ir <span class="hljs-variable">$&#123;ROM_CAPTURE_PATH&#125;</span><br>		<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Process Done.&quot;</span><br>		<span class="hljs-built_in">return</span><br>	<span class="hljs-keyword">fi</span><br>	<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$1</span> = <span class="hljs-string">&quot;mod&quot;</span> ]<br>	<span class="hljs-keyword">then</span><br>		IS_HARDCODE=0<br>	<span class="hljs-keyword">fi</span><br><span class="hljs-keyword">fi</span><br><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;SELECT_CACHE_LOC&#125;</span> -eq 0 ] <span class="hljs-comment">#选择内存盘</span><br><span class="hljs-keyword">then</span><br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;creating RAM disk&quot;</span><br>	<span class="hljs-keyword">if</span> [ ! -d /dev/shm/<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span> ]<br>	<span class="hljs-keyword">then</span><br>		mkdir /dev/shm/<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span> <span class="hljs-comment">#创建内存盘，需要确认df -h显示/dev/shm挂载方式为tmpfs</span><br>	<span class="hljs-keyword">fi</span><br>	<span class="hljs-keyword">if</span> [ ! -d ./<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span>_link ]<br>	<span class="hljs-keyword">then</span><br>		ln -s /dev/shm/<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span> ./<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span>_link <span class="hljs-comment">#在当前目录下创建软链接方便使用</span><br>	<span class="hljs-keyword">fi</span><br><span class="hljs-keyword">else</span> <span class="hljs-comment">#选择ROM_CAPTURE_PATH指定地址</span><br>	<span class="hljs-keyword">if</span> [ ! -d ./<span class="hljs-variable">$&#123;ROM_CAPTURE_PATH&#125;</span> ]<br>	<span class="hljs-keyword">then</span><br>		mkdir <span class="hljs-variable">$&#123;ROM_CAPTURE_PATH&#125;</span><br>	<span class="hljs-keyword">fi</span><br><span class="hljs-keyword">fi</span><br>v4l2-ctl --list-devices <span class="hljs-comment">#显示当前连接的摄像头设备</span><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;IS_HARDCODE&#125;</span> -eq 1 ]<br><span class="hljs-keyword">then</span><br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;using the hardcode now&quot;</span><br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Choose:/dev/video<span class="hljs-variable">$&#123;DEVICE_LOC&#125;</span>&quot;</span><br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;resolution:<span class="hljs-variable">$&#123;CAP_WIDTH&#125;</span>x<span class="hljs-variable">$&#123;CAP_HEIGHT&#125;</span> in <span class="hljs-variable">$&#123;CAP_PIXFMT&#125;</span>&quot;</span><br><span class="hljs-keyword">else</span><br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;选择设备(格式:若选择/dev/video0，则输入0。没有检查输入所以自己注意):&quot;</span><br>	<span class="hljs-built_in">read</span> DEVICE_LOC<br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Choose:/dev/video<span class="hljs-variable">$&#123;DEVICE_LOC&#125;</span>&quot;</span><br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;在如下信息中选择摄像头参数&quot;</span><br>	v4l2-ctl -d<span class="hljs-variable">$&#123;DEVICE_LOC&#125;</span> --list-formats-ext <span class="hljs-comment">#注意⚠️返回值写着摄像头支持的所有输出模式，如YUYV</span><br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;输入捕捉宽度:&quot;</span><br>	<span class="hljs-built_in">read</span> CAP_WIDTH<br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;输入捕捉高度:&quot;</span><br>	<span class="hljs-built_in">read</span> CAP_HEIGHT<br>	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;输入像素格式:&quot;</span><br>	<span class="hljs-built_in">read</span> CAP_PIXFMT<br><span class="hljs-keyword">fi</span><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;SELECT_CACHE_LOC&#125;</span> -eq 0 ] <span class="hljs-comment">#选择内存盘</span><br><span class="hljs-keyword">then</span><br>	v4l2-ctl --verbose \<br>		-d<span class="hljs-variable">$&#123;DEVICE_LOC&#125;</span> \<br>		--set-fmt-video=width=<span class="hljs-variable">$&#123;CAP_WIDTH&#125;</span>,height=<span class="hljs-variable">$&#123;CAP_HEIGHT&#125;</span>,pixelformat=<span class="hljs-variable">$&#123;CAP_PIXFMT&#125;</span> \<br>		--stream-mmap \<br>		--stream-count=1 \<br>		--stream-to=./<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span>_link/output.<span class="hljs-variable">$&#123;CAP_SUFFIX&#125;</span><br>	<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;CAP_PIXFMT&#125;</span> = <span class="hljs-string">&quot;YUYV&quot;</span> ] <span class="hljs-comment">#捕获格式不为YUYV时不进行转码</span><br>	<span class="hljs-keyword">then</span><br>		ffmpeg -y -s:v <span class="hljs-variable">$&#123;CAP_WIDTH&#125;</span>x<span class="hljs-variable">$&#123;CAP_HEIGHT&#125;</span> -pix_fmt <span class="hljs-variable">$&#123;PIX_FMT_FFMPEG&#125;</span> -i ./<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span>_link/output.raw ./<span class="hljs-variable">$&#123;RAM_DIR_NAME&#125;</span>_link/output.jpeg<br>	<span class="hljs-keyword">fi</span><br><span class="hljs-keyword">else</span> <span class="hljs-comment">#选择ROM_CAPTURE_PATH指定地址</span><br>	v4l2-ctl --verbose \<br>		-d<span class="hljs-variable">$&#123;DEVICE_LOC&#125;</span> \<br>		--set-fmt-video=width=<span class="hljs-variable">$&#123;CAP_WIDTH&#125;</span>,height=<span class="hljs-variable">$&#123;CAP_HEIGHT&#125;</span>,pixelformat=<span class="hljs-variable">$&#123;CAP_PIXFMT&#125;</span> \<br>		--stream-mmap \<br>		--stream-count=1 \<br>		--stream-to=<span class="hljs-variable">$&#123;ROM_CAPTURE_PATH&#125;</span>/output.<span class="hljs-variable">$&#123;CAP_SUFFIX&#125;</span><br>	<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;CAP_PIXFMT&#125;</span> = <span class="hljs-string">&quot;YUYV&quot;</span> ] <span class="hljs-comment">#捕获格式不为YUYV时不进行转码</span><br>	<span class="hljs-keyword">then</span><br>		ffmpeg -y -s:v <span class="hljs-variable">$&#123;CAP_WIDTH&#125;</span>x<span class="hljs-variable">$&#123;CAP_HEIGHT&#125;</span> -pix_fmt <span class="hljs-variable">$&#123;PIX_FMT_FFMPEG&#125;</span> -i <span class="hljs-variable">$&#123;ROM_CAPTURE_PATH&#125;</span>/output.raw <span class="hljs-variable">$&#123;ROM_CAPTURE_PATH&#125;</span>/output.jpeg<br>	<span class="hljs-keyword">fi</span><br><span class="hljs-keyword">fi</span><br>end=`date +%s.%N`<br><span class="hljs-function"><span class="hljs-title">getTiming</span></span>()&#123; <span class="hljs-comment">#https://blog.csdn.net/bowenlaw/article/details/103789158</span><br>    start=<span class="hljs-variable">$1</span><br>    end=<span class="hljs-variable">$2</span>  <br>    start_s=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$start</span> | cut -d <span class="hljs-string">&#x27;.&#x27;</span> -f 1)<br>    start_ns=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$start</span> | cut -d <span class="hljs-string">&#x27;.&#x27;</span> -f 2)<br>    end_s=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$end</span> | cut -d <span class="hljs-string">&#x27;.&#x27;</span> -f 1)<br>    end_ns=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$end</span> | cut -d <span class="hljs-string">&#x27;.&#x27;</span> -f 2)<br>    time=`expr <span class="hljs-variable">$end_s</span> \* 1000 - <span class="hljs-variable">$start_s</span> \* 1000 + <span class="hljs-variable">$end_ns</span> / 1000000 - <span class="hljs-variable">$start_ns</span> / 1000000`<br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$time</span> ms&quot;</span><br>&#125; <br>result=$(getTiming <span class="hljs-variable">$start</span> <span class="hljs-variable">$end</span>) <br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$result</span> <br></code></pre></td></tr></table></figure>
+
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://github.com/obsproject/obs-studio/blob/c5015d0e6cb180d138e1a9e2258afd903254b9ea/plugins/linux-v4l2/v4l2-input.c">https://github.com/obsproject/obs-studio/blob/c5015d0e6cb180d138e1a9e2258afd903254b9ea/plugins/linux-v4l2/v4l2-input.c</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/70961566/how-to-convert-raw-yuv-image-to-jpg">https://stackoverflow.com/questions/70961566/how-to-convert-raw-yuv-image-to-jpg</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/26364/how-can-i-create-a-tmpfs-as-a-regular-non-root-user">https://unix.stackexchange.com/questions/26364/how-can-i-create-a-tmpfs-as-a-regular-non-root-user</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://superuser.com/questions/389500/how-can-i-mount-a-tmpfs-without-root">https://superuser.com/questions/389500/how-can-i-mount-a-tmpfs-without-root</a>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">info: v4l2-input: /dev/video1 seems to not support video capture<br>info: v4l2-input: Found device <span class="hljs-string">&#x27;USB Camera: USB Camera&#x27;</span> at /dev/video0<br>info: v4l2-input: Start capture from /dev/video2<br>error: v4l2-input: Unable to open device<br>error: v4l2-input: Initialization failed, errno: 没有那个文件或目录<br>info: v4l2-input: Start capture from /dev/video0<br>info: v4l2-input: Input: 0<br>info: v4l2-input: Found input <span class="hljs-string">&#x27;Camera 1&#x27;</span> (Index 0)<br>info: v4l2-controls: setting default <span class="hljs-keyword">for</span> Power Line Frequency to 2<br>info: v4l2-input: Pixelformat: YUYV 4:2:2 (available)<br>info: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)<br>info: v4l2-input: Pixelformat: BGR3 (Emulated) (available)<br>info: v4l2-input: Pixelformat: YU12 (Emulated) (available)<br>info: v4l2-input: Pixelformat: YV12 (Emulated) (available)<br>info: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded<br>info: v4l2-input: Resolution: 640x480<br>info: v4l2-input: Pixelformat: YUYV<br>info: v4l2-input: Linesize: 1280 Bytes<br>info: v4l2-input: Framerate: 30.00 fps<br>info: v4l2-input: /dev/video0: select timeout <span class="hljs-built_in">set</span> to 166666 (5x frame periods)<br></code></pre></td></tr></table></figure>
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span><a target="_blank" rel="noopener" href="http://zhaoxuhui.top/blog/2021/09/23/v4l2-introduction-and-usb-camera-bayer-raw-data.html">http://zhaoxuhui.top/blog/2021/09/23/v4l2-introduction-and-usb-camera-bayer-raw-data.html</a>
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%80%E6%9C%AF/">#技术</a>
+      
+        <a href="/tags/%E5%B9%B2%E8%B4%A7/">#干货</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>linux下调用摄像头拍照-v4l2与ffmpeg</div>
+      <div>https://zhaosn.github.io/2022/v4l2-theLinuxVideoSolution/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhao SN</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/hexo-minifier/" title="开启hexo-minifier压缩博客">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">开启hexo-minifier压缩博客</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/charge-thresholdOfLinux/" title="linux下充电阈值设置-dkms&amp;TLP">
+                        <span class="hidden-mobile">linux下充电阈值设置-dkms&amp;TLP</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'https://github.com/Zhaosn/Zhaosn.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://afdian.net/a/Zhaosn" target="_blank" rel="nofollow noopener"><span>爱发电</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <script src="/js/outdated.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
