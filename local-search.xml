@@ -4,6 +4,46 @@
   
   
   <entry>
+    <title>whatAjunkPCcando</title>
+    <link href="/2023/whatAjunkPCcando/"/>
+    <url>/2023/whatAjunkPCcando/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>中州韵配置指南</title>
+    <link href="/2023/rimeEverything/"/>
+    <url>/2023/rimeEverything/</url>
+    
+    <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>安装linux作为我EDC用机的系统后，在配置中州韵输入法的过程中耗费了许多时间，问题有：选择输入法框架(ibus/fcitx)、备选词显示、emoji输入、时间日期输入、设置双拼输入法等问题。本文将列举出我解决过程中有帮助的一些网站，同时整理一下自己的思路以便以后方便快速布置工作环境。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><ol><li>选择输入法框架<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://rime.im/download/">[1]</span></a></sup> 我使用了ibus，因为当时好像发现ibus是原生的，虽然安装过fcitx，但后来可能是因为适配原因放弃了这个方案。</li></ol><ol start="2"><li>这个网站<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/rime/home/wiki/UserGuide">[2]</span></a></sup> 中最有用的内容是介绍了导出设置和词典的功能，也可以从文章内的链接跳转至高级玩法。说实在的，官方的文档真难懂。</li></ol><ol start="3"><li>这个网站<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://www.cnblogs.com/hellxz/p/10198540.html">[3]</span></a></sup> 描述了设置文件的位置和作用<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs text">/usr/share/rime-data：此目录为rime输入方案的数据源（差不多这意思）<br>~/.config/ibus/rime或~/.config/fcitx/rime：这里是配置文件最终生效的地方<br><br>default.yaml:这里最后的部署整合到一起的配置文件，不要在这里写配置<br>default.custom.yaml: 在这个文件中，我们可以创建自定义的全局配置，需要自己创建<br>installation.yaml:安装时自动创建的配置文件<br>输入方案名.schema.yaml：输入方案的默认配置文件<br>输入方案名.custom.yaml: 仅对指定输入方案的配置进行修改的配置文件<br>其余的均为输入方案生成的，可以不管<br>symbols.yaml:这个文件是符号相关的设置<br></code></pre></td></tr></table></figure></li></ol><ol start="4"><li>这个网站<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://www.aisoutu.com/a/1655310">[4]</span></a></sup>介绍了给输入法引入lua脚本生成当前时间日期的方法，但我使用时将translators直接放进小鹤双拼的schema.yaml时没有起作用</li></ol><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://rime.im/download/">https://rime.im/download/</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a href="https://github.com/rime/home/wiki/UserGuide">https://github.com/rime/home/wiki/UserGuide</a><a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a href="https://www.cnblogs.com/hellxz/p/10198540.html">https://www.cnblogs.com/hellxz/p/10198540.html</a><a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a href="https://www.aisoutu.com/a/1655310">https://www.aisoutu.com/a/1655310</a><a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>一个简单的闭门传感系统建设规划</title>
     <link href="/2023/securitySensor/"/>
     <url>/2023/securitySensor/</url>
