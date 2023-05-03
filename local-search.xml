@@ -4,13 +4,54 @@
   
   
   <entry>
-    <title>whatAjunkPCcando</title>
-    <link href="/2023/whatAjunkPCcando/"/>
-    <url>/2023/whatAjunkPCcando/</url>
+    <title>计算机视觉第一次大作业</title>
+    <link href="/2023/cannyOnN3350/"/>
+    <url>/2023/cannyOnN3350/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="信息挖掘"><a href="#信息挖掘" class="headerlink" title="信息挖掘"></a>信息挖掘</h1><p>找到个将canny性能优化的示例代码，好像是用到多线程<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://www.codee.com/case-study-how-we-made-canny-edge-detector-algorithm-run-faster-part-2">[1]</span></a></sup><sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/teamappentra/blog-codes/tree/main/canny-performance-part1">[2]</span></a></sup><br>Hough就没那么容易了，虽然知道大概原理但不知道代码怎么实现，真是很悲哀啊<br>还要通过比较两个图片里最大圆所处的坐标计算变换矩阵，hough做不出来没拿到坐标</p><h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>先用提供的脚本编译了两个程序，跑了下发现可以用，直接将输入的pgm图片的路径改为bmp图像不行，使用在线转换工具转换后利用原始参数跑了一遍，效果不错。<br>参数都是什么作用原文档没有直接写，通读一遍代码发现有这种描述</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">float sigma,              /* Standard deviation of the gaussian kernel. */<br>      tlow,                 /* Fraction of the high threshold in hysteresis. */<br>      thigh;                /* High hysteresis threshold control. The actual<br>                               threshold is the (100 * thigh) percentage point<br>                               in the histogram of the magnitude of the<br>                               gradient image that passes non-maximal<br>                               suppression. */<br></code></pre></td></tr></table></figure><p>翻译一下：sigma：高斯核的标准偏差；tlow：迟滞的高阈值分数(?_?这个不知道是什么)；thigh：高滞后阈值控制。实际阈值是通过非极大值抑制(non-maximal suppression)的梯度图像(gradient image)的幅值直方图(histogram of the magnitude)中的(100 * thigh)个百分点。当参数调节为10.0；0.85、0.95时出现了较好的结果，噪声的边缘相比参考点的边缘小了很多。</p><p>现在尝试Hough圆检测，有大量的博客只简单介绍一下原理之后就调库，更让人鄙视的是一个原理抄的哪里都一样，有本事抄代码好好讲讲啊。后来找到一个练习者的博客里移植了更底层的代码<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/JoshuaQYH/CV-code">[3]</span></a></sup>，但由于使用了C++的类和CImg.h头文件，迁移可能需要更多时间深入学习。</p><h1 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h1><p>我在主力机上安装了eclipse以期代替vs——我想尝试用开源或开放的方案处理各种计算机上的工作，因为拼多多微信学习通等国产软件各都有过：利用0day漏洞提权、扫描用户浏览记录、泄漏平台所有用户帐密的窒息操作。虽然我手机上照用不误，但电脑上有选择我便采用如下方案：Blender、LibreCAD、Libreoffice、eclipse、GIMP，涵盖了剪视频、建模、画图纸等等操作，传文件用localsend传到手机再用微信反之亦然，能用邮箱用邮箱。然后一开始查找范例用的是这个n3350的电脑，不想复制太多数据，就挑战用这个破ubuntu电脑整全流程。</p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://www.codee.com/case-study-how-we-made-canny-edge-detector-algorithm-run-faster-part-2">https://www.codee.com/case-study-how-we-made-canny-edge-detector-algorithm-run-faster-part-2</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a href="https://github.com/teamappentra/blog-codes/tree/main/canny-performance-part1">https://github.com/teamappentra/blog-codes/tree/main/canny-performance-part1</a><a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a href="https://github.com/JoshuaQYH/CV-code">https://github.com/JoshuaQYH/CV-code</a><a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
     
     
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>图像处理</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+      <tag>水货</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>23年5月整理下近日的思路</title>
+    <link href="/2023/whatRecentlyMay3/"/>
+    <url>/2023/whatRecentlyMay3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="梦想"><a href="#梦想" class="headerlink" title="梦想"></a>梦想</h1><p>4月了解到天津4.30有无线电AB证考试，高三就想着等成年了赶紧能设台拿呼号，结果拖到了21，更可气的是自己怎么就突然被迫年龄成了成年人，我虽然更能和身边的资源和解，但很难与自身和解，总想逃离现在的生活。</p><p>跑题了，30号我如期考了试，30道选择题答对25道就算过，我复习了一天半，这个我早在高三偷拿手机时的某几天晚上就全刷了个遍，但还是没能全对，现在已知我错了一道题，其他的没过5月好像还有机会，疫情的压力一过频率也多了。</p><p>为了留时间，提前去南京上海玩了6天，上海看了外滩、mihoyo、南京路步行街，南京有鸡鸣寺、玄武湖、钟山上的中山陵音乐台和什么塔，6天时间太紧了，多了没地住，主要还是费钱。来回车票住宿吃纯算自己消费的天数话是三天，一千三百多元，上海虹桥17点回天津的高铁好像经过阳澄湖，F座看外面很棒。</p><h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><p>作业一团乱码，想着快点做结果最后都把时间浪费了，计算机视觉是在这个n3350上跑得，c语言只装了个编译器。虽然上网性能不好，但要是能抓住续航长屏幕高清这一特点也能用的很舒服，搭配xfce虽然没有win一样方便的触控板手势，但罢了罢了，反正这破电脑触控板不好。<strong>Alt+滚轮可以启用放大镜功能</strong></p><p>还有一次我这个n3350的电脑没电了，之前在写小爱课程表的时候<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://www.bilibili.com/video/BV1hG4y1Q7D1">[1]</span></a></sup>js算是玩的比较上手了，遂用网页写了个能获得当前电量并大字显示在浏览器界面的应用，linux的笔记本电量就是个简单的写着从100以内数字的文件，之前写过crontab记录电量的脚本，现在我想应该只用把sed调通就好，网页css的关键是margin<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://www.runoob.com/css/css-margin.html">[2]</span></a></sup></p><h1 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h1><p>等拿到呼号就立刻打个牌子做个名片</p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 其中5指每隔5秒刷新一次页面 --&gt;</span><br><span class="hljs-comment">&lt;!--&lt;meta http-equiv=&quot;refresh&quot; content=&quot;5&quot;&gt;--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>菜鸟教程(runoob.com)<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-paragraph&quot;</span> &gt;</span> 90 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css"><span class="hljs-selector-class">.my-paragraph</span> &#123;</span><br><span class="css">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">8000%</span>;</span><br><span class="css">    <span class="hljs-attribute">line-height</span>:<span class="hljs-number">0%</span>;</span><br><span class="css">    <span class="hljs-attribute">text-align</span>: center;</span><br><span class="css"></span><br><span class="css">    <span class="hljs-attribute">margin-top</span>:<span class="hljs-number">450px</span>;</span><br><span class="css">&#125;</span><br><span class="css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br><br>sed -e &#x27;s/(?&lt;=\&lt;p\&gt;).*(?=\&lt;/p\&gt;)/30/g&#x27; ./batFullScreen.html<br>sed -e &#x27;s/\&lt;p\&gt;.*\&lt;/p\&gt;/30/g&#x27; ./batFullScreen.html<br>sed -i &#x27;$a # This is a test&#x27; ./batFullScreen.html<br>sed -e &#x27;s/oo/kk/g&#x27; ./batFullScreen.html<br><br></code></pre></td></tr></table></figure><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://www.bilibili.com/video/BV1hG4y1Q7D1">https://www.bilibili.com/video/BV1hG4y1Q7D1</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a href="https://www.runoob.com/css/css-margin.html">https://www.runoob.com/css/css-margin.html</a><a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
     
   </entry>
   
@@ -364,9 +405,9 @@
       
       <category>技术备忘</category>
       
-      <category>网络</category>
-      
       <category>教程</category>
+      
+      <category>网络</category>
       
     </categories>
     

@@ -16,26 +16,25 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通过连接打印机和OpenWRT系统的路由器实现局域网打印服务">
+    <meta name="description" content="信息挖掘找到个将canny性能优化的示例代码，好像是用到多线程[1][2]Hough就没那么容易了，虽然知道大概原理但不知道代码怎么实现，真是很悲哀啊还要通过比较两个图片里最大圆所处的坐标计算变换矩阵，hough做不出来没拿到坐标 过程先用提供的脚本编译了两个程序，跑了下发现可以用，直接将输入的pgm图片的路径改为bmp图像不行，使用在线转换工具转换后利用原始参数跑了一遍，效果不错。参数都是什么作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于openwrt，建立家庭云打印服务">
-<meta property="og:url" content="https://zhaosn.github.io/2022/opWRThomePrint/index.html">
+<meta property="og:title" content="计算机视觉第一次大作业">
+<meta property="og:url" content="https://zhaosn.github.io/2023/cannyOnN3350/index.html">
 <meta property="og:site_name" content="Zhaosn的博客">
-<meta property="og:description" content="通过连接打印机和OpenWRT系统的路由器实现局域网打印服务">
+<meta property="og:description" content="信息挖掘找到个将canny性能优化的示例代码，好像是用到多线程[1][2]Hough就没那么容易了，虽然知道大概原理但不知道代码怎么实现，真是很悲哀啊还要通过比较两个图片里最大圆所处的坐标计算变换矩阵，hough做不出来没拿到坐标 过程先用提供的脚本编译了两个程序，跑了下发现可以用，直接将输入的pgm图片的路径改为bmp图像不行，使用在线转换工具转换后利用原始参数跑了一遍，效果不错。参数都是什么作">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-10T14:45:58.000Z">
-<meta property="article:modified_time" content="2022-10-28T02:28:01.249Z">
+<meta property="article:published_time" content="2023-05-03T10:53:27.000Z">
+<meta property="article:modified_time" content="2023-05-03T13:45:33.980Z">
 <meta property="article:author" content="Zhao SN">
 <meta property="article:tag" content="技术">
-<meta property="article:tag" content="干货">
-<meta property="article:tag" content="教程">
+<meta property="article:tag" content="水货">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>基于openwrt，建立家庭云打印服务 - Zhaosn的博客</title>
+  <title>计算机视觉第一次大作业 - Zhaosn的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -240,7 +239,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基于openwrt，建立家庭云打印服务"></span>
+            <span id="subtitle" data-typed-text="计算机视觉第一次大作业"></span>
           
         </div>
 
@@ -251,8 +250,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-10 22:45" pubdate>
-          2022年10月10日 晚上
+        <time datetime="2023-05-03 18:53" pubdate>
+          2023年5月3日 晚上
         </time>
       </span>
     
@@ -263,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          799 字
+          1.3k 字
         
       </span>
     
@@ -274,7 +273,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -473,17 +472,17 @@
     
     
     <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
+      <a class="category-subitem 
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="图像处理"
         id="heading-7808a68ee1b34dab43011429a12de19e" role="tab" data-toggle="collapse" href="#collapse-7808a68ee1b34dab43011429a12de19e"
-        aria-expanded="false"
+        aria-expanded="true"
       >
         图像处理
         <span class="list-group-count">(1)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse " id="collapse-7808a68ee1b34dab43011429a12de19e"
+      <div class="category-collapse collapse show" id="collapse-7808a68ee1b34dab43011429a12de19e"
            role="tabpanel" aria-labelledby="heading-7808a68ee1b34dab43011429a12de19e">
         
         
@@ -495,7 +494,7 @@
       
         <a href="/2023/cannyOnN3350/" title="计算机视觉第一次大作业"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">计算机视觉第一次大作业</span>
         </a>
       
@@ -598,17 +597,17 @@
     
     
     <div class="category-sub row nomargin-x">
-      <a class="category-subitem 
+      <a class="category-subitem collapsed
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="网络"
         id="heading-7ddbe15c845fa27a2bab496183042ca6" role="tab" data-toggle="collapse" href="#collapse-7ddbe15c845fa27a2bab496183042ca6"
-        aria-expanded="true"
+        aria-expanded="false"
       >
         网络
         <span class="list-group-count">(3)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-7ddbe15c845fa27a2bab496183042ca6"
+      <div class="category-collapse collapse " id="collapse-7ddbe15c845fa27a2bab496183042ca6"
            role="tabpanel" aria-labelledby="heading-7ddbe15c845fa27a2bab496183042ca6">
         
         
@@ -638,63 +637,17 @@
       
         <a href="/2022/opWRThomePrint/" title="基于openwrt，建立家庭云打印服务"
            class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">基于openwrt，建立家庭云打印服务</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="教程"
-        id="heading-b7824d5cd41d06de995a661879fefd3d" role="tab" data-toggle="collapse" href="#collapse-b7824d5cd41d06de995a661879fefd3d"
-        aria-expanded="true"
-      >
-        教程
-        <span class="list-group-count">(2)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-b7824d5cd41d06de995a661879fefd3d"
-           role="tabpanel" aria-labelledby="heading-b7824d5cd41d06de995a661879fefd3d">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/blog_tutorial/" title="博客建立教程备忘录"
-           class="list-group-item list-group-item-action
            ">
-          <span class="category-post">博客建立教程备忘录</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/opWRThomePrint/" title="基于openwrt，建立家庭云打印服务"
-           class="list-group-item list-group-item-action
-           active">
           <span class="category-post">基于openwrt，建立家庭云打印服务</span>
         </a>
       
     
   </div>
 
+        
+      </div>
+    </div>
+  
         
       </div>
     </div>
@@ -712,29 +665,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">基于openwrt，建立家庭云打印服务</h1>
+            <h1 style="display: none">计算机视觉第一次大作业</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>我所在的宿舍大家集资买了一部二手喷墨打印机，但使用率很低。其根本问题在于宿舍没有地方放，导致每次使用都需要拿出来插线连接，之后再拔掉放回去。几天前我想到可以通过我的路由器搭建网络打印服务，本文描述了通过将打印机与带usb拓展接口的openwrt系统路由器连接，通过openwrt仓库内置包实现搭建局域网云打印服务的方法。</p>
-<h1 id="环境与硬件要求"><a href="#环境与硬件要求" class="headerlink" title="环境与硬件要求"></a>环境与硬件要求</h1><ul>
-<li>本文系统环境基于小米路由器mini<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://openwrt.org/toh/xiaomi/miwifi_mini">[1]</span></a></sup>在openwrt官网下载的镜像</li>
-<li>本文将路由器作为全局域网的根节点，打印机连接在路由器上，使用局域网内其他设备搭建服务的情况暂不考虑</li>
-<li>你的路由器能正常上网以通过opkg下载包</li>
-<li>申请打印的设备已安装了能通过有线连接进行打印的驱动</li>
-</ul>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
-<li>连接打印机与路由器</li>
-<li>进入后台管理界面</li>
-<li>系统-软件- Update lists…</li>
-<li>搜索 printer</li>
-<li>安装 kmod-usb-printer、luci-app-p910nd，我当时尝试时安装了别的包，可能是没必要的，这个自己看描述自己决定吧。</li>
-<li>在网页最上面出现了服务下拉框，这是luci-app-* 下载下来的东西，点进 p910nd - Printer server，如果不会linux的话这里会比较复杂，如果你懂就会发现操作不难。<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk">设备：当打印机开机，usb接入路由器后，linux为其挂载的地址。一般为<span class="hljs-regexp">/dev/u</span>sb/lp0，如果你不愿意深究就填这个。<br>	我喜欢比较清爽的系统，所以为了确定地址究竟是什么需要ssh或者通过终端连接路由器，输入<br>	ls <span class="hljs-regexp">/dev/u</span>sb <br>	大概就会列出来，我是凭感觉敲得，你可能需要变通一下<br>接口：只给路由器下内网使用，我选的lan，其他高级东东我也不懂<br>端口：不改，<span class="hljs-number">9100</span><br></code></pre></td></tr></table></figure></li>
-</ol>
-<p>然后保存并应用，电脑端设置太麻烦我不想说，上网搜索电脑添加网络打印机的方法肯定有很多人写。总之需要安装驱动，寻找设备，添加设备。</p>
-<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://openwrt.org/toh/xiaomi/miwifi_mini">https://openwrt.org/toh/xiaomi/miwifi_mini</a>
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                <h1 id="信息挖掘"><a href="#信息挖掘" class="headerlink" title="信息挖掘"></a>信息挖掘</h1><p>找到个将canny性能优化的示例代码，好像是用到多线程<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://www.codee.com/case-study-how-we-made-canny-edge-detector-algorithm-run-faster-part-2">[1]</span></a></sup><sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/teamappentra/blog-codes/tree/main/canny-performance-part1">[2]</span></a></sup><br>Hough就没那么容易了，虽然知道大概原理但不知道代码怎么实现，真是很悲哀啊<br>还要通过比较两个图片里最大圆所处的坐标计算变换矩阵，hough做不出来没拿到坐标</p>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>先用提供的脚本编译了两个程序，跑了下发现可以用，直接将输入的pgm图片的路径改为bmp图像不行，使用在线转换工具转换后利用原始参数跑了一遍，效果不错。<br>参数都是什么作用原文档没有直接写，通读一遍代码发现有这种描述</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">float sigma,              /* Standard deviation of the gaussian kernel. */<br>      tlow,                 /* Fraction of the high threshold in hysteresis. */<br>      thigh;                /* High hysteresis threshold control. The actual<br>                               threshold is the (100 * thigh) percentage point<br>                               in the histogram of the magnitude of the<br>                               gradient image that passes non-maximal<br>                               suppression. */<br></code></pre></td></tr></table></figure>
+<p>翻译一下：sigma：高斯核的标准偏差；tlow：迟滞的高阈值分数(?_?这个不知道是什么)；thigh：高滞后阈值控制。实际阈值是通过非极大值抑制(non-maximal suppression)的梯度图像(gradient image)的幅值直方图(histogram of the magnitude)中的(100 * thigh)个百分点。当参数调节为10.0；0.85、0.95时出现了较好的结果，噪声的边缘相比参考点的边缘小了很多。</p>
+<p>现在尝试Hough圆检测，有大量的博客只简单介绍一下原理之后就调库，更让人鄙视的是一个原理抄的哪里都一样，有本事抄代码好好讲讲啊。后来找到一个练习者的博客里移植了更底层的代码<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/JoshuaQYH/CV-code">[3]</span></a></sup>，但由于使用了C++的类和CImg.h头文件，迁移可能需要更多时间深入学习。</p>
+<h1 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h1><p>我在主力机上安装了eclipse以期代替vs——我想尝试用开源或开放的方案处理各种计算机上的工作，因为拼多多微信学习通等国产软件各都有过：利用0day漏洞提权、扫描用户浏览记录、泄漏平台所有用户帐密的窒息操作。虽然我手机上照用不误，但电脑上有选择我便采用如下方案：Blender、LibreCAD、Libreoffice、eclipse、GIMP，涵盖了剪视频、建模、画图纸等等操作，传文件用localsend传到手机再用微信反之亦然，能用邮箱用邮箱。然后一开始查找范例用的是这个n3350的电脑，不想复制太多数据，就挑战用这个破ubuntu电脑整全流程。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.codee.com/case-study-how-we-made-canny-edge-detector-algorithm-run-faster-part-2">https://www.codee.com/case-study-how-we-made-canny-edge-detector-algorithm-run-faster-part-2</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://github.com/teamappentra/blog-codes/tree/main/canny-performance-part1">https://github.com/teamappentra/blog-codes/tree/main/canny-performance-part1</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://github.com/JoshuaQYH/CV-code">https://github.com/JoshuaQYH/CV-code</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
               </div>
             
@@ -757,20 +702,10 @@
   
     <span>></span>
     
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E7%BD%91%E7%BB%9C/" class="category-chain-item">网络</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="category-chain-item">图像处理</a>
   
   
 
-  
-
-      </span>
-    
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
-  
   
 
       </span>
@@ -786,9 +721,7 @@
       
         <a href="/tags/%E6%8A%80%E6%9C%AF/">#技术</a>
       
-        <a href="/tags/%E5%B9%B2%E8%B4%A7/">#干货</a>
-      
-        <a href="/tags/%E6%95%99%E7%A8%8B/">#教程</a>
+        <a href="/tags/%E6%B0%B4%E8%B4%A7/">#水货</a>
       
     </div>
   
@@ -800,8 +733,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基于openwrt，建立家庭云打印服务</div>
-      <div>https://zhaosn.github.io/2022/opWRThomePrint/</div>
+      <div>计算机视觉第一次大作业</div>
+      <div>https://zhaosn.github.io/2023/cannyOnN3350/</div>
     </div>
     <div class="license-meta">
       
@@ -813,13 +746,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月10日</div>
+          <div>2023年5月3日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月28日</div>
+          <div>2023年5月3日</div>
         </div>
       
       
@@ -862,18 +795,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/ESP32-pyinShell/" title="ESP32:搞定终端下MicroPython编程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ESP32:搞定终端下MicroPython编程</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/jnb10laptop/" title="中柏jnb10电脑测评与使用场景分析">
-                        <span class="hidden-mobile">中柏jnb10电脑测评与使用场景分析</span>
+                      <a href="/2023/whatRecentlyMay3/" title="23年5月整理下近日的思路">
+                        <span class="hidden-mobile">23年5月整理下近日的思路</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
