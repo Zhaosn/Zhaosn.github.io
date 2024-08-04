@@ -4,6 +4,52 @@
   
   
   <entry>
+    <title>BG9SHY</title>
+    <link href="/2024/bili-embed/"/>
+    <url>/2024/bili-embed/</url>
+    
+    <content type="html"><![CDATA[<h1 id="新呼号"><a href="#新呼号" class="headerlink" title="新呼号"></a>新呼号</h1><p>BG9SHY（BH3FZJ注销）</p><h1 id="真是一个好呼号"><a href="#真是一个好呼号" class="headerlink" title="真是一个好呼号"></a>真是一个好呼号</h1><p>但是我的B站名依然是非主角（FZJ）</p><div id="music_div" class="music"><iframe src="//player.bilibili.com/player.html?bvid=BV1Ax411J7cT" scrolling="no" border="0" frameborder="no" framespacing="0" muted="0" allowfullscreen="true"></iframe></div><style>    iframe[src*='player.bilibili.com'] {    width: 100%;  /* 设置视频的宽度 */    height: 400px; /* 设置视频的高度 */    }</style><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;music_div&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;music&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//player.bilibili.com/player.html?bvid=BV1Ax411J7cT&quot;</span> <span class="hljs-attr">scrolling</span>=<span class="hljs-string">&quot;no&quot;</span> <span class="hljs-attr">border</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">&quot;no&quot;</span> <span class="hljs-attr">framespacing</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">muted</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">allowfullscreen</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css"><span class="hljs-selector-tag">iframe</span><span class="hljs-selector-attr">[src*=<span class="hljs-string">&#x27;player.bilibili.com&#x27;</span>]</span> &#123;</span><br><span class="css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;  <span class="hljs-comment">/* 设置视频的宽度 */</span></span><br><span class="css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">666px</span>; <span class="hljs-comment">/* 设置视频的高度 */</span></span><br><span class="css">    &#125;</span><br><span class="css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>为什么我的机械硬盘总会自动起转</title>
+    <link href="/2024/whatUseMyDisk/"/>
+    <url>/2024/whatUseMyDisk/</url>
+    
+    <content type="html"><![CDATA[<h1 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h1><p>几百块买了个J1900主板，搭配上家里最早电脑的最早的DDR3内存条，本来初中时加了根内存条干到4G内存了，但是新的二十多块的淘宝内存条坏了导致不开机，尽管在老电脑上工作正常😮‍💨。这个电脑自买来刷上UbuntuServer就基本没关过，里面系统装在我买的一个二手固态硬盘上，那个固态硬盘金手指上是开有两个槽的，好像不是m.2接口，转接成SATA接口的盒子金手指上塑料也断了，反之接上还能用。机械硬盘是淘宝上买的50块钱500g那种，这种小机械硬盘投入小，不行了就拆来当摆件。每次我用hdparm -Y让硬盘停转之后过一阵子又会自启，可能和种子下载、jellyfin、smb有关，我每次发现时硬盘都自动转了数十天了。今天有空就让AI（讯飞星火）帮忙写了个脚本。</p><h1 id="失败的其中一次尝试"><a href="#失败的其中一次尝试" class="headerlink" title="失败的其中一次尝试"></a>失败的其中一次尝试</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>sudo hdparm -C /dev/sdb的输出是：</p><p>/dev/sdb:<br> drive state is:  active/idle<br>或者：</p><p>/dev/sdb:<br> drive state is:  standby<br>请注意这个输出前有一个空行<br>我需要一个在ubuntu系统下每两分钟自动执行的脚本，你可以分为一个脚本和我需要添加的sudo crontab中的一行<br>我希望在检测到 drive state is:  standby转化为 drive state is:  active/idle时在/home/zhaosn/disk.csv文件中添加一行，其由：<br>echo <code>TZ=UTC-8 date  +&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</code>的输出结果和sudo lsof /mnt/hdd的输出结果组合而来</p><h2 id="回复"><a href="#回复" class="headerlink" title="回复"></a>回复</h2><p>首先，我们需要创建一个脚本来检测硬盘状态并执行相应的操作。以下是脚本的内容：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>STATE=$(sudo hdparm -C /dev/sdb | grep <span class="hljs-string">&quot;drive state is&quot;</span> | awk <span class="hljs-string">&#x27;&#123;print $3&#125;&#x27;</span>)<br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$STATE</span>&quot;</span> == <span class="hljs-string">&quot;active/idle&quot;</span> ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">echo</span> `TZ=UTC-8 date +<span class="hljs-string">&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</span>`$(sudo lsof /mnt/hdd) &gt;&gt; /home/zhaosn/disk.csv<br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure><p>将以上内容保存为一个名为<code>check_disk_state.sh</code>的文件。接下来，我们需要为这个脚本添加可执行权限：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chmod +x check_disk_state.sh<br></code></pre></td></tr></table></figure><p>最后，我们需要将这个脚本添加到crontab中以便每两分钟自动执行一次。请运行以下命令以编辑crontab：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">crontab -e<br></code></pre></td></tr></table></figure><p>在打开的编辑器中，添加以下一行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">*/2 * * * * /path/to/check_disk_state.sh<br></code></pre></td></tr></table></figure><p>请将<code>/path/to/</code>替换为<code>check_disk_state.sh</code>文件的实际路径。保存并退出编辑器。现在，脚本将在每两分钟自动执行一次，并在检测到硬盘状态从standby变为active/idle时将相关信息追加到<code>/home/zhaosn/disk.csv</code>文件中。</p><p>其实这个表现不好，如果我用ls访问硬盘，lsof是看不到的</p><h1 id="换种思路"><a href="#换种思路" class="headerlink" title="换种思路"></a>换种思路</h1><h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h2><p>我想在sudo lsof /mnt/hdd执行结果不为空时在/home/zhaosn/disk.csv文件中添加一行，其由：</p><p>echo <code>TZ=UTC-8 date  +&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</code>的输出结果和sudo lsof /mnt/hdd的输出结果组合而来。设置脚本需要root用户身份运行</p><h2 id="回复-1"><a href="#回复-1" class="headerlink" title="回复"></a>回复</h2><p>你可以使用以下脚本来实现你的需求：</p><ol><li>创建一个名为<code>check_disk_state.sh</code>的文件，并将以下内容复制到该文件中：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-built_in">set</span> -e<br><span class="hljs-keyword">if</span> [[ <span class="hljs-variable">$EUID</span> -ne 0 ]]; <span class="hljs-keyword">then</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;This script must be run as root&quot;</span> 1&gt;&amp;2<br>   <span class="hljs-built_in">exit</span> 1<br><span class="hljs-keyword">fi</span><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span><br>    LSOF=$(sudo lsof /mnt/hdd)<br>    <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$LSOF</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>        <span class="hljs-built_in">echo</span> `TZ=UTC-8 date +<span class="hljs-string">&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</span>`<span class="hljs-variable">$LSOF</span> &gt;&gt; /home/zhaosn/disk.csv<br>    <span class="hljs-keyword">fi</span><br>    sleep 60<br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure><ol start="2"><li><p>保存并关闭文件。</p></li><li><p>为脚本添加可执行权限：</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chmod +x check_disk_state.sh<br></code></pre></td></tr></table></figure><ol start="4"><li>以root用户身份运行脚本：</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo ./check_disk_state.sh<br></code></pre></td></tr></table></figure><p>这个脚本会持续监控<code>/mnt/hdd</code>目录的<code>lsof</code>结果，如果结果不为空，则在<code>/home/zhaosn/disk.csv</code>文件中添加一行，该行由<code>echo TZ=UTC-8 date +&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</code>的输出结果和<code>sudo lsof /mnt/hdd</code>的输出结果组合而成。同时，脚本会每隔60秒检查一次。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>计算机视觉第一次大作业</title>
     <link href="/2023/cannyOnN3350/"/>
     <url>/2023/cannyOnN3350/</url>

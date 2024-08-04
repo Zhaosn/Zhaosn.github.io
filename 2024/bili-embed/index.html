@@ -16,25 +16,23 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言今天第一次真正给板子刷上MicroPython，因为我出门只带了几天前说的刚买那个中柏电脑，刷成了纯linux系统，就想试试从开源工具刷写开发板。 困扰按照流程很轻松就能用esp-tool.py清空flash，然后刷上固件，但怎样编写程序就没有资料了。有教程说可以挂载成u盘一样的设备，但至少这个板子不行。经过疯狂寻找，正当我快放弃时找到这样一篇文章[1]。 进而通过向REPL方向的寻找，确定了">
+    <meta name="description" content="BG9SHY">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ESP32:搞定终端下MicroPython编程">
-<meta property="og:url" content="https://zhaosn.github.io/2022/ESP32-pyinShell/index.html">
+<meta property="og:title" content="BG9SHY">
+<meta property="og:url" content="https://zhaosn.github.io/2024/bili-embed/index.html">
 <meta property="og:site_name" content="Zhaosn的博客">
-<meta property="og:description" content="前言今天第一次真正给板子刷上MicroPython，因为我出门只带了几天前说的刚买那个中柏电脑，刷成了纯linux系统，就想试试从开源工具刷写开发板。 困扰按照流程很轻松就能用esp-tool.py清空flash，然后刷上固件，但怎样编写程序就没有资料了。有教程说可以挂载成u盘一样的设备，但至少这个板子不行。经过疯狂寻找，正当我快放弃时找到这样一篇文章[1]。 进而通过向REPL方向的寻找，确定了">
+<meta property="og:description" content="BG9SHY">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-12T22:48:26.000Z">
-<meta property="article:modified_time" content="2022-10-28T02:02:12.353Z">
+<meta property="article:published_time" content="2024-08-04T13:32:25.000Z">
+<meta property="article:modified_time" content="2024-08-04T13:59:05.899Z">
 <meta property="article:author" content="Zhao SN">
-<meta property="article:tag" content="技术">
-<meta property="article:tag" content="干货">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ESP32:搞定终端下MicroPython编程 - Zhaosn的博客</title>
+  <title>BG9SHY - Zhaosn的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -239,7 +237,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ESP32:搞定终端下MicroPython编程"></span>
+            <span id="subtitle" data-typed-text="BG9SHY"></span>
           
         </div>
 
@@ -250,8 +248,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-13 06:48" pubdate>
-          2022年10月13日 早上
+        <time datetime="2024-08-04 21:32" pubdate>
+          2024年8月4日 晚上
         </time>
       </span>
     
@@ -262,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          577 字
         
       </span>
     
@@ -273,7 +271,7 @@
         
         
         
-          4 分钟
+          2 分钟
         
       </span>
     
@@ -318,17 +316,17 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="技术备忘"
-        id="heading-e9da6a8e80d43b63b2f8158805d6d525" role="tab" data-toggle="collapse" href="#collapse-e9da6a8e80d43b63b2f8158805d6d525"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="日常"
+        id="heading-943e6d3324693188a3f1955a7f921a69" role="tab" data-toggle="collapse" href="#collapse-943e6d3324693188a3f1955a7f921a69"
         aria-expanded="true"
       >
-        技术备忘
-        <span class="list-group-count">(18)</span>
+        日常
+        <span class="list-group-count">(10)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-e9da6a8e80d43b63b2f8158805d6d525"
-           role="tabpanel" aria-labelledby="heading-e9da6a8e80d43b63b2f8158805d6d525">
+      <div class="category-collapse collapse show" id="collapse-943e6d3324693188a3f1955a7f921a69"
+           role="tabpanel" aria-labelledby="heading-943e6d3324693188a3f1955a7f921a69">
         
         
           
@@ -336,95 +334,23 @@
   <div class="category-post-list">
     
     
-  </div>
-
-          
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux"
-        id="heading-edc9f0a5a5d57797bf68e37364743831" role="tab" data-toggle="collapse" href="#collapse-edc9f0a5a5d57797bf68e37364743831"
-        aria-expanded="false"
-      >
-        Linux
-        <span class="list-group-count">(4)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-edc9f0a5a5d57797bf68e37364743831"
-           role="tabpanel" aria-labelledby="heading-edc9f0a5a5d57797bf68e37364743831">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
       
       
-        <a href="/2022/charge-thresholdOfLinux/" title="linux下充电阈值设置-dkms&amp;TLP"
+        <a href="/2023/whatRecentlyMay3/" title="23年5月整理下近日的思路"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">linux下充电阈值设置-dkms&amp;TLP</span>
+          <span class="category-post">23年5月整理下近日的思路</span>
         </a>
       
     
       
       
-        <a href="/2022/v4l2-theLinuxVideoSolution/" title="linux下调用摄像头拍照-v4l2与ffmpeg"
+        <a href="/2024/bili-embed/" title="BG9SHY"
            class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">linux下调用摄像头拍照-v4l2与ffmpeg</span>
+           active">
+          <span class="category-post">BG9SHY</span>
         </a>
       
-    
-      
-      
-        <a href="/2023/rimeEverything/" title="中州韵配置指南"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">中州韵配置指南</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/whatUseMyDisk/" title="为什么我的机械硬盘总会自动起转"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">为什么我的机械硬盘总会自动起转</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="博客"
-        id="heading-c50d13646ec66f1929da5d491f2dff0f" role="tab" data-toggle="collapse" href="#collapse-c50d13646ec66f1929da5d491f2dff0f"
-        aria-expanded="false"
-      >
-        博客
-        <span class="list-group-count">(5)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-c50d13646ec66f1929da5d491f2dff0f"
-           role="tabpanel" aria-labelledby="heading-c50d13646ec66f1929da5d491f2dff0f">
-        
-        
-          
-  <div class="category-post-list">
-    
     
       
       
@@ -437,120 +363,10 @@
     
       
       
-        <a href="/2022/emoji-tag/" title="GitHub的MarkDown渲染支持的emoji标签"
+        <a href="/2022/music-embed/" title="Free Bird"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">GitHub的MarkDown渲染支持的emoji标签</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/SUPPORTED_LANGUAGES/" title="MarkDown指定hightlight.js代码高亮"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">MarkDown指定hightlight.js代码高亮</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/hexo-minifier/" title="hexo minifier gulp 压缩博客"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">hexo minifier gulp 压缩博客</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/blog_tutorial/" title="博客建立教程备忘录"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">博客建立教程备忘录</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="图像处理"
-        id="heading-7808a68ee1b34dab43011429a12de19e" role="tab" data-toggle="collapse" href="#collapse-7808a68ee1b34dab43011429a12de19e"
-        aria-expanded="false"
-      >
-        图像处理
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-7808a68ee1b34dab43011429a12de19e"
-           role="tabpanel" aria-labelledby="heading-7808a68ee1b34dab43011429a12de19e">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2023/cannyOnN3350/" title="计算机视觉第一次大作业"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">计算机视觉第一次大作业</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="嵌入式"
-        id="heading-62f8a8e20d03835fb846c1e03058cccb" role="tab" data-toggle="collapse" href="#collapse-62f8a8e20d03835fb846c1e03058cccb"
-        aria-expanded="true"
-      >
-        嵌入式
-        <span class="list-group-count">(7)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-62f8a8e20d03835fb846c1e03058cccb"
-           role="tabpanel" aria-labelledby="heading-62f8a8e20d03835fb846c1e03058cccb">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/ESP32-pyinShell/" title="ESP32:搞定终端下MicroPython编程"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">ESP32:搞定终端下MicroPython编程</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/bmp2hex/" title="bmp to Hex——图片在单片机上显示"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">bmp to Hex——图片在单片机上显示</span>
+          <span class="category-post">Free Bird</span>
         </a>
       
     
@@ -565,37 +381,54 @@
     
       
       
-        <a href="/2022/v4l2-theLinuxVideoSolution/" title="linux下调用摄像头拍照-v4l2与ffmpeg"
+        <a href="/2023/securitySensor/" title="一个简单的闭门传感系统建设规划"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">linux下调用摄像头拍照-v4l2与ffmpeg</span>
+          <span class="category-post">一个简单的闭门传感系统建设规划</span>
         </a>
       
     
       
       
-        <a href="/2022/HID_firstDig/" title="初次挖掘HID和硬件工程"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">初次挖掘HID和硬件工程</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/rpi-pubkeyErr/" title="树莓派apt公钥错误解决方案"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">树莓派apt公钥错误解决方案</span>
-        </a>
-      
-    
-      
-      
-        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="list-group-item list-group-item-action">
+        <a href="/categories/%E6%97%A5%E5%B8%B8/" class="list-group-item list-group-item-action">
           <span class="category-post">More...</span>
         </a>
         
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Blender"
+        id="heading-482982e64aebd743da9392fbc4b1f5d8" role="tab" data-toggle="collapse" href="#collapse-482982e64aebd743da9392fbc4b1f5d8"
+        aria-expanded="false"
+      >
+        Blender
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-482982e64aebd743da9392fbc4b1f5d8"
+           role="tabpanel" aria-labelledby="heading-482982e64aebd743da9392fbc4b1f5d8">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/glitchArtofWD2/" title="浅析游戏看门狗2的故障艺术"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">浅析游戏看门狗2的故障艺术</span>
+        </a>
+      
+    
   </div>
 
         
@@ -607,17 +440,17 @@
     
     <div class="category-sub row nomargin-x">
       <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="网络"
-        id="heading-7ddbe15c845fa27a2bab496183042ca6" role="tab" data-toggle="collapse" href="#collapse-7ddbe15c845fa27a2bab496183042ca6"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="美术"
+        id="heading-1bacdf2d14dcb151e2c2e2e906d0cd77" role="tab" data-toggle="collapse" href="#collapse-1bacdf2d14dcb151e2c2e2e906d0cd77"
         aria-expanded="false"
       >
-        网络
-        <span class="list-group-count">(3)</span>
+        美术
+        <span class="list-group-count">(1)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse " id="collapse-7ddbe15c845fa27a2bab496183042ca6"
-           role="tabpanel" aria-labelledby="heading-7ddbe15c845fa27a2bab496183042ca6">
+      <div class="category-collapse collapse " id="collapse-1bacdf2d14dcb151e2c2e2e906d0cd77"
+           role="tabpanel" aria-labelledby="heading-1bacdf2d14dcb151e2c2e2e906d0cd77">
         
         
           
@@ -626,28 +459,47 @@
     
       
       
-        <a href="/2022/git_proxySet/" title="git配置代理"
+        <a href="/2022/glitchArtofWD2/" title="浅析游戏看门狗2的故障艺术"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">git配置代理</span>
+          <span class="category-post">浅析游戏看门狗2的故障艺术</span>
         </a>
       
     
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="评测"
+        id="heading-4b8e64b532c0d3f861c7af8687eb6e7f" role="tab" data-toggle="collapse" href="#collapse-4b8e64b532c0d3f861c7af8687eb6e7f"
+        aria-expanded="false"
+      >
+        评测
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
       
-      
-        <a href="/2022/tailscale-subnet-linux/" title="tailscale-linux-子网配置"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">tailscale-linux-子网配置</span>
-        </a>
-      
+      <div class="category-collapse collapse " id="collapse-4b8e64b532c0d3f861c7af8687eb6e7f"
+           role="tabpanel" aria-labelledby="heading-4b8e64b532c0d3f861c7af8687eb6e7f">
+        
+        
+          
+  <div class="category-post-list">
+    
     
       
       
-        <a href="/2022/opWRThomePrint/" title="基于openwrt，建立家庭云打印服务"
+        <a href="/2022/jnb10laptop/" title="中柏jnb10电脑测评与使用场景分析"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">基于openwrt，建立家庭云打印服务</span>
+          <span class="category-post">中柏jnb10电脑测评与使用场景分析</span>
         </a>
       
     
@@ -674,40 +526,24 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ESP32:搞定终端下MicroPython编程</h1>
+            <h1 style="display: none">BG9SHY</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天第一次真正给板子刷上MicroPython，因为我出门只带了几天前说的刚买那个中柏电脑，刷成了纯linux系统，就想试试从开源工具刷写开发板。</p>
-<h1 id="困扰"><a href="#困扰" class="headerlink" title="困扰"></a>困扰</h1><p>按照流程很轻松就能用esp-tool.py清空flash，然后刷上固件，但怎样编写程序就没有资料了。有教程说可以挂载成u盘一样的设备，但至少这个板子不行。经过疯狂寻找，正当我快放弃时找到这样一篇文章<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html">[1]</span></a></sup>。</p>
-<p>进而通过向REPL方向的寻找，确定了一种只需linux终端就可用的方法，而且无需Thonny<br>(但是需要adafruit-ampy :P)</p>
-<h1 id="简要流程"><a href="#简要流程" class="headerlink" title="简要流程"></a>简要流程</h1><h2 id="picocom"><a href="#picocom" class="headerlink" title="picocom"></a>picocom</h2><ol>
-<li>sudo apt-get install picocom #该步骤安装的是串口终端助手,在<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html">[1]</span></a></sup>中有提到</li>
-<li>配置串口权限，文末附上参考脚本，记得变通</li>
-<li>sudo picocom -b 115200 /dev/ttyUSB0 #串口连接开发板</li>
-<li>注意看picocom给出的信息:Type [C-a] [C-h] to see available commands 就是先按ctrl+a，再按ctrl+h</li>
-<li>连接后按几下回车才会出现熟悉的REPL界面</li>
-</ol>
-<h2 id="ampy"><a href="#ampy" class="headerlink" title="ampy"></a>ampy</h2><ol>
-<li>pip给出提示大概意思就是不要用sudo，所以我用的是 pip install adafruit-ampy</li>
-<li>ampy –version 我用不了，不造是为虾米，反正不粽药啦</li>
-<li>但是ampy –help 有用，可以看到具体操作和linux shell 类似，mkdir、ls、rm、rmdir都不用说了。</li>
-<li>ampy –port /dev/ttyUSB0 run led.py #跑当前目录下的led.py文件<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="led.py
-123456789101112131415161718&#x27;&#x27;&#x27;功能介绍： LED闪烁例程&#x27;&#x27;&#x27;import utimeimport machine# 声明一个引脚 例如 22 作为我们特定开发板板载LED的引脚led_pin = machine.Pin(22, machine.Pin.OUT)for i in range(20):    # 点亮LED -&gt; 高电平    led_pin.value(1)    # 延时 500ms    utime.sleep_ms(500)    # 关闭LED -&gt; 低电平    led_pin.value(0)    # 延时500ms    utime.sleep_ms(500)">[5]</span></a></sup>，ctrl+c没法打断</li>
-<li>ampy –port /dev/ttyUSB0 reset #给板子软重启，如果死循环没写到main.py就能打断了。但如果写到main.py的话据说<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html">[1]</span></a></sup>只能重刷固件了</li>
-</ol>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>picocom 开启时用不了ampy，因为picocom会占用串口，按ctrl+a，之后ctrl+x退出picocom</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>配置串口权限的脚本:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br>ls -al /dev/ttyUSB0<br>chmod 666 /dev/ttyUSB0<br>sudo chmod 666 /dev/ttyUSB0 <br>ls -al /dev/ttyUSB0 <br><span class="hljs-built_in">exit</span> 0<br></code></pre></td></tr></table></figure>
+                <h1 id="新呼号"><a href="#新呼号" class="headerlink" title="新呼号"></a>新呼号</h1><p>BG9SHY（BH3FZJ注销）</p>
+<h1 id="真是一个好呼号"><a href="#真是一个好呼号" class="headerlink" title="真是一个好呼号"></a>真是一个好呼号</h1><p>但是我的B站名依然是非主角（FZJ）</p>
+<div id="music_div" class="music">
+<iframe src="//player.bilibili.com/player.html?bvid=BV1Ax411J7cT" scrolling="no" border="0" frameborder="no" framespacing="0" muted="0" allowfullscreen="true"></iframe>
+</div>
+<style>
+    iframe[src*='player.bilibili.com'] {
+    width: 100%;  /* 设置视频的宽度 */
+    height: 400px; /* 设置视频的高度 */
+    }
+</style>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;music_div&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;music&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//player.bilibili.com/player.html?bvid=BV1Ax411J7cT&quot;</span> <span class="hljs-attr">scrolling</span>=<span class="hljs-string">&quot;no&quot;</span> <span class="hljs-attr">border</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">&quot;no&quot;</span> <span class="hljs-attr">framespacing</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">muted</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">allowfullscreen</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span><br><span class="css">	<span class="hljs-selector-tag">iframe</span><span class="hljs-selector-attr">[src*=<span class="hljs-string">&#x27;player.bilibili.com&#x27;</span>]</span> &#123;</span><br><span class="css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;  <span class="hljs-comment">/* 设置视频的宽度 */</span></span><br><span class="css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">666px</span>; <span class="hljs-comment">/* 设置视频的高度 */</span></span><br><span class="css">    &#125;</span><br><span class="css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>还有如下几篇文章以供参考：</p>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html">http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html</a>
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.cirmall.com/bbs/thread-102620-1-1.html">https://www.cirmall.com/bbs/thread-102620-1-1.html</a> 介绍了picocom和ampy两种方法，对从底层了解和开发板通信帮助很大
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://docs.micropython.org/en/v1.8.3/esp8266/esp8266/tutorial/repl.html">https://docs.micropython.org/en/v1.8.3/esp8266/esp8266/tutorial/repl.html</a> 官方文档，介绍了REPL的基本操作
-<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://docs.micropython.org/en/v1.8.3/esp8266/esp8266/tutorial/filesystem.html#creating-and-reading-files">https://docs.micropython.org/en/v1.8.3/esp8266/esp8266/tutorial/filesystem.html#creating-and-reading-files</a> 介绍了文件和文件夹的增删，但没有改查
-<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span>led.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">功能介绍： LED闪烁例程</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-keyword">import</span> utime<br><span class="hljs-keyword">import</span> machine<br><br><span class="hljs-comment"># 声明一个引脚 例如 22 作为我们特定开发板板载LED的引脚</span><br>led_pin = machine.Pin(<span class="hljs-number">22</span>, machine.Pin.OUT)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>):<br>    <span class="hljs-comment"># 点亮LED -&gt; 高电平</span><br>    led_pin.value(<span class="hljs-number">1</span>)<br>    <span class="hljs-comment"># 延时 500ms</span><br>    utime.sleep_ms(<span class="hljs-number">500</span>)<br>    <span class="hljs-comment"># 关闭LED -&gt; 低电平</span><br>    led_pin.value(<span class="hljs-number">0</span>)<br>    <span class="hljs-comment"># 延时500ms</span><br>    utime.sleep_ms(<span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
-<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
               </div>
             
@@ -725,15 +561,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  <a href="/categories/%E6%97%A5%E5%B8%B8/" class="category-chain-item">日常</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
-  
-  
-
   
 
       </span>
@@ -744,15 +573,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E6%8A%80%E6%9C%AF/">#技术</a>
-      
-        <a href="/tags/%E5%B9%B2%E8%B4%A7/">#干货</a>
-      
-    </div>
-  
 </div>
 
 
@@ -761,8 +581,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ESP32:搞定终端下MicroPython编程</div>
-      <div>https://zhaosn.github.io/2022/ESP32-pyinShell/</div>
+      <div>BG9SHY</div>
+      <div>https://zhaosn.github.io/2024/bili-embed/</div>
     </div>
     <div class="license-meta">
       
@@ -774,13 +594,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月13日</div>
+          <div>2024年8月4日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月28日</div>
+          <div>2024年8月4日</div>
         </div>
       
       
@@ -823,18 +643,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/SUPPORTED_LANGUAGES/" title="MarkDown指定hightlight.js代码高亮">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MarkDown指定hightlight.js代码高亮</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/opWRThomePrint/" title="基于openwrt，建立家庭云打印服务">
-                        <span class="hidden-mobile">基于openwrt，建立家庭云打印服务</span>
+                      <a href="/2024/whatUseMyDisk/" title="为什么我的机械硬盘总会自动起转">
+                        <span class="hidden-mobile">为什么我的机械硬盘总会自动起转</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

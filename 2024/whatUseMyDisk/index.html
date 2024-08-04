@@ -16,25 +16,24 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言今天第一次真正给板子刷上MicroPython，因为我出门只带了几天前说的刚买那个中柏电脑，刷成了纯linux系统，就想试试从开源工具刷写开发板。 困扰按照流程很轻松就能用esp-tool.py清空flash，然后刷上固件，但怎样编写程序就没有资料了。有教程说可以挂载成u盘一样的设备，但至少这个板子不行。经过疯狂寻找，正当我快放弃时找到这样一篇文章[1]。 进而通过向REPL方向的寻找，确定了">
+    <meta name="description" content="现状几百块买了个J1900主板，搭配上家里最早电脑的最早的DDR3内存条，本来初中时加了根内存条干到4G内存了，但是新的二十多块的淘宝内存条坏了导致不开机，尽管在老电脑上工作正常😮‍💨。这个电脑自买来刷上UbuntuServer就基本没关过，里面系统装在我买的一个二手固态硬盘上，那个固态硬盘金手指上是开有两个槽的，好像不是m.2接口，转接成SATA接口的盒子金手指上塑料也断了，反之接上还能用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ESP32:搞定终端下MicroPython编程">
-<meta property="og:url" content="https://zhaosn.github.io/2022/ESP32-pyinShell/index.html">
+<meta property="og:title" content="为什么我的机械硬盘总会自动起转">
+<meta property="og:url" content="https://zhaosn.github.io/2024/whatUseMyDisk/index.html">
 <meta property="og:site_name" content="Zhaosn的博客">
-<meta property="og:description" content="前言今天第一次真正给板子刷上MicroPython，因为我出门只带了几天前说的刚买那个中柏电脑，刷成了纯linux系统，就想试试从开源工具刷写开发板。 困扰按照流程很轻松就能用esp-tool.py清空flash，然后刷上固件，但怎样编写程序就没有资料了。有教程说可以挂载成u盘一样的设备，但至少这个板子不行。经过疯狂寻找，正当我快放弃时找到这样一篇文章[1]。 进而通过向REPL方向的寻找，确定了">
+<meta property="og:description" content="现状几百块买了个J1900主板，搭配上家里最早电脑的最早的DDR3内存条，本来初中时加了根内存条干到4G内存了，但是新的二十多块的淘宝内存条坏了导致不开机，尽管在老电脑上工作正常😮‍💨。这个电脑自买来刷上UbuntuServer就基本没关过，里面系统装在我买的一个二手固态硬盘上，那个固态硬盘金手指上是开有两个槽的，好像不是m.2接口，转接成SATA接口的盒子金手指上塑料也断了，反之接上还能用。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-12T22:48:26.000Z">
-<meta property="article:modified_time" content="2022-10-28T02:02:12.353Z">
+<meta property="article:published_time" content="2024-08-04T11:50:30.000Z">
+<meta property="article:modified_time" content="2024-08-04T13:01:03.073Z">
 <meta property="article:author" content="Zhao SN">
 <meta property="article:tag" content="技术">
-<meta property="article:tag" content="干货">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ESP32:搞定终端下MicroPython编程 - Zhaosn的博客</title>
+  <title>为什么我的机械硬盘总会自动起转 - Zhaosn的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -239,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ESP32:搞定终端下MicroPython编程"></span>
+            <span id="subtitle" data-typed-text="为什么我的机械硬盘总会自动起转"></span>
           
         </div>
 
@@ -250,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-13 06:48" pubdate>
-          2022年10月13日 早上
+        <time datetime="2024-08-04 19:50" pubdate>
+          2024年8月4日 晚上
         </time>
       </span>
     
@@ -262,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2.1k 字
         
       </span>
     
@@ -273,7 +272,7 @@
         
         
         
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -344,17 +343,17 @@
     
     
     <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
+      <a class="category-subitem 
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux"
         id="heading-edc9f0a5a5d57797bf68e37364743831" role="tab" data-toggle="collapse" href="#collapse-edc9f0a5a5d57797bf68e37364743831"
-        aria-expanded="false"
+        aria-expanded="true"
       >
         Linux
         <span class="list-group-count">(4)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse " id="collapse-edc9f0a5a5d57797bf68e37364743831"
+      <div class="category-collapse collapse show" id="collapse-edc9f0a5a5d57797bf68e37364743831"
            role="tabpanel" aria-labelledby="heading-edc9f0a5a5d57797bf68e37364743831">
         
         
@@ -393,7 +392,7 @@
       
         <a href="/2024/whatUseMyDisk/" title="为什么我的机械硬盘总会自动起转"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">为什么我的机械硬盘总会自动起转</span>
         </a>
       
@@ -518,17 +517,17 @@
     
     
     <div class="category-sub row nomargin-x">
-      <a class="category-subitem 
+      <a class="category-subitem collapsed
           list-group-item category-item-action col-10 col-md-11 col-xm-11" title="嵌入式"
         id="heading-62f8a8e20d03835fb846c1e03058cccb" role="tab" data-toggle="collapse" href="#collapse-62f8a8e20d03835fb846c1e03058cccb"
-        aria-expanded="true"
+        aria-expanded="false"
       >
         嵌入式
         <span class="list-group-count">(7)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-62f8a8e20d03835fb846c1e03058cccb"
+      <div class="category-collapse collapse " id="collapse-62f8a8e20d03835fb846c1e03058cccb"
            role="tabpanel" aria-labelledby="heading-62f8a8e20d03835fb846c1e03058cccb">
         
         
@@ -540,7 +539,7 @@
       
         <a href="/2022/ESP32-pyinShell/" title="ESP32:搞定终端下MicroPython编程"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">ESP32:搞定终端下MicroPython编程</span>
         </a>
       
@@ -674,40 +673,52 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ESP32:搞定终端下MicroPython编程</h1>
+            <h1 style="display: none">为什么我的机械硬盘总会自动起转</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天第一次真正给板子刷上MicroPython，因为我出门只带了几天前说的刚买那个中柏电脑，刷成了纯linux系统，就想试试从开源工具刷写开发板。</p>
-<h1 id="困扰"><a href="#困扰" class="headerlink" title="困扰"></a>困扰</h1><p>按照流程很轻松就能用esp-tool.py清空flash，然后刷上固件，但怎样编写程序就没有资料了。有教程说可以挂载成u盘一样的设备，但至少这个板子不行。经过疯狂寻找，正当我快放弃时找到这样一篇文章<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html">[1]</span></a></sup>。</p>
-<p>进而通过向REPL方向的寻找，确定了一种只需linux终端就可用的方法，而且无需Thonny<br>(但是需要adafruit-ampy :P)</p>
-<h1 id="简要流程"><a href="#简要流程" class="headerlink" title="简要流程"></a>简要流程</h1><h2 id="picocom"><a href="#picocom" class="headerlink" title="picocom"></a>picocom</h2><ol>
-<li>sudo apt-get install picocom #该步骤安装的是串口终端助手,在<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html">[1]</span></a></sup>中有提到</li>
-<li>配置串口权限，文末附上参考脚本，记得变通</li>
-<li>sudo picocom -b 115200 /dev/ttyUSB0 #串口连接开发板</li>
-<li>注意看picocom给出的信息:Type [C-a] [C-h] to see available commands 就是先按ctrl+a，再按ctrl+h</li>
-<li>连接后按几下回车才会出现熟悉的REPL界面</li>
-</ol>
-<h2 id="ampy"><a href="#ampy" class="headerlink" title="ampy"></a>ampy</h2><ol>
-<li>pip给出提示大概意思就是不要用sudo，所以我用的是 pip install adafruit-ampy</li>
-<li>ampy –version 我用不了，不造是为虾米，反正不粽药啦</li>
-<li>但是ampy –help 有用，可以看到具体操作和linux shell 类似，mkdir、ls、rm、rmdir都不用说了。</li>
-<li>ampy –port /dev/ttyUSB0 run led.py #跑当前目录下的led.py文件<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="led.py
-123456789101112131415161718&#x27;&#x27;&#x27;功能介绍： LED闪烁例程&#x27;&#x27;&#x27;import utimeimport machine# 声明一个引脚 例如 22 作为我们特定开发板板载LED的引脚led_pin = machine.Pin(22, machine.Pin.OUT)for i in range(20):    # 点亮LED -&gt; 高电平    led_pin.value(1)    # 延时 500ms    utime.sleep_ms(500)    # 关闭LED -&gt; 低电平    led_pin.value(0)    # 延时500ms    utime.sleep_ms(500)">[5]</span></a></sup>，ctrl+c没法打断</li>
-<li>ampy –port /dev/ttyUSB0 reset #给板子软重启，如果死循环没写到main.py就能打断了。但如果写到main.py的话据说<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html">[1]</span></a></sup>只能重刷固件了</li>
-</ol>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>picocom 开启时用不了ampy，因为picocom会占用串口，按ctrl+a，之后ctrl+x退出picocom</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>配置串口权限的脚本:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br>ls -al /dev/ttyUSB0<br>chmod 666 /dev/ttyUSB0<br>sudo chmod 666 /dev/ttyUSB0 <br>ls -al /dev/ttyUSB0 <br><span class="hljs-built_in">exit</span> 0<br></code></pre></td></tr></table></figure>
+                <h1 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h1><p>几百块买了个J1900主板，搭配上家里最早电脑的最早的DDR3内存条，本来初中时加了根内存条干到4G内存了，但是新的二十多块的淘宝内存条坏了导致不开机，尽管在老电脑上工作正常😮‍💨。这个电脑自买来刷上UbuntuServer就基本没关过，里面系统装在我买的一个二手固态硬盘上，那个固态硬盘金手指上是开有两个槽的，好像不是m.2接口，转接成SATA接口的盒子金手指上塑料也断了，反之接上还能用。机械硬盘是淘宝上买的50块钱500g那种，这种小机械硬盘投入小，不行了就拆来当摆件。每次我用hdparm -Y让硬盘停转之后过一阵子又会自启，可能和种子下载、jellyfin、smb有关，我每次发现时硬盘都自动转了数十天了。今天有空就让AI（讯飞星火）帮忙写了个脚本。</p>
+<h1 id="失败的其中一次尝试"><a href="#失败的其中一次尝试" class="headerlink" title="失败的其中一次尝试"></a>失败的其中一次尝试</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>sudo hdparm -C /dev/sdb的输出是：</p>
+<p>/dev/sdb:<br> drive state is:  active/idle<br>或者：</p>
+<p>/dev/sdb:<br> drive state is:  standby<br>请注意这个输出前有一个空行<br>我需要一个在ubuntu系统下每两分钟自动执行的脚本，你可以分为一个脚本和我需要添加的sudo crontab中的一行<br>我希望在检测到 drive state is:  standby转化为 drive state is:  active/idle时在/home/zhaosn/disk.csv文件中添加一行，其由：<br>echo <code>TZ=UTC-8 date  +&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</code>的输出结果和sudo lsof /mnt/hdd的输出结果组合而来</p>
+<h2 id="回复"><a href="#回复" class="headerlink" title="回复"></a>回复</h2><p>首先，我们需要创建一个脚本来检测硬盘状态并执行相应的操作。以下是脚本的内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>STATE=$(sudo hdparm -C /dev/sdb | grep <span class="hljs-string">&quot;drive state is&quot;</span> | awk <span class="hljs-string">&#x27;&#123;print $3&#125;&#x27;</span>)<br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$STATE</span>&quot;</span> == <span class="hljs-string">&quot;active/idle&quot;</span> ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">echo</span> `TZ=UTC-8 date +<span class="hljs-string">&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</span>`$(sudo lsof /mnt/hdd) &gt;&gt; /home/zhaosn/disk.csv<br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
 
-<p>还有如下几篇文章以供参考：</p>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html">http://yhhuang1966.blogspot.com/2019/07/micropython-on-esp32.html</a>
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.cirmall.com/bbs/thread-102620-1-1.html">https://www.cirmall.com/bbs/thread-102620-1-1.html</a> 介绍了picocom和ampy两种方法，对从底层了解和开发板通信帮助很大
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://docs.micropython.org/en/v1.8.3/esp8266/esp8266/tutorial/repl.html">https://docs.micropython.org/en/v1.8.3/esp8266/esp8266/tutorial/repl.html</a> 官方文档，介绍了REPL的基本操作
-<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://docs.micropython.org/en/v1.8.3/esp8266/esp8266/tutorial/filesystem.html#creating-and-reading-files">https://docs.micropython.org/en/v1.8.3/esp8266/esp8266/tutorial/filesystem.html#creating-and-reading-files</a> 介绍了文件和文件夹的增删，但没有改查
-<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span>led.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">功能介绍： LED闪烁例程</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-keyword">import</span> utime<br><span class="hljs-keyword">import</span> machine<br><br><span class="hljs-comment"># 声明一个引脚 例如 22 作为我们特定开发板板载LED的引脚</span><br>led_pin = machine.Pin(<span class="hljs-number">22</span>, machine.Pin.OUT)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>):<br>    <span class="hljs-comment"># 点亮LED -&gt; 高电平</span><br>    led_pin.value(<span class="hljs-number">1</span>)<br>    <span class="hljs-comment"># 延时 500ms</span><br>    utime.sleep_ms(<span class="hljs-number">500</span>)<br>    <span class="hljs-comment"># 关闭LED -&gt; 低电平</span><br>    led_pin.value(<span class="hljs-number">0</span>)<br>    <span class="hljs-comment"># 延时500ms</span><br>    utime.sleep_ms(<span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
-<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<p>将以上内容保存为一个名为<code>check_disk_state.sh</code>的文件。接下来，我们需要为这个脚本添加可执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chmod +x check_disk_state.sh<br></code></pre></td></tr></table></figure>
+
+<p>最后，我们需要将这个脚本添加到crontab中以便每两分钟自动执行一次。请运行以下命令以编辑crontab：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">crontab -e<br></code></pre></td></tr></table></figure>
+
+<p>在打开的编辑器中，添加以下一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">*/2 * * * * /path/to/check_disk_state.sh<br></code></pre></td></tr></table></figure>
+
+<p>请将<code>/path/to/</code>替换为<code>check_disk_state.sh</code>文件的实际路径。保存并退出编辑器。现在，脚本将在每两分钟自动执行一次，并在检测到硬盘状态从standby变为active/idle时将相关信息追加到<code>/home/zhaosn/disk.csv</code>文件中。</p>
+<p>其实这个表现不好，如果我用ls访问硬盘，lsof是看不到的</p>
+<h1 id="换种思路"><a href="#换种思路" class="headerlink" title="换种思路"></a>换种思路</h1><h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h2><p>我想在sudo lsof /mnt/hdd执行结果不为空时在/home/zhaosn/disk.csv文件中添加一行，其由：</p>
+<p>echo <code>TZ=UTC-8 date  +&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</code>的输出结果和sudo lsof /mnt/hdd的输出结果组合而来。设置脚本需要root用户身份运行</p>
+<h2 id="回复-1"><a href="#回复-1" class="headerlink" title="回复"></a>回复</h2><p>你可以使用以下脚本来实现你的需求：</p>
+<ol>
+<li>创建一个名为<code>check_disk_state.sh</code>的文件，并将以下内容复制到该文件中：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-built_in">set</span> -e<br><span class="hljs-keyword">if</span> [[ <span class="hljs-variable">$EUID</span> -ne 0 ]]; <span class="hljs-keyword">then</span><br>   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;This script must be run as root&quot;</span> 1&gt;&amp;2<br>   <span class="hljs-built_in">exit</span> 1<br><span class="hljs-keyword">fi</span><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span><br>    LSOF=$(sudo lsof /mnt/hdd)<br>    <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$LSOF</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>        <span class="hljs-built_in">echo</span> `TZ=UTC-8 date +<span class="hljs-string">&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</span>`<span class="hljs-variable">$LSOF</span> &gt;&gt; /home/zhaosn/disk.csv<br>    <span class="hljs-keyword">fi</span><br>    sleep 60<br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>保存并关闭文件。</p>
+</li>
+<li><p>为脚本添加可执行权限：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chmod +x check_disk_state.sh<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>以root用户身份运行脚本：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo ./check_disk_state.sh<br></code></pre></td></tr></table></figure>
+
+<p>这个脚本会持续监控<code>/mnt/hdd</code>目录的<code>lsof</code>结果，如果结果不为空，则在<code>/home/zhaosn/disk.csv</code>文件中添加一行，该行由<code>echo TZ=UTC-8 date +&quot;%Y/%m/%d %H:%M:%S, %s, %z, &quot;</code>的输出结果和<code>sudo lsof /mnt/hdd</code>的输出结果组合而成。同时，脚本会每隔60秒检查一次。</p>
+
                 
               </div>
             
@@ -730,7 +741,7 @@
   
     <span>></span>
     
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/Linux/" class="category-chain-item">Linux</a>
   
   
 
@@ -749,8 +760,6 @@
       
         <a href="/tags/%E6%8A%80%E6%9C%AF/">#技术</a>
       
-        <a href="/tags/%E5%B9%B2%E8%B4%A7/">#干货</a>
-      
     </div>
   
 </div>
@@ -761,8 +770,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ESP32:搞定终端下MicroPython编程</div>
-      <div>https://zhaosn.github.io/2022/ESP32-pyinShell/</div>
+      <div>为什么我的机械硬盘总会自动起转</div>
+      <div>https://zhaosn.github.io/2024/whatUseMyDisk/</div>
     </div>
     <div class="license-meta">
       
@@ -774,13 +783,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月13日</div>
+          <div>2024年8月4日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年10月28日</div>
+          <div>2024年8月4日</div>
         </div>
       
       
@@ -823,9 +832,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/SUPPORTED_LANGUAGES/" title="MarkDown指定hightlight.js代码高亮">
+                      <a href="/2024/bili-embed/" title="BG9SHY">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MarkDown指定hightlight.js代码高亮</span>
+                        <span class="hidden-mobile">BG9SHY</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -833,8 +842,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/opWRThomePrint/" title="基于openwrt，建立家庭云打印服务">
-                        <span class="hidden-mobile">基于openwrt，建立家庭云打印服务</span>
+                      <a href="/2023/cannyOnN3350/" title="计算机视觉第一次大作业">
+                        <span class="hidden-mobile">计算机视觉第一次大作业</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
