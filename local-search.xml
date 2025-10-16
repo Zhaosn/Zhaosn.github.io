@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>B580使用秋葉aaakiSD-Forge开启SD画图加速的方法</title>
+    <link href="/2025/SD-B580FULLPOWAH/"/>
+    <url>/2025/SD-B580FULLPOWAH/</url>
+    
+    <content type="html"><![CDATA[<h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><p>显卡Arc B580，启动器版本绘世2.8.13</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol><li><p>B站我自己，里面放了图片<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://www.bilibili.com/opus/1116551395134144550">[1]</span></a></sup></p></li><li><p>IPEX官网<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/intel/intel-extension-for-pytorch">[2]</span></a></sup></p></li></ol><p>(PS, 这玩意儿是Intel Extension for PyTorch的缩写？不如说是Intel PyTorch Extension的缩写○( ＾皿＾)っ)</p><p>(PPS, 根据<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/intel/intel-extension-for-pytorch">[2]</span></a></sup>的GPU里的<a href="https://intel.github.io/intel-extension-for-pytorch/index.html#installation?platform=gpu">🏃Installation</a>生成安装代码，可以看B站的图片)</p><ol start="3"><li><p>步骤1：启动器选择IPEX（Intel Extension for PyTorch）</p></li><li><p>步骤2：点击“启动命令提示符”（一键启动左边）</p></li><li><p>步骤3：执行官方指南的命令（根据Torch版本不同，请自行到官网复制）</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">python -m pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/xpu<br><br>python -m pip install intel-extension-for-pytorch==2.7.10+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/<br></code></pre></td></tr></table></figure></li><li><p>步骤4：点击一键启动，等</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmd">我这块出现了<br><span class="hljs-function"></span><br><span class="hljs-function">RuntimeError: <span class="hljs-title">Failed</span> <span class="hljs-title">to</span> <span class="hljs-title">import</span> <span class="hljs-title">diffusers.loaders.lora_pipeline</span> <span class="hljs-title">because</span> <span class="hljs-title">of</span> <span class="hljs-title">the</span> <span class="hljs-title">following</span> <span class="hljs-title">error</span>:</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-title">No</span> <span class="hljs-title">module</span> <span class="hljs-title">named</span> &#x27;<span class="hljs-title">triton.ops</span>&#x27;</span><br></code></pre></td></tr></table></figure></li><li><p>步骤5：禁用调用CUDA的triton模块(好像是bitsandbytes啥的，多亏kimi，工作上一直用的豆包在专业问题上日常很der)</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">1.打开文件:</span><br><span class="hljs-string">F:\sd-webui-forge-aki-v1.0\python\Lib\site-packages\bitsandbytes\__init__.py</span><br><span class="hljs-string">2.在文件顶部添加以下代码，强制跳过 Triton 加载:</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-keyword">import</span> sys<br>sys.modules[<span class="hljs-string">&#x27;triton&#x27;</span>] = <span class="hljs-literal">None</span><br>sys.modules[<span class="hljs-string">&#x27;triton.ops&#x27;</span>] = <span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure></li><li><p>喜提6it/s的速度，比之前DML的1.3it/s不知道高到哪里去了</p></li></ol><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://www.bilibili.com/opus/1116551395134144550">https://www.bilibili.com/opus/1116551395134144550</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a href="https://github.com/intel/intel-extension-for-pytorch">https://github.com/intel/intel-extension-for-pytorch</a><a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+      <tag>干货</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>11月1号下班游记</title>
     <link href="/2024/OneDayDeRail/"/>
     <url>/2024/OneDayDeRail/</url>
@@ -219,9 +246,9 @@
       
       <category>技术备忘</category>
       
-      <category>博客</category>
-      
       <category>日常</category>
+      
+      <category>博客</category>
       
     </categories>
     
@@ -354,9 +381,9 @@
       
       <category>技术备忘</category>
       
-      <category>嵌入式</category>
-      
       <category>日常</category>
+      
+      <category>嵌入式</category>
       
       <category>Linux</category>
       
@@ -476,9 +503,9 @@
       
       <category>技术备忘</category>
       
-      <category>教程</category>
-      
       <category>网络</category>
+      
+      <category>教程</category>
       
     </categories>
     
@@ -538,9 +565,9 @@
       
       <category>技术备忘</category>
       
-      <category>嵌入式</category>
-      
       <category>日常</category>
+      
+      <category>嵌入式</category>
       
     </categories>
     
