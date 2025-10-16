@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>再挖掘HID和硬件工程</title>
+    <link href="/2025/HID_secondDig/"/>
+    <url>/2025/HID_secondDig/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>你喜欢的那个总挖坑不填的博主回来啦(～￣▽￣)～</p><p>在<a href="https://blog.zhaosn.top/2022/HID_firstDig/">之前的HID博客</a>发布3.753425年之后，我又断断续续研究了3个月HID。现在汇报一下当前进度daze(=•ω＜=)ρ⌒☆</p><h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>在外出差的日子通关了药剂工艺，GTASA也打不动了。研究了一段时间我的ThinkPad X1Carbon gen VI跑kali能不能实现模仿成蓝牙键盘。事实证明SDP、blueDucky啥的都是天坑，要从内核啥的做出修改，代码既不直观也没有可行的demo。挣扎后我绝望的花40左右买了块esp32开发板，随后吃灰了一个多月。</p><p>后来借蓝牙键盘抓包，再意识到不靠外部硬件只靠电脑很难迁移，就掏出了esp32。某个周天一天就下载下来店家的资料，搞懂刷新底层系统、microPython、比较Arduino和PlatformIO发现都依赖开源开发者适配且依赖早期esp-idf的官方版本。选择了esp-idf原生开发，当天晚上就通过找到的官方bleHID示例实现了STRING输入demo。</p><p>但后来两三周在脚本解释上进度缓慢。现在选择的方式就是顺序读取命令，识别后读取参数。从最开始的面向单片机开发改为先在电脑上写出demo。将VSCode配置为了C语言IDE，单步调试断点等很方便（不要用TRAE这种第三方VSCode，他们架构不一样，这是一道弯路）。</p><p>现在STRING、STRINGLN、及其代码块、忽略缩进写的不错。但更多命令的代码维护、分支、函数还是很复杂的。本次与TRAE的合作顺利很多，我也感悟到分模块实现功能的可贵，但要想完全复刻DuckyScript3.0语法，我认为现在距离引起质变还有不明朗但依旧够长的一段距离。</p><h1 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h1><p>顺利的开发让人心情好，有继续的动力。i’m lovin’ it♪(^∇^*)</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>嵌入式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>在25年10月的总结</title>
     <link href="/2025/2025annual_review/"/>
     <url>/2025/2025annual_review/</url>
