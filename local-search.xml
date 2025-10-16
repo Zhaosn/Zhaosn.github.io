@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Windows快速切换IP、DNS</title>
+    <link href="/2025/win-swapIPquick/"/>
+    <url>/2025/win-swapIPquick/</url>
+    
+    <content type="html"><![CDATA[<p>要想切换 IPV4 的IP和DNS要进到控制面板点四五下、逐步确认并退出要点3下，要是在外调试这样重复无数遍简直是浪费生命，快利用netsh挽救生命</p><p>搜索栏搜索cmd，以管理员运行</p><blockquote><p>netsh interface show interface</p></blockquote><p>设置固定IP</p><blockquote><p>netsh interface ipv4 set address name=”以太网 2” static 10.18.7.230 255.255.255.0 10.18.7.254</p></blockquote><p>设置固定IP (但不设置网关)</p><blockquote><p>netsh interface ipv4 set address name=”以太网 2” static 192.168.0.230 255.255.255.0 0.0.0.0</p></blockquote><p>设置固定DNS</p><blockquote><p>netsh interface ipv4 set dns name=”以太网 2” static 10.80.63.1 primary</p></blockquote><p>设置地址自动获取</p><blockquote><p>netsh interface ipv4 set address name=”以太网 2” dhcp</p></blockquote><p>设置DNS自动获取</p><blockquote><p>netsh interface ipv4 set dns name=”以太网 2” dhcp</p></blockquote><p>禁用网卡、启用网卡（没试过）</p><blockquote><p>netsh interface set interface “以太网 2” admin=disable<br>netsh interface set interface “以太网 2” admin=enable</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+      <tag>干货</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>再挖掘HID和硬件工程</title>
     <link href="/2025/HID_secondDig/"/>
     <url>/2025/HID_secondDig/</url>
@@ -37,7 +66,7 @@
     <link href="/2025/2025annual_review/"/>
     <url>/2025/2025annual_review/</url>
     
-    <content type="html"><![CDATA[<p>开眼看过世界，也脚踏实地存了一些资金。虽然回家的工作远远够不到梦想，好在家里的日常与我能够密切相关。初夏去了咸阳大秦音乐节，看了马飞、岛屿心情、南青、万能青年旅店的现场，很长一段时间，我躁动的摇滚心脏都能被安抚了。</p><p>从临毕业有点难过的心情过来，现在也逐渐认清什么是生活，从多少年都不能财务自由的假想敌中走出，看到5w块钱放到每月2k的生活费下够花2年，简单的算数+实际的存款=没那么焦虑了。</p><p>并没有急迫的生存压力，也认识到自己技能的丰富和优异，认清真正的主线后，感觉能放心的探索支线任务了。<br>我想说点涩话，就是最近我想到了我为什么想回家，就是与认识的环境继续做个适应，家永远都在，但是朋友和家人会逐渐减少，大学里每个学期开学我都会隐约存在分离焦虑，刚毕业能回家先工作是幸运的，况且我的这个选择能够在刚工作最窘迫的阶段做个缓冲。<br>享受未来和现在，不苛责过去的自己。就能增长生命的厚度。</p>]]></content>
+    <content type="html"><![CDATA[<p>开眼看过世界，也脚踏实地存了一些资金。虽然回家的工作远远够不到梦想，好在家里的日常与我能够密切相关。初夏去了咸阳大秦音乐节，看了马飞、岛屿心情、南青、万能青年旅店的现场，很长一段时间，我躁动的摇滚心脏都能被安抚了。</p><p>从临毕业有点难过的心情过来，现在也逐渐认清什么是生活，从多少年都不能财务自由的假想敌中走出，看到5w块钱放到每月2k的生活费下够花2年，简单的算数+实际的存款=没那么焦虑了。</p><p>并没有急迫的生存压力，也认识到自己技能的丰富和优异，认清真正的主线后，感觉能放心的探索支线任务了。<br>我想说点涩话，就是最近我想到了我为什么想回家，就是与认识的环境继续做个适应，家永远都在，但是朋友和家人会逐渐减少，大学里每个学期开学我都会隐约存在分离焦虑，刚毕业能回家先工作是幸运的，况且我的这个选择能够在刚工作最窘迫的阶段做个缓冲。<br>享受未来和现在，不苛责过去的自己。就能增长生命的厚度。</p><div id="music_div" class="music"><iframe src="//player.bilibili.com/player.html?bvid=BV1GMjKzFEEL" scrolling="no" border="0" frameborder="no" framespacing="0" muted="0" allowfullscreen="true"></iframe></div><style>    iframe[src*='player.bilibili.com'] {    width: 100%;  /* 设置视频的宽度 */    height: 400px; /* 设置视频的高度 */    }</style>]]></content>
     
     
     <categories>
@@ -241,7 +270,7 @@
     <link href="/2023/securitySensor/"/>
     <url>/2023/securitySensor/</url>
     
-    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>门开关传感器之前做过几版，实际上之前称不上传感器，之前只是个手动做的带开关和非门的报警器罢了。最接近现在的一版中采用的ne555有较大的静态功耗，现在使用单片机，希望它的低功耗能带来较长时间的续航。</p><h1 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h1><p>发送开/关门事件、ir汇报开关错误率、ir汇报电池状况、蜂鸣器摩斯电码发送超时报警、调试按键按下通过摩斯电码或ir信息包发送2~4信息</p><h1 id="前期分析"><a href="#前期分析" class="headerlink" title="前期分析"></a>前期分析</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>家里有两层门，一个是外门，一个是里面一个装饰用的门，有时存在忘记关外侧门的问题（以后装修记得只装一个门就好）。由此产生了对门开关状态检测的要求，对于一个DIY爱好者，当然喜欢自己做，经过几次迭代升级，我现在写出第三版计划的预期目标书。</p><h2 id="前版本分析"><a href="#前版本分析" class="headerlink" title="前版本分析"></a>前版本分析</h2><h3 id="第一版"><a href="#第一版" class="headerlink" title="第一版"></a>第一版</h3><p>第一版只采用一节CR2032钮扣电池，门传感器采用易拉罐皮作弹片，曲别针作触点的开关（闭门时断开）。<br>优点：</p><ul><li>断电时零功耗</li><li>小<br>缺点：</li><li>没有特殊功能如：蜂鸣器</li><li>开关外观不美观且大</li></ul><h3 id="第二版"><a href="#第二版" class="headerlink" title="第二版"></a>第二版</h3><p>第二版经过几次迭代，一开始使用ne555为灯增加闪烁功能，更易引起注意，后来添加一个ne555驱动一个无内部震荡电路的蜂鸣器。<br>优点：</p><ul><li>容易吸引注意</li><li>使用一个上拉的开关(闭门时拉低)，减小了开关复杂水平<br>缺点：</li><li>开门即响，不够智能</li><li>ne555即使通过复位脚停止震荡也有同样的功耗</li><li>为实现闭门断电使用了一个mos管，但奇怪的是有时有较大的发热、压降，导致有时2s锂电在mos管后对芯片供电电压不足4v，从而工作异常。（mos使用坏显卡拆机，ne555购自淘宝。</li></ul><h3 id="第三版（理论）"><a href="#第三版（理论）" class="headerlink" title="第三版（理论）"></a>第三版（理论）</h3><p>第三版有如下几个预期功能：</p><ol><li>休眠功耗达到uA级</li><li>有向中心设备传递时间的功能</li><li>成本尽量低</li><li>使用PCB<br><del>且现在经简易选型决定使用立创商城里最便宜且有货的NY8A051H</del>，向中心设备传递数据使用红外发射管，但这个芯片采用1k*14bit的EPROM，不能多次编程且容量较小，可能不够为蜂鸣器存储音乐。但我希望专门优化红外线传输功能，只要能传递能够计算出开关门事件发生时间就够了。播放音乐可以交给中央采集设备，最好再优化下蜂鸣器，当出现没有回传事件的故障时也能有开门超时报警功能。</li></ol><h1 id="工程分析"><a href="#工程分析" class="headerlink" title="工程分析"></a>工程分析</h1><p>实际做起来才发现有许多实际问题，我想先考虑清楚一个框架再开始写会有许多帮助。以下内容虽然是普通的文字，但可能经过了综合考量和推敲，但考量的过程没有保留。请注意！</p><ul><li>延时函数：延时函数使用中断优先较低的定时器解决，中断前设置延时标志位即一个volatile变量，检测到接下来的内容可能中断就执行些不怕打断的工作。</li></ul><h1 id="程序框图"><a href="#程序框图" class="headerlink" title="程序框图"></a>程序框图</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">开门（下降沿中断从睡眠唤醒，然后关中断，用软delay函数间隔采样：总采样数右移一位(十进制除2操作)和开关开次数比较进行消抖）<br>?<br>计时器计时（每次溢出给一个变量+1）关门后发送开门时间。时间超时-蜂鸣器提示-超出过长时间-蜂鸣器报警，此时关门即刻停止报警，消抖开关后确认关门，ir发送报文，最后发出简短提醒提示已关好或回到初始状态<br>任意时刻按下报文按键回报电量，关门后按键蜂鸣器发送数据包[数据包编号；开门时间；电量；报警状态]<br>：消抖失败，给网关发送开关故障报告<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>门开关传感器之前做过几版，实际上之前称不上传感器，之前只是个手动做的带开关和非门的报警器罢了。最接近现在的一版中采用的ne555有较大的静态功耗，现在使用单片机，希望它的低功耗能带来较长时间的续航。</p><h1 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h1><p>发送开/关门事件、ir汇报开关错误率、ir汇报电池状况、蜂鸣器摩斯电码发送超时报警、调试按键按下通过摩斯电码或ir信息包发送2~4信息</p><h1 id="前期分析"><a href="#前期分析" class="headerlink" title="前期分析"></a>前期分析</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>家里有两层门，一个是外门，一个是里面一个装饰用的门，有时存在忘记关外侧门的问题（以后装修记得只装一个门就好）。由此产生了对门开关状态检测的要求，对于一个DIY爱好者，当然喜欢自己做，经过几次迭代升级，我现在写出第三版计划的预期目标书。</p><h2 id="前版本分析"><a href="#前版本分析" class="headerlink" title="前版本分析"></a>前版本分析</h2><h3 id="第一版"><a href="#第一版" class="headerlink" title="第一版"></a>第一版</h3><p>第一版只采用一节CR2032钮扣电池，门传感器采用易拉罐皮作弹片，曲别针作触点的开关（闭门时断开）。<br>优点：</p><ul><li>断电时零功耗</li><li>小<br>缺点：</li><li>没有特殊功能如：蜂鸣器</li><li>开关外观不美观且大</li></ul><h3 id="第二版"><a href="#第二版" class="headerlink" title="第二版"></a>第二版</h3><p>第二版经过几次迭代，一开始使用ne555为灯增加闪烁功能，更易引起注意，后来添加一个ne555驱动一个无内部震荡电路的蜂鸣器。<br>优点：</p><ul><li>容易吸引注意</li><li>使用一个上拉的开关(闭门时拉低)，减小了开关复杂水平<br>缺点：</li><li>开门即响，不够智能</li><li>ne555即使通过复位脚停止震荡也有同样的功耗</li><li>为实现闭门断电使用了一个mos管，但奇怪的是有时有较大的发热、压降，导致有时2s锂电在mos管后对芯片供电电压不足4v，从而工作异常。（mos使用坏显卡拆机，ne555购自淘宝。</li></ul><h3 id="第三版（理论）"><a href="#第三版（理论）" class="headerlink" title="第三版（理论）"></a>第三版（理论）</h3><p>第三版有如下几个预期功能：</p><ol><li>休眠功耗达到uA级</li><li>有向中心设备传递时间的功能</li><li>成本尽量低</li><li>使用PCB<br><del>且现在经简易选型决定使用立创商城里最便宜且有货的NY8A051H</del>，向中心设备传递数据使用红外发射管，但这个芯片采用1k*14bit的EPROM，不能多次编程且容量较小，可能不够为蜂鸣器存储音乐。但我希望专门优化红外线传输功能，只要能传递能够计算出开关门事件发生时间就够了。播放音乐可以交给中央采集设备，最好再优化下蜂鸣器，当出现没有回传事件的故障时也能有开门超时报警功能。</li></ol><h3 id="真正的第三版（25年10月16日总结）"><a href="#真正的第三版（25年10月16日总结）" class="headerlink" title="真正的第三版（25年10月16日总结）"></a>真正的第三版（25年10月16日总结）</h3><p>使用STC8G1K08A采用SOP8封装，1M电阻被干簧管下拉唤醒（好像是下拉，得看中断原理），醒来后计时2分钟开始驱动蜂鸣器。待机功耗很低，电池从之前充不进去电的小音箱利旧，充电模块好像是TP4056。好像23年做好就放着了，很长时间没充电。</p><p>还利用了大学给崔老师写的STC8G1K08A加74HC595D做的串转并模块的一个串口修改参数的交互，做了一些debug的功能，比如修改频率、等待时间、直接开始响之类的。</p><p>焊接时用了买的贴片的三极管焊上细线驱动蜂鸣器，之前还有供电线皮融化和蜂鸣器虚搭导致不响的硬件BUG。最后成品还是很漂亮的，我自己可以翻翻23年7月4日拍的视频，并且同年6月9日修好了之前串转并的BUG（D型号有个缓存功能，某引脚不下拉不更新）</p><p>原工程在蛟龙16K的备份里了，很久没看，回头要把keil下下来维护一下。</p><h1 id="工程分析"><a href="#工程分析" class="headerlink" title="工程分析"></a>工程分析</h1><p>实际做起来才发现有许多实际问题，我想先考虑清楚一个框架再开始写会有许多帮助。以下内容虽然是普通的文字，但可能经过了综合考量和推敲，但考量的过程没有保留。请注意！</p><ul><li>延时函数：延时函数使用中断优先较低的定时器解决，中断前设置延时标志位即一个volatile变量，检测到接下来的内容可能中断就执行些不怕打断的工作。</li></ul><h1 id="程序框图"><a href="#程序框图" class="headerlink" title="程序框图"></a>程序框图</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">开门（下降沿中断从睡眠唤醒，然后关中断，用软delay函数间隔采样：总采样数右移一位(十进制除2操作)和开关开次数比较进行消抖）<br>?<br>计时器计时（每次溢出给一个变量+1）关门后发送开门时间。时间超时-蜂鸣器提示-超出过长时间-蜂鸣器报警，此时关门即刻停止报警，消抖开关后确认关门，ir发送报文，最后发出简短提醒提示已关好或回到初始状态<br>任意时刻按下报文按键回报电量，关门后按键蜂鸣器发送数据包[数据包编号；开门时间；电量；报警状态]<br>：消抖失败，给网关发送开关故障报告<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
@@ -784,7 +813,7 @@
     <link href="/2022/blog_tutorial/"/>
     <url>/2022/blog_tutorial/</url>
     
-    <content type="html"><![CDATA[<p><font color="gray" size="2"><del>前天起计划搭建个人博客，花了一点时间就大概搞出来了，现在分享下我的流程，帮大家快速建立个人博客，以下操作需要电脑。</del></font><br/><br><del>摆烂了，根据第一个参考链接从概述开始就可以了，官方文档下面还有上传github的办法</del><br/><br/><strong>用power shell执行hexo指令时需要打全成hexo.cmd（tab键也可以补全）</strong><br/><br/></p><h1 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h1><ul><li>生成博客：hexo g</li><li>预览博客：hexo s <font color="gray">浏览器打开命令输入后出来的网址</font></li><li>上传博客：hexo d <font color="gray">github page在上传成功后需要过一会才会变化，只要最近commit的id对的上就证明没错</font></li><li>hexo clean <font color="gray">不知道有什么用</font><br><br/><br/></li></ul><p>如果hexo d 出错先检查下网络，然后看看根目录（不是themes下主题的）_config.yml的 “deploy:” 那里有没有打上git仓库信息。<br/><br/><br>分支也不要搞错，例如自己项目里分支是 main 的话不要按照教程打成 master 不知道这会不会有问题。<br/><br/></p><p>参考链接：<br/><br>1.<a href="https://hexo.io/zh-cn/docs">Hexo官方文档</a><br/><br>2.<a href="https://zhuanlan.zhihu.com/p/74778630">不需懂代码，10分钟在Github搭建免费且已成型的个人博客网站 - 知乎</a><br/><br>3.<a href="https://zhuanlan.zhihu.com/p/111832962">在Github/Gitee上搭建免费个人博客网站（进阶篇） - 知乎</a><br/></p>]]></content>
+    <content type="html"><![CDATA[<p><font color="gray" size="2"><del>前天起计划搭建个人博客，花了一点时间就大概搞出来了，现在分享下我的流程，帮大家快速建立个人博客，以下操作需要电脑。</del></font><br/><br><del>摆烂了，根据第一个参考链接从概述开始就可以了，官方文档下面还有上传github的办法</del><br/><br/><strong>用power shell执行hexo指令时需要打全成hexo.cmd（tab键也可以补全）</strong><br/><br/></p><h1 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h1><ul><li>生成博客：hexo g</li><li>预览博客：hexo s <font color="gray">浏览器打开命令输入后出来的网址</font></li><li>上传博客：hexo d <font color="gray">github page在上传成功后需要过一会才会变化，只要最近commit的id对的上就证明没错</font></li><li>hexo d -m “评论示例” <font color="gray">上传并附上commit评论</font></li><li>hexo clean <font color="gray">不知道有什么用</font><br><br/><br/></li></ul><p>如果hexo d 出错先检查下网络，然后看看根目录（不是themes下主题的）_config.yml的 “deploy:” 那里有没有打上git仓库信息。<br/><br/><br>分支也不要搞错，例如自己项目里分支是 main 的话不要按照教程打成 master 不知道这会不会有问题。<br/><br/></p><p>参考链接：<br/><br>1.<a href="https://hexo.io/zh-cn/docs">Hexo官方文档</a><br/><br>2.<a href="https://zhuanlan.zhihu.com/p/74778630">不需懂代码，10分钟在Github搭建免费且已成型的个人博客网站 - 知乎</a><br/><br>3.<a href="https://zhuanlan.zhihu.com/p/111832962">在Github/Gitee上搭建免费个人博客网站（进阶篇） - 知乎</a><br/></p>]]></content>
     
     
     <categories>
