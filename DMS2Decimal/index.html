@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoLoc - Coordinate Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <button id="back-button" class="back-button" title="Go back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    Back
+                </button>
+                <div class="title-container">
+                    <h1>GeoLoc</h1>
+                    <p>Geographical Coordinate Conversion Tool</p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- DMS to Decimal Conversion Section -->
+            <section class="conversion-section" id="dms-to-decimal">
+                <h2>Degrees-Minutes-Seconds to Decimal</h2>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="dms-direction">Direction</label>
+                        <input type="range" id="dms-direction" class="direction-slider" min="0" max="3" step="1" value="0">
+                        <div id="direction-display" class="direction-display">North (N)</div>
+                    </div>
+                    <div class="input-field">
+                        <label for="dms-degrees">Degrees</label>
+                        <input type="number" id="dms-degrees" step="1" min="0" placeholder="Enter degrees">
+                    </div>
+                    <div class="input-field">
+                        <label for="dms-minutes">Minutes</label>
+                        <input type="number" id="dms-minutes" step="0.01" min="0" max="59.99" placeholder="Enter minutes">
+                    </div>
+                    <div class="input-field">
+                        <label for="dms-seconds">Seconds</label>
+                        <input type="number" id="dms-seconds" step="0.01" min="0" max="59.99" placeholder="Enter seconds">
+                    </div>
+                </div>
+
+                <div class="output-group">
+                    <div class="output-field">
+                        <label>Formatted DMS:</label>
+                        <div class="output-container">
+                            <div id="formatted-dms" class="output-content"></div>
+                            <button class="copy-btn" data-target="formatted-dms" title="Copy to clipboard">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="output-field">
+                        <label>Decimal Degrees:</label>
+                        <div class="output-container">
+                            <div id="decimal-result" class="output-content"></div>
+                            <button class="copy-btn" data-target="decimal-result" title="Copy to clipboard">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Decimal to DMS Conversion Section -->
+            <section class="conversion-section" id="decimal-to-dms">
+                <h2>Decimal to Degrees-Minutes-Seconds</h2>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="decimal-input">Decimal Degrees</label>
+                        <input type="number" id="decimal-input" step="0.000001" placeholder="Enter decimal degrees">
+                    </div>
+                </div>
+
+                <div class="output-group">
+                    <div class="output-field">
+                        <label>Formatted DMS:</label>
+                        <div class="output-container">
+                            <div id="dms-result" class="output-content"></div>
+                            <button class="copy-btn" data-target="dms-result" title="Copy to clipboard">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; Zhaosn&Ciallo 2025</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
