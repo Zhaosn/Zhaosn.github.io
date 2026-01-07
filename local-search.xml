@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>通过蓝牙串口打通嵌入式个域网</title>
+    <link href="/2026/BluetoothSerial/"/>
+    <url>/2026/BluetoothSerial/</url>
+    
+    <content type="html"><![CDATA[<h1 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h1><p>开发中的HID设备（<a href="/2022/HID_firstDig/" title="HID_firstDig">HID_firstDig</a>、<a href="/2025/HID_secondDig/" title="HID_secondDig">HID_secondDig</a>）虽然开发遇到瓶颈很久没动，但逐渐发现一个有用的场景，就是配合其他设备，快速输入特定信息，如：输密码、自动点击安全键盘。需要实现个域网连接，热点过于臃肿、耗电；蓝牙不影响上网、使用广泛，最适合此场景。</p><h2 id="先前研究"><a href="#先前研究" class="headerlink" title="先前研究"></a>先前研究</h2><p>此前基于 <a href="https://www.thinkpad.com/device/339">X1Carbon</a> with Kali 对蓝牙 hid SDP 的尝试是失败的：电脑的功能过于复杂，修改注册信息的尝试也不成功，沉寂一个月后，在2025年9月28日-29日，经过两天使用 ESP32 的原始开发库的研究就能实现了蓝牙 HID 输入功能，后续针对 STRINGLN 等命令的研究抽离为算法开始研究。<br>现在开始将算法搁置，研究<a href="/2026/digFreeRTOS/" title="FreeRTOS">FreeRTOS</a>的功能和个域网连接。培养对项目的信心<br><img src="https://pic1.imgdb.cn/item/695dcf0e2475f92cc325c174.png" alt="硬件黑客盒子示例"></p><h2 id="蓝牙串口101"><a href="#蓝牙串口101" class="headerlink" title="蓝牙串口101"></a>蓝牙串口101</h2><h3 id="电脑端Windows"><a href="#电脑端Windows" class="headerlink" title="电脑端Windows"></a>电脑端Windows</h3><p><a href="https://bluetoothinstaller.com/bluetooth-command-line-tools">Bluetooth Command Line Tools</a>是面向 Windows 的蓝牙命令行工具套件，由 Bluetooth Driver Installer 团队开发，提供 7 个独立命令行程序，可在 CMD/PowerShell 或批处理脚本中完成本地蓝牙适配配置、设备发现、配对、OBEX 文件传输、COM 端口管理等操作，无需图形界面，适合自动化与脚本集成。</p><table><thead><tr><th align="left">工具</th><th align="left">核心功能</th></tr></thead><tbody><tr><td align="left">btcom</td><td align="left">启用/禁用远程蓝牙服务，映射/删除蓝牙COM端口</td></tr><tr><td align="left">btconfig</td><td align="left">配置本地蓝牙适配器：修改名称、设备类别、开关可发现性、禁用/启用入站连接</td></tr><tr><td align="left">btdiscovery</td><td align="left">扫描周边蓝牙设备与服务，输出设备名称、MAC地址、设备类别、RSSI等信息</td></tr><tr><td align="left">btftp</td><td align="left">通过OBEX FTP协议，浏览、上传、下载远程蓝牙设备的文件系统</td></tr><tr><td align="left">btinfo</td><td align="left">读取本地蓝牙适配器详细信息：MAC地址、设备名称、LMP版本、设备类别等</td></tr><tr><td align="left">btobex</td><td align="left">通过OBEX Object Push协议，向远程蓝牙设备发送文件</td></tr><tr><td align="left">btpair</td><td align="left">与远程蓝牙设备配对（支持PIN码、SSP协议），管理已配对设备记录</td></tr></tbody></table><h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><ol><li>执行<code>btshell.bat</code>可以将工具添加到PATH</li><li>手动在设置里配对手机和电脑</li><li>执行<code>btdiscovery</code>找到手机MAC地址</li><li>执行<code>btcom.exe -r -b&quot;[MAC地址]&quot;</code>绑定串口</li><li>手机下载<code>Serial Bluetooth Terminal</code></li></ol><h3 id="手机Android"><a href="#手机Android" class="headerlink" title="手机Android"></a>手机Android</h3><ol><li><code>Serial Bluetooth Terminal</code>在GooglePlay可以下载，作者有个<a href="https://github.com/kai-morich/SimpleBluetoothTerminal">Github仓库</a>，仅根据README判断，可能仓库不是全部源码。不过，先把菜做出来，磨刀的事回头再做。</li><li>点击左上角的 <strong>hamburger icon</strong> 打开侧边导航栏</li><li>Devices 选中电脑</li><li>回到 Terminal 点击垃圾桶左边的连接图标连接</li><li>成功后就建立了连接，电脑端打开 Windterm 或其他支持串口的终端工具即可</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>蓝牙串口连接在手机与电脑发送文字时，手机连接的蓝牙耳机依然正常工作。<br>借助蓝牙实现的数据互联首先能够通过串口模块直接与嵌入式设备通信，无需实现网络连接，节省设备空间，同时模块化的<strong>硬件黑客盒子</strong>高内聚低耦合，在关键时刻能够拆成专用工具完成特定目的，在硬件升级方面也能避免牵一发而动全身。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术备忘</category>
+      
+      <category>嵌入式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>嵌入式</tag>
+      
+      <tag>无线电</tag>
+      
+      <tag>网络</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>从HID硬件开发到筑牢FreeRTOS基础</title>
     <link href="/2026/digFreeRTOS/"/>
     <url>/2026/digFreeRTOS/</url>
@@ -273,9 +304,9 @@
     
     <tags>
       
-      <tag>备忘</tag>
-      
       <tag>网络</tag>
+      
+      <tag>备忘</tag>
       
     </tags>
     
@@ -663,9 +694,9 @@
     
     <tags>
       
-      <tag>备忘</tag>
-      
       <tag>网络</tag>
+      
+      <tag>备忘</tag>
       
     </tags>
     
