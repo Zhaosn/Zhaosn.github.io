@@ -10,9 +10,9 @@
   /* 发布时间超过指定时间（毫秒）默认30天 */
   if (interval > 3600*24*30*1000){
     var days = parseInt(interval / 86400000)
-    posts[0].insertAdjacentHTML('afterbegin', '<div class="note note-warning" style="font-size:0.9rem"><p>' +
-      '<div class="h6">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
-      '</p></p></div>');
+    posts[0].insertAdjacentHTML('afterbegin', 
+  '<div style="text-align: center; margin: 10px 0;"><span class="label label-primary">' + days + '天前发布</span></div>'
+);
   }
 })();
 

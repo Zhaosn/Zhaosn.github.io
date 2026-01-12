@@ -19,14 +19,37 @@ Fluid.events = {
       submenu.removeClass('navbar-dark');
     }
     Fluid.utils.listenScroll(function() {
-      navbar[navbar.offset().top > 50 ? 'addClass' : 'removeClass']('top-nav-collapse');
-      submenu[navbar.offset().top > 50 ? 'addClass' : 'removeClass']('dropdown-collapse');
-      if (navbar.offset().top > 0) {
-        navbar.removeClass('navbar-dark');
-        submenu.removeClass('navbar-dark');
-      } else {
-        navbar.addClass('navbar-dark');
-        submenu.removeClass('navbar-dark');
+      var scrollTop = navbar.offset().top;
+      var progress = Math.min(scrollTop / 100, 1); // 计算滚动进度，100px为完全过渡
+      
+      // 动态设置padding
+      var startPadding = 12;
+      var endPadding = 5;
+      var currentPadding = startPadding - (startPadding - endPadding) * progress;
+      navbar.css('padding-top', currentPadding + 'px');
+      navbar.css('padding-bottom', currentPadding + 'px');
+      
+      // 动态设置背景透明度
+      if (navbar.hasClass('scrolling-navbar')) {
+        if (progress > 0) {
+          navbar.removeClass('navbar-dark');
+          submenu.removeClass('navbar-dark');
+          
+          // 添加背景效果
+          if (navbar.hasClass('top-nav-collapse')) {
+            // 保持背景效果
+          } else {
+            // 动态添加背景效果
+            navbar.addClass('top-nav-collapse');
+          }
+        } else {
+          navbar.addClass('navbar-dark');
+          submenu.removeClass('navbar-dark');
+          
+          // 移除背景效果
+          navbar.removeClass('top-nav-collapse');
+          submenu.removeClass('dropdown-collapse');
+        }
       }
     });
     jQuery('#navbar-toggler-btn').on('click', function() {

@@ -1,0 +1,879 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhao SN">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="FreeRTOS-Plus-CLI 是一个可扩展的框架， 应用程序写入器可以通过该框架定义并注册自己的命令行输入命令。提供了单独的文档页面，描述了 如何编写实现用户定义命令行为的函数； 以及如何使用 FreeRTOS-Plus-CLI注册用户定义的命令。 本页介绍了如何将 FreeRTOS-Plus-CLI 移植到真实硬件上，具体做法是通过提供输入输出（IO）例程(routines)和 FreeR">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>FreeRTOS-Plus-IO 集成 - Zhaosn的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.zhaosn.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":45,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?db0474f77b68ddf3fb7cc21650cb844d";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zhaosn的博客🐉🐍</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/DMS2Decimal/" target="_self">
+                <i class="iconfont icon-map"></i>
+                <span>DMS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.6)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="FreeRTOS-Plus-IO 集成"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-09 15:00" pubdate>
+          2026年1月9日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          3 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="FreeRTOS"
+        id="heading-4f13d5ca06d44d58bfd963798bcdcbfb" role="tab" data-toggle="collapse" href="#collapse-4f13d5ca06d44d58bfd963798bcdcbfb"
+        aria-expanded="true"
+      >
+        FreeRTOS
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4f13d5ca06d44d58bfd963798bcdcbfb"
+           role="tabpanel" aria-labelledby="heading-4f13d5ca06d44d58bfd963798bcdcbfb">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="CLI"
+        id="heading-91af5705f16502125e8b2187e64202c0" role="tab" data-toggle="collapse" href="#collapse-91af5705f16502125e8b2187e64202c0"
+        aria-expanded="true"
+      >
+        CLI
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-91af5705f16502125e8b2187e64202c0"
+           role="tabpanel" aria-labelledby="heading-91af5705f16502125e8b2187e64202c0">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/FreeRTOS-plus-CLI/01-FreeRTOS-plus-CLI/" title="FreeRTOS-Plus-CLI 命令行接口"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">FreeRTOS-Plus-CLI 命令行接口</span>
+        </a>
+      
+    
+      
+      
+        <a href="/FreeRTOS-plus-CLI/02-Implementing-a-command/" title="实现命令"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">实现命令</span>
+        </a>
+      
+    
+      
+      
+        <a href="/FreeRTOS-plus-CLI/03-Command-parameters/" title="命令参数"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">命令参数</span>
+        </a>
+      
+    
+      
+      
+        <a href="/FreeRTOS-plus-CLI/04-Registering-a-command/" title="注册命令"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">注册命令</span>
+        </a>
+      
+    
+      
+      
+        <a href="/FreeRTOS-plus-CLI/05-Calling-the-interpreter/" title="调用解释器"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">调用解释器</span>
+        </a>
+      
+    
+      
+      
+        <a href="/FreeRTOS-plus-CLI/06-A-FreeRTOS-plus-CLI-task/" title="FreeRTOS-Plus-IO 集成"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">FreeRTOS-Plus-IO 集成</span>
+        </a>
+      
+    
+      
+      
+        <a href="/FreeRTOS-plus-CLI/07-Buffer-management/" title="缓冲区管理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">缓冲区管理</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">FreeRTOS-Plus-IO 集成</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>FreeRTOS-Plus-CLI 是一个可扩展的框架， 应用程序写入器可以通过该框架定义并注册自己的命令行输入命令。提供了单独的文档页面，描述了 <a href="/FreeRTOS-plus-CLI/02-Implementing-a-command/" title="如何编写实现用户定义命令行为的函数">如何编写实现用户定义命令行为的函数</a>； 以及<a href="/FreeRTOS-plus-CLI/04-Registering-a-command/" title="如何使用 FreeRTOS-Plus-CLI">如何使用 FreeRTOS-Plus-CLI</a>注册用户定义的命令。</p>
+<p>本页介绍了如何将 FreeRTOS-Plus-CLI 移植到真实硬件上，具体做法是通过提供输入输出（IO）例程(routines)和 FreeRTOS-Plus-CLI 任务。</p>
+<h3 id="输入和输出"><a href="#输入和输出" class="headerlink" title="输入和输出"></a>输入和输出</h3><p>命令行接口可从输入接收字符，并写入 字符到输出。如何实现这一目标的低层次细节 取决于所使用的微控制器，以及由 微控制器提供的接口。</p>
+<p>有一项 FreeRTOS-Plus-CLI 特色演示，使用了 FreeRTOS-Plus-IO <a target="_blank" rel="noopener" href="https://www.freertos.org/Documentation/03-Libraries/02-FreeRTOS-plus/04-FreeRTOS-plus-IO/03-API-references/03-FreeRTOS_read">FreeRTOS_read()</a> 和 <a target="_blank" rel="noopener" href="https://www.freertos.org/Documentation/03-Libraries/02-FreeRTOS-plus/04-FreeRTOS-plus-IO/03-API-references/04-FreeRTOS_write">FreeRTOS_write()</a> API 函数，向 UART 提供必要的 输入和输出。它创建的命令行接口可通过 标准哑终端程序（如 HyperTerminal）进行访问。还有另一项 FreeRTOS-Plus-CLI 特色演示， 使用了 TCP/IP 套接字接口，提供必要的输入和输出。它创建的命令行接口可使用 telnet 客户端进行访问。运行 FreeRTOS-Plus-CLI 代码的 FreeRTOS 任务结构在两种情况下类似， 如下所示。</p>
+<h3 id="示例-FreeRTOS-Plus-CLI-任务"><a href="#示例-FreeRTOS-Plus-CLI-任务" class="headerlink" title="示例 FreeRTOS-Plus-CLI 任务"></a>示例 FreeRTOS-Plus-CLI 任务</h3><p>下列源代码可实现用于托管 FreeRTOS-Plus-CLI 命令解释器接口的任务。 FreeRTOS-Plus-IO FreeRTOS_read() 和 FreeRTOS_write() API 函数用于提供 IO 接口。假设 FreeRTOS-Plus-IO 描述符已经 <a target="_blank" rel="noopener" href="https://www.freertos.org/Documentation/03-Libraries/02-FreeRTOS-plus/04-FreeRTOS-plus-IO/03-API-references/02-FreeRTOS_open">打开</a>并配置为使用中断驱动<a target="_blank" rel="noopener" href="https://www.freertos.org/Documentation/03-Libraries/02-FreeRTOS-plus/04-FreeRTOS-plus-IO/03-API-references/10-Character_Queue_Transfer_Mode">字符队列传输模式</a>。<br>任务使用 FreeRTOS-Plus-CLI FreeRTOS_CLIProcessCommand() API 函数。<br>源代码中的注释提供了更多信息。请注意，此函数并非可重入函数。</p>
+<a href="/tips/CRLF/" title="CRLF">CRLF</a>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAX_INPUT_LENGTH    50</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAX_OUTPUT_LENGTH   100</span><br><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int8_t</span> * <span class="hljs-keyword">const</span> pcWelcomeMessage =<br>  <span class="hljs-string">&quot;FreeRTOS command server.\r\nType Help to view a list of registered commands.\r\n&quot;</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">vCommandConsoleTask</span><span class="hljs-params">( <span class="hljs-keyword">void</span> *pvParameters )</span></span><br><span class="hljs-function"></span>&#123;<br>Peripheral_Descriptor_t xConsole;<br><span class="hljs-keyword">int8_t</span> cRxedChar, cInputIndex = <span class="hljs-number">0</span>;<br>BaseType_t xMoreDataToFollow;<br><span class="hljs-comment">/* 输入和输出缓冲区被声明为静态，以使它们远离堆栈。 */</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int8_t</span> pcOutputString[ MAX_OUTPUT_LENGTH ], pcInputString[ MAX_INPUT_LENGTH ];<br><br>    <span class="hljs-comment">/* 这段代码假设作为控制台使用的外设已经打开并配置，并作为任务参数传递给任务。</span><br><span class="hljs-comment">       将任务参数强制转换为正确的类型。 */</span><br>    xConsole = ( Peripheral_Descriptor_t ) pvParameters;<br><br>    <span class="hljs-comment">/* 当用户知道他们已经连接时，发送一个欢迎信息。 */</span><br>    FreeRTOS_write( xConsole, pcWelcomeMessage, <span class="hljs-built_in">strlen</span>( pcWelcomeMessage ) );<br><br>    <span class="hljs-keyword">for</span>( ;; )<br>    &#123;<br>        <span class="hljs-comment">/* 这个实现一次读取一个字符。在阻塞状态下等待，直到接收到字符。 */</span><br>        FreeRTOS_read( xConsole, &amp;cRxedChar, <span class="hljs-keyword">sizeof</span>( cRxedChar ) );<br><br>        <span class="hljs-keyword">if</span>( cRxedChar == <span class="hljs-string">&#x27;\n&#x27;</span> )<br>        &#123;<br>            <span class="hljs-comment">/* 接收到换行符，因此输入的命令字符串是完整的，可以进行处理。发送一个</span><br><span class="hljs-comment">               行分隔符，只是为了使输出更容易阅读。 */</span><br>            FreeRTOS_write( xConsole, <span class="hljs-string">&quot;\r\n&quot;</span>, <span class="hljs-built_in">strlen</span>( <span class="hljs-string">&quot;\r\n&quot;</span> );<br><br>            <span class="hljs-comment">/* 命令解释器被反复调用，直到它返回pdFALSE。请参阅“实现命令”文档，</span><br><span class="hljs-comment">               了解为什么会这样。 */</span><br>            <span class="hljs-keyword">do</span><br>            &#123;<br>                <span class="hljs-comment">/* 将命令字符串发送到命令解释器(command interpreter)。</span><br><span class="hljs-comment">                   命令解释器生成的任何输出都将放在pcOutputString缓冲区中。 */</span><br>                xMoreDataToFollow = FreeRTOS_CLIProcessCommand<br>                              (<br>                                  pcInputString,   <span class="hljs-comment">/* 命令解释器 */</span><br>                                  pcOutputString,  <span class="hljs-comment">/* 输出缓冲区 */</span><br>                                  MAX_OUTPUT_LENGTH<span class="hljs-comment">/* 输出缓冲区的大小 */</span><br>                              );<br><br>                <span class="hljs-comment">/* 将命令解释器生成的输出写入控制台。 */</span><br>                FreeRTOS_write( xConsole, pcOutputString, <span class="hljs-built_in">strlen</span>( pcOutputString ) );<br><br>            &#125; <span class="hljs-keyword">while</span>( xMoreDataToFollow != pdFALSE );<br><br>            <span class="hljs-comment">/* 输入命令生成的所有字符串都已发送。命令处理完成。</span><br><span class="hljs-comment">               清除输入字符串，准备接收下一个命令。 */</span><br>            cInputIndex = <span class="hljs-number">0</span>;<br>            <span class="hljs-built_in">memset</span>( pcInputString, <span class="hljs-number">0x00</span>, MAX_INPUT_LENGTH );<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-comment">/* if()子句在接收到换行符后执行处理。如果接收到任何其他字符，</span><br><span class="hljs-comment">               则else子句执行处理。 */</span><br><br>            <span class="hljs-keyword">if</span>( cRxedChar == <span class="hljs-string">&#x27;\r&#x27;</span> )<br>            &#123;<br>                <span class="hljs-comment">/* 忽略回车。 */</span><br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( cRxedChar == <span class="hljs-string">&#x27;\b&#x27;</span> )<br>            &#123;<br>                <span class="hljs-comment">/* 按了退格键。擦除输入缓冲区中的最后一个字符(如果有的话)。 */</span><br>                <span class="hljs-keyword">if</span>( cInputIndex &gt; <span class="hljs-number">0</span> )<br>                &#123;<br>                    cInputIndex--;<br>                    pcInputString[ cInputIndex ] = <span class="hljs-string">&#x27;&#x27;;</span><br><span class="hljs-string">                &#125;</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">            else</span><br><span class="hljs-string">            &#123;</span><br><span class="hljs-string">                /* 输入了一个字符。它不是新行、退格或回车(carriage return)，</span><br><span class="hljs-string">                   因此它被接受为输入的一部分，并放置到输入缓冲区中。当输入</span><br><span class="hljs-string">                   \n时，完整的字符串将被传递给命令解释器。 */</span><br><span class="hljs-string">                if( cInputIndex &lt; MAX_INPUT_LENGTH )</span><br><span class="hljs-string">                &#123;</span><br><span class="hljs-string">                    pcInputString[ cInputIndex ] = cRxedChar;</span><br><span class="hljs-string">                    cInputIndex++;</span><br><span class="hljs-string">                &#125;</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">        &#125;</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">&#125;</span><br></code></pre></td></tr></table></figure>
+<p><em>实现 FreeRTOS-Plus-CLI 命令控制台的任务示例</em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FreeRTOS/" class="category-chain-item">FreeRTOS</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/FreeRTOS/CLI/" class="category-chain-item">CLI</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>FreeRTOS-Plus-IO 集成</div>
+      <div>https://blog.zhaosn.top/FreeRTOS-plus-CLI/06-A-FreeRTOS-plus-CLI-task/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhao SN</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月9日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年1月9日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/FreeRTOS-plus-CLI/07-Buffer-management/" title="缓冲区管理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">缓冲区管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/FreeRTOS-plus-CLI/05-Calling-the-interpreter/" title="调用解释器">
+                        <span class="hidden-mobile">调用解释器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <script src="/js/outdated.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

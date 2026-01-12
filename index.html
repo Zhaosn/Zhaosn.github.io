@@ -19,13 +19,7 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Zhaosn的博客">
-<meta property="og:url" content="https://blog.zhaosn.top/index.html">
-<meta property="og:site_name" content="Zhaosn的博客">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Zhao SN">
-<meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -63,7 +57,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.zhaosn.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":45,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.zhaosn.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":45,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -273,15 +267,151 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/BluetoothSerial/" target="_self">
-          通过蓝牙串口打通嵌入式个域网
+        <a href="/blog/navbar_css/" target="_self">
+          修改导航栏CSS
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/BluetoothSerial/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/blog/navbar_css/" target="_self">
         <div>
-          技术背景开发中的HID设备（HID_firstDig、HID_secondDig）虽然开发遇到瓶颈很久没动，但逐渐发现一个有用的场景，就是配合其他设备，快速输入特定信息，如：输密码、自动点击安全键盘。需要实现个域网连接，热点过于臃肿、耗电；蓝牙不影响上网、使用广泛，最适合此场景。 先前研究此前基于 X1Carbon with Kali 对蓝牙 hid SDP 的尝试是失败的：电脑的功能过于复杂，修
+          导航栏在页首时会隐藏，而阴影还会在。下面是简单粗暴地将阴影设为零的方法。位置Blog\themes\fluid\source\css\_pages\_base\_widget\header.styl 12345.navbar  background-color transparent  font-size 0.875rem  box-shadow 0 0px 0px 0 rgba(0, 0, 0,
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-12 17:46" pubdate>
+              2026-01-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%8D%9A%E5%AE%A2/" class="category-chain-item">博客</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/blog/blog_Injection/" target="_self">
+          文章前后JS插入元素
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/blog/blog_Injection/" target="_self">
+        <div>
+          文章前后注入JS代码
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-12 16:15" pubdate>
+              2026-01-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%8D%9A%E5%AE%A2/" class="category-chain-item">博客</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/BluetoothSerial/" target="_self">
+          From.蓝牙串口 To.个域网
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/BluetoothSerial/" target="_self">
+        <div>
+          技术背景开发中的HID设备（hid&#x2F;HID_firstDig、hid&#x2F;HID_secondDig）虽然开发遇到瓶颈很久没动，但逐渐发现一个有用的场景，就是配合其他设备，快速输入特定信息，如：输密码、自动点击安全键盘。需要实现个域网连接，热点过于臃肿、耗电；蓝牙不影响上网、使用广泛，最适合此场景。 先前研究此前基于 X1Carbon with Kali 对蓝牙 hid SDP 的
         </div>
       </a>
 
@@ -345,15 +475,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/digFreeRTOS/" target="_self">
+        <a href="/FreeRTOS_digging/" target="_self">
           从HID硬件开发到筑牢FreeRTOS基础
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/digFreeRTOS/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/FreeRTOS_digging/" target="_self">
         <div>
-          前言学习FreeRTOS是基于需求：HID_firstDig，HID_secondDig品尝完一开始从无到有的甜头后，我认为是时间先深度学习FreeRTOS的功能，以防反复重构。
+          前言学习FreeRTOS是基于需求：hid&#x2F;HID_firstDig，hid&#x2F;HID_secondDig品尝完一开始从无到有的甜头后，我认为是时间先深度学习FreeRTOS的功能，以防反复重构。 CLI没想到没想到，打开官方文档没翻几页就发现了费劲写的交互其实有轮子，不过这个库的介绍中文页面链接不好，翻译也有点抽象，所以我翻译一下，刚好可以真正用到隐藏文章的功能。  FreeR
         </div>
       </a>
 
@@ -415,15 +545,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/myPenetrationToolsTOC/" target="_self">
+        <a href="/pen/myPenetrationToolsTOC/" target="_self">
           博客渗透工具目录
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/myPenetrationToolsTOC/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/pen/myPenetrationToolsTOC/" target="_self">
         <div>
-          NMAP W1R3S &gt; NMAP SickOS1.1_2way &gt; 端口扫描 JARBAS &gt; 基础思路  FTP W1R3S &gt; ftp  hash W1R3S &gt; 可疑hash辨认 W1R3S &gt; md5解码  mySQL靶场SQLi-labs bash字符串处理工具rev base64目录爆破漏洞查询POSTjohnhydra
+          工具 链接      NMAP W1R3S &gt; NMAP SickOS1.1_2way &gt; 端口扫描 JARBAS &gt; 基础思路   FTP W1R3S &gt; ftp     hash W1R3S &gt; 可疑hash辨认 W1R3S &gt; md5解码    SQL 靶场SQLi-labs     bash字符串处理工具      base64      目录爆破
         </div>
       </a>
 
@@ -483,13 +613,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/cipherDict/" target="_self">
+        <a href="/pen/cipherDict/" target="_self">
           从信息收集到构建密码字典
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/cipherDict/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/pen/cipherDict/" target="_self">
         <div>
           cuppKali下载安装 cupp1git clone https://github.com/Mebus/cupp.git  Crunch根据以下信息的生日、孩子名字、名字生成密码字典，涵盖年龄、名字缩写、组合、常见单词、leet 1. 基础组合字典（无 Leet）name: Michael age: 27 birth date: 19/10/1996 number of children: 3
         </div>
@@ -553,13 +683,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/markItDownTools/" target="_self">
+        <a href="/markItDownTools/" target="_self">
           MarkItDown 微软开源的文档转换神器
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/markItDownTools/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/markItDownTools/" target="_self">
         <div>
           MarkItDown：微软开源的文档转换神器 - 全干工程师的文章 - 知乎https://zhuanlan.zhihu.com/p/20383472123 随着AI越来越深入我们的生活，经常需要处理各种格式的文件，有PDF、Word文档、Excel， 如果可以把这些文件的核心内容以简洁的Markdown语法呈现，投喂给大模型可以让大模型更好的理解我们的私有信息 MarkItDown是微软开源的一
         </div>
@@ -621,13 +751,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/BCI-lesson/" target="_self">
+        <a href="/BCI-lesson/" target="_self">
           脑机接口课程展开方式研究
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/BCI-lesson/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/BCI-lesson/" target="_self">
         <div>
           今天天津高校HAM群里BG9JSW说天津理工大学选课有个《脑机接口创新实训课程》，看到之后上网搜了下过程，想着自己也学习一二，紧跟学科前沿。以下是我找到的一些OSINT介绍，只是对课程的介绍，梳理一个一定程度迭代过的上手流程。新浪新闻：国内首次 脑机接口实训本科学分课程圆满结课介绍了：2025年6月12日，由盈趣科技、北洋瑞恒与天津理工大学联合打造的全国首次脑机接口实训本科学分课程圆满结课。本次实
         </div>
@@ -691,15 +821,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/W1R3S/" target="_self">
+        <a href="/pen/W1R3S/" target="_self">
           W1R3S 1.0.1 - nmap_hydra精讲
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/W1R3S/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/pen/W1R3S/" target="_self">
         <div>
-          「红队笔记」靶机精讲：W1R3S 1.0.1NMAP快速主机发现nmap -sn 10.10.10.0/24 TCP扫描sudo nmap -sT –min-rate 10000 -p- 10.10.10.21 -oA nmapscan/ports-sT: 完整TCP连接(可以放到下面)-sS: (默认)仅SYN，可能被防火墙拦截–min-rate 10000: 最少同时发包个数-p-： 扫描全部
+          NMAP快速主机发现nmap -sn 10.10.10.0/24 TCP扫描sudo nmap -sT –min-rate 10000 -p- 10.10.10.21 -oA nmapscan/ports-sT: 完整TCP连接(可以放到下面)-sS: (默认)仅SYN，可能被防火墙拦截–min-rate 10000: 最少同时发包个数-p-： 扫描全部65535个端口-oA： 输出参数到文件 总
         </div>
       </a>
 
@@ -759,13 +889,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2025/tmuxflookup/" target="_self">
+        <a href="/tmuxflookup/" target="_self">
           tmux快捷键
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/tmuxflookup/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/tmuxflookup/" target="_self">
         <div>
           前缀键（默认是 Ctrl + b）割成左右 &gt; 前缀键 + %割成上下 &gt; 前缀键 + “切换焦点 &gt; 前缀键 + 方向键（上/下/左/右）  或者  前缀键 + o调整窗格大小 &gt; 按住 前缀键，然后按方向键关闭当前窗格 &gt; 前缀键 + x全屏/取消全屏 &gt; 前缀键 + z
         </div>
@@ -816,142 +946,6 @@
               <a href="/tags/%E5%A4%87%E5%BF%98/">#备忘</a>
             
               <a href="/tags/Linux/">#Linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/SickOS1.1_2way/" target="_self">
-          SickOS1.1 - 穿越Squid代理的CMS渗透
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/SickOS1.1_2way/" target="_self">
-        <div>
-          「红队笔记」靶机精讲：SickOS1.1 - 穿越Squid代理的CMS渗透端口扫描参见端口扫描 &gt; NMAP  主机发现 快速扫描开放端口 扫描端口版本、系统版本 UDP扫描、脚本扫描3128 squid-http  方法1下一步思路一是了解squid怎么用二是对3128进行目录爆破sudo dirb http://10.10.10.19:3128/sudo gobuster dir -u
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-10-26 12:04" pubdate>
-              2025-10-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E6%B8%97%E9%80%8F/" class="category-chain-item">渗透</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%B8%97%E9%80%8F/">#渗透</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2025/JARBAS/" target="_self">
-          JARBAS - Jenkins渗透原理详解
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2025/JARBAS/" target="_self">
-        <div>
-          「红队笔记」靶机精讲：JARBAS - Jenkins渗透原理详解，一个典型CMS渗透测试样本基础思路逐步扫描端口（上一集有讲）发现8080登录端口  密码爆破 查找默认密码 猜弱密码 80端口浏览、目录爆破（信息泄露）目录爆破sudo dirb http://10.10.10.21sudo gobuster dir -u [url] -w [dict] (-x html,php)指定扩展名dir
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-10-26 12:03" pubdate>
-              2025-10-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E6%B8%97%E9%80%8F/" class="category-chain-item">渗透</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%B8%97%E9%80%8F/">#渗透</a>
             
           </div>
         
