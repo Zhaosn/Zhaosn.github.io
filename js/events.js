@@ -31,6 +31,10 @@ function hexToRgb(hex) {
 }
 
 Fluid.events = {
+  // 缓存主题颜色值
+  _themeColorCache: {
+    navbarBgColor: null
+  },
 
   registerNavbarEvent: function() {
     var navbar = jQuery('#navbar');
@@ -51,11 +55,14 @@ Fluid.events = {
       var exponent = 1.5; // 指数系数，大于1时实现开始慢后面快的效果
       var nonlinearScrollRatio = Math.pow(scrollRatio, exponent);
       
-      // 平滑添加/移除类（根据滚动比例）
-      if (scrollRatio > 0) {
+      // 优化1：避免不必要的类名切换（只有状态变化时才执行）
+      var shouldCollapse = scrollRatio > 0;
+      var isCollapsed = navbar.hasClass('top-nav-collapse');
+      
+      if (shouldCollapse && !isCollapsed) {
         navbar.addClass('top-nav-collapse');
         submenu.addClass('dropdown-collapse');
-      } else {
+      } else if (!shouldCollapse && isCollapsed) {
         navbar.removeClass('top-nav-collapse');
         submenu.removeClass('dropdown-collapse');
       }
@@ -64,20 +71,37 @@ Fluid.events = {
       var defaultPadding = 12; // 默认 padding
       var collapsedPadding = 5; // 折叠后 padding
       var currentPadding = defaultPadding - (defaultPadding - collapsedPadding) * nonlinearScrollRatio;
-      navbar.css('padding-top', currentPadding + 'px');
-      navbar.css('padding-bottom', currentPadding + 'px');
       
       // 平滑改变毛玻璃效果的透明度（根据滚动比例）
       var alpha = scrollRatio * 0.7; // 最大不透明度
-      // 从 CSS 变量中获取当前主题的导航栏背景色
-      var navbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--navbar-bg-color').trim();
+      
+      // 优化2：批量设置CSS属性，减少DOM操作次数
+      // 禁用CSS过渡效果，避免与JavaScript动画冲突导致延迟
+      var cssProps = {
+        'padding-top': currentPadding + 'px',
+        'padding-bottom': currentPadding + 'px',
+        'transition': 'none',
+        '-webkit-transition': 'none',
+        '-moz-transition': 'none',
+        '-o-transition': 'none'
+      };
+      
+
+      // 从 CSS 变量中获取当前主题的导航栏背景色（使用缓存）
+      var navbarBgColor = Fluid.events._themeColorCache.navbarBgColor || 
+                          (Fluid.events._themeColorCache.navbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--navbar-bg-color').trim());
       // 将十六进制颜色转换为 RGB
       var rgbColor = hexToRgb(navbarBgColor);
       if (rgbColor) {
-        navbar.css('background', 'rgba(' + rgbColor.r + ', ' + rgbColor.g + ', ' + rgbColor.b + ', ' + alpha + ')');
+        cssProps.background = 'rgba(' + rgbColor.r + ', ' + rgbColor.g + ', ' + rgbColor.b + ', ' + alpha + ')';
       }
-      navbar.css('-webkit-backdrop-filter', 'blur(10px)');
-      navbar.css('backdrop-filter', 'blur(10px)');
+      // 只在alpha变化时设置backdrop-filter
+      cssProps['-webkit-backdrop-filter'] = 'blur(10px)';
+      cssProps['backdrop-filter'] = 'blur(10px)';
+
+      
+      // 一次性设置所有CSS属性，减少重排重绘
+      navbar.css(cssProps);
             
       // 注释掉页首取消毛玻璃效果的代码
       // if (navbar.offset().top > 0) {

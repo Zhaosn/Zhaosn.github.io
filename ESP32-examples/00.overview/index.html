@@ -1,0 +1,1900 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhao SN">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ESP-IDF 例程分析总览1. 概述本文档汇总了ESP-IDF examples目录下各例程的分析结果，为开发团队提供快速查阅和参考。基于esp-idf 5.5.2例程总结。 2. 例程分类与汇总get-started   例程名称 核心功能 详细文档路径    hello_world 验证开发环境，显示芯片信息 01.get_started &amp;gt; 1.1 hello_world 例程">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ESP-IDF 例程——ESP-IDF 例程分析 - Zhaosn的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.zhaosn.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":45,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?db0474f77b68ddf3fb7cc21650cb844d";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zhaosn的博客🐉🐍</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/DMS2Decimal/" target="_self">
+                <i class="iconfont icon-map"></i>
+                <span>DMS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.6)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ESP-IDF 例程——ESP-IDF 例程分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-21 16:19" pubdate>
+          2026年1月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="技术备忘"
+        id="heading-e9da6a8e80d43b63b2f8158805d6d525" role="tab" data-toggle="collapse" href="#collapse-e9da6a8e80d43b63b2f8158805d6d525"
+        aria-expanded="true"
+      >
+        技术备忘
+        <span class="list-group-count">(56)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-e9da6a8e80d43b63b2f8158805d6d525"
+           role="tabpanel" aria-labelledby="heading-e9da6a8e80d43b63b2f8158805d6d525">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux"
+        id="heading-edc9f0a5a5d57797bf68e37364743831" role="tab" data-toggle="collapse" href="#collapse-edc9f0a5a5d57797bf68e37364743831"
+        aria-expanded="false"
+      >
+        Linux
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-edc9f0a5a5d57797bf68e37364743831"
+           role="tabpanel" aria-labelledby="heading-edc9f0a5a5d57797bf68e37364743831">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/charge-thresholdOfLinux/" title="linux下充电阈值设置-dkms&amp;TLP"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">linux下充电阈值设置-dkms&amp;TLP</span>
+        </a>
+      
+    
+      
+      
+        <a href="/v4l2-theLinuxVideoSolution/" title="linux下调用摄像头拍照-v4l2与ffmpeg"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">linux下调用摄像头拍照-v4l2与ffmpeg</span>
+        </a>
+      
+    
+      
+      
+        <a href="/rimeConfiguation/" title="中州韵配置指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">中州韵配置指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/whatUseMyDisk/" title="为什么我的机械硬盘总会自动起转"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">为什么我的机械硬盘总会自动起转</span>
+        </a>
+      
+    
+      
+      
+        <a href="/tmuxflookup/" title="tmux快捷键"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">tmux快捷键</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="博客"
+        id="heading-c50d13646ec66f1929da5d491f2dff0f" role="tab" data-toggle="collapse" href="#collapse-c50d13646ec66f1929da5d491f2dff0f"
+        aria-expanded="false"
+      >
+        博客
+        <span class="list-group-count">(9)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-c50d13646ec66f1929da5d491f2dff0f"
+           role="tabpanel" aria-labelledby="heading-c50d13646ec66f1929da5d491f2dff0f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/blog/blog_tutorial/" title="博客建立教程及命令备忘"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">博客建立教程及命令备忘</span>
+        </a>
+      
+    
+      
+      
+        <a href="/blog/SUPPORTED_LANGUAGES/" title="MarkDown指定hightlight.js代码高亮"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MarkDown指定hightlight.js代码高亮</span>
+        </a>
+      
+    
+      
+      
+        <a href="/blog/emoji-tag/" title="GitHub的md渲染支持的emoji标签"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">GitHub的md渲染支持的emoji标签</span>
+        </a>
+      
+    
+      
+      
+        <a href="/blog/hexo-minifier/" title="hexo minifier gulp 压缩博客"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">hexo minifier gulp 压缩博客</span>
+        </a>
+      
+    
+      
+      
+        <a href="/blog/music-embed/" title="Free Bird"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Free Bird</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%8D%9A%E5%AE%A2/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="图像处理"
+        id="heading-7808a68ee1b34dab43011429a12de19e" role="tab" data-toggle="collapse" href="#collapse-7808a68ee1b34dab43011429a12de19e"
+        aria-expanded="false"
+      >
+        图像处理
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-7808a68ee1b34dab43011429a12de19e"
+           role="tabpanel" aria-labelledby="heading-7808a68ee1b34dab43011429a12de19e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/cannyOnN3350/" title="计算机视觉第一次大作业"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">计算机视觉第一次大作业</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="嵌入式"
+        id="heading-62f8a8e20d03835fb846c1e03058cccb" role="tab" data-toggle="collapse" href="#collapse-62f8a8e20d03835fb846c1e03058cccb"
+        aria-expanded="true"
+      >
+        嵌入式
+        <span class="list-group-count">(31)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62f8a8e20d03835fb846c1e03058cccb"
+           role="tabpanel" aria-labelledby="heading-62f8a8e20d03835fb846c1e03058cccb">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/hid/HID_firstDig/" title="初次挖掘HID和硬件工程"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">初次挖掘HID和硬件工程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/rpi-pubkeyErr/" title="树莓派apt公钥错误解决方案"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">树莓派apt公钥错误解决方案</span>
+        </a>
+      
+    
+      
+      
+        <a href="/NFC-imcoming/" title="进军NFC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">进军NFC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-pyinShell/" title="在终端下使用MicroPython编程ESP32"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在终端下使用MicroPython编程ESP32</span>
+        </a>
+      
+    
+      
+      
+        <a href="/microPythonProgInLinux/" title="在终端下使用MicroPython编程ESP32"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在终端下使用MicroPython编程ESP32</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ESP32"
+        id="heading-789c376b43dbba68180fd04da73286da" role="tab" data-toggle="collapse" href="#collapse-789c376b43dbba68180fd04da73286da"
+        aria-expanded="true"
+      >
+        ESP32
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-789c376b43dbba68180fd04da73286da"
+           role="tabpanel" aria-labelledby="heading-789c376b43dbba68180fd04da73286da">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/ESP32-examples/00.overview/" title="ESP-IDF 例程——ESP-IDF 例程分析"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">ESP-IDF 例程——ESP-IDF 例程分析</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-examples/01.get_started/" title="ESP-IDF 例程——get-started"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——get-started</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-examples/03.cxx/" title="ESP-IDF 例程——cxx"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——cxx</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-examples/19.bluetooth(WIP)/" title="ESP-IDF 例程——bluetooth"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——bluetooth</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-examples/06.build_system/" title="ESP-IDF 例程——build_system"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——build_system</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/ESP32/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="无线电"
+        id="heading-df3219108d72fc6f81b2a59762985975" role="tab" data-toggle="collapse" href="#collapse-df3219108d72fc6f81b2a59762985975"
+        aria-expanded="false"
+      >
+        无线电
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-df3219108d72fc6f81b2a59762985975"
+           role="tabpanel" aria-labelledby="heading-df3219108d72fc6f81b2a59762985975">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/NFC-imcoming/" title="进军NFC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">进军NFC</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="渗透"
+        id="heading-6cba1d91e408a65c86e86a9e100f84b2" role="tab" data-toggle="collapse" href="#collapse-6cba1d91e408a65c86e86a9e100f84b2"
+        aria-expanded="false"
+      >
+        渗透
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-6cba1d91e408a65c86e86a9e100f84b2"
+           role="tabpanel" aria-labelledby="heading-6cba1d91e408a65c86e86a9e100f84b2">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/pen/JARBAS/" title="JARBAS - Jenkins渗透原理详解"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">JARBAS - Jenkins渗透原理详解</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/SickOS1.1_2way/" title="SickOS1.1 - 穿越Squid代理的CMS渗透"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SickOS1.1 - 穿越Squid代理的CMS渗透</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/W1R3S/" title="W1R3S 1.0.1 - nmap_hydra精讲"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">W1R3S 1.0.1 - nmap_hydra精讲</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/cipherDict/" title="从信息收集到构建密码字典"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">从信息收集到构建密码字典</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/myPenetrationToolsTOC/" title="博客渗透工具目录"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">博客渗透工具目录</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="网络"
+        id="heading-7ddbe15c845fa27a2bab496183042ca6" role="tab" data-toggle="collapse" href="#collapse-7ddbe15c845fa27a2bab496183042ca6"
+        aria-expanded="false"
+      >
+        网络
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-7ddbe15c845fa27a2bab496183042ca6"
+           role="tabpanel" aria-labelledby="heading-7ddbe15c845fa27a2bab496183042ca6">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/proxySet/" title="配置代理命令概览"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">配置代理命令概览</span>
+        </a>
+      
+    
+      
+      
+        <a href="/opWRThomePrint/" title="基于openwrt，建立家庭云打印服务"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">基于openwrt，建立家庭云打印服务</span>
+        </a>
+      
+    
+      
+      
+        <a href="/tailscale-subnet-linux/" title="tailscale-linux-子网配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">tailscale-linux-子网配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/quicklySwapIP_win/" title="Windows快速切换IP、DNS"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows快速切换IP、DNS</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/netstat/" title="外联端口简易查询"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">外联端口简易查询</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="计算机图形学"
+        id="heading-84d8d91e2e9bad1e871ae8ca00fac8ab" role="tab" data-toggle="collapse" href="#collapse-84d8d91e2e9bad1e871ae8ca00fac8ab"
+        aria-expanded="false"
+      >
+        计算机图形学
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-84d8d91e2e9bad1e871ae8ca00fac8ab"
+           role="tabpanel" aria-labelledby="heading-84d8d91e2e9bad1e871ae8ca00fac8ab">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/SD-B580FULLPOWAH/" title="B580使用秋葉aaakiSD-Forge开启SD画图加速的方法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">B580使用秋葉aaakiSD-Forge开启SD画图加速的方法</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ESP-IDF 例程——ESP-IDF 例程分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ESP-IDF-例程分析总览"><a href="#ESP-IDF-例程分析总览" class="headerlink" title="ESP-IDF 例程分析总览"></a>ESP-IDF 例程分析总览</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>本文档汇总了ESP-IDF examples目录下各例程的分析结果，为开发团队提供快速查阅和参考。基于esp-idf 5.5.2例程总结。</p>
+<h2 id="2-例程分类与汇总"><a href="#2-例程分类与汇总" class="headerlink" title="2. 例程分类与汇总"></a>2. 例程分类与汇总</h2><h3 id="get-started"><a href="#get-started" class="headerlink" title="get-started"></a>get-started</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hello_world</td>
+<td>验证开发环境，显示芯片信息</td>
+<td><a href="/ESP32-examples/01.get_started#1.1 hello_world 例程">01.get_started &gt; 1.1 hello_world 例程</a></td>
+</tr>
+<tr>
+<td>blink</td>
+<td>控制LED闪烁，支持普通GPIO和可寻址LED</td>
+<td><a href="/ESP32-examples/01.get_started#1.2 blink 例程">01.get_started &gt; 1.2 blink 例程</a></td>
+</tr>
+</tbody></table>
+<h3 id="lowpower"><a href="#lowpower" class="headerlink" title="lowpower"></a>lowpower</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vbat</td>
+<td>演示ESP芯片在深度睡眠期间使用备用电池（VBAT）的功能</td>
+<td><a href="/ESP32-examples/02.lowpower#2.1 vbat">02.lowpower &gt; 2.1 vbat</a></td>
+</tr>
+</tbody></table>
+<h3 id="cxx"><a href="#cxx" class="headerlink" title="cxx"></a>cxx</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>exceptions</td>
+<td>演示C++异常处理功能</td>
+<td><a href="/ESP32-examples/03.cxx#3.1 exceptions 例程">03.cxx &gt; 3.1 exceptions 例程</a></td>
+</tr>
+<tr>
+<td>pthread</td>
+<td>演示C++线程与ESP-pthread配置的结合使用</td>
+<td><a href="/ESP32-examples/03.cxx#3.2 pthread 例程">03.cxx &gt; 3.2 pthread 例程</a></td>
+</tr>
+<tr>
+<td>rtti</td>
+<td>演示C++运行时类型信息（RTTI）功能</td>
+<td><a href="/ESP32-examples/03.cxx#3.3 rtti 例程">03.cxx &gt; 3.3 rtti 例程</a></td>
+</tr>
+</tbody></table>
+<h3 id="custom-bootloader"><a href="#custom-bootloader" class="headerlink" title="custom_bootloader"></a>custom_bootloader</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bootloader_hooks</td>
+<td>向第二阶段引导加载程序添加钩子函数</td>
+<td><a href="/ESP32-examples/04.custom_bootloader#4.1 bootloader_hooks">04.custom_bootloader &gt; 4.1 bootloader_hooks</a></td>
+</tr>
+<tr>
+<td>bootloader_override</td>
+<td>完全覆盖ESP-IDF的第二阶段引导加载程序</td>
+<td><a href="/ESP32-examples/04.custom_bootloader#4.2 bootloader_override">04.custom_bootloader &gt; 4.2 bootloader_override</a></td>
+</tr>
+<tr>
+<td>bootloader_multiboot</td>
+<td>创建多引导加载程序，允许用户选择要运行的应用程序</td>
+<td><a href="/ESP32-examples/04.custom_bootloader#4.3 bootloader_multiboot">04.custom_bootloader &gt; 4.3 bootloader_multiboot</a></td>
+</tr>
+<tr>
+<td>bootloader_extra_dir</td>
+<td>向引导加载程序构建添加自定义组件目录</td>
+<td><a href="/ESP32-examples/04.custom_bootloader#4.4 bootloader_extra_dir">04.custom_bootloader &gt; 4.4 bootloader_extra_dir</a></td>
+</tr>
+</tbody></table>
+<h3 id="provisioning"><a href="#provisioning" class="headerlink" title="provisioning"></a>provisioning</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wifi_prov_mgr</td>
+<td>使用wifi_provisioning管理器组件构建配网应用，支持BLE和SoftAP两种传输方式</td>
+<td><a href="/ESP32-examples/05.provisioning#5.1 wifi_prov_mgr">05.provisioning &gt; 5.1 wifi_prov_mgr</a></td>
+</tr>
+</tbody></table>
+<h3 id="build-system"><a href="#build-system" class="headerlink" title="build_system"></a>build_system</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wrappers</td>
+<td>使用链接器包装器重新定义IDF函数</td>
+<td><a href="/ESP32-examples/06.build_system#6.1 wrappers">06.build_system &gt; 6.1 wrappers</a></td>
+</tr>
+</tbody></table>
+<h3 id="phy"><a href="#phy" class="headerlink" title="phy"></a>phy</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>antenna</td>
+<td>演示Wi-Fi天线软切换功能</td>
+<td><a href="/ESP32-examples/07.phy#7.1 antenna">07.phy &gt; 7.1 antenna</a></td>
+</tr>
+<tr>
+<td>cert_test</td>
+<td>提供Wi-Fi和Bluetooth认证测试功能</td>
+<td><a href="/ESP32-examples/07.phy#7.2 cert_test">07.phy &gt; 7.2 cert_test</a></td>
+</tr>
+</tbody></table>
+<h3 id="zigbee"><a href="#zigbee" class="headerlink" title="zigbee"></a>zigbee</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Zigbee网关示例</td>
+<td>构建Zigbee网关设备，连接Wi-Fi网络并通过UART与OT-RCP通信形成Zigbee网络</td>
+<td><a href="/ESP32-examples/08.zigbee#8.2 详细分析">08.zigbee &gt; 8.2 详细分析</a></td>
+</tr>
+<tr>
+<td>HA开/关灯泡示例</td>
+<td>配置Zigbee终端设备，作为HA开/关灯泡，响应开关控制命令</td>
+<td><a href="/ESP32-examples/08.zigbee#8.2 详细分析">08.zigbee &gt; 8.2 详细分析</a></td>
+</tr>
+<tr>
+<td>HA开/关开关示例</td>
+<td>配置Zigbee协调器，作为HA开/关开关，控制灯泡设备</td>
+<td><a href="/ESP32-examples/08.zigbee#8.2 详细分析">08.zigbee &gt; 8.2 详细分析</a></td>
+</tr>
+</tbody></table>
+<h3 id="ieee802154"><a href="#ieee802154" class="headerlink" title="ieee802154"></a>ieee802154</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ieee802154_cli</td>
+<td>提供IEEE802.15.4命令行界面，用于管理和调试网络</td>
+<td><a href="/ESP32-examples/09.ieee802154#9.1 ieee802154_cli">09.ieee802154 &gt; 9.1 ieee802154_cli</a></td>
+</tr>
+</tbody></table>
+<h3 id="mesh"><a href="#mesh" class="headerlink" title="mesh"></a>mesh</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>internal_communication</td>
+<td>演示mesh网络设置、消息发送和接收，以及灯光控制应用</td>
+<td><a href="/ESP32-examples/10.mesh#10.1 internal_communication">10.mesh &gt; 10.1 internal_communication</a></td>
+</tr>
+<tr>
+<td>ip_internal_network</td>
+<td>使用mesh创建支持IP的子网络，结合MQTT实现节点间通信</td>
+<td><a href="/ESP32-examples/10.mesh#10.2 ip_internal_network">10.mesh &gt; 10.2 ip_internal_network</a></td>
+</tr>
+<tr>
+<td>manual_networking</td>
+<td>禁用ESP-MESH的自组织网络功能，手动为节点选择父节点</td>
+<td><a href="/ESP32-examples/10.mesh#10.3 manual_networking">10.mesh &gt; 10.3 manual_networking</a></td>
+</tr>
+</tbody></table>
+<h3 id="ethernet"><a href="#ethernet" class="headerlink" title="ethernet"></a>ethernet</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>basic</td>
+<td>以太网驱动的基本使用方法，包括内部EMAC和SPI以太网模块</td>
+<td><a href="/ESP32-examples/11.ethernet#11.1 basic">11.ethernet &gt; 11.1 basic</a></td>
+</tr>
+<tr>
+<td>iperf</td>
+<td>使用iperf协议测试以太网的吞吐量和带宽</td>
+<td><a href="/ESP32-examples/11.ethernet#11.2 iperf">11.ethernet &gt; 11.2 iperf</a></td>
+</tr>
+<tr>
+<td>ptp</td>
+<td>使用PTP协议在以太网网络中实现高精度时间同步</td>
+<td><a href="/ESP32-examples/11.ethernet#11.3 ptp">11.ethernet &gt; 11.3 ptp</a></td>
+</tr>
+</tbody></table>
+<h3 id="wifi"><a href="#wifi" class="headerlink" title="wifi"></a>wifi</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>station</td>
+<td>ESP32作为Wi-Fi客户端连接到外部AP</td>
+<td><a href="/ESP32-examples/12.wifi(WIP)#12.1 station 例程">12.wifi(WIP) &gt; 12.1 station 例程</a></td>
+</tr>
+<tr>
+<td>softAP</td>
+<td>ESP32作为Wi-Fi接入点</td>
+<td><a href="/ESP32-examples/12.wifi(WIP)#12.2 softAP 例程">12.wifi(WIP) &gt; 12.2 softAP 例程</a></td>
+</tr>
+<tr>
+<td>espnow</td>
+<td>实现设备间的无连接Wi-Fi通信</td>
+<td><a href="/ESP32-examples/12.wifi(WIP)#12.3 espnow 例程">12.wifi(WIP) &gt; 12.3 espnow 例程</a></td>
+</tr>
+<tr>
+<td>iperf</td>
+<td>测试Wi-Fi网络吞吐量</td>
+<td><a href="/ESP32-examples/12.wifi(WIP)#12.4 iperf 例程">12.wifi(WIP) &gt; 12.4 iperf 例程</a></td>
+</tr>
+<tr>
+<td>smart_config</td>
+<td>通过手机应用配置Wi-Fi连接</td>
+<td><a href="/ESP32-examples/12.wifi(WIP)#12.5 smart_config 例程">12.wifi(WIP) &gt; 12.5 smart_config 例程</a></td>
+</tr>
+</tbody></table>
+<h3 id="openthread"><a href="#openthread" class="headerlink" title="openthread"></a>openthread</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ot_cli</td>
+<td>提供OpenThread命令行界面，用于管理和调试Thread网络</td>
+<td><a href="/ESP32-examples/13.openthread(WIP)#13.1 ot_cli">13.openthread(WIP) &gt; 13.1 ot_cli</a></td>
+</tr>
+<tr>
+<td>ot_rcp</td>
+<td>实现OpenThread无线电协处理器，与主机配合工作</td>
+<td><a href="/ESP32-examples/13.openthread(WIP)#13.2 ot_rcp">13.openthread(WIP) &gt; 13.2 ot_rcp</a></td>
+</tr>
+<tr>
+<td>ot_br</td>
+<td>实现OpenThread边界路由器，连接Thread网络和Wi-Fi/Ethernet网络</td>
+<td><a href="/ESP32-examples/13.openthread(WIP)#13.3 ot_br">13.openthread(WIP) &gt; 13.3 ot_br</a></td>
+</tr>
+<tr>
+<td>ot_sleepy_device</td>
+<td>演示OpenThread休眠设备的实现，支持802.15.4无线电休眠</td>
+<td><a href="/ESP32-examples/13.openthread(WIP)#13.4 ot_sleepy_device">13.openthread(WIP) &gt; 13.4 ot_sleepy_device</a></td>
+</tr>
+<tr>
+<td>ot_trel**(WIP)**</td>
+<td>演示OpenThread Transparent Reliable Exchange Layer (TREL)功能</td>
+<td><a href="/ESP32-examples/13.openthread(WIP)#13.5 ot_trel">13.openthread(WIP) &gt; 13.5 ot_trel</a></td>
+</tr>
+</tbody></table>
+<h3 id="storage"><a href="#storage" class="headerlink" title="storage"></a>storage</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nvs/nvs_rw_value</td>
+<td>使用NVS读写键值对数据</td>
+<td><a href="/ESP32-examples/14.storage(WIP)#14.1 nvs/nvs_rw_value 例程">14.storage(WIP) &gt; 14.1 nvs/nvs_rw_value 例程</a></td>
+</tr>
+<tr>
+<td>fatfs/getting_started</td>
+<td>在SPI Flash上实现FAT文件系统</td>
+<td><a href="/ESP32-examples/14.storage(WIP)#14.2 fatfs/getting_started 例程">14.storage(WIP) &gt; 14.2 fatfs/getting_started 例程</a></td>
+</tr>
+<tr>
+<td>littlefs</td>
+<td>使用LittleFS文件系统</td>
+<td><a href="/ESP32-examples/14.storage(WIP)#14.3 littlefs 例程">14.storage(WIP) &gt; 14.3 littlefs 例程</a></td>
+</tr>
+<tr>
+<td>spiffs</td>
+<td>使用SPIFFS文件系统</td>
+<td><a href="/ESP32-examples/14.storage(WIP)#14.4 spiffs 例程">14.storage(WIP) &gt; 14.4 spiffs 例程</a></td>
+</tr>
+<tr>
+<td>wear_levelling</td>
+<td>实现Flash的磨损均衡</td>
+<td><a href="/ESP32-examples/14.storage(WIP)#14.5 wear_levelling 例程">14.storage(WIP) &gt; 14.5 wear_levelling 例程</a></td>
+</tr>
+</tbody></table>
+<h3 id="network"><a href="#network" class="headerlink" title="network"></a>network</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bridge</td>
+<td>使用LwIP IEEE 802.1D桥接功能连接多个网络接口</td>
+<td><a href="/ESP32-examples/15.network#15.1 bridge">15.network &gt; 15.1 bridge</a></td>
+</tr>
+<tr>
+<td>eth2ap</td>
+<td>实现以太网和WiFi AP之间的数据包转发</td>
+<td><a href="/ESP32-examples/15.network#15.2 eth2ap">15.network &gt; 15.2 eth2ap</a></td>
+</tr>
+<tr>
+<td>simple_sniffer</td>
+<td>捕获网络数据包并保存为pcap格式文件</td>
+<td><a href="/ESP32-examples/15.network#15.3 simple_sniffer">15.network &gt; 15.3 simple_sniffer</a></td>
+</tr>
+<tr>
+<td>sta2eth</td>
+<td>将WiFi站连接转换为有线连接</td>
+<td><a href="/ESP32-examples/15.network#15.4 sta2eth">15.network &gt; 15.4 sta2eth</a></td>
+</tr>
+<tr>
+<td>vlan_support</td>
+<td>在以太网接口上创建虚拟VLAN接口</td>
+<td><a href="/ESP32-examples/15.network#15.5 vlan_support">15.network &gt; 15.5 vlan_support</a></td>
+</tr>
+</tbody></table>
+<h3 id="protocols"><a href="#protocols" class="headerlink" title="protocols"></a>protocols</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mqtt/tcp</td>
+<td>使用ESP-MQTT库实现MQTT客户端，通过TCP连接到broker</td>
+<td><a href="/ESP32-examples/16.protocols(WIP)#16.1 mqtt/tcp 例程">16.protocols(WIP) &gt; 16.1 mqtt/tcp 例程</a></td>
+</tr>
+<tr>
+<td>http_request</td>
+<td>使用POSIX socket API实现简单的HTTP请求</td>
+<td><a href="/ESP32-examples/16.protocols(WIP)#16.2 http_request 例程">16.protocols(WIP) &gt; 16.2 http_request 例程</a></td>
+</tr>
+<tr>
+<td>sockets/tcp_client</td>
+<td>使用POSIX socket API实现TCP客户端</td>
+<td><a href="/ESP32-examples/16.protocols(WIP)#16.3 sockets/tcp_client 例程">16.protocols(WIP) &gt; 16.3 sockets/tcp_client 例程</a></td>
+</tr>
+<tr>
+<td>https_request</td>
+<td>使用ESP-IDF的HTTPS客户端API实现安全的HTTP请求</td>
+<td><a href="/ESP32-examples/16.protocols(WIP)#16.4 https_request 例程">16.protocols(WIP) &gt; 16.4 https_request 例程</a></td>
+</tr>
+<tr>
+<td>modbus/serial/mb_slave</td>
+<td>使用ESP-IDF的Modbus组件实现Modbus RTU从机</td>
+<td><a href="/ESP32-examples/16.protocols(WIP)#16.5 modbus/serial/mb_slave 例程">16.protocols(WIP) &gt; 16.5 modbus/serial/mb_slave 例程</a></td>
+</tr>
+</tbody></table>
+<h3 id="system"><a href="#system" class="headerlink" title="system"></a>system</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>console/basic</td>
+<td>创建交互式命令行界面(CLI)</td>
+<td><a href="/ESP32-examples/17.system(WIP)#17.1 console/basic 例程">17.system(WIP) &gt; 17.1 console/basic 例程</a></td>
+</tr>
+<tr>
+<td>esp_timer</td>
+<td>演示高精度定时器功能</td>
+<td><a href="/ESP32-examples/17.system(WIP)#17.2 esp_timer 例程">17.system(WIP) &gt; 17.2 esp_timer 例程</a></td>
+</tr>
+<tr>
+<td>deep_sleep</td>
+<td>演示深度睡眠模式和各种唤醒源</td>
+<td><a href="/ESP32-examples/17.system(WIP)#17.3 deep_sleep 例程">17.system(WIP) &gt; 17.3 deep_sleep 例程</a></td>
+</tr>
+<tr>
+<td>pthread</td>
+<td>演示POSIX线程的使用</td>
+<td><a href="/ESP32-examples/17.system(WIP)#17.4 pthread 例程">17.system(WIP) &gt; 17.4 pthread 例程</a></td>
+</tr>
+<tr>
+<td>ota/simple_ota_example</td>
+<td>演示OTA(Over-The-Air)升级功能</td>
+<td><a href="/ESP32-examples/17.system(WIP)#17.5 ota/simple_ota_example 例程">17.system(WIP) &gt; 17.5 ota/simple_ota_example 例程</a></td>
+</tr>
+</tbody></table>
+<h3 id="security"><a href="#security" class="headerlink" title="security"></a>security</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flash_encryption</td>
+<td>演示Flash加密功能，包括开发和发布模式</td>
+<td><a href="/ESP32-examples/18.security#18.1 flash_encryption">18.security &gt; 18.1 flash_encryption</a></td>
+</tr>
+<tr>
+<td>hmac_soft_jtag</td>
+<td>演示使用HMAC外设安全地重新启用软件禁用的JTAG接口</td>
+<td><a href="/ESP32-examples/18.security#18.2 hmac_soft_jtag">18.security &gt; 18.2 hmac_soft_jtag</a></td>
+</tr>
+<tr>
+<td>nvs_encryption_hmac</td>
+<td>演示使用基于HMAC的加密密钥保护方案进行NVS加密</td>
+<td><a href="/ESP32-examples/18.security#18.3 nvs_encryption_hmac">18.security &gt; 18.3 nvs_encryption_hmac</a></td>
+</tr>
+<tr>
+<td>security_features_app</td>
+<td>演示如何同时启用多种安全功能，包括Secure Boot V2、Flash Encryption等</td>
+<td><a href="/ESP32-examples/18.security#18.4 security_features_app">18.security &gt; 18.4 security_features_app</a></td>
+</tr>
+<tr>
+<td>tee_basic</td>
+<td>演示如何使用ESP-TEE框架在可信执行环境中执行安全服务</td>
+<td><a href="/ESP32-examples/18.security#18.5.1 tee_basic">18.security &gt; 18.5.1 tee_basic</a></td>
+</tr>
+<tr>
+<td>tee_attestation</td>
+<td>演示如何使用ESP-TEE框架生成实体证明令牌</td>
+<td><a href="/ESP32-examples/18.security#18.5.2 tee_attestation">18.security &gt; 18.5.2 tee_attestation</a></td>
+</tr>
+<tr>
+<td>tee_secure_ota</td>
+<td>演示如何使用ESP-TEE框架进行安全OTA更新</td>
+<td><a href="/ESP32-examples/18.security#18.5.3 tee_secure_ota">18.security &gt; 18.5.3 tee_secure_ota</a></td>
+</tr>
+<tr>
+<td>tee_secure_storage</td>
+<td>演示如何使用ESP-TEE框架提供的安全存储功能</td>
+<td><a href="/ESP32-examples/18.security#18.5.4 tee_secure_storage">18.security &gt; 18.5.4 tee_secure_storage</a></td>
+</tr>
+</tbody></table>
+<h3 id="bluetooth"><a href="#bluetooth" class="headerlink" title="bluetooth"></a>bluetooth</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>blufi</td>
+<td>通过蓝牙配置Wi-Fi连接</td>
+<td><a href="/ESP32-examples/19.bluetooth(WIP)#19.1 blufi 例程">19.bluetooth(WIP) &gt; 19.1 blufi 例程</a></td>
+</tr>
+<tr>
+<td>a2dp_sink</td>
+<td>实现经典蓝牙A2DP接收器功能</td>
+<td><a href="/ESP32-examples/19.bluetooth(WIP)#19.2 a2dp_sink 例程（经典蓝牙）">19.bluetooth(WIP) &gt; 19.2 a2dp_sink 例程（经典蓝牙）</a></td>
+</tr>
+<tr>
+<td>esp_ble_mesh</td>
+<td>演示BLE Mesh网络的实现</td>
+<td><a href="/ESP32-examples/19.bluetooth(WIP)#19.3 esp_ble_mesh 例程">19.bluetooth(WIP) &gt; 19.3 esp_ble_mesh 例程</a></td>
+</tr>
+</tbody></table>
+<h3 id="peripherals"><a href="#peripherals" class="headerlink" title="peripherals"></a>peripherals</h3><table>
+<thead>
+<tr>
+<th>例程名称</th>
+<th>核心功能</th>
+<th>详细文档路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gpio/generic_gpio</td>
+<td>GPIO基本配置和中断使用</td>
+<td><a href="/ESP32-examples/20.peripherals(WIP)#20.1 gpio/generic_gpio 例程">20.peripherals(WIP) &gt; 20.1 gpio/generic_gpio 例程</a></td>
+</tr>
+<tr>
+<td>i2c/i2c_basic</td>
+<td>I2C主机基本操作</td>
+<td><a href="/ESP32-examples/20.peripherals(WIP)#20.2 i2c/i2c_basic 例程">20.peripherals(WIP) &gt; 20.2 i2c/i2c_basic 例程</a></td>
+</tr>
+<tr>
+<td>ledc/ledc_basic</td>
+<td>LED PWM控制器基本使用</td>
+<td><a href="/ESP32-examples/20.peripherals(WIP)#20.3 ledc/ledc_basic 例程">20.peripherals(WIP) &gt; 20.3 ledc/ledc_basic 例程</a></td>
+</tr>
+<tr>
+<td>rmt/led_strip</td>
+<td>使用RMT控制LED灯带</td>
+<td><a href="/ESP32-examples/20.peripherals(WIP)#20.4 rmt/led_strip 例程">20.peripherals(WIP) &gt; 20.4 rmt/led_strip 例程</a></td>
+</tr>
+<tr>
+<td>spi/spi_master</td>
+<td>SPI主机基本操作</td>
+<td><a href="/ESP32-examples/20.peripherals(WIP)#20.5 spi/spi_master 例程">20.peripherals(WIP) &gt; 20.5 spi/spi_master 例程</a></td>
+</tr>
+</tbody></table>
+<h2 id="3-使用指南"><a href="#3-使用指南" class="headerlink" title="3. 使用指南"></a>3. 使用指南</h2><h3 id="3-1-如何查找例程"><a href="#3-1-如何查找例程" class="headerlink" title="3.1 如何查找例程"></a>3.1 如何查找例程</h3><ol>
+<li>根据功能需求选择相应的目录分类</li>
+<li>在对应分类下找到所需的例程</li>
+<li>点击详细文档路径查看完整分析</li>
+</ol>
+<h3 id="3-2-如何参考例程"><a href="#3-2-如何参考例程" class="headerlink" title="3.2 如何参考例程"></a>3.2 如何参考例程</h3><ol>
+<li>阅读例程的核心功能说明，确认是否符合需求</li>
+<li>查看主要调用的函数和模块，了解实现原理</li>
+<li>参考输入输出参数说明，理解例程的使用方式</li>
+<li>根据适用场景判断是否适合当前项目</li>
+</ol>
+<h2 id="4-文档更新说明"><a href="#4-文档更新说明" class="headerlink" title="4. 文档更新说明"></a>4. 文档更新说明</h2><p>本文档将持续更新，随着更多例程的分析完成，将不断添加到本总览中。</p>
+<h2 id="5-联系方式"><a href="#5-联系方式" class="headerlink" title="5. 联系方式"></a>5. 联系方式</h2><p>如有疑问或建议，请联系开发团队。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/ESP32/" class="category-chain-item">ESP32</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ESP-IDF 例程——ESP-IDF 例程分析</div>
+      <div>https://blog.zhaosn.top/ESP32-examples/00.overview/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhao SN</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月21日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年1月21日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/ESP32-examples/01.get_started/" title="ESP-IDF 例程——get-started">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ESP-IDF 例程——get-started</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/pen/netstat/" title="外联端口简易查询">
+                        <span class="hidden-mobile">外联端口简易查询</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <script src="/js/outdated.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

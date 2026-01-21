@@ -99,6 +99,11 @@
       return;
     }
 
+    // 清除主题颜色缓存，确保下次获取最新值
+    if (Fluid && Fluid.events && Fluid.events._themeColorCache) {
+      Fluid.events._themeColorCache.navbarBgColor = null;
+    }
+
     // 根据当前模式设置图标
     setButtonIcon(current);
 

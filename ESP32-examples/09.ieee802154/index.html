@@ -1,0 +1,1469 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhao SN">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="9. ieee802154 目录9.1 ieee802154_cli   字段 描述    例程名称 IEEE802.15.4 命令行示例   所在文件夹路径 examples\ieee802154\ieee802154_cli   核心功能说明 提供一个命令行界面，用于配置和管理IEEE802.15.4网络，支持多种命令操作，包括通道设置、CCA配置、收发控制等   主要调用的内部/外部函数或模">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ESP-IDF 例程——ieee802154 - Zhaosn的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.zhaosn.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":45,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?db0474f77b68ddf3fb7cc21650cb844d";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zhaosn的博客🐉🐍</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/DMS2Decimal/" target="_self">
+                <i class="iconfont icon-map"></i>
+                <span>DMS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.6)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ESP-IDF 例程——ieee802154"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-21 16:21" pubdate>
+          2026年1月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          820 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="技术备忘"
+        id="heading-e9da6a8e80d43b63b2f8158805d6d525" role="tab" data-toggle="collapse" href="#collapse-e9da6a8e80d43b63b2f8158805d6d525"
+        aria-expanded="true"
+      >
+        技术备忘
+        <span class="list-group-count">(56)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-e9da6a8e80d43b63b2f8158805d6d525"
+           role="tabpanel" aria-labelledby="heading-e9da6a8e80d43b63b2f8158805d6d525">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux"
+        id="heading-edc9f0a5a5d57797bf68e37364743831" role="tab" data-toggle="collapse" href="#collapse-edc9f0a5a5d57797bf68e37364743831"
+        aria-expanded="false"
+      >
+        Linux
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-edc9f0a5a5d57797bf68e37364743831"
+           role="tabpanel" aria-labelledby="heading-edc9f0a5a5d57797bf68e37364743831">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/charge-thresholdOfLinux/" title="linux下充电阈值设置-dkms&amp;TLP"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">linux下充电阈值设置-dkms&amp;TLP</span>
+        </a>
+      
+    
+      
+      
+        <a href="/v4l2-theLinuxVideoSolution/" title="linux下调用摄像头拍照-v4l2与ffmpeg"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">linux下调用摄像头拍照-v4l2与ffmpeg</span>
+        </a>
+      
+    
+      
+      
+        <a href="/rimeConfiguation/" title="中州韵配置指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">中州韵配置指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/whatUseMyDisk/" title="为什么我的机械硬盘总会自动起转"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">为什么我的机械硬盘总会自动起转</span>
+        </a>
+      
+    
+      
+      
+        <a href="/tmuxflookup/" title="tmux快捷键"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">tmux快捷键</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="博客"
+        id="heading-c50d13646ec66f1929da5d491f2dff0f" role="tab" data-toggle="collapse" href="#collapse-c50d13646ec66f1929da5d491f2dff0f"
+        aria-expanded="false"
+      >
+        博客
+        <span class="list-group-count">(9)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-c50d13646ec66f1929da5d491f2dff0f"
+           role="tabpanel" aria-labelledby="heading-c50d13646ec66f1929da5d491f2dff0f">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/blog/blog_tutorial/" title="博客建立教程及命令备忘"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">博客建立教程及命令备忘</span>
+        </a>
+      
+    
+      
+      
+        <a href="/blog/SUPPORTED_LANGUAGES/" title="MarkDown指定hightlight.js代码高亮"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MarkDown指定hightlight.js代码高亮</span>
+        </a>
+      
+    
+      
+      
+        <a href="/blog/emoji-tag/" title="GitHub的md渲染支持的emoji标签"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">GitHub的md渲染支持的emoji标签</span>
+        </a>
+      
+    
+      
+      
+        <a href="/blog/hexo-minifier/" title="hexo minifier gulp 压缩博客"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">hexo minifier gulp 压缩博客</span>
+        </a>
+      
+    
+      
+      
+        <a href="/blog/music-embed/" title="Free Bird"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Free Bird</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%8D%9A%E5%AE%A2/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="图像处理"
+        id="heading-7808a68ee1b34dab43011429a12de19e" role="tab" data-toggle="collapse" href="#collapse-7808a68ee1b34dab43011429a12de19e"
+        aria-expanded="false"
+      >
+        图像处理
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-7808a68ee1b34dab43011429a12de19e"
+           role="tabpanel" aria-labelledby="heading-7808a68ee1b34dab43011429a12de19e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/cannyOnN3350/" title="计算机视觉第一次大作业"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">计算机视觉第一次大作业</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="嵌入式"
+        id="heading-62f8a8e20d03835fb846c1e03058cccb" role="tab" data-toggle="collapse" href="#collapse-62f8a8e20d03835fb846c1e03058cccb"
+        aria-expanded="true"
+      >
+        嵌入式
+        <span class="list-group-count">(31)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62f8a8e20d03835fb846c1e03058cccb"
+           role="tabpanel" aria-labelledby="heading-62f8a8e20d03835fb846c1e03058cccb">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/hid/HID_firstDig/" title="初次挖掘HID和硬件工程"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">初次挖掘HID和硬件工程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/rpi-pubkeyErr/" title="树莓派apt公钥错误解决方案"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">树莓派apt公钥错误解决方案</span>
+        </a>
+      
+    
+      
+      
+        <a href="/NFC-imcoming/" title="进军NFC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">进军NFC</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-pyinShell/" title="在终端下使用MicroPython编程ESP32"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在终端下使用MicroPython编程ESP32</span>
+        </a>
+      
+    
+      
+      
+        <a href="/microPythonProgInLinux/" title="在终端下使用MicroPython编程ESP32"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在终端下使用MicroPython编程ESP32</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ESP32"
+        id="heading-789c376b43dbba68180fd04da73286da" role="tab" data-toggle="collapse" href="#collapse-789c376b43dbba68180fd04da73286da"
+        aria-expanded="true"
+      >
+        ESP32
+        <span class="list-group-count">(21)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-789c376b43dbba68180fd04da73286da"
+           role="tabpanel" aria-labelledby="heading-789c376b43dbba68180fd04da73286da">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/ESP32-examples/00.overview/" title="ESP-IDF 例程——ESP-IDF 例程分析"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——ESP-IDF 例程分析</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-examples/01.get_started/" title="ESP-IDF 例程——get-started"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——get-started</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-examples/03.cxx/" title="ESP-IDF 例程——cxx"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——cxx</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-examples/19.bluetooth(WIP)/" title="ESP-IDF 例程——bluetooth"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——bluetooth</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ESP32-examples/06.build_system/" title="ESP-IDF 例程——build_system"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ESP-IDF 例程——build_system</span>
+        </a>
+      
+    
+      
+      
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/ESP32/" class="list-group-item list-group-item-action">
+          <span class="category-post">More...</span>
+        </a>
+        
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="无线电"
+        id="heading-df3219108d72fc6f81b2a59762985975" role="tab" data-toggle="collapse" href="#collapse-df3219108d72fc6f81b2a59762985975"
+        aria-expanded="false"
+      >
+        无线电
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-df3219108d72fc6f81b2a59762985975"
+           role="tabpanel" aria-labelledby="heading-df3219108d72fc6f81b2a59762985975">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/NFC-imcoming/" title="进军NFC"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">进军NFC</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="渗透"
+        id="heading-6cba1d91e408a65c86e86a9e100f84b2" role="tab" data-toggle="collapse" href="#collapse-6cba1d91e408a65c86e86a9e100f84b2"
+        aria-expanded="false"
+      >
+        渗透
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-6cba1d91e408a65c86e86a9e100f84b2"
+           role="tabpanel" aria-labelledby="heading-6cba1d91e408a65c86e86a9e100f84b2">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/pen/JARBAS/" title="JARBAS - Jenkins渗透原理详解"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">JARBAS - Jenkins渗透原理详解</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/SickOS1.1_2way/" title="SickOS1.1 - 穿越Squid代理的CMS渗透"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SickOS1.1 - 穿越Squid代理的CMS渗透</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/W1R3S/" title="W1R3S 1.0.1 - nmap_hydra精讲"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">W1R3S 1.0.1 - nmap_hydra精讲</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/cipherDict/" title="从信息收集到构建密码字典"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">从信息收集到构建密码字典</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/myPenetrationToolsTOC/" title="博客渗透工具目录"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">博客渗透工具目录</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="网络"
+        id="heading-7ddbe15c845fa27a2bab496183042ca6" role="tab" data-toggle="collapse" href="#collapse-7ddbe15c845fa27a2bab496183042ca6"
+        aria-expanded="false"
+      >
+        网络
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-7ddbe15c845fa27a2bab496183042ca6"
+           role="tabpanel" aria-labelledby="heading-7ddbe15c845fa27a2bab496183042ca6">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/proxySet/" title="配置代理命令概览"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">配置代理命令概览</span>
+        </a>
+      
+    
+      
+      
+        <a href="/opWRThomePrint/" title="基于openwrt，建立家庭云打印服务"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">基于openwrt，建立家庭云打印服务</span>
+        </a>
+      
+    
+      
+      
+        <a href="/tailscale-subnet-linux/" title="tailscale-linux-子网配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">tailscale-linux-子网配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/quicklySwapIP_win/" title="Windows快速切换IP、DNS"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows快速切换IP、DNS</span>
+        </a>
+      
+    
+      
+      
+        <a href="/pen/netstat/" title="外联端口简易查询"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">外联端口简易查询</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="计算机图形学"
+        id="heading-84d8d91e2e9bad1e871ae8ca00fac8ab" role="tab" data-toggle="collapse" href="#collapse-84d8d91e2e9bad1e871ae8ca00fac8ab"
+        aria-expanded="false"
+      >
+        计算机图形学
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-84d8d91e2e9bad1e871ae8ca00fac8ab"
+           role="tabpanel" aria-labelledby="heading-84d8d91e2e9bad1e871ae8ca00fac8ab">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/SD-B580FULLPOWAH/" title="B580使用秋葉aaakiSD-Forge开启SD画图加速的方法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">B580使用秋葉aaakiSD-Forge开启SD画图加速的方法</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ESP-IDF 例程——ieee802154</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="9-ieee802154-目录"><a href="#9-ieee802154-目录" class="headerlink" title="9. ieee802154 目录"></a>9. ieee802154 目录</h2><h3 id="9-1-ieee802154-cli"><a href="#9-1-ieee802154-cli" class="headerlink" title="9.1 ieee802154_cli"></a>9.1 ieee802154_cli</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>IEEE802.15.4 命令行示例</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\ieee802154\ieee802154_cli</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>提供一个命令行界面，用于配置和管理IEEE802.15.4网络，支持多种命令操作，包括通道设置、CCA配置、收发控制等</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- IEEE802.15.4 子系统 API</td>
+</tr>
+</tbody></table>
+<ul>
+<li>console 组件（命令行界面）</li>
+<li>ESP32-H2/C5/C6 芯片的 IEEE802.15.4 硬件支持</li>
+<li>支持 UART 和 USB Serial/JTAG 控制台输出 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
+<li>控制台输出通道（UART 或 USB Serial/JTAG）</li>
+<li>IEEE802.15.4 网络参数（通道、PAN ID、地址等）</li>
+</ul>
+<p>输出结果：</p>
+<ul>
+<li>命令执行状态和结果</li>
+<li>网络配置信息</li>
+<li>收发数据状态</li>
+<li>硬件寄存器信息</li>
+<li>内存使用情况</li>
+<li>芯片和SDK版本信息 |<br>| <strong>适用场景及典型应用案例</strong> | - IEEE802.15.4 网络的开发和调试</li>
+<li>硬件寄存器的直接操作和测试</li>
+<li>无线通信参数的优化和测试</li>
+<li>不同IEEE802.15.4设备之间的兼容性测试</li>
+<li>基于IEEE802.15.4的物联网设备开发 |</li>
+</ul>
+<h3 id="9-2-技术要点"><a href="#9-2-技术要点" class="headerlink" title="9.2 技术要点"></a>9.2 技术要点</h3><ul>
+<li><p><strong>支持的命令类型</strong>：</p>
+<ul>
+<li>网络配置命令（channel, panid, extaddr, shortaddr）</li>
+<li>收发控制命令（rx, tx, txpower）</li>
+<li>硬件控制命令（coordinator, promisc, pending）</li>
+<li>测量和检测命令（cca, ed）</li>
+<li>系统命令（restart, free, heap, version）</li>
+<li>硬件寄存器命令（reg）</li>
+</ul>
+</li>
+<li><p><strong>硬件支持</strong>：</p>
+<ul>
+<li>支持ESP32-H2/C5/C6等IEEE802.15.4芯片</li>
+<li>硬件级别的协调器支持</li>
+<li>硬件级别的混杂模式支持</li>
+<li>能量检测（ED）功能</li>
+</ul>
+</li>
+<li><p><strong>控制台接口</strong>：</p>
+<ul>
+<li>支持UART和USB Serial/JTAG两种输出通道</li>
+<li>命令自动补全和帮助信息</li>
+<li>支持命令缩写和完整格式</li>
+<li>命令历史记录</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-3-主要命令功能"><a href="#9-3-主要命令功能" class="headerlink" title="9.3 主要命令功能"></a>9.3 主要命令功能</h3><h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><ul>
+<li><strong>channel</strong>：设置和获取IEEE802.15.4通道号（11-26）</li>
+<li><strong>panid</strong>：设置和获取PAN ID</li>
+<li><strong>extaddr</strong>：设置和获取扩展地址（8字节）</li>
+<li><strong>shortaddr</strong>：设置和获取短地址（2字节）</li>
+</ul>
+<h3 id="收发控制"><a href="#收发控制" class="headerlink" title="收发控制"></a>收发控制</h3><ul>
+<li><strong>rx</strong>：启用/禁用接收模式</li>
+<li><strong>tx</strong>：发送IEEE802.15.4 MAC帧，支持CCA触发</li>
+<li><strong>txpower</strong>：设置和获取发射功率</li>
+</ul>
+<h3 id="硬件控制"><a href="#硬件控制" class="headerlink" title="硬件控制"></a>硬件控制</h3><ul>
+<li><strong>coordinator</strong>：启用/禁用硬件协调器</li>
+<li><strong>promisc</strong>：启用/禁用混杂模式</li>
+<li><strong>pending</strong>：管理待处理地址表和自动待处理模式</li>
+</ul>
+<h3 id="测量和检测"><a href="#测量和检测" class="headerlink" title="测量和检测"></a>测量和检测</h3><ul>
+<li><strong>cca</strong>：配置和获取CCA（空闲信道评估）参数</li>
+<li><strong>ed</strong>：执行能量检测</li>
+</ul>
+<h3 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h3><ul>
+<li><strong>version</strong>：获取芯片和SDK版本</li>
+<li><strong>free</strong>：获取当前可用堆内存</li>
+<li><strong>heap</strong>：获取最小可用堆内存</li>
+</ul>
+<h3 id="9-4-构建与运行"><a href="#9-4-构建与运行" class="headerlink" title="9.4 构建与运行"></a>9.4 构建与运行</h3><ol>
+<li>配置项目：<code>idf.py menuconfig</code></li>
+<li>选择控制台输出通道（可选）</li>
+<li>构建项目：<code>idf.py build</code></li>
+<li>烧录并监控：<code>idf.py -p PORT flash monitor</code></li>
+<li>在命令行中输入 <code>help</code> 查看所有可用命令</li>
+</ol>
+<h3 id="9-5-应用场景总结"><a href="#9-5-应用场景总结" class="headerlink" title="9.5 应用场景总结"></a>9.5 应用场景总结</h3><p>该例程为IEEE802.15.4网络开发提供了一个强大的调试和测试工具，适用于：</p>
+<ul>
+<li>IEEE802.15.4协议栈的开发和验证</li>
+<li>硬件级别的无线通信测试</li>
+<li>不同IEEE802.15.4设备之间的互联互通测试</li>
+<li>基于IEEE802.15.4的物联网应用原型开发</li>
+<li>无线传感器网络的基础测试平台</li>
+</ul>
+<p>通过该例程，开发者可以快速测试和验证IEEE802.15.4网络的各种配置和功能，加速基于IEEE802.15.4的产品开发进程。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/ESP32/" class="category-chain-item">ESP32</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ESP-IDF 例程——ieee802154</div>
+      <div>https://blog.zhaosn.top/ESP32-examples/09.ieee802154/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhao SN</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月21日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年1月21日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/ESP32-examples/02.lowpower/" title="ESP-IDF 例程——低功耗">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ESP-IDF 例程——低功耗</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/ESP32-examples/04.custom_bootloader/" title="ESP-IDF 例程——custom_bootloader">
+                        <span class="hidden-mobile">ESP-IDF 例程——custom_bootloader</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <script src="/js/outdated.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

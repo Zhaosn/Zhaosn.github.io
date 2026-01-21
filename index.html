@@ -267,6 +267,144 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/ESP32-examples/00.overview/" target="_self">
+          ESP-IDF 例程——ESP-IDF 例程分析
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/ESP32-examples/00.overview/" target="_self">
+        <div>
+          ESP-IDF 例程分析总览1. 概述本文档汇总了ESP-IDF examples目录下各例程的分析结果，为开发团队提供快速查阅和参考。基于esp-idf 5.5.2例程总结。 2. 例程分类与汇总get-started   例程名称 核心功能 详细文档路径    hello_world 验证开发环境，显示芯片信息 01.get_started &gt; 1.1 hello_world 例程
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-21 16:19" pubdate>
+              2026-01-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E5%B5%8C%E5%85%A5%E5%BC%8F/ESP32/" class="category-chain-item">ESP32</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/pen/netstat/" target="_self">
+          外联端口简易查询
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/pen/netstat/" target="_self">
+        <div>
+          排查外联木马 一、netstat -ano | findstr 完整用法（排查网络连接）这个命令核心用于查找可疑的网络连接，定位木马的外联IP/端口，以及对应的进程PID。 1. 基础补全与常用场景1234567891011# 1. 查找所有ESTABLISHED（已建立）的连接（重点排查外联）netstat -ano | findstr &quot;ESTABLISHED&quot;# 2. 按
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-15 14:32" pubdate>
+              2026-01-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E7%BD%91%E7%BB%9C/" class="category-chain-item">网络</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C/">#网络</a>
+            
+              <a href="/tags/%E5%A4%87%E5%BF%98/">#备忘</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/blog/navbar_css/" target="_self">
           爆改导航栏
         </a>
@@ -808,144 +946,6 @@
               <a href="/tags/%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3/">#脑机接口</a>
             
               <a href="/tags/OSINT/">#OSINT</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/pen/W1R3S/" target="_self">
-          W1R3S 1.0.1 - nmap_hydra精讲
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/pen/W1R3S/" target="_self">
-        <div>
-          NMAP快速主机发现nmap -sn 10.10.10.0/24 TCP扫描sudo nmap -sT –min-rate 10000 -p- 10.10.10.21 -oA nmapscan/ports-sT: 完整TCP连接(可以放到下面)-sS: (默认)仅SYN，可能被防火墙拦截–min-rate 10000: 最少同时发包个数-p-： 扫描全部65535个端口-oA： 输出参数到文件 总
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-10-26 12:05" pubdate>
-              2025-10-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/%E6%B8%97%E9%80%8F/" class="category-chain-item">渗透</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%B8%97%E9%80%8F/">#渗透</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/tmuxflookup/" target="_self">
-          tmux快捷键
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/tmuxflookup/" target="_self">
-        <div>
-          前缀键（默认是 Ctrl + b）割成左右 &gt; 前缀键 + %割成上下 &gt; 前缀键 + “切换焦点 &gt; 前缀键 + 方向键（上/下/左/右）  或者  前缀键 + o调整窗格大小 &gt; 按住 前缀键，然后按方向键关闭当前窗格 &gt; 前缀键 + x全屏/取消全屏 &gt; 前缀键 + z
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2025-10-26 12:04" pubdate>
-              2025-10-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/Linux/" class="category-chain-item">Linux</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%A4%87%E5%BF%98/">#备忘</a>
-            
-              <a href="/tags/Linux/">#Linux</a>
             
           </div>
         
