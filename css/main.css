@@ -26,7 +26,7 @@ h6:hover > .anchorjs-link {
   will-change: transform;
   -webkit-transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
-  transition: transform 0.05s ease-out;
+  transition: transform none;
 }
 @media (max-width: 100vh) {
   .header-inner {
@@ -320,8 +320,8 @@ sup > a::before,
 }
 .navbar.scrolling-navbar {
   will-change: background, padding;
-  -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
-  transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+  -webkit-transition: none;
+  transition: none;
 }
 @media (min-width: 600px) {
   .navbar.scrolling-navbar {

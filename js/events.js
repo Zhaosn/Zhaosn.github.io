@@ -48,12 +48,12 @@ Fluid.events = {
     }
     Fluid.utils.listenScroll(function() {
       var scrollTop = jQuery(window).scrollTop();
-      var maxScroll = 300; // 最大滚动距离，超过此值后效果不再变化
+      var maxScroll = 150; // 最大滚动距离，超过此值后效果不再变化
       var scrollRatio = Math.min(scrollTop / maxScroll, 1); // 滚动比例，范围0-1
       
-      // 非线性滚动比例计算（开始慢，后面快）
-      var exponent = 1.5; // 指数系数，大于1时实现开始慢后面快的效果
-      var nonlinearScrollRatio = Math.pow(scrollRatio, exponent);
+      // 非线性滚动比例计算（前面快，后面慢）
+      // var exponent = 1.5; // 指数系数，大于1时实现前面快后面慢的效果
+      // var nonlinearScrollRatio = 1 - Math.pow(1 - scrollRatio, exponent);
       
       // 优化1：避免不必要的类名切换（只有状态变化时才执行）
       var shouldCollapse = scrollRatio > 0;
@@ -70,7 +70,7 @@ Fluid.events = {
       // 平滑改变导航栏高度（根据滚动比例）
       var defaultPadding = 12; // 默认 padding
       var collapsedPadding = 5; // 折叠后 padding
-      var currentPadding = defaultPadding - (defaultPadding - collapsedPadding) * nonlinearScrollRatio;
+      var currentPadding = defaultPadding - (defaultPadding - collapsedPadding) * scrollRatio;
       
       // 平滑改变毛玻璃效果的透明度（根据滚动比例）
       var alpha = scrollRatio * 0.7; // 最大不透明度
@@ -79,11 +79,7 @@ Fluid.events = {
       // 禁用CSS过渡效果，避免与JavaScript动画冲突导致延迟
       var cssProps = {
         'padding-top': currentPadding + 'px',
-        'padding-bottom': currentPadding + 'px',
-        'transition': 'none',
-        '-webkit-transition': 'none',
-        '-moz-transition': 'none',
-        '-o-transition': 'none'
+        'padding-bottom': currentPadding + 'px'
       };
       
 

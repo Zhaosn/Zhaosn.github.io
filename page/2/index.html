@@ -759,7 +759,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/SD-B580FULLPOWAH/" target="_self">
         <div>
-          版本显卡Arc B580，启动器版本绘世2.8.13 参考文献 B站我自己，里面放了图片[1]  IPEX官网[2]   (PS, 这玩意儿是Intel Extension for PyTorch的缩写？不如说是Intel PyTorch Extension的缩写○( ＾皿＾)っ) (PPS, 根据[2]的GPU里的🏃Installation生成安装代码，可以看B站的图片)  步骤1：启动器选择
+          版本显卡Arc B580，启动器版本绘世2.8.13 VAE时非常慢（卡到95%）的解决办法[Unload] 里面显示了每次绘图的模型占的显存，之前用的AOM3比较小只有1G，后来换成影构师就会卡到95%。这是因为留给VAE的显存不够，需要跑个GC之类的，修复方式：12G的显存，我试了感觉 GPU Weights 开到5500MB可以，然后在UI defaults &#39;xl&#39;设置默认
         </div>
       </a>
 

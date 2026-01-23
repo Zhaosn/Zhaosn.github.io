@@ -19,7 +19,7 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="版本显卡Arc B580，启动器版本绘世2.8.13 参考文献 B站我自己，里面放了图片[1]  IPEX官网[2]   (PS, 这玩意儿是Intel Extension for PyTorch的缩写？不如说是Intel PyTorch Extension的缩写○( ＾皿＾)っ) (PPS, 根据[2]的GPU里的🏃Installation生成安装代码，可以看B站的图片)  步骤1：启动器选择">
+    <meta name="description" content="版本显卡Arc B580，启动器版本绘世2.8.13 VAE时非常慢（卡到95%）的解决办法[Unload] 里面显示了每次绘图的模型占的显存，之前用的AOM3比较小只有1G，后来换成影构师就会卡到95%。这是因为留给VAE的显存不够，需要跑个GC之类的，修复方式：12G的显存，我试了感觉 GPU Weights 开到5500MB可以，然后在UI defaults &amp;#39;xl&amp;#39;设置默认">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -262,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          327 字
+          427 字
         
       </span>
     
@@ -932,7 +932,8 @@
               <div class="markdown-body">
                 
                 <h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><p>显卡Arc B580，启动器版本绘世2.8.13</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<h1 id="VAE时非常慢（卡到95-）的解决办法"><a href="#VAE时非常慢（卡到95-）的解决办法" class="headerlink" title="VAE时非常慢（卡到95%）的解决办法"></a>VAE时非常慢（卡到95%）的解决办法</h1><p><code>[Unload]</code> 里面显示了每次绘图的模型占的显存，之前用的AOM3比较小只有1G，后来换成影构师就会卡到95%。这是因为留给VAE的显存不够，需要跑个GC之类的，修复方式：12G的显存，我试了感觉 <code>GPU Weights</code> 开到5500MB可以，然后在<code>UI defaults &#39;xl&#39;</code>设置默认值<br><img src="https://pic1.imgdb.cn/item/6971f6692d08d4bddaa6dcab.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="开启DML"><a href="#开启DML" class="headerlink" title="开启DML"></a>开启DML</h1><ol>
 <li><p>B站我自己，里面放了图片<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://www.bilibili.com/opus/1116551395134144550">[1]</span></a></sup></p>
 </li>
 <li><p>IPEX官网<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/intel/intel-extension-for-pytorch">[2]</span></a></sup></p>
@@ -950,7 +951,9 @@
 <li><p>步骤4：点击一键启动，等</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmd">我这块出现了<br><span class="hljs-function"></span><br><span class="hljs-function">RuntimeError: <span class="hljs-title">Failed</span> <span class="hljs-title">to</span> <span class="hljs-title">import</span> <span class="hljs-title">diffusers.loaders.lora_pipeline</span> <span class="hljs-title">because</span> <span class="hljs-title">of</span> <span class="hljs-title">the</span> <span class="hljs-title">following</span> <span class="hljs-title">error</span>:</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-title">No</span> <span class="hljs-title">module</span> <span class="hljs-title">named</span> &#x27;<span class="hljs-title">triton.ops</span>&#x27;</span><br></code></pre></td></tr></table></figure></li>
 <li><p>步骤5：禁用调用CUDA的triton模块(好像是bitsandbytes啥的，多亏kimi，工作上一直用的豆包在专业问题上日常很der)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">1.打开文件:</span><br><span class="hljs-string">F:\sd-webui-forge-aki-v1.0\python\Lib\site-packages\bitsandbytes\__init__.py</span><br><span class="hljs-string">2.在文件顶部添加以下代码，强制跳过 Triton 加载:</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-keyword">import</span> sys<br>sys.modules[<span class="hljs-string">&#x27;triton&#x27;</span>] = <span class="hljs-literal">None</span><br>sys.modules[<span class="hljs-string">&#x27;triton.ops&#x27;</span>] = <span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">1.打开文件:</span><br><span class="hljs-string">F:\sd-webui-forge-aki-v1.0\python\Lib\site-packages\bitsandbytes\__init__.py</span><br><span class="hljs-string">2.在文件顶部添加以下代码，强制跳过 Triton 加载:</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-keyword">import</span> sys<br>sys.modules[<span class="hljs-string">&#x27;triton&#x27;</span>] = <span class="hljs-literal">None</span><br>sys.modules[<span class="hljs-string">&#x27;triton.ops&#x27;</span>] = <span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://pic1.imgdb.cn/item/6971f33c2d08d4bddaa6dbe1.png" srcset="/img/loading.gif" lazyload alt="优化结果"></p>
+</li>
 <li><p>喜提6it/s的速度，比之前DML的1.3it/s不知道高到哪里去了</p>
 </li>
 </ol>
@@ -1029,7 +1032,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年12月24日</div>
+          <div>2026年1月22日</div>
         </div>
       
       
