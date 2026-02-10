@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>JSPI刷BIOS</title>
+    <link href="/tips/JSPI/"/>
+    <url>/tips/JSPI/</url>
+    
+    <content type="html"><![CDATA[<p>草，旧主板<a href="https://www.bilibili.com/opus/758340028973711379">又卡VGA了</a><br><img src="https://pic1.imgdb.cn/item/6977152da583b567209b7b8b.png" alt="JSPI.png"><br>现在win上flashrom不识别芯片，中间试过其他的一个软件，后来去<a href="https://www.52pojie.cn/thread-1375370-1-1.html">吾爱</a>下了NeoProgrammer_2.2.0.10。<br>然后Windows上软件都不识别编程器，在NAS上apt下载的flashrom不支持25U12873。官网介绍说最新板有支持，升级完电脑，apt删除idle之类的包才能下载下来编译工具。<br>老主板片上烧写过程有问题，读和擦能走完，写就走不完。示波器看了SO，没什么信号。下单买了1.8V转换模块和三片新BIOS芯片。<br>芯片和1.8V转换模块一到就把旧主板BIOS干下来读写，发现确实是芯片坏了，然而修好没几天就换了MSI B550+R7 5800x，爆了1400金币</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>日常</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ESP-IDF 例程——Zigbee</title>
     <link href="/ESP32-examples/08.zigbee/"/>
     <url>/ESP32-examples/08.zigbee/</url>
@@ -464,7 +483,7 @@
   
   
   <entry>
-    <title>ESP-IDF 例程——ESP-IDF 例程分析</title>
+    <title>ESP-IDF 例程分析</title>
     <link href="/ESP32-examples/00.overview/"/>
     <url>/ESP32-examples/00.overview/</url>
     
@@ -590,6 +609,12 @@
     <content type="html"><![CDATA[<h1 id="回车（Carriage-Return）换行（Line-Feed）"><a href="#回车（Carriage-Return）换行（Line-Feed）" class="headerlink" title="回车（Carriage Return）换行（Line Feed）"></a>回车（Carriage Return）换行（Line Feed）</h1><p>回车CR-将光标移动到当前行的开头。<br>换行LF-将光标“垂直”移动到下一行。</p><p>CR用符号’\r’表示, 十进制ASCII代码是13, 十六进制代码为0x0D<br>LF使用’\n’符号表示, ASCII代码是10, 十六制为0x0A</p><ul><li>Dos和windows采用回车+换行CR/LF表示下一行，每行结尾是“&lt;换行&gt;&lt;回车&gt;”，即“\n\r”；</li><li>而UNIX/Linux采用换行符LF表示下一行，每行结尾只有“&lt;换行&gt;”，即”\n”；</li><li>苹果机(MAC OS系统)采用回车符CR表示下一行，每行结尾是“&lt;回车&gt;”，即”\r”；</li></ul>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>计算机</tag>
+      
+    </tags>
     
   </entry>
   

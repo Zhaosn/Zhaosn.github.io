@@ -19,13 +19,13 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="回车（Carriage Return）换行（Line Feed）回车CR-将光标移动到当前行的开头。换行LF-将光标“垂直”移动到下一行。 CR用符号’\r’表示, 十进制ASCII代码是13, 十六进制代码为0x0DLF使用’\n’符号表示, ASCII代码是10, 十六制为0x0A  Dos和windows采用回车+换行CR/LF表示下一行，每行结尾是“&amp;lt;换行&amp;gt;&amp;lt;回车&amp;gt;">
+    <meta name="description" content="#regex匹配单个中文：[\u4e00-\u9fa5]匹配段首以中文开始的位置：^(?=[\u4e00-\u9fa5])  语法：[a-zA-Z] → 匹配单个大小写字母 [a-zA-Z]&amp;#123;n&amp;#125; → 匹配恰好 n 个大小写字母（如[a-zA-Z]&amp;#123;3&amp;#125;匹配Abc、XYZ） [a-zA-Z]&amp;#123;n,m&amp;#125; → 匹配n 到 m 个大小写字母（如">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>回车（Carriage Return）换行（Line Feed） - Zhaosn的博客</title>
+  <title>Zhaosn的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -239,7 +239,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="回车（Carriage Return）换行（Line Feed）"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -250,8 +250,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-09 16:24" pubdate>
-          2026年1月9日 下午
+        <time datetime="2026-01-29 08:31" pubdate>
+          2026年1月29日 早上
         </time>
       </span>
     
@@ -262,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          156 字
+          565 字
         
       </span>
     
@@ -273,7 +273,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -303,21 +303,6 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar category-bar" style="margin-right: -1rem">
-    
-
-
-
-
-
-<div class="category-list">
-  
-  
-</div>
-
-
-  </aside>
-
 
     </div>
 
@@ -325,18 +310,95 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">回车（Carriage Return）换行（Line Feed）</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="回车（Carriage-Return）换行（Line-Feed）"><a href="#回车（Carriage-Return）换行（Line-Feed）" class="headerlink" title="回车（Carriage Return）换行（Line Feed）"></a>回车（Carriage Return）换行（Line Feed）</h1><p>回车CR-将光标移动到当前行的开头。<br>换行LF-将光标“垂直”移动到下一行。</p>
-<p>CR用符号’\r’表示, 十进制ASCII代码是13, 十六进制代码为0x0D<br>LF使用’\n’符号表示, ASCII代码是10, 十六制为0x0A</p>
+                <p>#regex<br>匹配<strong>单个中文</strong>：<code>[\u4e00-\u9fa5]</code><br>匹配段首以中文开始的位置：<code>^(?=[\u4e00-\u9fa5])</code></p>
 <ul>
-<li>Dos和windows采用回车+换行CR/LF表示下一行，每行结尾是“&lt;换行&gt;&lt;回车&gt;”，即“\n\r”；</li>
-<li>而UNIX/Linux采用换行符LF表示下一行，每行结尾只有“&lt;换行&gt;”，即”\n”；</li>
-<li>苹果机(MAC OS系统)采用回车符CR表示下一行，每行结尾是“&lt;回车&gt;”，即”\r”；</li>
+<li>语法：<code>[a-zA-Z]</code> → 匹配<strong>单个</strong>大小写字母</li>
+<li><code>[a-zA-Z]&#123;n&#125;</code> → 匹配<strong>恰好 n 个</strong>大小写字母（如<code>[a-zA-Z]&#123;3&#125;</code>匹配<code>Abc</code>、<code>XYZ</code>）</li>
+<li><code>[a-zA-Z]&#123;n,m&#125;</code> → 匹配<strong>n 到 m 个</strong>大小写字母（如<code>[a-zA-Z]&#123;2,5&#125;</code>匹配<code>Ab</code>、<code>XyZ1</code>不行）</li>
 </ul>
+<p>正则中有个预定义简写<code>\w</code>，<strong>包含大小写字母、数字、下划线</strong>（等价于<code>[a-zA-Z0-9_]</code>），<strong>仅当你需要同时匹配字母 + 数字 + 下划线时使用</strong>，单独匹配字母时不要用！</p>
+<ul>
+<li>坑点：<code>\w = [a-zA-Z0-9_]</code>，若用<code>\w</code>匹配纯字母会把<code>123</code>、<code>_</code>也匹配上，比如字符串<code>Abc_123</code>，<code>\w+</code>会匹配整个<code>Abc_123</code>，而<code>[a-zA-Z]+</code>只匹配<code>Abc</code>。</li>
+</ul>
+<p>实际场景中常需要「仅匹配大写字母」或「仅匹配小写字母」，直接指定单范围即可，是<code>[a-zA-Z]</code>的拆分用法：</p>
+<ul>
+<li>仅匹配<strong>大写字母</strong>：<code>[A-Z]</code>（如匹配<code>A</code>、<code>XYZ</code>，不匹配<code>a</code>、<code>Abc</code>）</li>
+<li>仅匹配<strong>小写字母</strong>：<code>[a-z]</code>（如匹配<code>a</code>、<code>xyz</code>，不匹配<code>A</code>、<code>Abc</code>）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>断言类型</th>
+<th>语法</th>
+<th>含义</th>
+<th>示例（Python）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>零宽度正向断言</td>
+<td><code>(?=pattern)</code></td>
+<td>匹配后面紧跟<code>pattern</code>的位置，不消耗字符</td>
+<td><code>\d+(?=元)</code> → 匹配数字后接“元”的位置</td>
+</tr>
+<tr>
+<td>零宽度负向断言</td>
+<td><code>(?!pattern)</code></td>
+<td>匹配后面不紧跟<code>pattern</code>的位置，不消耗字符</td>
+<td><code>\d+(?!元)</code> → 匹配数字后不接“元”的位置</td>
+</tr>
+<tr>
+<td>正向肯定预查</td>
+<td><code>(?&lt;=pattern)</code></td>
+<td>匹配前面是<code>pattern</code>的位置，不消耗字符</td>
+<td><code>(?&lt;=苹果)手机</code> → 匹配“苹果”后的“手机”</td>
+</tr>
+<tr>
+<td>正向否定预查</td>
+<td><code>(?&lt;!pattern)</code></td>
+<td>匹配前面不是<code>pattern</code>的位置，不消耗字符</td>
+<td><code>(?&lt;!苹果)手机</code> → 匹配前面不是“苹果”的“手机”</td>
+</tr>
+<tr>
+<td>条件断言</td>
+<td><code>(?(condition)yes|no)</code></td>
+<td>根据<code>condition</code>是否满足，匹配<code>yes</code>或<code>no</code>分支</td>
+<td><code>苹果(?(?=手机)手机|)</code> → 匹配“苹果”后接“手机”的情况</td>
+</tr>
+</tbody></table>
+<h3 id="正则匹配单个字符连续出现3次"><a href="#正则匹配单个字符连续出现3次" class="headerlink" title="正则匹配单个字符连续出现3次"></a>正则匹配单个字符连续出现3次</h3><table>
+<thead>
+<tr>
+<th>匹配需求</th>
+<th>正则语法</th>
+<th>含义&amp;示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>任意单个字符连续出现3次</td>
+<td><code>(.)\1&#123;2&#125;</code></td>
+<td>匹配aabbbcc中<code>bbb</code>、112223中<code>222</code></td>
+</tr>
+<tr>
+<td>指定字符（如a）连续3次</td>
+<td><code>a&#123;3&#125;</code></td>
+<td>匹配aaabbb中<code>aaa</code></td>
+</tr>
+<tr>
+<td>数字连续3次</td>
+<td><code>\d&#123;3&#125;</code></td>
+<td>匹配112333中<code>333</code></td>
+</tr>
+<tr>
+<td>字母连续3次</td>
+<td><code>[a-zA-Z]&#123;3&#125;</code></td>
+<td>匹配AabCCC中<code>CCC</code></td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -345,11 +407,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="category-chain-item">技术备忘</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="print-no-link">#计算机</a>
+        <a href="/tags/%E5%A4%87%E5%BF%98/" class="print-no-link">#备忘</a>
+      
+        <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="print-no-link">#正则表达式</a>
       
     </div>
   
@@ -361,8 +446,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>回车（Carriage Return）换行（Line Feed）</div>
-      <div>https://blog.zhaosn.top/tips/CRLF/</div>
+      <div></div>
+      <div>https://blog.zhaosn.top/tips/regex/</div>
     </div>
     <div class="license-meta">
       
@@ -374,13 +459,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月9日</div>
+          <div>2026年1月29日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月29日</div>
+          <div>2026年2月3日</div>
         </div>
       
       
@@ -418,29 +503,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/blog/blog_Injection/" title="文章前后JS插入元素">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">文章前后JS插入元素</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/FreeRTOS-plus-CLI/01-FreeRTOS-plus-CLI/" title="FreeRTOS-Plus-CLI 命令行接口">
-                        <span class="hidden-mobile">FreeRTOS-Plus-CLI 命令行接口</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
