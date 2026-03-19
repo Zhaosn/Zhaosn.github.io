@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
-    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/13.openthread(WIP)/"/>
+    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/14.storage/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,13 +21,13 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="13. openthread 目录13.1 ot_cli   字段 描述    例程名称 OpenThread 命令行示例   所在文件夹路径 examples/openthread/ot_cli   核心功能说明 提供 OpenThread 命令行界面，支持 TCP、UDP 和 Iperf 等扩展功能，用于管理和调试 Thread 网络   主要调用的内部/外部函数或模块 - OpenThrea">
+    <meta name="description" content="14. storage 目录14.1 nvs/nvs_rw_value 例程   字段 描述    例程名称 nvs/nvs_rw_value   所在文件夹路径 examples\storage\nvs\nvs_rw_value   核心功能说明 演示如何使用ESP-IDF的NVS(Non-Volatile Storage)组件读写键值对数据。实现了整数和字符串类型的读写操作，以及键的查找和删除">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ESP-IDF 例程——OpenThread 命令行界面 - Zhaosn的博客</title>
+  <title>ESP-IDF 例程——存储 - Zhaosn的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -241,7 +241,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ESP-IDF 例程——OpenThread 命令行界面"></span>
+            <span id="subtitle" data-typed-text="ESP-IDF 例程——存储"></span>
           
         </div>
 
@@ -264,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          5.1k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
         
-          3 分钟
+          12 分钟
         
       </span>
     
@@ -660,7 +660,7 @@
     
       
       
-        <a href="/ESP32-examples/19.bluetooth(WIP)/" title="ESP-IDF 例程——bluetooth"
+        <a href="/ESP32-examples/19.bluetooth/" title="ESP-IDF 例程——bluetooth"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">ESP-IDF 例程——bluetooth</span>
@@ -928,12 +928,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ESP-IDF 例程——OpenThread 命令行界面</h1>
+            <h1 id="seo-header">ESP-IDF 例程——存储</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="13-openthread-目录"><a href="#13-openthread-目录" class="headerlink" title="13. openthread 目录"></a>13. openthread 目录</h2><h3 id="13-1-ot-cli"><a href="#13-1-ot-cli" class="headerlink" title="13.1 ot_cli"></a>13.1 ot_cli</h3><table>
+                <h2 id="14-storage-目录"><a href="#14-storage-目录" class="headerlink" title="14. storage 目录"></a>14. storage 目录</h2><h3 id="14-1-nvs-nvs-rw-value-例程"><a href="#14-1-nvs-nvs-rw-value-例程" class="headerlink" title="14.1 nvs/nvs_rw_value 例程"></a>14.1 nvs/nvs_rw_value 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -942,43 +942,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>OpenThread 命令行示例</td>
+<td>nvs/nvs_rw_value</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples/openthread/ot_cli</td>
+<td>examples\storage\nvs\nvs_rw_value</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>提供 OpenThread 命令行界面，支持 TCP、UDP 和 Iperf 等扩展功能，用于管理和调试 Thread 网络</td>
+<td>演示如何使用ESP-IDF的NVS(Non-Volatile Storage)组件读写键值对数据。实现了整数和字符串类型的读写操作，以及键的查找和删除功能。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- OpenThread CLI API</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>nvs_flash_init()</code>：初始化NVS<br>- <code>nvs_open()</code>：打开NVS命名空间<br>- <code>nvs_set_i32()</code>：写入整数<br>- <code>nvs_get_i32()</code>：读取整数<br>- <code>nvs_set_str()</code>：写入字符串<br>- <code>nvs_get_str()</code>：读取字符串<br>- <code>nvs_erase_key()</code>：删除键<br>- <code>nvs_commit()</code>：提交更改<br>- <code>nvs_close()</code>：关闭NVS句柄</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要写入的整数和字符串值（硬编码在程序中）<br><br>输出：<br>- 读取到的整数和字符串值<br>- 操作结果状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习NVS的基本使用方法<br>- 开发需要存储配置信息的应用<br>- 保存设备状态和计数器<br>- 存储简单的键值对数据<br>- 作为NVS应用的参考模板</td>
 </tr>
 </tbody></table>
-<ul>
-<li>OpenThread 协议栈</li>
-<li>IEEE 802.15.4 驱动</li>
-<li>console 组件（命令行界面）</li>
-<li>支持 UART 和 USB Serial/JTAG 控制台输出</li>
-<li>支持 ESP32-C5、ESP32-C6、ESP32-H2 芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
-<li>控制台输出通道（UART 或 USB Serial/JTAG）</li>
-<li>Thread 网络参数（通道、PAN ID、地址等）</li>
-</ul>
-<p>输出结果：</p>
-<ul>
-<li>命令执行状态和结果</li>
-<li>网络配置信息</li>
-<li>节点状态和角色</li>
-<li>IP 地址信息</li>
-<li>数据包发送和接收状态 |<br>| <strong>适用场景及典型应用案例</strong> | - Thread 网络的开发和调试</li>
-<li>Thread 协议栈的功能验证</li>
-<li>不同 Thread 设备之间的兼容性测试</li>
-<li>基于 Thread 的物联网设备开发</li>
-<li>网络参数的优化和测试 |</li>
-</ul>
-<h3 id="13-2-ot-rcp"><a href="#13-2-ot-rcp" class="headerlink" title="13.2 ot_rcp"></a>13.2 ot_rcp</h3><table>
+<h3 id="14-2-fatfs-getting-started-例程"><a href="#14-2-fatfs-getting-started-例程" class="headerlink" title="14.2 fatfs/getting_started 例程"></a>14.2 fatfs/getting_started 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -987,41 +974,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>OpenThread Radio Co-Processor (RCP) 示例</td>
+<td>fatfs/getting_started</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples/openthread/ot_rcp</td>
+<td>examples\storage\fatfs\getting_started</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>实现 OpenThread 无线电协处理器，与主机配合工作，提供 802.15.4 无线电功能，用于 Thread 边界路由器或 Thread 嗅探器</td>
+<td>演示如何使用FATFS组件在SPI Flash上实现FAT文件系统。实现了文件系统的挂载、文件的打开、写入、读取和关闭，以及文件系统的卸载。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- OpenThread RCP 协议栈</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_fat_spiflash_mount()</code>：挂载FAT文件系统<br>- <code>fopen()</code>：打开文件<br>- <code>fwrite()</code>：写入文件<br>- <code>fread()</code>：读取文件<br>- <code>fclose()</code>：关闭文件<br>- <code>esp_vfs_fat_spiflash_unmount()</code>：卸载FAT文件系统</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要写入的字符串”Hello World!”（硬编码在程序中）<br><br>输出：<br>- 写入成功的状态<br>- 读取到的字符串<br>- 文件系统操作的日志信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习FATFS的基本使用方法<br>- 开发需要文件系统支持的应用<br>- 存储大量数据和文件<br>- 实现可与电脑兼容的文件系统<br>- 作为FATFS应用的参考模板</td>
 </tr>
 </tbody></table>
-<ul>
-<li>IEEE 802.15.4 驱动</li>
-<li>UART 通信接口</li>
-<li>支持 ESP32-C5、ESP32-C6、ESP32-H2 芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
-<li>UART 通信参数（波特率、引脚）</li>
-<li>固件大小优化配置</li>
-<li>日志级别设置</li>
-</ul>
-<p>输出结果：</p>
-<ul>
-<li>设备初始化状态</li>
-<li>UART 通信状态</li>
-<li>802.15.4 无线电状态</li>
-<li>数据包处理状态 |<br>| <strong>适用场景及典型应用案例</strong> | - Thread 边界路由器的无线电组件</li>
-<li>Thread 网络嗅探器</li>
-<li>工业自动化网络的无线通信组件</li>
-<li>智能家居设备的无线连接解决方案</li>
-<li>物联网网关的无线扩展 |</li>
-</ul>
-<h3 id="13-3-ot-br"><a href="#13-3-ot-br" class="headerlink" title="13.3 ot_br"></a>13.3 ot_br</h3><table>
+<h3 id="14-3-littlefs-例程"><a href="#14-3-littlefs-例程" class="headerlink" title="14.3 littlefs 例程"></a>14.3 littlefs 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1030,46 +1006,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>OpenThread 边界路由器示例</td>
+<td>littlefs</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples/openthread/ot_br</td>
+<td>examples\storage\littlefs</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>实现 OpenThread 边界路由器，连接 Thread 网络和 Wi-Fi/Ethernet 网络，支持双向 IPv6 连接和服务发现</td>
+<td>演示如何使用LittleFS文件系统在SPI Flash上存储数据。实现了LittleFS的初始化、挂载、文件读写、目录操作和卸载功能。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- OpenThread 边界路由器功能</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_littlefs_register()</code>：注册LittleFS<br>- <code>esp_vfs_littlefs_unregister()</code>：注销LittleFS<br>- <code>littlefs_info()</code>：获取LittleFS信息<br>- 标准C文件操作函数（fopen, fwrite, fread, fclose等）</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要写入的文件内容<br><br>输出：<br>- 文件读写结果<br>- LittleFS使用情况<br>- 目录列表</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习LittleFS文件系统的使用<br>- 开发需要高效文件系统的应用<br>- 存储配置文件和资源文件<br>- 物联网设备的本地数据存储<br>- 作为LittleFS应用的参考模板</td>
 </tr>
 </tbody></table>
-<ul>
-<li>WiFi 驱动（STA 模式）</li>
-<li>Ethernet 驱动</li>
-<li>IPv6 路由和邻居发现</li>
-<li>mDNS 服务发现</li>
-<li>SRP（Service Registration Protocol）支持</li>
-<li>支持多种 ESP32 芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
-<li>Wi-Fi SSID 和密码</li>
-<li>自动启动设置</li>
-<li>以太网配置</li>
-<li>控制台输出通道</li>
-</ul>
-<p>输出结果：</p>
-<ul>
-<li>网络连接状态</li>
-<li>Thread 网络形成状态</li>
-<li>IPv6 地址分配</li>
-<li>服务发现结果</li>
-<li>数据包转发状态 |<br>| <strong>适用场景及典型应用案例</strong> | - Thread 网络与外部网络的桥接</li>
-<li>智能家居设备的互联网连接</li>
-<li>工业自动化网络的边界网关</li>
-<li>智能建筑的网络基础设施</li>
-<li>物联网设备的远程监控和控制 |</li>
-</ul>
-<h3 id="13-4-ot-sleepy-device"><a href="#13-4-ot-sleepy-device" class="headerlink" title="13.4 ot_sleepy_device"></a>13.4 ot_sleepy_device</h3><table>
+<h3 id="14-4-spiffs-例程"><a href="#14-4-spiffs-例程" class="headerlink" title="14.4 spiffs 例程"></a>14.4 spiffs 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1078,95 +1038,733 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>OpenThread 休眠设备示例</td>
+<td>spiffs</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples/openthread/ot_sleepy_device</td>
+<td>examples\storage\spiffs</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示 OpenThread 休眠设备的实现，支持 802.15.4 无线电休眠，延长电池寿命</td>
+<td>演示如何使用SPIFFS(SPI Flash File System)在SPI Flash上实现文件系统。实现了SPIFFS的挂载、文件读写、目录操作和卸载功能。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- OpenThread 协议栈</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_spiffs_register()</code>：注册SPIFFS<br>- <code>esp_vfs_spiffs_unregister()</code>：注销SPIFFS<br>- <code>esp_spiffs_info()</code>：获取SPIFFS信息<br>- 标准C文件操作函数（fopen, fwrite, fread, fclose等）</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要写入的文件内容<br><br>输出：<br>- 文件读写结果<br>- SPIFFS使用情况<br>- 目录列表</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习SPIFFS文件系统的使用<br>- 开发需要轻量级文件系统的应用<br>- 存储Web服务器的静态文件<br>- 物联网设备的本地数据存储<br>- 作为SPIFFS应用的参考模板</td>
 </tr>
 </tbody></table>
-<ul>
-<li>IEEE 802.15.4 驱动</li>
-<li>休眠管理功能</li>
-<li>支持 IEEE 802.15.4 芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
-<li>休眠周期</li>
-<li>唤醒时间</li>
-<li>Thread 网络参数</li>
-</ul>
-<p>输出结果：</p>
-<ul>
-<li>设备休眠和唤醒状态</li>
-<li>网络连接状态</li>
-<li>数据传输状态</li>
-<li>电池寿命优化效果 |<br>| <strong>适用场景及典型应用案例</strong> | - 电池供电的传感器设备</li>
-<li>环境监测设备</li>
-<li>可穿戴设备</li>
-<li>智能家居传感器</li>
-<li>工业无线传感器网络 |</li>
-</ul>
-<h3 id="13-5-技术要点"><a href="#13-5-技术要点" class="headerlink" title="13.5 技术要点"></a>13.5 技术要点</h3><ul>
-<li><p><strong>OpenThread 协议支持</strong>：</p>
-<ul>
-<li>完整的 Thread 1.3 协议支持</li>
-<li>IPv6 连接</li>
-<li>服务发现（SRP 和 mDNS）</li>
-<li>休眠设备支持</li>
-</ul>
-</li>
-<li><p><strong>硬件兼容性</strong>：</p>
-<ul>
-<li>支持多种 ESP32 芯片</li>
-<li>支持单独的 802.15.4 芯片（如 ESP32-H2）</li>
-<li>支持 Wi-Fi + Thread 双芯片解决方案</li>
-<li>支持以太网连接</li>
-</ul>
-</li>
-<li><p><strong>网络拓扑</strong>：</p>
-<ul>
-<li>支持 Leader、Router、Child 等多种节点角色</li>
-<li>支持自组织网络</li>
-<li>支持网络自动修复</li>
-</ul>
-</li>
-<li><p><strong>通信接口</strong>：</p>
-<ul>
-<li>UART 通信</li>
-<li>USB Serial/JTAG 支持</li>
-<li>支持多种控制台输出通道</li>
-</ul>
-</li>
-<li><p><strong>电源管理</strong>：</p>
-<ul>
-<li>支持设备休眠</li>
-<li>支持低功耗模式</li>
-<li>电池寿命优化</li>
-</ul>
-</li>
-</ul>
-<h3 id="13-6-构建与运行"><a href="#13-6-构建与运行" class="headerlink" title="13.6 构建与运行"></a>13.6 构建与运行</h3><p>所有 openthread 例程的构建方法基本一致：</p>
-<ol>
-<li>配置项目：<code>idf.py menuconfig</code></li>
-<li>设置网络参数和硬件配置</li>
-<li>构建项目：<code>idf.py build</code></li>
-<li>烧录到开发板：<code>idf.py -p PORT flash monitor</code></li>
-<li>根据具体例程的要求进行网络连接和测试</li>
-</ol>
-<h3 id="13-7-应用场景总结"><a href="#13-7-应用场景总结" class="headerlink" title="13.7 应用场景总结"></a>13.7 应用场景总结</h3><ul>
-<li><strong>ot_cli</strong>：适用于 Thread 网络的开发和调试，以及协议功能验证</li>
-<li><strong>ot_rcp</strong>：适用于 Thread 边界路由器和 Thread 嗅探器的无线电组件</li>
-<li><strong>ot_br</strong>：适用于 Thread 网络与外部网络的桥接，实现双向 IPv6 连接</li>
-<li><strong>ot_sleepy_device</strong>：适用于电池供电的传感器设备，延长设备寿命</li>
-<li><strong>ot_trel</strong>：适用于需要长距离、高可靠性 Thread 网络通信的场景</li>
-</ul>
-<p>这些例程展示了 ESP-IDF 在 OpenThread 方面的全面支持，从基础的命令行工具到复杂的边界路由器，满足不同场景下的 Thread 网络需求。开发者可以根据自己的应用场景选择合适的例程作为基础，进行二次开发和扩展。</p>
+<h3 id="14-5-wear-levelling-例程"><a href="#14-5-wear-levelling-例程" class="headerlink" title="14.5 wear_levelling 例程"></a>14.5 wear_levelling 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>wear_levelling</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\wear_levelling</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的wear_levelling组件实现Flash的磨损均衡。实现了基于磨损均衡的NVS-like键值存储，包括数据的写入、读取和删除。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>wl_mount()</code>：挂载磨损均衡分区<br>- <code>wl_unmount()</code>：卸载磨损均衡分区<br>- <code>nvs_open_from_partition()</code>：从磨损均衡分区打开NVS<br>- 标准NVS操作函数（nvs_set_i32, nvs_get_i32等）</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要写入的键值对数据<br><br>输出：<br>- 读取到的数据<br>- 磨损均衡状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Flash磨损均衡的原理和使用<br>- 开发需要频繁写入Flash的应用<br>- 延长Flash寿命的设备<br>- 物联网设备的长期数据存储<br>- 作为磨损均衡应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-6-custom-flash-driver-例程"><a href="#14-6-custom-flash-driver-例程" class="headerlink" title="14.6 custom_flash_driver 例程"></a>14.6 custom_flash_driver 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>custom_flash_driver</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\custom_flash_driver</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何实现自定义Flash驱动，用于支持非标准Flash芯片或特殊的Flash操作。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- 自定义Flash驱动实现<br>- 引导加载程序组件<br>- 芯片驱动组件</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- Flash操作参数<br><br>输出：<br>- Flash操作结果<br>- 驱动初始化状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习自定义Flash驱动的实现<br>- 支持特殊Flash芯片<br>- 开发需要特殊Flash操作的应用<br>- 作为Flash驱动开发的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-7-emmc-例程"><a href="#14-7-emmc-例程" class="headerlink" title="14.7 emmc 例程"></a>14.7 emmc 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>emmc</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\emmc</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用eMMC（嵌入式多媒体卡）存储设备，支持不同总线宽度的eMMC操作。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- eMMC初始化和配置函数<br>- eMMC读写操作函数<br>- 支持1线、4线和8线eMMC模式</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- eMMC配置参数<br><br>输出：<br>- eMMC初始化状态<br>- 读写操作结果<br>- 设备信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习eMMC存储设备的使用<br>- 开发需要大容量存储的应用<br>- 多媒体设备的存储解决方案<br>- 作为eMMC应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-8-fatfs-ext-flash-例程"><a href="#14-8-fatfs-ext-flash-例程" class="headerlink" title="14.8 fatfs/ext_flash 例程"></a>14.8 fatfs/ext_flash 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>fatfs/ext_flash</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\fatfs\ext_flash</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何在外部Flash上使用FATFS文件系统，实现外部存储的文件管理。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_fat_spiflash_mount()</code>：挂载FAT文件系统<br>- 标准C文件操作函数<br>- 外部Flash驱动</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 外部Flash配置<br><br>输出：<br>- 文件系统挂载状态<br>- 文件操作结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习在外部Flash上使用FATFS<br>- 开发需要扩展存储的应用<br>- 多媒体文件存储<br>- 作为外部Flash存储的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-9-fatfs-fatfsgen-例程"><a href="#14-9-fatfs-fatfsgen-例程" class="headerlink" title="14.9 fatfs/fatfsgen 例程"></a>14.9 fatfs/fatfsgen 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>fatfs/fatfsgen</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\fatfs\fatfsgen</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用fatfsgen工具生成FAT文件系统镜像，并在运行时挂载和使用。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_fat_spiflash_mount()</code>：挂载FAT文件系统<br>- 标准C文件操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 预生成的FAT文件系统镜像<br><br>输出：<br>- 文件系统挂载状态<br>- 文件操作结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习fatfsgen工具的使用<br>- 开发需要预加载文件的应用<br>- 嵌入式系统的资源文件存储<br>- 作为文件系统镜像生成的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-10-fatfs-fs-operations-例程"><a href="#14-10-fatfs-fs-operations-例程" class="headerlink" title="14.10 fatfs/fs_operations 例程"></a>14.10 fatfs/fs_operations 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>fatfs/fs_operations</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\fatfs\fs_operations</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示FATFS文件系统的各种操作，包括文件读写、目录操作、文件属性管理等。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_fat_spiflash_mount()</code>：挂载FAT文件系统<br>- 标准C文件操作函数（fopen, fwrite, fread, fclose等）<br>- 目录操作函数（opendir, readdir, closedir等）</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 文件操作参数<br><br>输出：<br>- 文件操作结果<br>- 目录列表<br>- 文件属性信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习FATFS文件系统的高级操作<br>- 开发需要复杂文件操作的应用<br>- 文件管理系统<br>- 作为文件系统操作的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-11-nvs-nvs-bootloader-例程"><a href="#14-11-nvs-nvs-bootloader-例程" class="headerlink" title="14.11 nvs/nvs_bootloader 例程"></a>14.11 nvs/nvs_bootloader 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>nvs/nvs_bootloader</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\nvs\nvs_bootloader</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何在引导加载程序中使用NVS，实现引导加载程序配置和数据存储。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- 引导加载程序钩子函数<br>- NVS操作函数<br>- 加密相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 引导加载程序配置<br><br>输出：<br>- NVS操作结果<br>- 引导加载状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习在引导加载程序中使用NVS<br>- 开发需要引导加载程序配置的应用<br>- 安全启动和加密应用<br>- 作为引导加载程序NVS使用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-12-nvs-nvs-console-例程"><a href="#14-12-nvs-nvs-console-例程" class="headerlink" title="14.12 nvs/nvs_console 例程"></a>14.12 nvs/nvs_console 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>nvs/nvs_console</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\nvs\nvs_console</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>提供NVS命令行界面，允许用户通过控制台命令管理NVS数据，包括读写、删除和列出键值对。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- 控制台命令注册和处理<br>- NVS操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 控制台命令和参数<br><br>输出：<br>- 命令执行结果<br>- NVS数据信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习NVS的命令行管理<br>- 开发调试工具<br>- 现场配置和维护<br>- 作为NVS调试工具的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-13-nvs-nvs-iteration-例程"><a href="#14-13-nvs-nvs-iteration-例程" class="headerlink" title="14.13 nvs/nvs_iteration 例程"></a>14.13 nvs/nvs_iteration 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>nvs/nvs_iteration</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\nvs\nvs_iteration</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何遍历NVS中的所有键值对，实现NVS数据的枚举和管理。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>nvs_open()</code>：打开NVS命名空间<br>- <code>nvs_get_blob()</code>：读取blob数据<br>- <code>nvs_entry_find()</code>：查找NVS条目<br>- <code>nvs_entry_next()</code>：获取下一个NVS条目</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- NVS命名空间<br><br>输出：<br>- 遍历到的键值对<br>- NVS条目信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习NVS条目的遍历<br>- 开发NVS数据管理工具<br>- 数据备份和恢复<br>- 作为NVS遍历操作的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-14-nvs-nvs-rw-blob-例程"><a href="#14-14-nvs-nvs-rw-blob-例程" class="headerlink" title="14.14 nvs/nvs_rw_blob 例程"></a>14.14 nvs/nvs_rw_blob 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>nvs/nvs_rw_blob</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\nvs\nvs_rw_blob</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用NVS存储和读取二进制大对象（blob）数据，如结构体、数组等。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>nvs_flash_init()</code>：初始化NVS<br>- <code>nvs_open()</code>：打开NVS命名空间<br>- <code>nvs_set_blob()</code>：写入blob数据<br>- <code>nvs_get_blob()</code>：读取blob数据<br>- <code>nvs_commit()</code>：提交更改<br>- <code>nvs_close()</code>：关闭NVS句柄</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要写入的blob数据（结构体、数组等）<br><br>输出：<br>- 读取到的blob数据<br>- 操作结果状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习NVS存储blob数据<br>- 开发需要存储复杂数据结构的应用<br>- 配置信息存储<br>- 传感器数据缓存<br>- 作为NVS blob操作的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-15-nvs-nvs-rw-value-cxx-例程"><a href="#14-15-nvs-nvs-rw-value-cxx-例程" class="headerlink" title="14.15 nvs/nvs_rw_value_cxx 例程"></a>14.15 nvs/nvs_rw_value_cxx 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>nvs/nvs_rw_value_cxx</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\nvs\nvs_rw_value_cxx</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何在C++代码中使用NVS读写键值对数据，展示C++接口的使用方法。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- C++版NVS操作函数<br>- 标准C++库</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要写入的整数和字符串值<br><br>输出：<br>- 读取到的整数和字符串值<br>- 操作结果状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习C++中使用NVS<br>- 开发C++应用<br>- 现代C++项目的配置存储<br>- 作为C++ NVS使用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-16-nvs-nvs-statistics-例程"><a href="#14-16-nvs-nvs-statistics-例程" class="headerlink" title="14.16 nvs/nvs_statistics 例程"></a>14.16 nvs/nvs_statistics 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>nvs/nvs_statistics</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\nvs\nvs_statistics</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何获取NVS的统计信息，包括使用情况、条目数量、碎片率等。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>nvs_flash_init()</code>：初始化NVS<br>- <code>nvs_open()</code>：打开NVS命名空间<br>- <code>nvs_get_stats()</code>：获取NVS统计信息</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- NVS命名空间<br><br>输出：<br>- NVS使用情况<br>- 条目数量<br>- 碎片率<br>- 存储容量</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习NVS统计信息的获取<br>- 开发NVS监控工具<br>- 系统诊断和调试<br>- 作为NVS统计的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-17-nvs-nvsgen-例程"><a href="#14-17-nvs-nvsgen-例程" class="headerlink" title="14.17 nvs/nvsgen 例程"></a>14.17 nvs/nvsgen 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>nvs/nvsgen</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\nvs\nvsgen</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用nvsgen工具生成NVS分区镜像，并在运行时读取预加载的NVS数据。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>nvs_flash_init()</code>：初始化NVS<br>- <code>nvs_open()</code>：打开NVS命名空间<br>- 标准NVS操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 预生成的NVS分区镜像<br><br>输出：<br>- 读取到的NVS数据<br>- 操作结果状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习nvsgen工具的使用<br>- 开发需要预加载配置的应用<br>- 批量设备配置<br>- 作为NVS镜像生成的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-18-partition-api-partition-find-例程"><a href="#14-18-partition-api-partition-find-例程" class="headerlink" title="14.18 partition_api/partition_find 例程"></a>14.18 partition_api/partition_find 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>partition_api/partition_find</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\partition_api\partition_find</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用分区API查找和识别Flash分区，包括按名称、类型和子类型查找分区。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_partition_find_first()</code>：查找第一个匹配的分区<br>- <code>esp_partition_find()</code>：查找所有匹配的分区<br>- <code>esp_partition_get_info()</code>：获取分区信息</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 分区查找参数（类型、子类型、名称）<br><br>输出：<br>- 找到的分区信息<br>- 分区数量</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习分区API的使用<br>- 开发需要动态分区管理的应用<br>- 系统诊断工具<br>- 作为分区查找的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-19-partition-api-partition-mmap-例程"><a href="#14-19-partition-api-partition-mmap-例程" class="headerlink" title="14.19 partition_api/partition_mmap 例程"></a>14.19 partition_api/partition_mmap 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>partition_api/partition_mmap</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\partition_api\partition_mmap</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用分区API将Flash分区映射到内存，实现直接内存访问。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_partition_find_first()</code>：查找分区<br>- <code>esp_partition_mmap()</code>：映射分区到内存<br>- <code>esp_partition_munmap()</code>：解除内存映射</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 分区名称或类型<br><br>输出：<br>- 映射的内存地址<br>- 映射状态<br>- 读取的数据</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习分区内存映射<br>- 开发需要快速访问Flash数据的应用<br>- 资源文件加载<br>- 作为内存映射的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-20-partition-api-partition-ops-例程"><a href="#14-20-partition-api-partition-ops-例程" class="headerlink" title="14.20 partition_api/partition_ops 例程"></a>14.20 partition_api/partition_ops 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>partition_api/partition_ops</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\partition_api\partition_ops</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用分区API对Flash分区进行读写操作，包括扇区擦除、数据写入和读取。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_partition_find_first()</code>：查找分区<br>- <code>esp_partition_erase_range()</code>：擦除分区范围<br>- <code>esp_partition_write()</code>：写入数据<br>- <code>esp_partition_read()</code>：读取数据</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要写入的数据<br><br>输出：<br>- 操作结果状态<br>- 读取到的数据</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习分区API的基本操作<br>- 开发直接操作Flash的应用<br>- 自定义文件系统<br>- 作为分区操作的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-21-parttool-例程"><a href="#14-21-parttool-例程" class="headerlink" title="14.21 parttool 例程"></a>14.21 parttool 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>parttool</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\parttool</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用parttool工具管理Flash分区，包括分区表读取、修改和验证。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- parttool Python脚本<br>- 分区表操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 分区操作命令<br><br>输出：<br>- 分区表信息<br>- 操作结果状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习parttool工具的使用<br>- 开发分区管理工具<br>- 系统维护和调试<br>- 作为分区管理的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-22-perf-benchmark-例程"><a href="#14-22-perf-benchmark-例程" class="headerlink" title="14.22 perf_benchmark 例程"></a>14.22 perf_benchmark 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>perf_benchmark</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\perf_benchmark</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>提供存储性能基准测试，包括SPI Flash、SD卡等存储设备的读写速度测试。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- 性能测试函数<br>- 存储设备操作函数<br>- 时间测量函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 测试配置参数<br><br>输出：<br>- 读写速度测试结果<br>- 延迟统计<br>- 性能分析报告</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习存储性能测试方法<br>- 评估存储设备性能<br>- 优化存储相关应用<br>- 作为性能测试的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-23-sd-card-sdmmc-例程"><a href="#14-23-sd-card-sdmmc-例程" class="headerlink" title="14.23 sd_card/sdmmc 例程"></a>14.23 sd_card/sdmmc 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>sd_card/sdmmc</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\sd_card\sdmmc</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用SDMMC（安全数字多媒体卡）接口操作SD卡，支持不同总线宽度的SD卡操作。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- SDMMC初始化和配置函数<br>- SD卡读写操作函数<br>- 支持1线和4线SDMMC模式</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- SDMMC配置参数<br><br>输出：<br>- SD卡初始化状态<br>- 读写操作结果<br>- 设备信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习SDMMC接口的使用<br>- 开发需要大容量存储的应用<br>- 多媒体文件存储<br>- 数据备份和日志记录<br>- 作为SD卡应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-24-sd-card-sdspi-例程"><a href="#14-24-sd-card-sdspi-例程" class="headerlink" title="14.24 sd_card/sdspi 例程"></a>14.24 sd_card/sdspi 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>sd_card/sdspi</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\sd_card\sdspi</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用SPI接口操作SD卡，提供一种更灵活的SD卡连接方式。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- SDSPI初始化和配置函数<br>- SD卡读写操作函数<br>- SPI总线配置</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- SDSPI配置参数<br><br>输出：<br>- SD卡初始化状态<br>- 读写操作结果<br>- 设备信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习SDSPI接口的使用<br>- 开发需要SD卡但没有SDMMC接口的应用<br>- 灵活的硬件设计<br>- 作为SDSPI应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-25-semihost-vfs-例程"><a href="#14-25-semihost-vfs-例程" class="headerlink" title="14.25 semihost_vfs 例程"></a>14.25 semihost_vfs 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>semihost_vfs</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\semihost_vfs</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用半主机（semihosting）功能，实现目标设备与主机之间的文件系统共享。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_semihost_register()</code>：注册半主机VFS<br>- 标准C文件操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 主机文件路径<br><br>输出：<br>- 文件操作结果<br>- 读取到的文件内容</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习半主机功能的使用<br>- 开发和调试阶段的文件访问<br>- 主机与目标设备的文件共享<br>- 作为半主机VFS的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="14-26-spiffsgen-例程"><a href="#14-26-spiffsgen-例程" class="headerlink" title="14.26 spiffsgen 例程"></a>14.26 spiffsgen 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>spiffsgen</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\storage\spiffsgen</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用spiffsgen工具生成SPIFFS文件系统镜像，并在运行时挂载和使用。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_spiffs_register()</code>：注册SPIFFS<br>- 标准C文件操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 预生成的SPIFFS文件系统镜像<br><br>输出：<br>- 文件系统挂载状态<br>- 文件操作结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习spiffsgen工具的使用<br>- 开发需要预加载文件的应用<br>- 嵌入式系统的资源文件存储<br>- 作为SPIFFS镜像生成的参考模板</td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -1219,8 +1817,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ESP-IDF 例程——OpenThread 命令行界面</div>
-      <div>https://blog.zhaosn.top/ESP32-examples/13.openthread(WIP)/</div>
+      <div>ESP-IDF 例程——存储</div>
+      <div>https://blog.zhaosn.top/ESP32-examples/14.storage/</div>
     </div>
     <div class="license-meta">
       
@@ -1238,7 +1836,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月21日</div>
+          <div>2026年2月28日</div>
         </div>
       
       
@@ -1281,9 +1879,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/ESP32-examples/20.peripherals(WIP)/" title="ESP-IDF 例程——外设">
+                      <a href="/ESP32-examples/17.system/" title="ESP-IDF 例程——system">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ESP-IDF 例程——外设</span>
+                        <span class="hidden-mobile">ESP-IDF 例程——system</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1291,8 +1889,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/ESP32-examples/15.network/" title="ESP-IDF 例程——网络">
-                        <span class="hidden-mobile">ESP-IDF 例程——网络</span>
+                      <a href="/ESP32-examples/18.security/" title="ESP-IDF 例程——加密">
+                        <span class="hidden-mobile">ESP-IDF 例程——加密</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

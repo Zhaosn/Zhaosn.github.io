@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
-    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/16.protocols(WIP)/"/>
+    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/16.protocols/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -264,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          6k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
         
-          3 分钟
+          14 分钟
         
       </span>
     
@@ -660,7 +660,7 @@
     
       
       
-        <a href="/ESP32-examples/19.bluetooth(WIP)/" title="ESP-IDF 例程——bluetooth"
+        <a href="/ESP32-examples/19.bluetooth/" title="ESP-IDF 例程——bluetooth"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">ESP-IDF 例程——bluetooth</span>
@@ -1093,6 +1093,742 @@
 <td>适用于：<br>- 学习Modbus协议的基本实现<br>- 了解Modbus从机的工作原理<br>- 开发基于Modbus的工业设备<br>- 构建工业自动化系统<br>- 作为Modbus从机应用的参考模板</td>
 </tr>
 </tbody></table>
+<h3 id="16-6-dns-over-https-例程"><a href="#16-6-dns-over-https-例程" class="headerlink" title="16.6 dns_over_https 例程"></a>16.6 dns_over_https 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>dns_over_https</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\dns_over_https</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用DNS over HTTPS (DoH) 协议进行域名解析，通过HTTPS加密通道发送DNS查询，提高域名解析的安全性和隐私性。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>dns_over_https_init()</code>：初始化DoH客户端<br>- <code>dns_over_https_query()</code>：执行DoH查询<br>- 时间同步功能<br>- HTTPS客户端API</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要解析的域名<br>- DoH服务器URL<br><br>输出：<br>- 解析结果（IP地址）<br>- 查询状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习DoH协议的实现和使用<br>- 开发需要安全域名解析的应用<br>- 保护用户隐私的网络应用<br>- 作为DoH客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-7-esp-http-client-例程"><a href="#16-7-esp-http-client-例程" class="headerlink" title="16.7 esp_http_client 例程"></a>16.7 esp_http_client 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>esp_http_client</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\esp_http_client</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的HTTP客户端库进行HTTP请求，支持HTTP/HTTPS、GET/POST方法、重定向、认证等功能。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_http_client_init()</code>：初始化HTTP客户端<br>- <code>esp_http_client_open()</code>：打开HTTP连接<br>- <code>esp_http_client_write()</code>：写入HTTP请求数据<br>- <code>esp_http_client_read()</code>：读取HTTP响应<br>- <code>esp_http_client_close()</code>：关闭HTTP连接</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- HTTP请求URL<br>- 请求方法（GET/POST等）<br>- 请求数据<br><br>输出：<br>- HTTP响应状态码<br>- 响应头<br>- 响应体</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习ESP-IDF HTTP客户端库的使用<br>- 开发需要HTTP通信的应用<br>- 连接Web API和云服务<br>- 作为HTTP客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-8-esp-local-ctrl-例程"><a href="#16-8-esp-local-ctrl-例程" class="headerlink" title="16.8 esp_local_ctrl 例程"></a>16.8 esp_local_ctrl 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>esp_local_ctrl</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\esp_local_ctrl</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP Local Control组件实现设备的本地控制，支持通过HTTP或HTTPS进行设备配置和管理。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_local_ctrl_init()</code>：初始化本地控制服务<br>- <code>esp_local_ctrl_register_service()</code>：注册服务<br>- <code>esp_local_ctrl_start()</code>：启动本地控制服务</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 设备配置参数<br><br>输出：<br>- 设备状态信息<br>- 配置结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习本地设备控制的实现<br>- 开发需要本地配置的设备<br>- 智能家居设备的本地管理<br>- 作为本地控制服务的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-9-http-server-例程"><a href="#16-9-http-server-例程" class="headerlink" title="16.9 http_server 例程"></a>16.9 http_server 例程</h3><h4 id="16-9-1-http-server-simple-例程"><a href="#16-9-1-http-server-simple-例程" class="headerlink" title="16.9.1 http_server/simple 例程"></a>16.9.1 http_server/simple 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>http_server/simple</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\http_server\simple</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的HTTP服务器库创建简单的HTTP服务器，支持基本的HTTP请求处理和响应。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>httpd_start()</code>：启动HTTP服务器<br>- <code>httpd_register_uri_handler()</code>：注册URI处理程序<br>- 各种HTTP请求处理函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- HTTP客户端请求<br><br>输出：<br>- HTTP服务器响应</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习HTTP服务器的基本实现<br>- 开发需要本地Web界面的设备<br>- 物联网设备的配置界面<br>- 作为HTTP服务器应用的参考模板</td>
+</tr>
+</tbody></table>
+<h4 id="16-9-2-http-server-file-serving-例程"><a href="#16-9-2-http-server-file-serving-例程" class="headerlink" title="16.9.2 http_server/file_serving 例程"></a>16.9.2 http_server/file_serving 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>http_server/file_serving</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\http_server\file_serving</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用HTTP服务器提供文件服务，支持从SPIFFS或SD卡读取文件并通过HTTP提供给客户端。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>httpd_start()</code>：启动HTTP服务器<br>- <code>httpd_register_uri_handler()</code>：注册URI处理程序<br>- 文件系统操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- HTTP客户端请求的文件路径<br><br>输出：<br>- 请求的文件内容<br>- 文件不存在时的错误响应</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习HTTP文件服务的实现<br>- 开发需要提供静态文件的Web应用<br>- 物联网设备的Web界面<br>- 作为文件服务器应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-10-https-mbedtls-例程"><a href="#16-10-https-mbedtls-例程" class="headerlink" title="16.10 https_mbedtls 例程"></a>16.10 https_mbedtls 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>https_mbedtls</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\https_mbedtls</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用mbedTLS库实现HTTPS客户端，支持TLS加密和服务器证书验证。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- mbedTLS初始化和配置函数<br>- SSL/TLS连接函数<br>- 网络套接字操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- HTTPS服务器URL<br>- 服务器根证书<br><br>输出：<br>- HTTPS连接状态<br>- 服务器响应</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习mbedTLS库的使用<br>- 开发安全的HTTPS客户端应用<br>- 连接需要TLS加密的服务<br>- 作为HTTPS客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-11-https-server-例程"><a href="#16-11-https-server-例程" class="headerlink" title="16.11 https_server 例程"></a>16.11 https_server 例程</h3><h4 id="16-11-1-https-server-simple-例程"><a href="#16-11-1-https-server-simple-例程" class="headerlink" title="16.11.1 https_server/simple 例程"></a>16.11.1 https_server/simple 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>https_server/simple</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\https_server\simple</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的HTTPS服务器库创建安全的HTTPS服务器，支持TLS加密和客户端连接。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>httpd_ssl_start()</code>：启动HTTPS服务器<br>- <code>httpd_register_uri_handler()</code>：注册URI处理程序<br>- SSL/TLS配置函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- HTTPS客户端请求<br><br>输出：<br>- HTTPS服务器响应</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习HTTPS服务器的基本实现<br>- 开发需要安全Web界面的设备<br>- 物联网设备的安全配置界面<br>- 作为HTTPS服务器应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-12-https-x509-bundle-例程"><a href="#16-12-https-x509-bundle-例程" class="headerlink" title="16.12 https_x509_bundle 例程"></a>16.12 https_x509_bundle 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>https_x509_bundle</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\https_x509_bundle</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用X.509证书 bundle 验证HTTPS服务器证书，提高HTTPS连接的安全性和可靠性。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_https_client_init()</code>：初始化HTTPS客户端<br>- 证书验证函数<br>- HTTPS客户端API</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- HTTPS服务器URL<br>- X.509证书 bundle<br><br>输出：<br>- HTTPS连接状态<br>- 服务器响应</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习X.509证书验证<br>- 开发需要安全HTTPS连接的应用<br>- 提高HTTPS客户端的安全性<br>- 作为证书验证的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-13-icmp-echo-例程"><a href="#16-13-icmp-echo-例程" class="headerlink" title="16.13 icmp_echo 例程"></a>16.13 icmp_echo 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>icmp_echo</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\icmp_echo</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ICMP协议实现Ping功能，用于测试网络连接和测量网络延迟。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>icmp_echo_task()</code>：执行ICMP echo请求的任务<br>- 套接字操作函数<br>- ICMP包构建和解析函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 目标IP地址<br>- Ping次数和间隔<br><br>输出：<br>- Ping结果（成功/失败）<br>- 往返时间<br>- 网络延迟统计</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习ICMP协议的实现<br>- 开发网络诊断工具<br>- 测试网络连接状态<br>- 作为Ping工具的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-14-l2tap-例程"><a href="#16-14-l2tap-例程" class="headerlink" title="16.14 l2tap 例程"></a>16.14 l2tap 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>l2tap</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\l2tap</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用L2TAP（Layer 2 Tunneling Access Protocol）在网络层和数据链路层之间建立隧道，实现网络数据的转发。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>l2tap_init()</code>：初始化L2TAP<br>- <code>l2tap_send()</code>：发送L2TAP数据<br>- <code>l2tap_recv()</code>：接收L2TAP数据</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 要发送的数据<br><br>输出：<br>- 接收到的数据<br>- 隧道状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习L2TAP协议的实现<br>- 开发网络隧道应用<br>- 实现网络数据转发<br>- 作为L2TAP应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-15-modbus-serial-mb-master-例程"><a href="#16-15-modbus-serial-mb-master-例程" class="headerlink" title="16.15 modbus/serial/mb_master 例程"></a>16.15 modbus/serial/mb_master 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>modbus/serial/mb_master</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\modbus\serial\mb_master</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的Modbus组件实现Modbus RTU主机。支持线圈、离散输入、保持寄存器和输入寄存器四种数据类型的读写操作，通过串行接口与Modbus从机通信。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>mb_master_init()</code>：初始化Modbus主机<br>- <code>mb_master_start()</code>：启动Modbus主机<br>- <code>mb_master_send_request()</code>：发送Modbus请求<br>- 各种Modbus数据处理函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 从机地址<br>- 寄存器地址和数量<br><br>输出：<br>- 从机响应数据<br>- 操作结果状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Modbus主机的实现<br>- 开发工业控制系统<br>- 构建Modbus网络的主站<br>- 作为Modbus主机应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-16-modbus-tcp-例程"><a href="#16-16-modbus-tcp-例程" class="headerlink" title="16.16 modbus/tcp 例程"></a>16.16 modbus/tcp 例程</h3><h4 id="16-16-1-modbus-tcp-mb-tcp-master-例程"><a href="#16-16-1-modbus-tcp-mb-tcp-master-例程" class="headerlink" title="16.16.1 modbus/tcp/mb_tcp_master 例程"></a>16.16.1 modbus/tcp/mb_tcp_master 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>modbus/tcp/mb_tcp_master</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\modbus\tcp\mb_tcp_master</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的Modbus组件实现Modbus TCP主机。通过TCP/IP网络与Modbus TCP从机通信，支持四种数据类型的读写操作。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>mb_tcp_master_init()</code>：初始化Modbus TCP主机<br>- <code>mb_tcp_master_start()</code>：启动Modbus TCP主机<br>- <code>mb_tcp_master_send_request()</code>：发送Modbus TCP请求</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 从机IP地址和端口<br>- 寄存器地址和数量<br><br>输出：<br>- 从机响应数据<br>- 操作结果状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Modbus TCP协议的实现<br>- 开发基于网络的工业控制系统<br>- 构建Modbus TCP网络的主站<br>- 作为Modbus TCP主机应用的参考模板</td>
+</tr>
+</tbody></table>
+<h4 id="16-16-2-modbus-tcp-mb-tcp-slave-例程"><a href="#16-16-2-modbus-tcp-mb-tcp-slave-例程" class="headerlink" title="16.16.2 modbus/tcp/mb_tcp_slave 例程"></a>16.16.2 modbus/tcp/mb_tcp_slave 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>modbus/tcp/mb_tcp_slave</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\modbus\tcp\mb_tcp_slave</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的Modbus组件实现Modbus TCP从机。通过TCP/IP网络与Modbus TCP主机通信，支持四种数据类型的读写操作。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>mb_tcp_slave_init()</code>：初始化Modbus TCP从机<br>- <code>mb_tcp_slave_start()</code>：启动Modbus TCP从机<br>- 各种Modbus数据处理函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- Modbus TCP主机发送的命令<br><br>输出：<br>- Modbus TCP从机的响应<br>- 寄存器数据<br>- 线圈状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Modbus TCP从机的实现<br>- 开发基于网络的工业设备<br>- 构建Modbus TCP网络的从站<br>- 作为Modbus TCP从机应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-17-mqtt-ssl-例程"><a href="#16-17-mqtt-ssl-例程" class="headerlink" title="16.17 mqtt/ssl 例程"></a>16.17 mqtt/ssl 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>mqtt/ssl</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\mqtt\ssl</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-MQTT库实现MQTT客户端，通过SSL/TLS加密连接到MQTT broker，提高通信安全性。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>mqtt_event_handler()</code>：处理MQTT事件<br>- <code>esp_mqtt_client_init()</code>：初始化MQTT客户端<br>- <code>esp_mqtt_client_start()</code>：启动MQTT客户端<br>- 证书验证相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 配置的MQTT broker URI（通过menuconfig设置）<br>- 服务器根证书<br>- Wi-Fi SSID和密码<br><br>输出：<br>- MQTT连接状态<br>- 消息发布结果<br>- 订阅/取消订阅结果<br>- 接收到的MQTT消息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习MQTT over SSL/TLS的实现<br>- 开发需要安全通信的物联网设备<br>- 连接需要加密的MQTT broker<br>- 作为安全MQTT客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-18-mqtt-ws-例程"><a href="#16-18-mqtt-ws-例程" class="headerlink" title="16.18 mqtt/ws 例程"></a>16.18 mqtt/ws 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>mqtt/ws</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\mqtt\ws</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-MQTT库实现MQTT客户端，通过WebSocket连接到MQTT broker，适用于需要通过Web端口进行MQTT通信的场景。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>mqtt_event_handler()</code>：处理MQTT事件<br>- <code>esp_mqtt_client_init()</code>：初始化MQTT客户端<br>- <code>esp_mqtt_client_start()</code>：启动MQTT客户端</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 配置的MQTT broker WebSocket URI（通过menuconfig设置）<br>- Wi-Fi SSID和密码<br><br>输出：<br>- MQTT连接状态<br>- 消息发布结果<br>- 订阅/取消订阅结果<br>- 接收到的MQTT消息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习MQTT over WebSocket的实现<br>- 开发需要通过Web端口通信的物联网设备<br>- 绕过防火墙限制的MQTT通信<br>- 作为WebSocket MQTT客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-19-mqtt-wss-例程"><a href="#16-19-mqtt-wss-例程" class="headerlink" title="16.19 mqtt/wss 例程"></a>16.19 mqtt/wss 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>mqtt/wss</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\mqtt\wss</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-MQTT库实现MQTT客户端，通过WebSocket over SSL/TLS加密连接到MQTT broker，提高通信安全性。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>mqtt_event_handler()</code>：处理MQTT事件<br>- <code>esp_mqtt_client_init()</code>：初始化MQTT客户端<br>- <code>esp_mqtt_client_start()</code>：启动MQTT客户端<br>- 证书验证相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 配置的MQTT broker WSS URI（通过menuconfig设置）<br>- 服务器根证书<br>- Wi-Fi SSID和密码<br><br>输出：<br>- MQTT连接状态<br>- 消息发布结果<br>- 订阅/取消订阅结果<br>- 接收到的MQTT消息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习安全的MQTT over WebSocket实现<br>- 开发需要安全WebSocket通信的物联网设备<br>- 连接需要加密的WebSocket MQTT broker<br>- 作为安全WebSocket MQTT客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-20-mqtt5-例程"><a href="#16-20-mqtt5-例程" class="headerlink" title="16.20 mqtt5 例程"></a>16.20 mqtt5 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>mqtt5</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\mqtt5</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-MQTT库实现MQTT 5.0客户端，支持MQTT 5.0的新特性，如用户属性、消息过期时间、共享订阅等。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>mqtt_event_handler()</code>：处理MQTT事件<br>- <code>esp_mqtt_client_init()</code>：初始化MQTT客户端<br>- <code>esp_mqtt_client_start()</code>：启动MQTT客户端<br>- MQTT 5.0特性相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 配置的MQTT broker URI（通过menuconfig设置）<br>- Wi-Fi SSID和密码<br><br>输出：<br>- MQTT连接状态<br>- 消息发布结果<br>- 订阅/取消订阅结果<br>- 接收到的MQTT消息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习MQTT 5.0协议的新特性<br>- 开发需要MQTT 5.0功能的物联网设备<br>- 利用MQTT 5.0特性优化通信<br>- 作为MQTT 5.0客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-21-smtp-client-例程"><a href="#16-21-smtp-client-例程" class="headerlink" title="16.21 smtp_client 例程"></a>16.21 smtp_client 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>smtp_client</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\smtp_client</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的SMTP客户端发送电子邮件，支持TLS加密和附件发送。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>smtp_client_init()</code>：初始化SMTP客户端<br>- <code>smtp_client_send_mail()</code>：发送邮件<br>- TLS加密相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- SMTP服务器配置<br>- 发件人、收件人、主题、内容<br>- 附件（可选）<br><br>输出：<br>- 邮件发送结果<br>- 服务器响应</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习SMTP客户端的实现<br>- 开发需要发送邮件的应用<br>- 设备状态通知<br>- 报警和事件通知<br>- 作为SMTP客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-22-sntp-例程"><a href="#16-22-sntp-例程" class="headerlink" title="16.22 sntp 例程"></a>16.22 sntp 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>sntp</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\sntp</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用SNTP（Simple Network Time Protocol）同步设备时间，从网络时间服务器获取准确的当前时间。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>sntp_init()</code>：初始化SNTP<br>- <code>sntp_setoperatingmode()</code>：设置SNTP操作模式<br>- <code>sntp_setservername()</code>：设置NTP服务器<br>- <code>sntp_get_time()</code>：获取当前时间</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- NTP服务器地址<br><br>输出：<br>- 同步后的系统时间<br>- 同步状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习SNTP协议的实现<br>- 开发需要准确时间的应用<br>- 日志记录和时间戳<br>- 证书验证和安全通信<br>- 作为时间同步应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-23-sockets-tcp-server-例程"><a href="#16-23-sockets-tcp-server-例程" class="headerlink" title="16.23 sockets/tcp_server 例程"></a>16.23 sockets/tcp_server 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>sockets/tcp_server</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\sockets\tcp_server</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用POSIX socket API实现TCP服务器。实现了TCP连接的监听、接受、数据发送和接收，支持IPv4和IPv6两种协议。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>tcp_server_task()</code>：TCP服务器任务<br>- <code>socket()</code>：创建socket<br>- <code>bind()</code>：绑定端口<br>- <code>listen()</code>：监听连接<br>- <code>accept()</code>：接受连接<br>- <code>send()</code>：发送数据<br>- <code>recv()</code>：接收数据</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 服务器端口号<br><br>输出：<br>- 客户端连接状态<br>- 接收到的数据<br>- 发送的数据</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习TCP服务器的基本实现<br>- 了解POSIX socket API的使用<br>- 开发基于TCP的服务器应用<br>- 构建网络服务<br>- 作为TCP服务器应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-24-sockets-udp-client-例程"><a href="#16-24-sockets-udp-client-例程" class="headerlink" title="16.24 sockets/udp_client 例程"></a>16.24 sockets/udp_client 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>sockets/udp_client</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\sockets\udp_client</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用POSIX socket API实现UDP客户端。实现了UDP数据包的发送和接收，支持IPv4和IPv6两种协议。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>udp_client_task()</code>：UDP客户端任务<br>- <code>socket()</code>：创建socket<br>- <code>getaddrinfo()</code>：解析域名或IP地址<br>- <code>sendto()</code>：发送UDP数据包<br>- <code>recvfrom()</code>：接收UDP数据包</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 目标服务器IP地址或域名<br>- 目标端口号<br>- 要发送的数据<br><br>输出：<br>- 发送状态<br>- 接收到的UDP数据包</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习UDP客户端的基本实现<br>- 了解POSIX socket API的使用<br>- 开发基于UDP的客户端应用<br>- 构建低延迟通信应用<br>- 作为UDP客户端应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-25-sockets-udp-server-例程"><a href="#16-25-sockets-udp-server-例程" class="headerlink" title="16.25 sockets/udp_server 例程"></a>16.25 sockets/udp_server 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>sockets/udp_server</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\sockets\udp_server</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用POSIX socket API实现UDP服务器。实现了UDP数据包的接收和发送，支持IPv4和IPv6两种协议。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>udp_server_task()</code>：UDP服务器任务<br>- <code>socket()</code>：创建socket<br>- <code>bind()</code>：绑定端口<br>- <code>recvfrom()</code>：接收UDP数据包<br>- <code>sendto()</code>：发送UDP数据包</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 服务器端口号<br><br>输出：<br>- 接收到的UDP数据包<br>- 发送状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习UDP服务器的基本实现<br>- 了解POSIX socket API的使用<br>- 开发基于UDP的服务器应用<br>- 构建低延迟通信服务<br>- 作为UDP服务器应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="16-26-static-ip-例程"><a href="#16-26-static-ip-例程" class="headerlink" title="16.26 static_ip 例程"></a>16.26 static_ip 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>static_ip</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\protocols\static_ip</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何为ESP32设备配置静态IP地址，而不是使用DHCP自动获取IP地址。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_netif_init()</code>：初始化网络接口<br>- <code>esp_netif_create_default_wifi_sta()</code>：创建默认Wi-Fi STA接口<br>- <code>esp_netif_dhcpc_stop()</code>：停止DHCP客户端<br>- <code>esp_netif_set_ip_info()</code>：设置静态IP信息</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 静态IP地址<br>- 子网掩码<br>- 网关地址<br>- DNS服务器地址<br><br>输出：<br>- 网络接口状态<br>- IP配置结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习静态IP配置的实现<br>- 开发需要固定IP地址的应用<br>- 构建需要稳定网络地址的设备<br>- 企业网络中的设备配置<br>- 作为静态IP配置的参考模板</td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -1146,7 +1882,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>ESP-IDF 例程——MQTT、http、sockets、modbus</div>
-      <div>https://blog.zhaosn.top/ESP32-examples/16.protocols(WIP)/</div>
+      <div>https://blog.zhaosn.top/ESP32-examples/16.protocols/</div>
     </div>
     <div class="license-meta">
       
@@ -1164,7 +1900,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月21日</div>
+          <div>2026年2月28日</div>
         </div>
       
       

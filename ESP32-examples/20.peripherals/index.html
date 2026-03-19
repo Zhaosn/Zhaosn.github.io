@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
-    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/14.storage(WIP)/"/>
+    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/20.peripherals/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,13 +21,13 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="14. storage 目录14.1 nvs/nvs_rw_value 例程   字段 描述    例程名称 nvs/nvs_rw_value   所在文件夹路径 examples\storage\nvs\nvs_rw_value   核心功能说明 演示如何使用ESP-IDF的NVS(Non-Volatile Storage)组件读写键值对数据。实现了整数和字符串类型的读写操作，以及键的查找和删除">
+    <meta name="description" content="20. peripherals 目录20.1 gpio/generic_gpio 例程   字段 描述    例程名称 gpio/generic_gpio   所在文件夹路径 examples\peripherals\gpio\generic_gpio   核心功能说明 演示GPIO的基本配置和中断使用方法。实现了GPIO输出配置、GPIO输入配置（带上拉电阻）、上升沿和下降沿中断处理等功能。">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ESP-IDF 例程——存储 - Zhaosn的博客</title>
+  <title>ESP-IDF 例程——外设 - Zhaosn的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -241,7 +241,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ESP-IDF 例程——存储"></span>
+            <span id="subtitle" data-typed-text="ESP-IDF 例程——外设"></span>
           
         </div>
 
@@ -264,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          2k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
         
-          3 分钟
+          5 分钟
         
       </span>
     
@@ -660,7 +660,7 @@
     
       
       
-        <a href="/ESP32-examples/19.bluetooth(WIP)/" title="ESP-IDF 例程——bluetooth"
+        <a href="/ESP32-examples/19.bluetooth/" title="ESP-IDF 例程——bluetooth"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">ESP-IDF 例程——bluetooth</span>
@@ -928,12 +928,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ESP-IDF 例程——存储</h1>
+            <h1 id="seo-header">ESP-IDF 例程——外设</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="14-storage-目录"><a href="#14-storage-目录" class="headerlink" title="14. storage 目录"></a>14. storage 目录</h2><h3 id="14-1-nvs-nvs-rw-value-例程"><a href="#14-1-nvs-nvs-rw-value-例程" class="headerlink" title="14.1 nvs/nvs_rw_value 例程"></a>14.1 nvs/nvs_rw_value 例程</h3><table>
+                <h2 id="20-peripherals-目录"><a href="#20-peripherals-目录" class="headerlink" title="20. peripherals 目录"></a>20. peripherals 目录</h2><h3 id="20-1-gpio-generic-gpio-例程"><a href="#20-1-gpio-generic-gpio-例程" class="headerlink" title="20.1 gpio/generic_gpio 例程"></a>20.1 gpio/generic_gpio 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -942,30 +942,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>nvs/nvs_rw_value</td>
+<td>gpio/generic_gpio</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\storage\nvs\nvs_rw_value</td>
+<td>examples\peripherals\gpio\generic_gpio</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示如何使用ESP-IDF的NVS(Non-Volatile Storage)组件读写键值对数据。实现了整数和字符串类型的读写操作，以及键的查找和删除功能。</td>
+<td>演示GPIO的基本配置和中断使用方法。实现了GPIO输出配置、GPIO输入配置（带上拉电阻）、上升沿和下降沿中断处理等功能。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>nvs_flash_init()</code>：初始化NVS<br>- <code>nvs_open()</code>：打开NVS命名空间<br>- <code>nvs_set_i32()</code>：写入整数<br>- <code>nvs_get_i32()</code>：读取整数<br>- <code>nvs_set_str()</code>：写入字符串<br>- <code>nvs_get_str()</code>：读取字符串<br>- <code>nvs_erase_key()</code>：删除键<br>- <code>nvs_commit()</code>：提交更改<br>- <code>nvs_close()</code>：关闭NVS句柄</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>gpio_config()</code>：配置GPIO<br>- <code>gpio_set_level()</code>：设置GPIO输出电平<br>- <code>gpio_install_isr_service()</code>：安装GPIO中断服务<br>- <code>gpio_isr_handler_add()</code>：添加GPIO中断处理函数<br>- <code>gpio_example_task()</code>：生成GPIO脉冲的任务</td>
 </tr>
 <tr>
 <td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 要写入的整数和字符串值（硬编码在程序中）<br><br>输出：<br>- 读取到的整数和字符串值<br>- 操作结果状态信息</td>
+<td>输入：<br>- GPIO输入引脚的外部信号<br><br>输出：<br>- GPIO输出引脚的脉冲信号<br>- 中断触发日志信息</td>
 </tr>
 <tr>
 <td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习NVS的基本使用方法<br>- 开发需要存储配置信息的应用<br>- 保存设备状态和计数器<br>- 存储简单的键值对数据<br>- 作为NVS应用的参考模板</td>
+<td>适用于：<br>- 学习GPIO的基本配置和使用<br>- 了解GPIO中断的处理方法<br>- 开发需要GPIO控制的应用<br>- 实现按钮输入、LED输出等基本外设控制<br>- 作为GPIO应用的参考模板</td>
 </tr>
 </tbody></table>
-<h3 id="14-2-fatfs-getting-started-例程"><a href="#14-2-fatfs-getting-started-例程" class="headerlink" title="14.2 fatfs/getting_started 例程"></a>14.2 fatfs/getting_started 例程</h3><table>
+<h3 id="20-2-i2c-i2c-basic-例程"><a href="#20-2-i2c-i2c-basic-例程" class="headerlink" title="20.2 i2c/i2c_basic 例程"></a>20.2 i2c/i2c_basic 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -974,30 +974,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>fatfs/getting_started</td>
+<td>i2c/i2c_basic</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\storage\fatfs\getting_started</td>
+<td>examples\peripherals\i2c\i2c_basic</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示如何使用FATFS组件在SPI Flash上实现FAT文件系统。实现了文件系统的挂载、文件的打开、写入、读取和关闭，以及文件系统的卸载。</td>
+<td>演示I2C主机的基本操作。实现了I2C总线初始化、I2C设备地址探测、寄存器读写等功能。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_fat_spiflash_mount()</code>：挂载FAT文件系统<br>- <code>fopen()</code>：打开文件<br>- <code>fwrite()</code>：写入文件<br>- <code>fread()</code>：读取文件<br>- <code>fclose()</code>：关闭文件<br>- <code>esp_vfs_fat_spiflash_unmount()</code>：卸载FAT文件系统</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>i2c_master_init()</code>：初始化I2C主机<br>- <code>i2c_master_sensor_detect()</code>：探测I2C设备<br>- <code>i2c_master_register_write_byte()</code>：写入单个字节到寄存器<br>- <code>i2c_master_register_read_byte()</code>：从寄存器读取单个字节<br>- <code>i2c_master_register_read()</code>：从寄存器读取多个字节</td>
 </tr>
 <tr>
 <td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 要写入的字符串”Hello World!”（硬编码在程序中）<br><br>输出：<br>- 写入成功的状态<br>- 读取到的字符串<br>- 文件系统操作的日志信息</td>
+<td>输入：<br>- I2C设备地址<br>- 寄存器地址<br>- 要写入的数据<br><br>输出：<br>- 探测到的I2C设备<br>- 从设备读取的数据</td>
 </tr>
 <tr>
 <td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习FATFS的基本使用方法<br>- 开发需要文件系统支持的应用<br>- 存储大量数据和文件<br>- 实现可与电脑兼容的文件系统<br>- 作为FATFS应用的参考模板</td>
+<td>适用于：<br>- 学习I2C总线的基本使用<br>- 了解I2C主机的实现方法<br>- 开发需要I2C通信的应用<br>- 连接I2C传感器、OLED显示屏等设备<br>- 作为I2C应用的参考模板</td>
 </tr>
 </tbody></table>
-<h3 id="14-3-littlefs-例程"><a href="#14-3-littlefs-例程" class="headerlink" title="14.3 littlefs 例程"></a>14.3 littlefs 例程</h3><table>
+<h3 id="20-3-ledc-ledc-basic-例程"><a href="#20-3-ledc-ledc-basic-例程" class="headerlink" title="20.3 ledc/ledc_basic 例程"></a>20.3 ledc/ledc_basic 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1006,30 +1006,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>littlefs</td>
+<td>ledc/ledc_basic</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\storage\littlefs</td>
+<td>examples\peripherals\ledc\ledc_basic</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示如何使用LittleFS文件系统在SPI Flash上存储数据。实现了LittleFS的初始化、挂载、文件读写、目录操作和卸载功能。</td>
+<td>演示LED PWM控制器(LEDC)的基本使用。实现了LEDC通道初始化、PWM波形生成、占空比调整等功能。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_littlefs_register()</code>：注册LittleFS<br>- <code>esp_vfs_littlefs_unregister()</code>：注销LittleFS<br>- <code>littlefs_info()</code>：获取LittleFS信息<br>- 标准C文件操作函数（fopen, fwrite, fread, fclose等）</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>ledc_timer_config()</code>：配置LEDC定时器<br>- <code>ledc_channel_config()</code>：配置LEDC通道<br>- <code>ledc_set_duty()</code>：设置LEDC占空比<br>- <code>ledc_update_duty()</code>：更新LEDC占空比<br>- <code>ledc_example_task()</code>：调整占空比的任务</td>
 </tr>
 <tr>
 <td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 要写入的文件内容<br><br>输出：<br>- 文件读写结果<br>- LittleFS使用情况<br>- 目录列表</td>
+<td>输入：<br>- 定时器配置参数（频率、分辨率）<br>- 通道配置参数（GPIO引脚、速度模式）<br>- 占空比数值<br><br>输出：<br>- PWM波形输出<br>- 占空比变化日志</td>
 </tr>
 <tr>
 <td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习LittleFS文件系统的使用<br>- 开发需要高效文件系统的应用<br>- 存储配置文件和资源文件<br>- 物联网设备的本地数据存储<br>- 作为LittleFS应用的参考模板</td>
+<td>适用于：<br>- 学习LEDC PWM控制器的使用<br>- 了解PWM波形的生成方法<br>- 开发需要PWM控制的应用<br>- 实现LED亮度调节、电机速度控制等<br>- 作为LEDC应用的参考模板</td>
 </tr>
 </tbody></table>
-<h3 id="14-4-spiffs-例程"><a href="#14-4-spiffs-例程" class="headerlink" title="14.4 spiffs 例程"></a>14.4 spiffs 例程</h3><table>
+<h3 id="20-4-rmt-led-strip-例程"><a href="#20-4-rmt-led-strip-例程" class="headerlink" title="20.4 rmt/led_strip 例程"></a>20.4 rmt/led_strip 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1038,30 +1038,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>spiffs</td>
+<td>rmt/led_strip</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\storage\spiffs</td>
+<td>examples\peripherals\rmt\led_strip</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示如何使用SPIFFS(SPI Flash File System)在SPI Flash上实现文件系统。实现了SPIFFS的挂载、文件读写、目录操作和卸载功能。</td>
+<td>演示如何使用RMT(Remote Control)外设控制WS2812等LED灯带。实现了RMT通道初始化、LED数据编码、颜色设置等功能。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_vfs_spiffs_register()</code>：注册SPIFFS<br>- <code>esp_vfs_spiffs_unregister()</code>：注销SPIFFS<br>- <code>esp_spiffs_info()</code>：获取SPIFFS信息<br>- 标准C文件操作函数（fopen, fwrite, fread, fclose等）</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>rmt_config()</code>：配置RMT通道<br>- <code>rmt_driver_install()</code>：安装RMT驱动<br>- <code>led_strip_encoder_init()</code>：初始化LED数据编码器<br>- <code>rmt_translator_init()</code>：初始化RMT转换器<br>- <code>rmt_write_items()</code>：发送RMT数据<br>- <code>led_strip_set_pixel()</code>：设置LED像素颜色</td>
 </tr>
 <tr>
 <td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 要写入的文件内容<br><br>输出：<br>- 文件读写结果<br>- SPIFFS使用情况<br>- 目录列表</td>
+<td>输入：<br>- LED像素索引<br>- RGB颜色值<br><br>输出：<br>- LED灯带颜色变化</td>
 </tr>
 <tr>
 <td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习SPIFFS文件系统的使用<br>- 开发需要轻量级文件系统的应用<br>- 存储Web服务器的静态文件<br>- 物联网设备的本地数据存储<br>- 作为SPIFFS应用的参考模板</td>
+<td>适用于：<br>- 学习RMT外设的使用<br>- 了解LED灯带的控制原理<br>- 开发LED灯带应用<br>- 实现彩色灯光效果、装饰照明等<br>- 作为RMT应用的参考模板</td>
 </tr>
 </tbody></table>
-<h3 id="14-5-wear-levelling-例程"><a href="#14-5-wear-levelling-例程" class="headerlink" title="14.5 wear_levelling 例程"></a>14.5 wear_levelling 例程</h3><table>
+<h3 id="20-5-spi-spi-master-例程"><a href="#20-5-spi-spi-master-例程" class="headerlink" title="20.5 spi/spi_master 例程"></a>20.5 spi/spi_master 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1070,27 +1070,155 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>wear_levelling</td>
+<td>spi/spi_master</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\storage\wear_levelling</td>
+<td>examples\peripherals\spi\spi_master</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示如何使用ESP-IDF的wear_levelling组件实现Flash的磨损均衡。实现了基于磨损均衡的NVS-like键值存储，包括数据的写入、读取和删除。</td>
+<td>演示SPI主机的基本操作。实现了SPI总线初始化、全双工通信、半双工通信、DMA传输等功能。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>wl_mount()</code>：挂载磨损均衡分区<br>- <code>wl_unmount()</code>：卸载磨损均衡分区<br>- <code>nvs_open_from_partition()</code>：从磨损均衡分区打开NVS<br>- 标准NVS操作函数（nvs_set_i32, nvs_get_i32等）</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>spi_bus_initialize()</code>：初始化SPI总线<br>- <code>spi_device_add()</code>：添加SPI设备<br>- <code>spi_device_transmit()</code>：传输SPI数据<br>- <code>spi_device_queue_trans()</code>：队列方式传输SPI数据<br>- <code>spi_device_get_trans_result()</code>：获取传输结果</td>
 </tr>
 <tr>
 <td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 要写入的键值对数据<br><br>输出：<br>- 读取到的数据<br>- 磨损均衡状态信息</td>
+<td>输入：<br>- SPI设备配置（时钟频率、模式、CS引脚）<br>- 要发送的数据<br><br>输出：<br>- 从SPI设备接收的数据<br>- 传输状态信息</td>
 </tr>
 <tr>
 <td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习Flash磨损均衡的原理和使用<br>- 开发需要频繁写入Flash的应用<br>- 延长Flash寿命的设备<br>- 物联网设备的长期数据存储<br>- 作为磨损均衡应用的参考模板</td>
+<td>适用于：<br>- 学习SPI总线的基本使用<br>- 了解SPI主机的实现方法<br>- 开发需要SPI通信的应用<br>- 连接SPI显示屏、Flash芯片、传感器等设备<br>- 作为SPI应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="20-6-i2c-i2c-eeprom-例程"><a href="#20-6-i2c-i2c-eeprom-例程" class="headerlink" title="20.6 i2c/i2c_eeprom 例程"></a>20.6 i2c/i2c_eeprom 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>i2c/i2c_eeprom</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\peripherals\i2c\i2c_eeprom</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用I2C主机模式读写I2C EEPROM。实现了I2C总线初始化、EEPROM读写操作等功能。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>i2c_master_init()</code>：初始化I2C主机<br>- <code>i2c_master_write_to_device()</code>：向I2C设备写入数据<br>- <code>i2c_master_read_from_device()</code>：从I2C设备读取数据</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- EEPROM设备地址<br>- 内存地址<br>- 要写入的数据<br><br>输出：<br>- 从EEPROM读取的数据<br>- 操作状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习I2C总线的实际应用<br>- 了解EEPROM的读写操作<br>- 开发需要存储数据的应用<br>- 作为I2C EEPROM应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="20-7-ledc-ledc-fade-例程"><a href="#20-7-ledc-ledc-fade-例程" class="headerlink" title="20.7 ledc/ledc_fade 例程"></a>20.7 ledc/ledc_fade 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>ledc/ledc_fade</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\peripherals\ledc\ledc_fade</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用LEDC模块控制LED的亮度。实现了LED渐变功能，包括亮度增加、减少、保持和关闭等操作。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>ledc_timer_config()</code>：配置LEDC定时器<br>- <code>ledc_channel_config()</code>：配置LEDC通道<br>- <code>ledc_fade_func_install()</code>：安装渐变功能<br>- <code>ledc_set_fade_with_time()</code>：设置带时间的渐变<br>- <code>ledc_fade_start()</code>：启动渐变</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 定时器配置参数（频率、分辨率）<br>- 通道配置参数（GPIO引脚、速度模式）<br>- 渐变时间和目标占空比<br><br>输出：<br>- LED亮度变化<br>- 操作状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习LEDC渐变功能的使用<br>- 了解PWM亮度控制的实现方法<br>- 开发需要灯光效果的应用<br>- 实现LED呼吸灯、亮度调节等效果<br>- 作为LEDC渐变应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="20-8-rmt-dshot-esc-例程"><a href="#20-8-rmt-dshot-esc-例程" class="headerlink" title="20.8 rmt/dshot_esc 例程"></a>20.8 rmt/dshot_esc 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>rmt/dshot_esc</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\peripherals\rmt\dshot_esc</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用RMT外设控制DShot电调。实现了RMT通道初始化、DShot协议编码、电调控制等功能。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>rmt_config()</code>：配置RMT通道<br>- <code>rmt_driver_install()</code>：安装RMT驱动<br>- <code>rmt_translator_init()</code>：初始化RMT转换器<br>- <code>rmt_write_items()</code>：发送RMT数据</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 电调油门值<br>- 遥测使能标志<br><br>输出：<br>- DShot协议脉冲<br>- 电调控制状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习RMT外设的高级使用<br>- 了解DShot协议的实现<br>- 开发无人机、机器人等需要电调控制的应用<br>- 作为RMT控制电调的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="20-9-uart-uart-echo-例程"><a href="#20-9-uart-uart-echo-例程" class="headerlink" title="20.9 uart/uart_echo 例程"></a>20.9 uart/uart_echo 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>uart/uart_echo</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\peripherals\uart\uart_echo</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用UART接口。实现了UART初始化、数据接收和回显功能。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>uart_driver_install()</code>：安装UART驱动<br>- <code>uart_configure_port()</code>：配置UART端口<br>- <code>uart_read_bytes()</code>：读取UART数据<br>- <code>uart_write_bytes()</code>：写入UART数据</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 从外部串口接收的数据<br><br>输出：<br>- 回显到外部串口的数据</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习UART接口的基本使用<br>- 了解串口通信的实现方法<br>- 开发需要串口通信的应用<br>- 作为UART应用的参考模板</td>
 </tr>
 </tbody></table>
 
@@ -1145,8 +1273,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ESP-IDF 例程——存储</div>
-      <div>https://blog.zhaosn.top/ESP32-examples/14.storage(WIP)/</div>
+      <div>ESP-IDF 例程——外设</div>
+      <div>https://blog.zhaosn.top/ESP32-examples/20.peripherals/</div>
     </div>
     <div class="license-meta">
       
@@ -1164,7 +1292,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月21日</div>
+          <div>2026年2月28日</div>
         </div>
       
       
@@ -1207,9 +1335,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/ESP32-examples/17.system(WIP)/" title="ESP-IDF 例程——system">
+                      <a href="/ESP32-examples/07.phy/" title="ESP-IDF 例程——phy">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ESP-IDF 例程——system</span>
+                        <span class="hidden-mobile">ESP-IDF 例程——phy</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1217,8 +1345,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/ESP32-examples/18.security/" title="ESP-IDF 例程——加密">
-                        <span class="hidden-mobile">ESP-IDF 例程——加密</span>
+                      <a href="/ESP32-examples/13.openthread/" title="ESP-IDF 例程——OpenThread 命令行界面">
+                        <span class="hidden-mobile">ESP-IDF 例程——OpenThread 命令行界面</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

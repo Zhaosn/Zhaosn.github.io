@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
-    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/20.peripherals(WIP)/"/>
+    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/13.openthread/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,13 +21,13 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="20. peripherals 目录20.1 gpio/generic_gpio 例程   字段 描述    例程名称 gpio/generic_gpio   所在文件夹路径 examples\peripherals\gpio\generic_gpio   核心功能说明 演示GPIO的基本配置和中断使用方法。实现了GPIO输出配置、GPIO输入配置（带上拉电阻）、上升沿和下降沿中断处理等功能。">
+    <meta name="description" content="13. openthread 目录13.1 ot_cli   字段 描述    例程名称 OpenThread 命令行示例   所在文件夹路径 examples/openthread/ot_cli   核心功能说明 提供 OpenThread 命令行界面，支持 TCP、UDP 和 Iperf 等扩展功能，用于管理和调试 Thread 网络   主要调用的内部/外部函数或模块 - OpenThrea">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ESP-IDF 例程——外设 - Zhaosn的博客</title>
+  <title>ESP-IDF 例程——OpenThread 命令行界面 - Zhaosn的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -241,7 +241,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ESP-IDF 例程——外设"></span>
+            <span id="subtitle" data-typed-text="ESP-IDF 例程——OpenThread 命令行界面"></span>
           
         </div>
 
@@ -264,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.7k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -660,7 +660,7 @@
     
       
       
-        <a href="/ESP32-examples/19.bluetooth(WIP)/" title="ESP-IDF 例程——bluetooth"
+        <a href="/ESP32-examples/19.bluetooth/" title="ESP-IDF 例程——bluetooth"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">ESP-IDF 例程——bluetooth</span>
@@ -928,12 +928,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ESP-IDF 例程——外设</h1>
+            <h1 id="seo-header">ESP-IDF 例程——OpenThread 命令行界面</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="20-peripherals-目录"><a href="#20-peripherals-目录" class="headerlink" title="20. peripherals 目录"></a>20. peripherals 目录</h2><h3 id="20-1-gpio-generic-gpio-例程"><a href="#20-1-gpio-generic-gpio-例程" class="headerlink" title="20.1 gpio/generic_gpio 例程"></a>20.1 gpio/generic_gpio 例程</h3><table>
+                <h2 id="13-openthread-目录"><a href="#13-openthread-目录" class="headerlink" title="13. openthread 目录"></a>13. openthread 目录</h2><h3 id="13-1-ot-cli"><a href="#13-1-ot-cli" class="headerlink" title="13.1 ot_cli"></a>13.1 ot_cli</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -942,30 +942,43 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>gpio/generic_gpio</td>
+<td>OpenThread 命令行示例</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\peripherals\gpio\generic_gpio</td>
+<td>examples/openthread/ot_cli</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示GPIO的基本配置和中断使用方法。实现了GPIO输出配置、GPIO输入配置（带上拉电阻）、上升沿和下降沿中断处理等功能。</td>
+<td>提供 OpenThread 命令行界面，支持 TCP、UDP 和 Iperf 等扩展功能，用于管理和调试 Thread 网络</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>gpio_config()</code>：配置GPIO<br>- <code>gpio_set_level()</code>：设置GPIO输出电平<br>- <code>gpio_install_isr_service()</code>：安装GPIO中断服务<br>- <code>gpio_isr_handler_add()</code>：添加GPIO中断处理函数<br>- <code>gpio_example_task()</code>：生成GPIO脉冲的任务</td>
-</tr>
-<tr>
-<td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- GPIO输入引脚的外部信号<br><br>输出：<br>- GPIO输出引脚的脉冲信号<br>- 中断触发日志信息</td>
-</tr>
-<tr>
-<td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习GPIO的基本配置和使用<br>- 了解GPIO中断的处理方法<br>- 开发需要GPIO控制的应用<br>- 实现按钮输入、LED输出等基本外设控制<br>- 作为GPIO应用的参考模板</td>
+<td>- OpenThread CLI API</td>
 </tr>
 </tbody></table>
-<h3 id="20-2-i2c-i2c-basic-例程"><a href="#20-2-i2c-i2c-basic-例程" class="headerlink" title="20.2 i2c/i2c_basic 例程"></a>20.2 i2c/i2c_basic 例程</h3><table>
+<ul>
+<li>OpenThread 协议栈</li>
+<li>IEEE 802.15.4 驱动</li>
+<li>console 组件（命令行界面）</li>
+<li>支持 UART 和 USB Serial/JTAG 控制台输出</li>
+<li>支持 ESP32-C5、ESP32-C6、ESP32-H2 芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
+<li>控制台输出通道（UART 或 USB Serial/JTAG）</li>
+<li>Thread 网络参数（通道、PAN ID、地址等）</li>
+</ul>
+<p>输出结果：</p>
+<ul>
+<li>命令执行状态和结果</li>
+<li>网络配置信息</li>
+<li>节点状态和角色</li>
+<li>IP 地址信息</li>
+<li>数据包发送和接收状态 |<br>| <strong>适用场景及典型应用案例</strong> | - Thread 网络的开发和调试</li>
+<li>Thread 协议栈的功能验证</li>
+<li>不同 Thread 设备之间的兼容性测试</li>
+<li>基于 Thread 的物联网设备开发</li>
+<li>网络参数的优化和测试 |</li>
+</ul>
+<h3 id="13-2-ot-rcp"><a href="#13-2-ot-rcp" class="headerlink" title="13.2 ot_rcp"></a>13.2 ot_rcp</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -974,30 +987,41 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>i2c/i2c_basic</td>
+<td>OpenThread Radio Co-Processor (RCP) 示例</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\peripherals\i2c\i2c_basic</td>
+<td>examples/openthread/ot_rcp</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示I2C主机的基本操作。实现了I2C总线初始化、I2C设备地址探测、寄存器读写等功能。</td>
+<td>实现 OpenThread 无线电协处理器，与主机配合工作，提供 802.15.4 无线电功能，用于 Thread 边界路由器或 Thread 嗅探器</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>i2c_master_init()</code>：初始化I2C主机<br>- <code>i2c_master_sensor_detect()</code>：探测I2C设备<br>- <code>i2c_master_register_write_byte()</code>：写入单个字节到寄存器<br>- <code>i2c_master_register_read_byte()</code>：从寄存器读取单个字节<br>- <code>i2c_master_register_read()</code>：从寄存器读取多个字节</td>
-</tr>
-<tr>
-<td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- I2C设备地址<br>- 寄存器地址<br>- 要写入的数据<br><br>输出：<br>- 探测到的I2C设备<br>- 从设备读取的数据</td>
-</tr>
-<tr>
-<td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习I2C总线的基本使用<br>- 了解I2C主机的实现方法<br>- 开发需要I2C通信的应用<br>- 连接I2C传感器、OLED显示屏等设备<br>- 作为I2C应用的参考模板</td>
+<td>- OpenThread RCP 协议栈</td>
 </tr>
 </tbody></table>
-<h3 id="20-3-ledc-ledc-basic-例程"><a href="#20-3-ledc-ledc-basic-例程" class="headerlink" title="20.3 ledc/ledc_basic 例程"></a>20.3 ledc/ledc_basic 例程</h3><table>
+<ul>
+<li>IEEE 802.15.4 驱动</li>
+<li>UART 通信接口</li>
+<li>支持 ESP32-C5、ESP32-C6、ESP32-H2 芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
+<li>UART 通信参数（波特率、引脚）</li>
+<li>固件大小优化配置</li>
+<li>日志级别设置</li>
+</ul>
+<p>输出结果：</p>
+<ul>
+<li>设备初始化状态</li>
+<li>UART 通信状态</li>
+<li>802.15.4 无线电状态</li>
+<li>数据包处理状态 |<br>| <strong>适用场景及典型应用案例</strong> | - Thread 边界路由器的无线电组件</li>
+<li>Thread 网络嗅探器</li>
+<li>工业自动化网络的无线通信组件</li>
+<li>智能家居设备的无线连接解决方案</li>
+<li>物联网网关的无线扩展 |</li>
+</ul>
+<h3 id="13-3-ot-br"><a href="#13-3-ot-br" class="headerlink" title="13.3 ot_br"></a>13.3 ot_br</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1006,30 +1030,46 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>ledc/ledc_basic</td>
+<td>OpenThread 边界路由器示例</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\peripherals\ledc\ledc_basic</td>
+<td>examples/openthread/ot_br</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示LED PWM控制器(LEDC)的基本使用。实现了LEDC通道初始化、PWM波形生成、占空比调整等功能。</td>
+<td>实现 OpenThread 边界路由器，连接 Thread 网络和 Wi-Fi/Ethernet 网络，支持双向 IPv6 连接和服务发现</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>ledc_timer_config()</code>：配置LEDC定时器<br>- <code>ledc_channel_config()</code>：配置LEDC通道<br>- <code>ledc_set_duty()</code>：设置LEDC占空比<br>- <code>ledc_update_duty()</code>：更新LEDC占空比<br>- <code>ledc_example_task()</code>：调整占空比的任务</td>
-</tr>
-<tr>
-<td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 定时器配置参数（频率、分辨率）<br>- 通道配置参数（GPIO引脚、速度模式）<br>- 占空比数值<br><br>输出：<br>- PWM波形输出<br>- 占空比变化日志</td>
-</tr>
-<tr>
-<td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习LEDC PWM控制器的使用<br>- 了解PWM波形的生成方法<br>- 开发需要PWM控制的应用<br>- 实现LED亮度调节、电机速度控制等<br>- 作为LEDC应用的参考模板</td>
+<td>- OpenThread 边界路由器功能</td>
 </tr>
 </tbody></table>
-<h3 id="20-4-rmt-led-strip-例程"><a href="#20-4-rmt-led-strip-例程" class="headerlink" title="20.4 rmt/led_strip 例程"></a>20.4 rmt/led_strip 例程</h3><table>
+<ul>
+<li>WiFi 驱动（STA 模式）</li>
+<li>Ethernet 驱动</li>
+<li>IPv6 路由和邻居发现</li>
+<li>mDNS 服务发现</li>
+<li>SRP（Service Registration Protocol）支持</li>
+<li>支持多种 ESP32 芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
+<li>Wi-Fi SSID 和密码</li>
+<li>自动启动设置</li>
+<li>以太网配置</li>
+<li>控制台输出通道</li>
+</ul>
+<p>输出结果：</p>
+<ul>
+<li>网络连接状态</li>
+<li>Thread 网络形成状态</li>
+<li>IPv6 地址分配</li>
+<li>服务发现结果</li>
+<li>数据包转发状态 |<br>| <strong>适用场景及典型应用案例</strong> | - Thread 网络与外部网络的桥接</li>
+<li>智能家居设备的互联网连接</li>
+<li>工业自动化网络的边界网关</li>
+<li>智能建筑的网络基础设施</li>
+<li>物联网设备的远程监控和控制 |</li>
+</ul>
+<h3 id="13-4-ot-sleepy-device"><a href="#13-4-ot-sleepy-device" class="headerlink" title="13.4 ot_sleepy_device"></a>13.4 ot_sleepy_device</h3><h4 id="13-4-1-deep-sleep"><a href="#13-4-1-deep-sleep" class="headerlink" title="13.4.1 deep_sleep"></a>13.4.1 deep_sleep</h4><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1038,30 +1078,39 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>rmt/led_strip</td>
+<td>OpenThread 深度休眠设备示例</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\peripherals\rmt\led_strip</td>
+<td>examples/openthread/ot_sleepy_device/deep_sleep</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示如何使用RMT(Remote Control)外设控制WS2812等LED灯带。实现了RMT通道初始化、LED数据编码、颜色设置等功能。</td>
+<td>演示 OpenThread 深度休眠设备的实现，支持 ESP32 芯片的深度休眠模式，显著延长电池寿命</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>rmt_config()</code>：配置RMT通道<br>- <code>rmt_driver_install()</code>：安装RMT驱动<br>- <code>led_strip_encoder_init()</code>：初始化LED数据编码器<br>- <code>rmt_translator_init()</code>：初始化RMT转换器<br>- <code>rmt_write_items()</code>：发送RMT数据<br>- <code>led_strip_set_pixel()</code>：设置LED像素颜色</td>
-</tr>
-<tr>
-<td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- LED像素索引<br>- RGB颜色值<br><br>输出：<br>- LED灯带颜色变化</td>
-</tr>
-<tr>
-<td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习RMT外设的使用<br>- 了解LED灯带的控制原理<br>- 开发LED灯带应用<br>- 实现彩色灯光效果、装饰照明等<br>- 作为RMT应用的参考模板</td>
+<td>- OpenThread 协议栈</td>
 </tr>
 </tbody></table>
-<h3 id="20-5-spi-spi-master-例程"><a href="#20-5-spi-spi-master-例程" class="headerlink" title="20.5 spi/spi_master 例程"></a>20.5 spi/spi_master 例程</h3><table>
+<ul>
+<li>IEEE 802.15.4 驱动</li>
+<li>ESP32 深度休眠管理</li>
+<li>支持 ESP32-H2 等芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
+<li>深度休眠周期</li>
+<li>唤醒源配置</li>
+<li>Thread 网络参数</li>
+</ul>
+<p>输出结果：</p>
+<ul>
+<li>设备休眠和唤醒状态</li>
+<li>网络连接恢复状态</li>
+<li>电池功耗统计 |<br>| <strong>适用场景及典型应用案例</strong> | - 低功耗传感器节点</li>
+<li>电池供电的物联网设备</li>
+<li>环境监测传感器</li>
+<li>远程部署的无线设备 |</li>
+</ul>
+<h4 id="13-4-2-light-sleep"><a href="#13-4-2-light-sleep" class="headerlink" title="13.4.2 light_sleep"></a>13.4.2 light_sleep</h4><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1070,29 +1119,136 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>spi/spi_master</td>
+<td>OpenThread 轻度休眠设备示例</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\peripherals\spi\spi_master</td>
+<td>examples/openthread/ot_sleepy_device/light_sleep</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示SPI主机的基本操作。实现了SPI总线初始化、全双工通信、半双工通信、DMA传输等功能。</td>
+<td>演示 OpenThread 轻度休眠设备的实现，支持 ESP32 芯片的轻度休眠模式，在保持网络连接的同时降低功耗</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>spi_bus_initialize()</code>：初始化SPI总线<br>- <code>spi_device_add()</code>：添加SPI设备<br>- <code>spi_device_transmit()</code>：传输SPI数据<br>- <code>spi_device_queue_trans()</code>：队列方式传输SPI数据<br>- <code>spi_device_get_trans_result()</code>：获取传输结果</td>
-</tr>
-<tr>
-<td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- SPI设备配置（时钟频率、模式、CS引脚）<br>- 要发送的数据<br><br>输出：<br>- 从SPI设备接收的数据<br>- 传输状态信息</td>
-</tr>
-<tr>
-<td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 学习SPI总线的基本使用<br>- 了解SPI主机的实现方法<br>- 开发需要SPI通信的应用<br>- 连接SPI显示屏、Flash芯片、传感器等设备<br>- 作为SPI应用的参考模板</td>
+<td>- OpenThread 协议栈</td>
 </tr>
 </tbody></table>
+<ul>
+<li>IEEE 802.15.4 驱动</li>
+<li>ESP32 轻度休眠管理</li>
+<li>支持多种 ESP32 芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
+<li>轻度休眠周期</li>
+<li>唤醒时间</li>
+<li>Thread 网络参数</li>
+</ul>
+<p>输出结果：</p>
+<ul>
+<li>设备休眠和唤醒状态</li>
+<li>网络连接状态</li>
+<li>数据传输状态</li>
+<li>功耗优化效果 |<br>| <strong>适用场景及典型应用案例</strong> | - 需要频繁通信的低功耗设备</li>
+<li>智能家居传感器</li>
+<li>可穿戴设备</li>
+<li>工业无线传感器网络 |</li>
+</ul>
+<h3 id="13-5-ot-trel"><a href="#13-5-ot-trel" class="headerlink" title="13.5 ot_trel"></a>13.5 ot_trel</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>OpenThread Time-Slotted Channel Hopping (TSCH) Radio Enforcement Layer (TREL) 示例</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples/openthread/ot_trel</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示 OpenThread TREL 功能，提供更可靠、低延迟的 Thread 网络通信，支持长距离通信</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- OpenThread TREL 功能</td>
+</tr>
+</tbody></table>
+<ul>
+<li>IEEE 802.15.4 驱动</li>
+<li>TSCH 调度</li>
+<li>支持 ESP32-C6、ESP32-H2 等芯片 |<br>| <strong>输入输出参数说明</strong> | 配置参数：</li>
+<li>TREL 网络参数</li>
+<li>TSCH 调度配置</li>
+<li>Thread 网络参数</li>
+</ul>
+<p>输出结果：</p>
+<ul>
+<li>网络连接状态</li>
+<li>数据传输可靠性</li>
+<li>通信延迟统计</li>
+<li>网络覆盖范围 |<br>| <strong>适用场景及典型应用案例</strong> | - 长距离 Thread 网络通信</li>
+<li>高可靠性要求的工业应用</li>
+<li>智能建筑的网络基础设施</li>
+<li>大面积覆盖的物联网网络 |</li>
+</ul>
+<h3 id="13-6-技术要点"><a href="#13-6-技术要点" class="headerlink" title="13.6 技术要点"></a>13.6 技术要点</h3><ul>
+<li><p><strong>OpenThread 协议支持</strong>：</p>
+<ul>
+<li>完整的 Thread 1.3 协议支持</li>
+<li>IPv6 连接</li>
+<li>服务发现（SRP 和 mDNS）</li>
+<li>休眠设备支持</li>
+</ul>
+</li>
+<li><p><strong>硬件兼容性</strong>：</p>
+<ul>
+<li>支持多种 ESP32 芯片</li>
+<li>支持单独的 802.15.4 芯片（如 ESP32-H2）</li>
+<li>支持 Wi-Fi + Thread 双芯片解决方案</li>
+<li>支持以太网连接</li>
+</ul>
+</li>
+<li><p><strong>网络拓扑</strong>：</p>
+<ul>
+<li>支持 Leader、Router、Child 等多种节点角色</li>
+<li>支持自组织网络</li>
+<li>支持网络自动修复</li>
+</ul>
+</li>
+<li><p><strong>通信接口</strong>：</p>
+<ul>
+<li>UART 通信</li>
+<li>USB Serial/JTAG 支持</li>
+<li>支持多种控制台输出通道</li>
+</ul>
+</li>
+<li><p><strong>电源管理</strong>：</p>
+<ul>
+<li>支持设备休眠</li>
+<li>支持低功耗模式</li>
+<li>电池寿命优化</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-7-构建与运行"><a href="#13-7-构建与运行" class="headerlink" title="13.7 构建与运行"></a>13.7 构建与运行</h3><p>所有 openthread 例程的构建方法基本一致：</p>
+<ol>
+<li>配置项目：<code>idf.py menuconfig</code></li>
+<li>设置网络参数和硬件配置</li>
+<li>构建项目：<code>idf.py build</code></li>
+<li>烧录到开发板：<code>idf.py -p PORT flash monitor</code></li>
+<li>根据具体例程的要求进行网络连接和测试</li>
+</ol>
+<h3 id="13-8-应用场景总结"><a href="#13-8-应用场景总结" class="headerlink" title="13.8 应用场景总结"></a>13.8 应用场景总结</h3><ul>
+<li><strong>ot_cli</strong>：适用于 Thread 网络的开发和调试，以及协议功能验证</li>
+<li><strong>ot_rcp</strong>：适用于 Thread 边界路由器和 Thread 嗅探器的无线电组件</li>
+<li><strong>ot_br</strong>：适用于 Thread 网络与外部网络的桥接，实现双向 IPv6 连接</li>
+<li><strong>ot_sleepy_device</strong>：适用于电池供电的传感器设备，延长设备寿命</li>
+<li><strong>ot_trel</strong>：适用于需要长距离、高可靠性 Thread 网络通信的场景</li>
+</ul>
+<p>这些例程展示了 ESP-IDF 在 OpenThread 方面的全面支持，从基础的命令行工具到复杂的边界路由器，满足不同场景下的 Thread 网络需求。开发者可以根据自己的应用场景选择合适的例程作为基础，进行二次开发和扩展。</p>
 
                 
               </div>
@@ -1145,8 +1301,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ESP-IDF 例程——外设</div>
-      <div>https://blog.zhaosn.top/ESP32-examples/20.peripherals(WIP)/</div>
+      <div>ESP-IDF 例程——OpenThread 命令行界面</div>
+      <div>https://blog.zhaosn.top/ESP32-examples/13.openthread/</div>
     </div>
     <div class="license-meta">
       
@@ -1164,7 +1320,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月21日</div>
+          <div>2026年2月28日</div>
         </div>
       
       
@@ -1207,9 +1363,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/ESP32-examples/07.phy/" title="ESP-IDF 例程——phy">
+                      <a href="/ESP32-examples/20.peripherals/" title="ESP-IDF 例程——外设">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ESP-IDF 例程——phy</span>
+                        <span class="hidden-mobile">ESP-IDF 例程——外设</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1217,8 +1373,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/ESP32-examples/13.openthread(WIP)/" title="ESP-IDF 例程——OpenThread 命令行界面">
-                        <span class="hidden-mobile">ESP-IDF 例程——OpenThread 命令行界面</span>
+                      <a href="/ESP32-examples/15.network/" title="ESP-IDF 例程——网络">
+                        <span class="hidden-mobile">ESP-IDF 例程——网络</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

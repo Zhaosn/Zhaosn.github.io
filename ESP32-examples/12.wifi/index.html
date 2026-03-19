@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
-    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/19.bluetooth(WIP)/"/>
+    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/12.wifi/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -21,13 +21,13 @@
   <meta name="author" content="Zhao SN">
   <meta name="keywords" content="">
   
-    <meta name="description" content="19. bluetooth 目录19.1 blufi 例程   字段 描述    例程名称 blufi   所在文件夹路径 examples\bluetooth\blufi   核心功能说明 实现了通过蓝牙通道配置Wi-Fi连接的功能。提供安全协议，用于向ESP32传递Wi-Fi配置和凭据。   主要调用的内部/外部函数或模块 - app_main()：程序入口函数- blufi_init()：初">
+    <meta name="description" content="12. wifi 目录12.1 station 例程   字段 描述    例程名称 station   所在文件夹路径 examples\wifi\getting_started\station   核心功能说明 演示ESP32作为Wi-Fi客户端（STA模式）连接到外部接入点（AP）的基本功能。包括Wi-Fi初始化、连接建立、IP获取和连接状态管理。   主要调用的内部/外部函数或模块 - a">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ESP-IDF 例程——bluetooth - Zhaosn的博客</title>
+  <title>ESP-IDF 例程——wifi - Zhaosn的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -241,7 +241,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ESP-IDF 例程——bluetooth"></span>
+            <span id="subtitle" data-typed-text="ESP-IDF 例程——wifi"></span>
           
         </div>
 
@@ -264,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          725 字
+          3.6k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
         
-          2 分钟
+          8 分钟
         
       </span>
     
@@ -660,9 +660,9 @@
     
       
       
-        <a href="/ESP32-examples/19.bluetooth(WIP)/" title="ESP-IDF 例程——bluetooth"
+        <a href="/ESP32-examples/19.bluetooth/" title="ESP-IDF 例程——bluetooth"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">ESP-IDF 例程——bluetooth</span>
         </a>
       
@@ -928,12 +928,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ESP-IDF 例程——bluetooth</h1>
+            <h1 id="seo-header">ESP-IDF 例程——wifi</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="19-bluetooth-目录"><a href="#19-bluetooth-目录" class="headerlink" title="19. bluetooth 目录"></a>19. bluetooth 目录</h2><h3 id="19-1-blufi-例程"><a href="#19-1-blufi-例程" class="headerlink" title="19.1 blufi 例程"></a>19.1 blufi 例程</h3><table>
+                <h2 id="12-wifi-目录"><a href="#12-wifi-目录" class="headerlink" title="12. wifi 目录"></a>12. wifi 目录</h2><h3 id="12-1-station-例程"><a href="#12-1-station-例程" class="headerlink" title="12.1 station 例程"></a>12.1 station 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -942,30 +942,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>blufi</td>
+<td>station</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\bluetooth\blufi</td>
+<td>examples\wifi\getting_started\station</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>实现了通过蓝牙通道配置Wi-Fi连接的功能。提供安全协议，用于向ESP32传递Wi-Fi配置和凭据。</td>
+<td>演示ESP32作为Wi-Fi客户端（STA模式）连接到外部接入点（AP）的基本功能。包括Wi-Fi初始化、连接建立、IP获取和连接状态管理。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>blufi_init()</code>：初始化Blufi功能<br>- <code>blufi_security_init()</code>：初始化Blufi安全机制<br>- Wi-Fi初始化和配置相关函数<br>- 蓝牙初始化和GATT服务相关函数</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>wifi_init_sta()</code>：初始化STA模式Wi-Fi<br>- <code>event_handler()</code>：处理Wi-Fi和IP事件<br>- <code>esp_netif_init()</code>：初始化网络接口<br>- <code>esp_event_loop_create_default()</code>：创建默认事件循环<br>- <code>esp_wifi_init()</code>：初始化Wi-Fi驱动<br>- <code>esp_wifi_set_mode()</code>：设置Wi-Fi模式<br>- <code>esp_wifi_set_config()</code>：配置Wi-Fi参数<br>- <code>esp_wifi_start()</code>：启动Wi-Fi驱动</td>
 </tr>
 <tr>
 <td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 来自手机App的Wi-Fi SSID和密码<br>- 来自手机App的配置命令<br><br>输出：<br>- 蓝牙广播信息<br>- 配置状态反馈<br>- Wi-Fi连接结果</td>
+<td>输入：<br>- 配置的SSID和密码（通过menuconfig设置）<br><br>输出：<br>- Wi-Fi连接状态<br>- 获取到的IP地址<br>- 连接成功或失败的日志信息</td>
 </tr>
 <tr>
 <td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 物联网设备的Wi-Fi配置<br>- 无屏幕设备的网络设置<br>- 智能家居设备的初始配置<br>- 需要安全传递Wi-Fi凭据的场景<br>- 作为蓝牙配置Wi-Fi功能的参考模板</td>
+<td>适用于：<br>- 学习Wi-Fi STA模式的基本配置和使用<br>- 开发需要连接到现有Wi-Fi网络的设备<br>- 作为物联网设备连接云平台的基础<br>- 测试Wi-Fi连接稳定性<br>- 作为Wi-Fi客户端应用的参考模板</td>
 </tr>
 </tbody></table>
-<h3 id="19-2-a2dp-sink-例程（经典蓝牙）"><a href="#19-2-a2dp-sink-例程（经典蓝牙）" class="headerlink" title="19.2 a2dp_sink 例程（经典蓝牙）"></a>19.2 a2dp_sink 例程（经典蓝牙）</h3><table>
+<h3 id="12-2-softAP-例程"><a href="#12-2-softAP-例程" class="headerlink" title="12.2 softAP 例程"></a>12.2 softAP 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -974,30 +974,30 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>a2dp_sink</td>
+<td>softAP</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\bluetooth\bluedroid\classic_bt\a2dp_sink</td>
+<td>examples\wifi\getting_started\softAP</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>实现了经典蓝牙的A2DP接收器功能，能够接收来自蓝牙音频源（如手机、电脑）的音频数据并播放。</td>
+<td>演示ESP32作为Wi-Fi接入点（AP模式）的基本功能。包括AP创建、客户端连接管理和DHCP服务器配置。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>bt_app_av_init()</code>：初始化A2DP音频功能<br>- <code>bt_app_core_init()</code>：初始化蓝牙应用核心<br>- <code>bt_app_task_handler()</code>：处理蓝牙应用任务<br>- <code>bt_app_av_sink_cb()</code>：处理A2DP接收回调<br>- 音频播放相关函数</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>wifi_init_softap()</code>：初始化SoftAP模式Wi-Fi<br>- 事件处理函数：处理客户端连接和断开事件<br>- <code>esp_netif_init()</code>：初始化网络接口<br>- <code>esp_event_loop_create_default()</code>：创建默认事件循环<br>- <code>esp_wifi_init()</code>：初始化Wi-Fi驱动<br>- <code>esp_wifi_set_mode()</code>：设置Wi-Fi模式<br>- <code>esp_wifi_set_config()</code>：配置AP参数<br>- <code>esp_wifi_start()</code>：启动Wi-Fi驱动</td>
 </tr>
 <tr>
 <td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 来自蓝牙音频源的音频数据流<br><br>输出：<br>- 解码后的音频输出<br>- 连接状态信息</td>
+<td>输入：<br>- 配置的SSID、密码和通道（通过menuconfig设置）<br><br>输出：<br>- AP创建状态<br>- 客户端连接和断开事件<br>- 分配给客户端的IP地址</td>
 </tr>
 <tr>
 <td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 蓝牙音箱开发<br>- 车载蓝牙音频系统<br>- 无线耳机接收器<br>- 学习经典蓝牙A2DP协议的实现<br>- 作为经典蓝牙音频应用的参考模板</td>
+<td>适用于：<br>- 学习Wi-Fi AP模式的基本配置和使用<br>- 开发需要创建Wi-Fi网络的设备<br>- 作为物联网设备的本地配置热点<br>- 测试AP模式下的客户端连接管理<br>- 作为Wi-Fi AP应用的参考模板</td>
 </tr>
 </tbody></table>
-<h3 id="19-3-esp-ble-mesh-例程"><a href="#19-3-esp-ble-mesh-例程" class="headerlink" title="19.3 esp_ble_mesh 例程"></a>19.3 esp_ble_mesh 例程</h3><table>
+<h3 id="12-3-espnow-例程"><a href="#12-3-espnow-例程" class="headerlink" title="12.3 espnow 例程"></a>12.3 espnow 例程</h3><table>
 <thead>
 <tr>
 <th>字段</th>
@@ -1006,27 +1006,507 @@
 </thead>
 <tbody><tr>
 <td><strong>例程名称</strong></td>
-<td>esp_ble_mesh</td>
+<td>espnow</td>
 </tr>
 <tr>
 <td><strong>所在文件夹路径</strong></td>
-<td>examples\bluetooth\esp_ble_mesh</td>
+<td>examples\wifi\espnow</td>
 </tr>
 <tr>
 <td><strong>核心功能说明</strong></td>
-<td>演示了BLE Mesh网络的实现，包括配网器、开关模型服务器/客户端、传感器模型服务器/客户端等。支持设备配置、网络管理和数据传输。</td>
+<td>演示ESP-NOW协议的使用，实现设备间的无连接Wi-Fi通信。包括ESP-NOW初始化、对等设备管理、数据发送和接收。</td>
 </tr>
 <tr>
 <td><strong>主要调用的内部/外部函数或模块</strong></td>
-<td>- <code>app_main()</code>：程序入口函数<br>- <code>ble_mesh_init()</code>：初始化BLE Mesh栈<br>- <code>ble_mesh_provisioning_init()</code>：初始化配网功能<br>- 各种Mesh模型相关函数<br>- 事件处理回调函数</td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>espnow_init()</code>：初始化ESP-NOW<br>- <code>espnow_send_cb()</code>：处理发送回调<br>- <code>espnow_recv_cb()</code>：处理接收回调<br>- <code>esp_now_add_peer()</code>：添加对等设备<br>- <code>esp_now_send()</code>：发送ESP-NOW数据<br>- Wi-Fi初始化相关函数</td>
 </tr>
 <tr>
 <td><strong>输入输出参数说明</strong></td>
-<td>输入：<br>- 配网器的配置命令<br>- 客户端的控制命令<br><br>输出：<br>- Mesh网络状态信息<br>- 传感器数据<br>- 设备状态响应</td>
+<td>输入：<br>- 对等设备的MAC地址<br>- 要发送的数据<br><br>输出：<br>- 数据发送状态<br>- 接收到的数据和发送方MAC地址</td>
 </tr>
 <tr>
 <td><strong>适用场景及典型应用案例</strong></td>
-<td>适用于：<br>- 大规模物联网设备网络<br>- 智能家居自动化系统<br>- 工业自动化网络<br>- 智能照明系统<br>- 学习BLE Mesh协议的实现<br>- 作为BLE Mesh应用的参考模板</td>
+<td>适用于：<br>- 学习ESP-NOW协议的实现和使用<br>- 开发设备间低延迟通信的应用<br>- 物联网设备的本地数据交换<br>- 无线传感器网络<br>- 智能家居设备间的直接通信<br>- 作为ESP-NOW应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-4-iperf-例程"><a href="#12-4-iperf-例程" class="headerlink" title="12.4 iperf 例程"></a>12.4 iperf 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>iperf</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\iperf</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>用于测试Wi-Fi网络吞吐量，支持TCP和UDP协议。可以在STA模式或AP模式下运行，与另一台运行iperf客户端或服务器的设备配合使用。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- Wi-Fi初始化相关函数<br>- iperf客户端/服务器实现<br>- 网络套接字相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- iperf测试配置（协议类型、端口、测试时长等）<br><br>输出：<br>- 吞吐量测试结果<br>- 网络延迟和丢包率（UDP模式）</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 测试Wi-Fi网络性能<br>- 验证不同配置下的网络吞吐量<br>- 优化Wi-Fi应用的网络性能<br>- 比较不同设备或固件版本的网络性能<br>- 作为网络性能测试的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-5-smart-config-例程"><a href="#12-5-smart-config-例程" class="headerlink" title="12.5 smart_config 例程"></a>12.5 smart_config 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>smart_config</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\smart_config</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-TOUCH协议，通过手机应用将Wi-Fi配置信息传递给ESP32设备，实现设备的快速联网。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>smartconfig_example_task()</code>：智能配网任务<br>- 事件处理函数：处理智能配网事件<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 通过手机App发送的Wi-Fi SSID和密码<br><br>输出：<br>- 配网状态<br>- Wi-Fi连接结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习智能配网技术的实现<br>- 开发需要快速联网的物联网设备<br>- 简化设备的初次配置流程<br>- 作为智能配网应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-6-fast-scan-例程"><a href="#12-6-fast-scan-例程" class="headerlink" title="12.6 fast_scan 例程"></a>12.6 fast_scan 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>fast_scan</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\fast_scan</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP32的快速Wi-Fi扫描功能，通过调整扫描参数提高扫描速度。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>fast_scan_task()</code>：快速扫描任务<br>- Wi-Fi扫描相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 扫描配置参数（如通道、扫描类型等）<br><br>输出：<br>- 扫描结果（发现的AP列表）<br>- 扫描时间统计</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Wi-Fi快速扫描技术<br>- 开发需要快速发现周围AP的应用<br>- 优化电池供电设备的扫描功耗<br>- 作为快速扫描功能的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-7-ftm-例程"><a href="#12-7-ftm-例程" class="headerlink" title="12.7 ftm 例程"></a>12.7 ftm 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>ftm</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\ftm</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示Wi-Fi Fine Timing Measurement (FTM) 功能，用于测量设备与接入点之间的距离。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- FTM相关配置和测量函数<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- FTM测量配置<br><br>输出：<br>- 距离测量结果<br>- 测量精度和状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Wi-Fi FTM技术<br>- 开发基于距离测量的应用<br>- 室内定位系统<br>- 作为FTM功能的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-8-itwt-例程"><a href="#12-8-itwt-例程" class="headerlink" title="12.8 itwt 例程"></a>12.8 itwt 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>itwt</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\itwt</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示IEEE 802.11ax (Wi-Fi 6) 的目标唤醒时间 (Target Wake Time, TWT) 功能，用于减少设备功耗。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- TWT配置和管理函数<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- TWT配置参数<br><br>输出：<br>- TWT协商结果<br>- 功耗优化效果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Wi-Fi 6 TWT技术<br>- 开发低功耗Wi-Fi设备<br>- 物联网设备的电池寿命优化<br>- 作为TWT功能的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-9-power-save-例程"><a href="#12-9-power-save-例程" class="headerlink" title="12.9 power_save 例程"></a>12.9 power_save 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>power_save</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\power_save</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的Wi-Fi省电模式，通过配置不同的电源管理策略来优化功耗。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>power_save_task()</code>：省电模式任务<br>- <code>get_ap_info()</code>：获取AP信息<br>- Wi-Fi电源管理相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 电源管理配置<br><br>输出：<br>- 功耗统计<br>- 连接稳定性信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Wi-Fi省电技术<br>- 开发电池供电的Wi-Fi设备<br>- 优化物联网设备的功耗<br>- 作为电源管理功能的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-10-roaming-例程"><a href="#12-10-roaming-例程" class="headerlink" title="12.10 roaming 例程"></a>12.10 roaming 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>roaming</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\roaming</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的Wi-Fi漫游功能，包括基于802.11k/v/r的快速漫游和普通漫游。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- 漫游配置和管理函数<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 漫游配置参数<br><br>输出：<br>- 漫游事件和状态<br>- 连接质量信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Wi-Fi漫游技术<br>- 开发需要在多个AP间移动的设备<br>- 提高大型网络中的连接稳定性<br>- 作为漫游功能的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-11-scan-例程"><a href="#12-11-scan-例程" class="headerlink" title="12.11 scan 例程"></a>12.11 scan 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>scan</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\scan</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的Wi-Fi扫描功能，包括主动扫描和被动扫描，以及扫描结果的处理。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>wifi_scan_task()</code>：扫描任务<br>- Wi-Fi扫描相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 扫描配置参数（类型、通道等）<br><br>输出：<br>- 扫描到的AP列表<br>- AP信号强度和其他信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Wi-Fi扫描技术<br>- 开发需要发现周围AP的应用<br>- 网络诊断工具<br>- 作为扫描功能的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-12-softap-sta-例程"><a href="#12-12-softap-sta-例程" class="headerlink" title="12.12 softap_sta 例程"></a>12.12 softap_sta 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>softap_sta</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\softap_sta</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32同时作为Wi-Fi接入点（AP）和客户端（STA）的功能，实现设备同时连接外部网络并创建本地网络。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>wifi_init_softap_sta()</code>：初始化AP+STA模式<br>- 事件处理函数：处理网络事件<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- AP和STA的配置参数<br><br>输出：<br>- AP和STA的连接状态<br>- 网络通信状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习AP+STA模式的实现<br>- 开发需要同时作为热点和客户端的设备<br>- 物联网网关设备<br>- 作为双模式Wi-Fi应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-13-wifi-aware-例程"><a href="#12-13-wifi-aware-例程" class="headerlink" title="12.13 wifi_aware 例程"></a>12.13 wifi_aware 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>wifi_aware</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\wifi_aware</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示Wi-Fi Aware（Neighbor Awareness Networking, NAN）功能，实现设备间的服务发现和直接通信。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- NAN配置和管理函数<br>- 服务发布和订阅函数<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- NAN服务配置<br><br>输出：<br>- 服务发现结果<br>- 设备间通信状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Wi-Fi Aware技术<br>- 开发设备间直接通信的应用<br>- 本地服务发现<br>- 作为NAN功能的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-14-wifi-eap-fast-例程"><a href="#12-14-wifi-eap-fast-例程" class="headerlink" title="12.14 wifi_eap_fast 例程"></a>12.14 wifi_eap_fast 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>wifi_eap_fast</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\wifi_eap_fast</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32连接到使用EAP-FAST认证的企业Wi-Fi网络。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- EAP-FAST配置函数<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- EAP-FAST认证配置<br>- 证书和PAC文件<br><br>输出：<br>- 认证状态<br>- 网络连接结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习EAP-FAST认证技术<br>- 开发需要连接企业Wi-Fi网络的设备<br>- 提高Wi-Fi连接的安全性<br>- 作为EAP-FAST认证的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-15-wifi-enterprise-例程"><a href="#12-15-wifi-enterprise-例程" class="headerlink" title="12.15 wifi_enterprise 例程"></a>12.15 wifi_enterprise 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>wifi_enterprise</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\wifi_enterprise</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32连接到使用802.1X认证的企业Wi-Fi网络。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- 企业网络认证配置函数<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 企业网络认证配置<br>- 证书和密钥<br><br>输出：<br>- 认证状态<br>- 网络连接结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习802.1X企业认证技术<br>- 开发需要连接企业Wi-Fi网络的设备<br>- 提高Wi-Fi连接的安全性<br>- 作为企业认证的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-16-wifi-nvs-config-例程"><a href="#12-16-wifi-nvs-config-例程" class="headerlink" title="12.16 wifi_nvs_config 例程"></a>12.16 wifi_nvs_config 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>wifi_nvs_config</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\wifi_nvs_config</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用NVS（非易失性存储）保存和加载Wi-Fi配置信息。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- NVS操作相关函数<br>- Wi-Fi配置函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- Wi-Fi配置信息<br><br>输出：<br>- 配置保存状态<br>- 配置加载结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习NVS存储技术<br>- 开发需要持久化保存Wi-Fi配置的设备<br>- 简化设备的配置流程<br>- 作为NVS应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-17-wps-例程"><a href="#12-17-wps-例程" class="headerlink" title="12.17 wps 例程"></a>12.17 wps 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>wps</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\wps</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示Wi-Fi Protected Setup (WPS) 功能，实现设备的快速安全联网。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- WPS配置和管理函数<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- WPS模式选择（PIN或PBC）<br><br>输出：<br>- WPS协商结果<br>- Wi-Fi连接状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习WPS技术<br>- 开发需要快速安全联网的设备<br>- 简化设备的初次配置流程<br>- 作为WPS功能的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="12-18-wps-softap-registrar-例程"><a href="#12-18-wps-softap-registrar-例程" class="headerlink" title="12.18 wps_softap_registrar 例程"></a>12.18 wps_softap_registrar 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>wps_softap_registrar</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\wifi\wps_softap_registrar</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32作为WPS Registrar（注册器）的功能，用于配置其他WPS设备。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- WPS Registrar配置函数<br>- Wi-Fi初始化相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- WPS Registrar配置<br><br>输出：<br>- WPS配置状态<br>- 客户端设备连接结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习WPS Registrar功能<br>- 开发作为WPS配置中心的设备<br>- 简化多设备的网络配置<br>- 作为WPS Registrar的参考模板</td>
 </tr>
 </tbody></table>
 
@@ -1081,8 +1561,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ESP-IDF 例程——bluetooth</div>
-      <div>https://blog.zhaosn.top/ESP32-examples/19.bluetooth(WIP)/</div>
+      <div>ESP-IDF 例程——wifi</div>
+      <div>https://blog.zhaosn.top/ESP32-examples/12.wifi/</div>
     </div>
     <div class="license-meta">
       
@@ -1100,7 +1580,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月21日</div>
+          <div>2026年2月28日</div>
         </div>
       
       
@@ -1143,9 +1623,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/ESP32-examples/06.build_system/" title="ESP-IDF 例程——build_system">
+                      <a href="/ESP32-examples/08.zigbee/" title="ESP-IDF 例程——Zigbee">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ESP-IDF 例程——build_system</span>
+                        <span class="hidden-mobile">ESP-IDF 例程——Zigbee</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1153,8 +1633,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/ESP32-examples/03.cxx/" title="ESP-IDF 例程——cxx">
-                        <span class="hidden-mobile">ESP-IDF 例程——cxx</span>
+                      <a href="/ESP32-examples/17.system/" title="ESP-IDF 例程——system">
+                        <span class="hidden-mobile">ESP-IDF 例程——system</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

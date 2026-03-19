@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
-    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/17.system(WIP)/"/>
+    <link rel="canonical" href="https://blog.zhaosn.top/ESP32-examples/17.system/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -264,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          5.6k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
         
-          3 分钟
+          13 分钟
         
       </span>
     
@@ -660,7 +660,7 @@
     
       
       
-        <a href="/ESP32-examples/19.bluetooth(WIP)/" title="ESP-IDF 例程——bluetooth"
+        <a href="/ESP32-examples/19.bluetooth/" title="ESP-IDF 例程——bluetooth"
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">ESP-IDF 例程——bluetooth</span>
@@ -1093,6 +1093,838 @@
 <td>适用于：<br>- 学习ESP-IDF OTA功能的使用<br>- 开发需要远程升级的设备<br>- 物联网设备的固件管理<br>- 作为OTA应用的参考模板</td>
 </tr>
 </tbody></table>
+<h3 id="17-6-app-trace-basic-例程"><a href="#17-6-app-trace-basic-例程" class="headerlink" title="17.6 app_trace_basic 例程"></a>17.6 app_trace_basic 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>app_trace_basic</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\app_trace_basic</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP-IDF的应用跟踪（App Trace）功能，用于实时跟踪和分析应用程序的执行情况。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_apptrace_init()</code>：初始化应用跟踪<br>- <code>esp_apptrace_write()</code>：写入跟踪数据<br>- <code>esp_apptrace_flush()</code>：刷新跟踪数据</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 应用执行跟踪数据<br>- 系统状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习ESP-IDF应用跟踪功能<br>- 开发过程中的性能分析<br>- 系统调试和问题排查<br>- 作为应用跟踪的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-7-base-mac-address-例程"><a href="#17-7-base-mac-address-例程" class="headerlink" title="17.7 base_mac_address 例程"></a>17.7 base_mac_address 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>base_mac_address</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\base_mac_address</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何获取和修改ESP32设备的基础MAC地址，以及如何在不同网络接口上使用不同的MAC地址。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_base_mac_addr_get()</code>：获取基础MAC地址<br>- <code>esp_efuse_mac_get_default()</code>：从eFuse获取默认MAC地址<br>- <code>esp_netif_get_mac()</code>：获取网络接口的MAC地址</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 设备的基础MAC地址<br>- 各网络接口的MAC地址</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习MAC地址管理<br>- 开发需要自定义MAC地址的应用<br>- 网络设备的标识和管理<br>- 作为MAC地址操作的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-8-console-advanced-例程"><a href="#17-8-console-advanced-例程" class="headerlink" title="17.8 console/advanced 例程"></a>17.8 console/advanced 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>console/advanced</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\console\advanced</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP-IDF的高级控制台功能，包括命令分组、子命令、参数解析和复杂命令处理。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_console_repl_init()</code>：初始化REPL<br>- <code>esp_console_cmd_register()</code>：注册命令<br>- 各种命令处理函数（系统、Wi-Fi、NVS等）</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 通过串口或USB输入的命令<br><br>输出：<br>- 命令执行结果<br>- 帮助信息<br>- 系统状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习ESP-IDF高级控制台功能<br>- 开发复杂的命令行界面<br>- 设备配置和管理<br>- 作为高级CLI应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-9-deep-sleep-wake-stub-例程"><a href="#17-9-deep-sleep-wake-stub-例程" class="headerlink" title="17.9 deep_sleep_wake_stub 例程"></a>17.9 deep_sleep_wake_stub 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>deep_sleep_wake_stub</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\deep_sleep_wake_stub</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用深度睡眠唤醒存根（wake stub）功能，在深度睡眠唤醒后执行代码，而无需完整启动系统。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_deep_sleep_set_wake_stub()</code>：设置唤醒存根<br>- 唤醒存根函数<br>- 深度睡眠相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 唤醒存根执行结果<br>- 系统状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习深度睡眠唤醒存根功能<br>- 开发超低功耗应用<br>- 快速唤醒的传感器节点<br>- 作为唤醒存根应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-10-efuse-例程"><a href="#17-10-efuse-例程" class="headerlink" title="17.10 efuse 例程"></a>17.10 efuse 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>efuse</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\efuse</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP32的eFuse（一次性可编程存储）功能，包括读取和写入eFuse数据。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_efuse_read()</code>：读取eFuse数据<br>- <code>esp_efuse_write()</code>：写入eFuse数据<br>- <code>esp_efuse_dump()</code>：打印eFuse信息</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- eFuse数据<br>- 系统配置信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习eFuse功能的使用<br>- 开发需要安全存储的应用<br>- 设备配置和标识<br>- 作为eFuse操作的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-11-esp-event-例程"><a href="#17-11-esp-event-例程" class="headerlink" title="17.11 esp_event 例程"></a>17.11 esp_event 例程</h3><h4 id="17-11-1-esp-event-default-event-loop-例程"><a href="#17-11-1-esp-event-default-event-loop-例程" class="headerlink" title="17.11.1 esp_event/default_event_loop 例程"></a>17.11.1 esp_event/default_event_loop 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>esp_event/default_event_loop</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\esp_event\default_event_loop</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP-IDF的默认事件循环，实现事件的发布和订阅。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_event_loop_create_default()</code>：创建默认事件循环<br>- <code>esp_event_handler_register()</code>：注册事件处理程序<br>- <code>esp_event_post()</code>：发布事件</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 事件处理结果<br>- 系统状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习ESP-IDF事件系统<br>- 开发基于事件的应用<br>- 实现组件间通信<br>- 作为事件系统应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-12-eventfd-例程"><a href="#17-12-eventfd-例程" class="headerlink" title="17.12 eventfd 例程"></a>17.12 eventfd 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>eventfd</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\eventfd</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用eventfd（事件文件描述符）进行线程间通信和同步。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>eventfd()</code>：创建eventfd<br>- <code>read()</code>：读取eventfd<br>- <code>write()</code>：写入eventfd<br>- 线程创建和管理函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 事件触发状态<br>- 线程同步结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习eventfd功能<br>- 开发线程间通信应用<br>- 实现事件通知机制<br>- 作为线程同步的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-13-flash-suspend-例程"><a href="#17-13-flash-suspend-例程" class="headerlink" title="17.13 flash_suspend 例程"></a>17.13 flash_suspend 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>flash_suspend</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\flash_suspend</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的Flash暂停功能，允许在Flash操作期间暂停和恢复执行。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- Flash操作函数<br>- 中断处理函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- Flash操作状态<br>- 中断处理结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习Flash暂停功能<br>- 开发需要在Flash操作期间响应中断的应用<br>- 实时系统中的Flash管理<br>- 作为Flash操作的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-14-freertos-例程"><a href="#17-14-freertos-例程" class="headerlink" title="17.14 freertos 例程"></a>17.14 freertos 例程</h3><h4 id="17-14-1-freertos-basic-freertos-smp-usage-例程"><a href="#17-14-1-freertos-basic-freertos-smp-usage-例程" class="headerlink" title="17.14.1 freertos/basic_freertos_smp_usage 例程"></a>17.14.1 freertos/basic_freertos_smp_usage 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>freertos/basic_freertos_smp_usage</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\freertos\basic_freertos_smp_usage</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示FreeRTOS在ESP32 SMP（对称多处理）系统中的基本使用，包括任务创建、同步、通信等。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>xTaskCreate()</code>：创建任务<br>- <code>xSemaphoreCreateMutex()</code>：创建互斥锁<br>- <code>xQueueCreate()</code>：创建队列<br>- <code>xTaskNotifyGive()</code>：发送任务通知</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 任务执行顺序<br>- 同步操作结果<br>- 队列通信结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习FreeRTOS SMP功能<br>- 开发多任务应用<br>- 实现并发处理<br>- 作为FreeRTOS应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-15-gcov-例程"><a href="#17-15-gcov-例程" class="headerlink" title="17.15 gcov 例程"></a>17.15 gcov 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>gcov</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\gcov</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用GCOV（代码覆盖率工具）来分析ESP32应用程序的代码覆盖率。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- 测试函数<br>- GCOV相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 代码覆盖率报告<br>- 测试结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习GCOV代码覆盖率工具<br>- 开发需要代码覆盖率分析的应用<br>- 提高代码质量和测试覆盖率<br>- 作为代码覆盖率分析的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-16-gdbstub-例程"><a href="#17-16-gdbstub-例程" class="headerlink" title="17.16 gdbstub 例程"></a>17.16 gdbstub 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>gdbstub</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\gdbstub</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用ESP32的GDB stub功能，通过GDB（GNU调试器）远程调试ESP32应用程序。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- GDB stub初始化函数<br>- 调试相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 调试信息<br>- 程序执行状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习GDB stub调试功能<br>- 开发需要复杂调试的应用<br>- 解决难以重现的问题<br>- 作为调试技术的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-17-heap-task-tracking-例程"><a href="#17-17-heap-task-tracking-例程" class="headerlink" title="17.17 heap_task_tracking 例程"></a>17.17 heap_task_tracking 例程</h3><h4 id="17-17-1-heap-task-tracking-basic-例程"><a href="#17-17-1-heap-task-tracking-basic-例程" class="headerlink" title="17.17.1 heap_task_tracking/basic 例程"></a>17.17.1 heap_task_tracking/basic 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>heap_task_tracking/basic</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\heap_task_tracking\basic</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP-IDF的堆任务跟踪功能，用于监控和分析不同任务的堆内存使用情况。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_heap_task_tracking_init()</code>：初始化堆任务跟踪<br>- <code>esp_heap_task_tracking_start()</code>：开始堆任务跟踪<br>- <code>esp_heap_task_tracking_stop()</code>：停止堆任务跟踪</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 任务堆内存使用情况<br>- 内存分配统计</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习堆任务跟踪功能<br>- 开发需要内存优化的应用<br>- 排查内存泄漏问题<br>- 作为内存管理的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-18-himem-例程"><a href="#17-18-himem-例程" class="headerlink" title="17.18 himem 例程"></a>17.18 himem 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>himem</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\himem</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的高内存（HiMem）功能，用于访问超出常规内存范围的外部RAM。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>himem_init()</code>：初始化HiMem<br>- <code>himem_alloc()</code>：分配HiMem内存<br>- <code>himem_free()</code>：释放HiMem内存</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- HiMem分配结果<br>- 内存访问状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习HiMem功能<br>- 开发需要大量内存的应用<br>- 处理大型数据结构<br>- 作为内存管理的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-19-ipc-例程"><a href="#17-19-ipc-例程" class="headerlink" title="17.19 ipc 例程"></a>17.19 ipc 例程</h3><h4 id="17-19-1-ipc-ipc-isr-例程"><a href="#17-19-1-ipc-ipc-isr-例程" class="headerlink" title="17.19.1 ipc/ipc_isr 例程"></a>17.19.1 ipc/ipc_isr 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>ipc/ipc_isr</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\ipc\ipc_isr</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的IPC（进程间通信）功能，用于在不同CPU核心之间传递中断和数据。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_ipc_isr_register()</code>：注册IPC中断处理程序<br>- <code>esp_ipc_call()</code>：执行IPC调用</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- IPC通信结果<br>- 中断处理状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习ESP32 IPC功能<br>- 开发多核心协作应用<br>- 实现跨核心中断处理<br>- 作为IPC应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-20-light-sleep-例程"><a href="#17-20-light-sleep-例程" class="headerlink" title="17.20 light_sleep 例程"></a>17.20 light_sleep 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>light_sleep</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\light_sleep</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的轻度睡眠模式和各种唤醒源，包括定时器唤醒、GPIO唤醒和UART唤醒。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_light_sleep_start()</code>：进入轻度睡眠<br>- <code>esp_sleep_enable_timer_wakeup()</code>：使能定时器唤醒<br>- <code>esp_sleep_enable_gpio_wakeup()</code>：使能GPIO唤醒<br>- <code>esp_sleep_enable_uart_wakeup()</code>：使能UART唤醒</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 唤醒源信息<br>- 轻度睡眠持续时间<br>- 系统状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习ESP32轻度睡眠模式<br>- 开发低功耗应用<br>- 电池供电设备的电源管理<br>- 作为轻度睡眠应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-21-nmi-isr-例程"><a href="#17-21-nmi-isr-例程" class="headerlink" title="17.21 nmi_isr 例程"></a>17.21 nmi_isr 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>nmi_isr</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\nmi_isr</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的NMI（不可屏蔽中断）功能，用于处理最高优先级的中断。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- NMI中断处理函数<br>- 汇编函数<br>- GPIO中断配置函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- NMI中断触发信息<br>- 系统状态信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习NMI中断功能<br>- 开发需要最高优先级中断处理的应用<br>- 实现关键系统事件处理<br>- 作为中断处理的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-22-ota-advanced-https-ota-例程"><a href="#17-22-ota-advanced-https-ota-例程" class="headerlink" title="17.22 ota/advanced_https_ota 例程"></a>17.22 ota/advanced_https_ota 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>ota/advanced_https_ota</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\ota\advanced_https_ota</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP-IDF的高级OTA功能，包括BLE辅助配网、OTA恢复、部分下载等高级特性。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>advanced_ota_task()</code>：高级OTA任务<br>- <code>esp_https_ota()</code>：执行HTTPS OTA升级<br>- BLE配网相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输入：<br>- 配置的Wi-Fi SSID和密码（或通过BLE配网）<br>- OTA服务器URL<br><br>输出：<br>- OTA升级进度<br>- 升级结果<br>- 系统重启信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习ESP-IDF高级OTA功能<br>- 开发复杂的远程升级系统<br>- 物联网设备的固件管理<br>- 作为高级OTA应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-23-perfmon-例程"><a href="#17-23-perfmon-例程" class="headerlink" title="17.23 perfmon 例程"></a>17.23 perfmon 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>perfmon</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\perfmon</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的性能监控（PerfMon）功能，用于测量和分析系统性能。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>perfmon_init()</code>：初始化性能监控<br>- <code>perfmon_start()</code>：开始性能监控<br>- <code>perfmon_stop()</code>：停止性能监控</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 性能监控数据<br>- 系统运行状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习PerfMon功能<br>- 开发需要性能优化的应用<br>- 系统性能分析和调试<br>- 作为性能监控的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-24-rt-mqueue-例程"><a href="#17-24-rt-mqueue-例程" class="headerlink" title="17.24 rt_mqueue 例程"></a>17.24 rt_mqueue 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>rt_mqueue</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\rt_mqueue</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示POSIX实时消息队列（rt_mqueue）的使用，用于进程间通信。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>mq_open()</code>：打开消息队列<br>- <code>mq_send()</code>：发送消息<br>- <code>mq_receive()</code>：接收消息<br>- <code>mq_close()</code>：关闭消息队列</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 消息发送和接收结果<br>- 队列操作状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习POSIX消息队列<br>- 开发进程间通信应用<br>- 实现消息传递机制<br>- 作为IPC通信的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-25-select-例程"><a href="#17-25-select-例程" class="headerlink" title="17.25 select 例程"></a>17.25 select 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>select</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\select</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示POSIX select()函数的使用，用于多路I/O复用，同时监控多个文件描述符。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>select()</code>：监控文件描述符<br>- 套接字操作函数<br>- UART操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- I/O事件通知<br>- 数据接收结果</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习select()函数<br>- 开发需要多路I/O的应用<br>- 实现事件驱动编程<br>- 作为I/O多路复用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-26-startup-time-例程"><a href="#17-26-startup-time-例程" class="headerlink" title="17.26 startup_time 例程"></a>17.26 startup_time 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>startup_time</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\startup_time</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何测量和优化ESP32的启动时间，包括启动过程中的各个阶段。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- 启动时间测量函数<br>- 系统初始化函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 启动时间统计<br>- 系统初始化状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习启动时间优化<br>- 开发需要快速启动的应用<br>- 系统性能分析<br>- 作为启动时间优化的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-27-sysview-tracing-例程"><a href="#17-27-sysview-tracing-例程" class="headerlink" title="17.27 sysview_tracing 例程"></a>17.27 sysview_tracing 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>sysview_tracing</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\sysview_tracing</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示如何使用SystemView进行系统跟踪和分析，包括任务调度、中断和系统调用等。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- SystemView初始化函数<br>- 系统跟踪函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 系统跟踪数据<br>- 任务执行情况</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习SystemView跟踪功能<br>- 开发需要系统分析的应用<br>- 任务调度优化<br>- 作为系统分析的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-28-task-watchdog-例程"><a href="#17-28-task-watchdog-例程" class="headerlink" title="17.28 task_watchdog 例程"></a>17.28 task_watchdog 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>task_watchdog</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\task_watchdog</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的任务看门狗（Task Watchdog Timer, TWD）功能，用于监控任务的执行状态，防止任务卡住。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>esp_task_wdt_init()</code>：初始化任务看门狗<br>- <code>esp_task_wdt_add()</code>：添加任务到看门狗监控<br>- <code>esp_task_wdt_reset()</code>：重置任务看门狗</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 任务看门狗状态<br>- 系统监控信息</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习任务看门狗功能<br>- 开发需要高可靠性的应用<br>- 防止任务死锁<br>- 作为系统监控的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-29-ulp-例程"><a href="#17-29-ulp-例程" class="headerlink" title="17.29 ulp 例程"></a>17.29 ulp 例程</h3><h4 id="17-29-1-ulp-lp-core-gpio-例程"><a href="#17-29-1-ulp-lp-core-gpio-例程" class="headerlink" title="17.29.1 ulp/lp_core/gpio 例程"></a>17.29.1 ulp/lp_core/gpio 例程</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>ulp/lp_core/gpio</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\ulp\lp_core\gpio</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32低功耗核心（LP Core）的GPIO操作，在主CPU睡眠时执行GPIO相关任务。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- LP Core固件编译和加载<br>- GPIO操作函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- LP Core执行结果<br>- GPIO操作状态</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习LP Core功能<br>- 开发低功耗应用<br>- 实现主CPU睡眠时的GPIO控制<br>- 作为LP Core应用的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-30-unit-test-例程"><a href="#17-30-unit-test-例程" class="headerlink" title="17.30 unit_test 例程"></a>17.30 unit_test 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>unit_test</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\unit_test</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP-IDF的单元测试框架，用于编写和运行单元测试。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- <code>TEST_CASE()</code>：定义测试用例<br>- <code>TEST_ASSERT()</code>：断言宏<br>- 测试运行函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- 测试结果<br>- 测试覆盖率</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习单元测试框架<br>- 开发需要测试的应用<br>- 提高代码质量<br>- 作为单元测试的参考模板</td>
+</tr>
+</tbody></table>
+<h3 id="17-31-xip-from-psram-例程"><a href="#17-31-xip-from-psram-例程" class="headerlink" title="17.31 xip_from_psram 例程"></a>17.31 xip_from_psram 例程</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>例程名称</strong></td>
+<td>xip_from_psram</td>
+</tr>
+<tr>
+<td><strong>所在文件夹路径</strong></td>
+<td>examples\system\xip_from_psram</td>
+</tr>
+<tr>
+<td><strong>核心功能说明</strong></td>
+<td>演示ESP32的XIP（Execute In Place）从PSRAM执行代码的功能，用于扩展可执行代码空间。</td>
+</tr>
+<tr>
+<td><strong>主要调用的内部/外部函数或模块</strong></td>
+<td>- <code>app_main()</code>：程序入口函数<br>- PSRAM初始化函数<br>- XIP相关函数</td>
+</tr>
+<tr>
+<td><strong>输入输出参数说明</strong></td>
+<td>输出：<br>- XIP执行状态<br>- 内存使用情况</td>
+</tr>
+<tr>
+<td><strong>适用场景及典型应用案例</strong></td>
+<td>适用于：<br>- 学习XIP功能<br>- 开发需要大量代码空间的应用<br>- 扩展程序容量<br>- 作为XIP应用的参考模板</td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -1146,7 +1978,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>ESP-IDF 例程——system</div>
-      <div>https://blog.zhaosn.top/ESP32-examples/17.system(WIP)/</div>
+      <div>https://blog.zhaosn.top/ESP32-examples/17.system/</div>
     </div>
     <div class="license-meta">
       
@@ -1164,7 +1996,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月21日</div>
+          <div>2026年2月28日</div>
         </div>
       
       
@@ -1207,7 +2039,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/ESP32-examples/12.wifi(WIP)/" title="ESP-IDF 例程——wifi">
+                      <a href="/ESP32-examples/12.wifi/" title="ESP-IDF 例程——wifi">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">ESP-IDF 例程——wifi</span>
                         <span class="visible-mobile">上一篇</span>
@@ -1217,7 +2049,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/ESP32-examples/14.storage(WIP)/" title="ESP-IDF 例程——存储">
+                      <a href="/ESP32-examples/14.storage/" title="ESP-IDF 例程——存储">
                         <span class="hidden-mobile">ESP-IDF 例程——存储</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

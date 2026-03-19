@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+    <link rel="canonical" href="https://blog.zhaosn.top/OpenclawMemMachine/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhao SN">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MemMachine官方教程不清楚，我踩了一些坑。特此帮助后来人我使用Docker镜像部署，用的飞牛系统镜像使用memmachine/memmachine 建立一个目录用来放docker-compose文件，有以下文件，大多来自官方仓库     名称 官方仓库位置    -rw-r–r– .env /sample_configs/env.dockercompose   -rw-r–r– confi">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Openclaw接入MemMachine流程 - Zhaosn的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.zhaosn.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":45,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?db0474f77b68ddf3fb7cc21650cb844d";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zhaosn的博客🐉🐍</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/DMS2Decimal/" target="_self">
+                <i class="iconfont icon-map"></i>
+                <span>DMS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.6)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Openclaw接入MemMachine流程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-19 18:58" pubdate>
+          2026年3月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          4 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="AI"
+        id="heading-0a40e3c91a3a55c9a37428c6d194d0e5" role="tab" data-toggle="collapse" href="#collapse-0a40e3c91a3a55c9a37428c6d194d0e5"
+        aria-expanded="true"
+      >
+        AI
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-0a40e3c91a3a55c9a37428c6d194d0e5"
+           role="tabpanel" aria-labelledby="heading-0a40e3c91a3a55c9a37428c6d194d0e5">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/OpenclawMemMachine/" title="Openclaw接入MemMachine流程"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Openclaw接入MemMachine流程</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Openclaw接入MemMachine流程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>MemMachine官方教程不清楚，我踩了一些坑。特此帮助后来人<br>我使用Docker镜像部署，用的飞牛系统<br>镜像使用memmachine/memmachine</p>
+<p>建立一个目录用来放docker-compose文件，有以下文件，大多来自<a target="_blank" rel="noopener" href="https://github.com/MemMachine/MemMachine/tree/main">官方仓库</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>名称</th>
+<th>官方仓库位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-rw-r–r–</td>
+<td>.env</td>
+<td>/sample_configs/env.dockercompose</td>
+</tr>
+<tr>
+<td>-rw-r–r–</td>
+<td>configuration.yml</td>
+<td>/sample_configs/episodic_memory_config.cpu.sample</td>
+</tr>
+<tr>
+<td>-rw-r–r–</td>
+<td>docker-compose.yml</td>
+<td>/docker-compose.yml</td>
+</tr>
+<tr>
+<td>drwxr-xr-x</td>
+<td>docs/</td>
+<td>/docs</td>
+</tr>
+<tr>
+<td>-rwxr-xr-x</td>
+<td>memmachine-compose.sh</td>
+<td>适合用来配置configuration.yml</td>
+</tr>
+<tr>
+<td>drwxr-xr-x</td>
+<td>sample_configs/</td>
+<td>/sample_configs</td>
+</tr>
+</tbody></table>
+<h1 id="docker-compose-yml示例"><a href="#docker-compose-yml示例" class="headerlink" title="docker-compose.yml示例"></a>docker-compose.yml示例</h1><p>不用把所有端口都暴露出来，把openclaw一起放到一个网络里，用飞书控制都不用往外映射端口</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">services:</span><br>  <span class="hljs-comment"># 一起启动openclaw</span><br>  <span class="hljs-attr">openclaw:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">alpine/openclaw:latest</span><br>    <span class="hljs-attr">container_name:</span> <span class="hljs-string">openclaw</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">/vol1/1000/mSATA-SSD/Docker/openclaw/app:/app</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">/vol1/1000/mSATA-SSD/Docker/openclaw/.openclaw:/home/node/.openclaw</span><br>    <span class="hljs-attr">networks:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">memmachine-network</span><br>  <span class="hljs-comment"># PostgreSQL with pgvector extension for profile memory storage</span><br>  <span class="hljs-attr">postgres:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">pgvector/pgvector:pg16</span><br>    <span class="hljs-attr">container_name:</span> <span class="hljs-string">memmachine-postgres</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">unless-stopped</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-attr">POSTGRES_DB:</span> <span class="hljs-string">$&#123;POSTGRES_DB:-memmachine&#125;</span><br>      <span class="hljs-attr">POSTGRES_USER:</span> <span class="hljs-string">$&#123;POSTGRES_USER:-memmachine&#125;</span><br>      <span class="hljs-attr">POSTGRES_PASSWORD:</span> <span class="hljs-string">$&#123;POSTGRES_PASSWORD:-memmachine_password&#125;</span><br>      <span class="hljs-attr">POSTGRES_INITDB_ARGS:</span> <span class="hljs-string">&quot;--encoding=UTF-8 --lc-collate=C --lc-ctype=C&quot;</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">postgres_data:/var/lib/postgresql/data</span><br>    <span class="hljs-attr">healthcheck:</span><br>      <span class="hljs-attr">test:</span> [<span class="hljs-string">&quot;CMD-SHELL&quot;</span>, <span class="hljs-string">&quot;pg_isready -U $&#123;POSTGRES_USER:-memmachine&#125; -d $&#123;POSTGRES_DB:-memmachine&#125;&quot;</span>]<br>      <span class="hljs-attr">interval:</span> <span class="hljs-string">10s</span><br>      <span class="hljs-attr">timeout:</span> <span class="hljs-string">5s</span><br>      <span class="hljs-attr">retries:</span> <span class="hljs-number">5</span><br>      <span class="hljs-attr">start_period:</span> <span class="hljs-string">30s</span><br>    <span class="hljs-attr">networks:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">memmachine-network</span><br><br>  <span class="hljs-comment"># Neo4j database for graph storage</span><br>  <span class="hljs-attr">neo4j:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">neo4j:5.23-community</span><br>    <span class="hljs-attr">container_name:</span> <span class="hljs-string">memmachine-neo4j</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">unless-stopped</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-attr">NEO4J_EDITION:</span> <span class="hljs-string">community</span><br>      <span class="hljs-attr">NEO4J_AUTH:</span> <span class="hljs-string">$&#123;NEO4J_USER:-neo4j&#125;/$&#123;NEO4J_PASSWORD:-neo4j_password&#125;</span><br>      <span class="hljs-attr">NEO4J_server_bolt_thread__pool__max__size:</span> <span class="hljs-number">2000</span><br>      <span class="hljs-attr">NEO4J_server_memory_heap_initial__size:</span> <span class="hljs-string">512m</span><br>      <span class="hljs-attr">NEO4J_server_memory_heap_max__size:</span> <span class="hljs-string">1G</span><br>      <span class="hljs-attr">NEO4J_server_default__listen__address:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br>      <span class="hljs-attr">NEO4J_server_bolt_listen__address:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">:7687</span><br>      <span class="hljs-attr">NEO4J_server_http_listen__address:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">:7474</span><br>      <span class="hljs-attr">NEO4J_server_https_listen__address:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">:7473</span><br>      <span class="hljs-attr">NEO4J_PLUGINS:</span> <span class="hljs-string">&#x27;[&quot;apoc&quot;, &quot;graph-data-science&quot;]&#x27;</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">neo4j_data:/data</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">neo4j_logs:/logs</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">neo4j_import:/var/lib/neo4j/import</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">neo4j_plugins:/plugins</span><br>    <span class="hljs-attr">healthcheck:</span><br>      <span class="hljs-attr">test:</span> [<span class="hljs-string">&quot;CMD&quot;</span>, <span class="hljs-string">&quot;cypher-shell&quot;</span>, <span class="hljs-string">&quot;-u&quot;</span>, <span class="hljs-string">&quot;$&#123;NEO4J_USER:-neo4j&#125;&quot;</span>, <span class="hljs-string">&quot;-p&quot;</span>, <span class="hljs-string">&quot;$&#123;NEO4J_PASSWORD:-neo4j_password&#125;&quot;</span>, <span class="hljs-string">&quot;RETURN 1&quot;</span>]<br>      <span class="hljs-attr">interval:</span> <span class="hljs-string">30s</span><br>      <span class="hljs-attr">timeout:</span> <span class="hljs-string">10s</span><br>      <span class="hljs-attr">retries:</span> <span class="hljs-number">5</span><br>      <span class="hljs-attr">start_period:</span> <span class="hljs-string">30s</span><br>    <span class="hljs-attr">networks:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">memmachine-network</span><br><br>  <span class="hljs-comment"># MemMachine application</span><br>  <span class="hljs-attr">memmachine:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">$&#123;MEMMACHINE_IMAGE:-memmachine/memmachine&#125;</span><br>    <span class="hljs-attr">pull_policy:</span> <span class="hljs-string">$&#123;PULL_POLICY:-always&#125;</span><br>    <span class="hljs-attr">container_name:</span> <span class="hljs-string">memmachine-app</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">unless-stopped</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;$&#123;MEMORY_SERVER_PORT:-8080&#125;:8080&quot;</span><br>    <span class="hljs-comment"># 所做的修改就是删除了其他镜像的端口映射，这个也能删。反正openclaw在一个网络里拉起来，互访没问题</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-comment"># Database configuration</span><br>      <span class="hljs-attr">POSTGRES_HOST:</span> <span class="hljs-string">$&#123;POSTGRES_HOST:-postgres&#125;</span><br>      <span class="hljs-attr">POSTGRES_PORT:</span> <span class="hljs-string">$&#123;POSTGRES_PORT:-5432&#125;</span><br>      <span class="hljs-attr">POSTGRES_USER:</span> <span class="hljs-string">$&#123;POSTGRES_USER:-memmachine&#125;</span><br>      <span class="hljs-attr">POSTGRES_PASSWORD:</span> <span class="hljs-string">$&#123;POSTGRES_PASSWORD:-memmachine_password&#125;</span><br>      <span class="hljs-attr">POSTGRES_DB:</span> <span class="hljs-string">$&#123;POSTGRES_DB:-memmachine&#125;</span><br><br>      <span class="hljs-comment"># Neo4j configuration</span><br>      <span class="hljs-attr">NEO4J_HOST:</span> <span class="hljs-string">$&#123;NEO4J_HOST:-neo4j&#125;</span><br>      <span class="hljs-attr">NEO4J_PORT:</span> <span class="hljs-string">$&#123;NEO4J_PORT:-7687&#125;</span><br>      <span class="hljs-attr">NEO4J_USER:</span> <span class="hljs-string">$&#123;NEO4J_USER:-neo4j&#125;</span><br>      <span class="hljs-attr">NEO4J_PASSWORD:</span> <span class="hljs-string">$&#123;NEO4J_PASSWORD:-neo4j_password&#125;</span><br><br>      <span class="hljs-comment"># Application configuration</span><br>      <span class="hljs-attr">MEMORY_CONFIG:</span> <span class="hljs-string">$&#123;MEMORY_CONFIG:-/app/configuration.yml&#125;</span><br>      <span class="hljs-attr">MCP_BASE_URL:</span> <span class="hljs-string">$&#123;MCP_BASE_URL:-http://memmachine:8080&#125;</span><br>      <span class="hljs-attr">GATEWAY_URL:</span> <span class="hljs-string">$&#123;GATEWAY_URL:-http://localhost:8080&#125;</span><br>      <span class="hljs-attr">FAST_MCP_LOG_LEVEL:</span> <span class="hljs-string">$&#123;FAST_MCP_LOG_LEVEL:-INFO&#125;</span><br>      <span class="hljs-attr">OPENAI_API_KEY:</span> <span class="hljs-string">$&#123;OPENAI_API_KEY:-&#125;</span><br>      <span class="hljs-attr">MEMMACHINE_WORKERS:</span> <span class="hljs-string">$&#123;MEMMACHINE_WORKERS:-1&#125;</span><br>      <span class="hljs-attr">MEMMACHINE_CONFIG_API:</span> <span class="hljs-string">$&#123;MEMMACHINE_CONFIG_API:-&#125;</span><br>      <span class="hljs-attr">LOG_LEVEL:</span> <span class="hljs-string">$&#123;LOG_LEVEL:-INFO&#125;</span><br>      <span class="hljs-attr">HOST:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">./configuration.yml:/app/configuration.yml:rw,Z</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">memmachine_logs:/tmp/memory_logs</span><br>    <span class="hljs-attr">depends_on:</span><br>      <span class="hljs-attr">postgres:</span><br>        <span class="hljs-attr">condition:</span> <span class="hljs-string">service_healthy</span><br>      <span class="hljs-attr">neo4j:</span><br>        <span class="hljs-attr">condition:</span> <span class="hljs-string">service_healthy</span><br>    <span class="hljs-attr">healthcheck:</span><br>      <span class="hljs-attr">test:</span> [<span class="hljs-string">&quot;CMD&quot;</span>, <span class="hljs-string">&quot;curl&quot;</span>, <span class="hljs-string">&quot;--fail&quot;</span>, <span class="hljs-string">&quot;--silent&quot;</span>, <span class="hljs-string">&quot;http://localhost:8080/api/v2/health&quot;</span>]<br>      <span class="hljs-attr">interval:</span> <span class="hljs-string">30s</span><br>      <span class="hljs-attr">timeout:</span> <span class="hljs-string">10s</span><br>      <span class="hljs-attr">retries:</span> <span class="hljs-number">3</span><br>      <span class="hljs-attr">start_period:</span> <span class="hljs-string">60s</span><br>    <span class="hljs-attr">networks:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">memmachine-network</span><br>    <span class="hljs-attr">extra_hosts:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;host.docker.internal:host-gateway&quot;</span><br><br>  <span class="hljs-attr">docs:</span><br>    <span class="hljs-attr">build:</span><br>      <span class="hljs-attr">context:</span> <span class="hljs-string">docs/</span><br>      <span class="hljs-attr">dockerfile:</span> <span class="hljs-string">Dockerfile</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;$&#123;DOCS_PORT:-3000&#125;:3000&quot;</span><br>    <span class="hljs-comment"># 所做的修改就是删除了其他镜像的端口映射，这个也能删。反正openclaw在一个网络里拉起来，互访没问题</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">./docs:/docs:ro,Z</span><br><br><span class="hljs-attr">volumes:</span><br>  <span class="hljs-attr">postgres_data:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">local</span><br>  <span class="hljs-attr">neo4j_data:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">local</span><br>  <span class="hljs-attr">neo4j_logs:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">local</span><br>  <span class="hljs-attr">neo4j_import:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">local</span><br>  <span class="hljs-attr">neo4j_plugins:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">local</span><br>  <span class="hljs-attr">memmachine_logs:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">local</span><br><br><span class="hljs-attr">networks:</span><br>  <span class="hljs-attr">memmachine-network:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">bridge</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">memmachine-network</span><br><br></code></pre></td></tr></table></figure>
+
+
+<h1 id="configuration-yml示例"><a href="#configuration-yml示例" class="headerlink" title="configuration.yml示例"></a>configuration.yml示例</h1><p><strong>并不需要手动配置</strong>，可以删除configuration.yml，memmachine-compose.sh执行后会自动从/sample_configs/episodic_memory_config.cpu.sample生成，记得如果用的是BAAI/bge-m3，dimensions只能是1024</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-string">……</span><br>  <span class="hljs-attr">embedders:</span><br>    <span class="hljs-attr">openai_compatible_embedder:</span><br>      <span class="hljs-attr">provider:</span> <span class="hljs-string">openai</span><br>      <span class="hljs-attr">config:</span><br>        <span class="hljs-attr">max_input_length:</span> <span class="hljs-number">2048</span><br>        <span class="hljs-attr">model:</span> <span class="hljs-string">&quot;BAAI/bge-m3&quot;</span><br>        <span class="hljs-attr">api_key:</span> <span class="hljs-string">API隐藏API隐藏API隐藏API隐藏API隐藏API隐藏</span><br>        <span class="hljs-attr">base_url:</span> <span class="hljs-string">&quot;https://api.siliconflow.cn/v1&quot;</span><br>        <span class="hljs-comment"># 如果用的是BAAI/bge-m3，dimensions只能是1024</span><br>        <span class="hljs-attr">dimensions:</span> <span class="hljs-number">1024</span><br><span class="hljs-comment"># 可以删除configuration.yml，memmachine-compose.sh执行后会自动从/sample_configs/episodic_memory_config.cpu.sample生成</span><br>  <span class="hljs-attr">language_models:</span><br>    <span class="hljs-attr">openai_compatible_model:</span><br>      <span class="hljs-attr">provider:</span> <span class="hljs-string">openai-chat-completions</span><br>      <span class="hljs-attr">config:</span><br>        <span class="hljs-attr">model:</span> <span class="hljs-string">&quot;deepseek-ai/DeepSeek-V3.2&quot;</span><br>        <span class="hljs-attr">api_key:</span> <span class="hljs-string">API隐藏API隐藏API隐藏API隐藏API隐藏API隐藏</span><br>        <span class="hljs-attr">base_url:</span> <span class="hljs-string">&quot;https://api.siliconflow.cn/v1&quot;</span><br><span class="hljs-string">……</span><br></code></pre></td></tr></table></figure>
+
+
+<p><a target="_blank" rel="noopener" href="https://docs.memmachine.ai/install_guide/integrate/openclaw">OpenClaw - MemMachine Documentation</a>这里说的Local Deployment的配置，写在.openclaw.json里。<br>官方：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-string">&quot;openclaw-memmachine&quot;</span>: &#123;<br>  <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">&quot;config&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;http://host:port/api/v2&quot;</span>,<br>    <span class="hljs-attr">&quot;autoCapture&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">&quot;autoRecall&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">&quot;orgId&quot;</span>: <span class="hljs-string">&quot;openclaw&quot;</span>,<br>    <span class="hljs-attr">&quot;projectId&quot;</span>: <span class="hljs-string">&quot;openclaw&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>实际(链接改成了对应容器名字)：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json"> <span class="hljs-string">&quot;openclaw-memmachine&quot;</span>: &#123;<br><span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,<br><span class="hljs-attr">&quot;config&quot;</span>: &#123;<br>  <span class="hljs-attr">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;http://memmachine-app:8080/api/v2&quot;</span>,<br>  <span class="hljs-attr">&quot;autoCapture&quot;</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">&quot;autoRecall&quot;</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">&quot;orgId&quot;</span>: <span class="hljs-string">&quot;openclaw&quot;</span>,<br>  <span class="hljs-attr">&quot;projectId&quot;</span>: <span class="hljs-string">&quot;openclaw&quot;</span><br>&#125;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>参考的.openclaw.json（新增slots项）</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;meta&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;lastTouchedVersion&quot;</span>: <span class="hljs-string">&quot;2026.3.13&quot;</span>,<br>    <span class="hljs-attr">&quot;lastTouchedAt&quot;</span>: <span class="hljs-string">&quot;2026-03-19T06:45:04.014Z&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">&quot;wizard&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;lastRunAt&quot;</span>: <span class="hljs-string">&quot;2026-03-19T06:45:03.823Z&quot;</span>,<br>    <span class="hljs-attr">&quot;lastRunVersion&quot;</span>: <span class="hljs-string">&quot;2026.3.13&quot;</span>,<br>    <span class="hljs-attr">&quot;lastRunCommand&quot;</span>: <span class="hljs-string">&quot;configure&quot;</span>,<br>    <span class="hljs-attr">&quot;lastRunMode&quot;</span>: <span class="hljs-string">&quot;local&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">&quot;models&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;mode&quot;</span>: <span class="hljs-string">&quot;merge&quot;</span>,<br>    <span class="hljs-attr">&quot;providers&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;ollama&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;http://192.168.1.48:11434/v1&quot;</span>,<br>        <span class="hljs-attr">&quot;api&quot;</span>: <span class="hljs-string">&quot;openai-completions&quot;</span>,<br>        <span class="hljs-attr">&quot;models&quot;</span>: [<br>          &#123;<br>            <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;qwen3:8b&quot;</span>,<br>            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;qwen3:8b (Custom Provider)&quot;</span>,<br>            <span class="hljs-attr">&quot;reasoning&quot;</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">&quot;input&quot;</span>: [<br>              <span class="hljs-string">&quot;text&quot;</span><br>            ],<br>            <span class="hljs-attr">&quot;cost&quot;</span>: &#123;<br>              <span class="hljs-attr">&quot;input&quot;</span>: <span class="hljs-number">0</span>,<br>              <span class="hljs-attr">&quot;output&quot;</span>: <span class="hljs-number">0</span>,<br>              <span class="hljs-attr">&quot;cacheRead&quot;</span>: <span class="hljs-number">0</span>,<br>              <span class="hljs-attr">&quot;cacheWrite&quot;</span>: <span class="hljs-number">0</span><br>            &#125;,<br>            <span class="hljs-attr">&quot;contextWindow&quot;</span>: <span class="hljs-number">16000</span>,<br>            <span class="hljs-attr">&quot;maxTokens&quot;</span>: <span class="hljs-number">4096</span><br>          &#125;<br>        ]<br>      &#125;<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">&quot;agents&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;defaults&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;model&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;primary&quot;</span>: <span class="hljs-string">&quot;ollama/qwen3:8b&quot;</span><br>      &#125;,<br>      <span class="hljs-attr">&quot;models&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;ollama/qwen3:8b&quot;</span>: &#123;<br>          <span class="hljs-attr">&quot;alias&quot;</span>: <span class="hljs-string">&quot;ollama&quot;</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;longcat/LongCat-Flash-Lite&quot;</span>: &#123;<br>          <span class="hljs-attr">&quot;alias&quot;</span>: <span class="hljs-string">&quot;longcat&quot;</span><br>        &#125;<br>      &#125;,<br>      <span class="hljs-attr">&quot;workspace&quot;</span>: <span class="hljs-string">&quot;/home/node/.openclaw/workspace&quot;</span><br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">&quot;tools&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;profile&quot;</span>: <span class="hljs-string">&quot;coding&quot;</span>,<br>    <span class="hljs-attr">&quot;web&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;search&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">false</span><br>      &#125;,<br>      <span class="hljs-attr">&quot;fetch&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span><br>      &#125;<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">&quot;commands&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;native&quot;</span>: <span class="hljs-string">&quot;auto&quot;</span>,<br>    <span class="hljs-attr">&quot;nativeSkills&quot;</span>: <span class="hljs-string">&quot;auto&quot;</span>,<br>    <span class="hljs-attr">&quot;restart&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">&quot;ownerDisplay&quot;</span>: <span class="hljs-string">&quot;raw&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">&quot;session&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;dmScope&quot;</span>: <span class="hljs-string">&quot;per-channel-peer&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">&quot;hooks&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;internal&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,<br>      <span class="hljs-attr">&quot;entries&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;session-memory&quot;</span>: &#123;<br>          <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;<br>      &#125;<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">&quot;channels&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;feishu&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,<br>      <span class="hljs-attr">&quot;appId&quot;</span>: <span class="hljs-string">&quot;cli_a93c756960b89bd2&quot;</span>,<br>      <span class="hljs-attr">&quot;appSecret&quot;</span>: <span class="hljs-string">&quot;D2FhsP6JptBiaKforcjVggso42rhby3Z&quot;</span>,<br>      <span class="hljs-attr">&quot;connectionMode&quot;</span>: <span class="hljs-string">&quot;websocket&quot;</span>,<br>      <span class="hljs-attr">&quot;domain&quot;</span>: <span class="hljs-string">&quot;feishu&quot;</span>,<br>      <span class="hljs-attr">&quot;groupPolicy&quot;</span>: <span class="hljs-string">&quot;open&quot;</span><br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">&quot;gateway&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;port&quot;</span>: <span class="hljs-number">18789</span>,<br>    <span class="hljs-attr">&quot;mode&quot;</span>: <span class="hljs-string">&quot;local&quot;</span>,<br>    <span class="hljs-attr">&quot;bind&quot;</span>: <span class="hljs-string">&quot;loopback&quot;</span>,<br>    <span class="hljs-attr">&quot;auth&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;mode&quot;</span>: <span class="hljs-string">&quot;token&quot;</span>,<br>      <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;几里哇啦咕哩呱啦&quot;</span><br>    &#125;,<br>    <span class="hljs-attr">&quot;tailscale&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;mode&quot;</span>: <span class="hljs-string">&quot;off&quot;</span>,<br>      <span class="hljs-attr">&quot;resetOnExit&quot;</span>: <span class="hljs-literal">false</span><br>    &#125;,<br>    <span class="hljs-attr">&quot;nodes&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;denyCommands&quot;</span>: [<br>        <span class="hljs-string">&quot;camera.snap&quot;</span>,<br>        <span class="hljs-string">&quot;camera.clip&quot;</span>,<br>        <span class="hljs-string">&quot;screen.record&quot;</span>,<br>        <span class="hljs-string">&quot;contacts.add&quot;</span>,<br>        <span class="hljs-string">&quot;calendar.add&quot;</span>,<br>        <span class="hljs-string">&quot;reminders.add&quot;</span>,<br>        <span class="hljs-string">&quot;sms.send&quot;</span><br>      ]<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">&quot;plugins&quot;</span>: &#123;<br>    <span class="hljs-attr">&quot;load&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;paths&quot;</span>: [<br>        <span class="hljs-string">&quot;/app/extensions/feishu&quot;</span><br>      ]<br>    &#125;,<br>    <span class="hljs-attr">&quot;slots&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;memory&quot;</span>: <span class="hljs-string">&quot;openclaw-memmachine&quot;</span><br>    &#125;,<br>    <span class="hljs-attr">&quot;entries&quot;</span>: &#123;<br>      <span class="hljs-attr">&quot;feishu&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span><br>      &#125;,<br>      <span class="hljs-attr">&quot;openclaw-memmachine&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">&quot;config&quot;</span>: &#123;<br>          <span class="hljs-attr">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;http://memmachine-app:8080/api/v2&quot;</span>,<br>          <span class="hljs-attr">&quot;autoCapture&quot;</span>: <span class="hljs-literal">true</span>,<br>          <span class="hljs-attr">&quot;autoRecall&quot;</span>: <span class="hljs-literal">true</span>,<br>          <span class="hljs-attr">&quot;orgId&quot;</span>: <span class="hljs-string">&quot;openclaw&quot;</span>,<br>          <span class="hljs-attr">&quot;projectId&quot;</span>: <span class="hljs-string">&quot;openclaw&quot;</span><br>        &#125;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="为MemMachine新增openclaw"><a href="#为MemMachine新增openclaw" class="headerlink" title="为MemMachine新增openclaw"></a>为MemMachine新增openclaw</h1><p>打开openclaw容器终端，使用<a target="_blank" rel="noopener" href="https://docs.memmachine.ai/examples/rest">REST API - MemMachine Documentation</a>创建project</p>
+<h2 id="新建project（这个我忘了，仅供参考）"><a href="#新建project（这个我忘了，仅供参考）" class="headerlink" title="新建project（这个我忘了，仅供参考）"></a>新建project（这个我忘了，仅供参考）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -X POST <span class="hljs-string">&quot;http://memmachine-app:8080/api/v2/projects&quot;</span> \<br>-H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> \<br>-d <span class="hljs-string">&#x27;&#123;</span><br><span class="hljs-string">  &quot;org_id&quot;: &quot;openclaw&quot;,</span><br><span class="hljs-string">  &quot;project_id&quot;: &quot;openclaw&quot;,</span><br><span class="hljs-string">&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>之后就不用操作了，其他增删改查参考<a target="_blank" rel="noopener" href="https://docs.memmachine.ai/api_reference/intro">Welcome - MemMachine Documentation</a></p>
+<h2 id="查看project"><a href="#查看project" class="headerlink" title="查看project"></a>查看project</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -X POST <span class="hljs-string">&quot;http://memmachine-app:8080/api/v2/projects/list&quot;</span> \<br>-H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> \<br>-d <span class="hljs-string">&#x27;&#123;&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Openclaw接入MemMachine流程</div>
+      <div>https://blog.zhaosn.top/OpenclawMemMachine/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhao SN</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/DuckyScriptQuickReference/" title="DuckyScript脚本">
+                        <span class="hidden-mobile">DuckyScript脚本</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <script src="/js/outdated.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
