@@ -1,0 +1,840 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+    <link rel="canonical" href="https://blog.zhaosn.top/pen/linux_freqcmd/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhao SN">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、命令的基本格式[用户名@主机名 ~]$ 命令  -参数选项  参数值 二、与文件有关的处理命令命令：cd 目录常规：cd /            切换到根目录(系统目录)cd /usr       切换到根目录下的usr目录cd ..           切换到上一级目录cd ~           切换到当前用户的home目录(/root或/home/用户名)cd -">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>linux常用命令 - Zhaosn的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.zhaosn.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":45,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"db0474f77b68ddf3fb7cc21650cb844d","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?db0474f77b68ddf3fb7cc21650cb844d";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zhaosn的博客🐎</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/DMS2Decimal/" target="_self">
+                <i class="iconfont icon-map"></i>
+                <span>DMS</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.6)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="linux常用命令"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-23 15:45" pubdate>
+          2026年3月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">linux常用命令</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、命令的基本格式"><a href="#一、命令的基本格式" class="headerlink" title="一、命令的基本格式"></a>一、命令的基本格式</h1><p>[用户名@主机名 ~]$ 命令  -参数选项  参数值</p>
+<h1 id="二、与文件有关的处理命令"><a href="#二、与文件有关的处理命令" class="headerlink" title="二、与文件有关的处理命令"></a>二、与文件有关的处理命令</h1><h2 id="命令：cd-目录"><a href="#命令：cd-目录" class="headerlink" title="命令：cd 目录"></a>命令：cd 目录</h2><p>常规：<br>cd /            切换到根目录(系统目录)<br>cd /usr       切换到根目录下的usr目录<br>cd ..           切换到上一级目录<br>cd ~           切换到当前用户的home目录(/root或/home/用户名)<br>cd -            切换到上次访问的目录<br>关联命令：pwd 显示当前所在目录的完整路径</p>
+<h2 id="命令：ls-al"><a href="#命令：ls-al" class="headerlink" title="命令：ls [-al]"></a>命令：ls [-al]</h2><p>常规：<br>ls                查看当前目录下的所有目录和文件<br>ls -a            查看当前目录下的所有目录和文件（包括带”.”前缀的隐藏文件）<br>ls -l 或 ll       列表查看当前目录下的所有目录和文件（列表查看，显示更多信息）<br>ls /dir            查看指定目录下的所有目录和文件   如：ls /usr</p>
+<h2 id="命令：rm-rf-目录"><a href="#命令：rm-rf-目录" class="headerlink" title="命令：rm [-rf] 目录"></a>命令：rm [-rf] 目录</h2><p>常规：<br>rm 文件        删除当前目录下的文件<br>rm -r aaa    递归删除当前目录下的aaa目录<br>rm -rf aaa    递归删除当前目录下的aaa目录（不询问）<br>rm -rf *    将当前目录下的所有目录和文件全部删除<br>【[root@localhost /]# rm -rf <em>等同于著名的自杀命令rm -rf /】<br>注意：建议执行rm命令要使用当前目录”./“约束并且尽量避免”</em>“模糊匹配，例如rm -rf ./[具体文件名]，减少误删</p>
+<h2 id="命令：mv-目录或文件-新目录或新文件名"><a href="#命令：mv-目录或文件-新目录或新文件名" class="headerlink" title="命令：mv 目录或文件 新目录或新文件名"></a>命令：mv 目录或文件 新目录或新文件名</h2><p>常规：<br>mv /usr/tmp/aaa /usr/           将/usr/tmp目录下的aaa移动到/usr目录下<br>mv /usr/tmp/aaa /usr/bbb     将/usr/tmp目录下的aaa移动到/usr目录下并重命名为bbb<br>注意：建议生产环境执行磁盘清理任务时第一步先创建临时清理目录，将待删除的文件mv到临时清理目录，保留一段时间后再rm临时清理目录</p>
+<h2 id="命令：find-目录-参数-文件名称"><a href="#命令：find-目录-参数-文件名称" class="headerlink" title="命令：find 目录 参数 文件名称"></a>命令：find 目录 参数 文件名称</h2><p>常规：<br>find /usr/tmp -name ‘a*’        查找/usr/tmp目录下的所有以a开头的目录或文件<br>类似命令：locate 文件名称    从系统数据库查找文件，相比find从硬盘查找而言效率更高，但文件增删非即时入库，查找结果不如find准确</p>
+<h2 id="命令：cat-文件"><a href="#命令：cat-文件" class="headerlink" title="命令：cat 文件"></a>命令：cat 文件</h2><p>常规：<br>cat /etc/sudo.conf     使用cat查看/etc/sudo.conf文件</p>
+<h2 id="命令：tail-文件"><a href="#命令：tail-文件" class="headerlink" title="命令：tail 文件"></a>命令：tail 文件</h2><p>常规：<br>tail -10 /etc/sudo.conf    查看/etc/sudo.conf文件的后10行<br>tail -f catalina.out           实时查看控制台输出日志，Ctrl+C退出查看<br>关联命令：head 文件    正序查看，tail为倒序</p>
+<h1 id="三、与进程有关的操作命令"><a href="#三、与进程有关的操作命令" class="headerlink" title="三、与进程有关的操作命令"></a>三、与进程有关的操作命令</h1><h2 id="命令：ps-ef-查看所有正在运行的进程"><a href="#命令：ps-ef-查看所有正在运行的进程" class="headerlink" title="命令：ps -ef 查看所有正在运行的进程"></a>命令：ps -ef 查看所有正在运行的进程</h2><p>常规：<br>ps -ef | grep 关键词    根据关键词查询运行中的指定进程<br>注意：查询结果第一位是进程运行用户，第二位是进程号(pid)  ，第三位是关联的上级父进程号</p>
+<h2 id="命令：jps-v-查看所有正在运行的java进程"><a href="#命令：jps-v-查看所有正在运行的java进程" class="headerlink" title="命令：jps -v 查看所有正在运行的java进程"></a>命令：jps -v 查看所有正在运行的java进程</h2><p>常规：<br>jps -v | grep 关键词 根据关键词查询运行中的指定java进程<br>注意：查询结果第一位就是进程号(pid)</p>
+<h2 id="命令：kill-pid"><a href="#命令：kill-pid" class="headerlink" title="命令：kill pid"></a>命令：kill pid</h2><p>常规：<br>kill -9 pid    根据前两个命令查询出的进程号强制杀死进程<br>注意：jboss中间件关闭时经常出现残余进程僵尸进程，建议配合jps -v检查kill执行结果</p>
+<h2 id="命令：shutdown-hr-时间"><a href="#命令：shutdown-hr-时间" class="headerlink" title="命令：shutdown [-hr] 时间"></a>命令：shutdown [-hr] 时间</h2><p>常规：<br>shutdown -h now        立刻关机<br>shutdown -r 5              5分钟后重启<br>shutdown -r 12:00       预定12点执行重启<br>注意：定时以后如果想要取消，可以在当前会话执行Ctrl+C，或新开一个会话执行shutdown -c</p>
+<h1 id="四、网络连通性检查"><a href="#四、网络连通性检查" class="headerlink" title="四、网络连通性检查"></a>四、网络连通性检查</h1><h2 id="命令：ping-c-目标IP-域名"><a href="#命令：ping-c-目标IP-域名" class="headerlink" title="命令：ping [-c] 目标IP/域名"></a>命令：ping [-c] 目标IP/域名</h2><p>常规：<br>ping ip        持续 ping 目标IP（默认无限发包）<br>ping -c 4 ip   仅发送4个包后停止 ping<br>注意：网络不通时可结合 traceroute（Linux）/tracert（Windows）定位丢包节点</p>
+<h2 id="命令：ifconfig-ip-addr"><a href="#命令：ifconfig-ip-addr" class="headerlink" title="命令：ifconfig/ip addr"></a>命令：ifconfig/ip addr</h2><p>常规：<br>ifconfig        查看所有网卡IP、MAC、收发包信息<br>ip addr         新版Linux查看网卡及IP配置<br>注意：无输出或IP为127.0.0.1说明网卡未启用或未获取IP</p>
+<h2 id="命令：netstat-ss"><a href="#命令：netstat-ss" class="headerlink" title="命令：netstat/ss"></a>命令：netstat/ss</h2><p>常规：<br>netstat -anp    查看所有端口、连接及对应进程<br>ss -lntup       查看监听端口（效率高于netstat）<br>注意：端口未LISTEN说明服务未启动或端口配置错误</p>
+<h2 id="命令：traceroute-tracert"><a href="#命令：traceroute-tracert" class="headerlink" title="命令：traceroute/tracert"></a>命令：traceroute/tracert</h2><p>常规：<br>traceroute ip    Linux路由追踪，定位网络断点<br>tracert ip       Windows路由追踪<br>注意：* * * 表示节点禁ping，不代表完全不通</p>
+<h2 id="命令：telnet-nc"><a href="#命令：telnet-nc" class="headerlink" title="命令：telnet/nc"></a>命令：telnet/nc</h2><p>常规：<br>telnet ip 端口    测试目标端口是否开放<br>nc -zv ip 端口    更精准测试端口连通性<br>注意：连接失败说明端口未开、防火墙拦截或服务未启动</p>
+<h2 id="命令：curl-wget"><a href="#命令：curl-wget" class="headerlink" title="命令：curl/wget"></a>命令：curl/wget</h2><p>常规：<br>curl url         测试HTTP/HTTPS服务可达性<br>wget url         下载测试，验证服务连通与带宽<br>注意：返回非200状态码说明服务异常或权限问题</p>
+<h2 id="命令：firewall-cmd-iptables"><a href="#命令：firewall-cmd-iptables" class="headerlink" title="命令：firewall-cmd/iptables"></a>命令：firewall-cmd/iptables</h2><p>常规：<br>firewall-cmd –list-all    查看防火墙开放规则<br>firewall-cmd –query-port=端口/tcp    查询端口是否放行<br>iptables -L -n    查看 iptables 策略<br>注意：端口未放行需执行 firewall-cmd –add-port=端口/tcp –permanent 并重载</p>
+<h2 id="命令：nslookup-dig"><a href="#命令：nslookup-dig" class="headerlink" title="命令：nslookup/dig"></a>命令：nslookup/dig</h2><p>常规：<br>nslookup 域名    解析域名对应IP（检查DNS）<br>dig 域名    详细DNS解析信息（Linux常用）<br>注意：解析失败或IP异常说明DNS配置错误或污染</p>
+<h2 id="命令：route-ip-route"><a href="#命令：route-ip-route" class="headerlink" title="命令：route/ip route"></a>命令：route/ip route</h2><p>常规：<br>route -n    查看路由表（网关、子网）<br>ip route    新版查看路由信息<br>ip route add 网段 via 网关    添加静态路由<br>注意：无默认网关会导致外网不通，需配置 default via 网关</p>
+<h1 id="五、信息查询与权限设置"><a href="#五、信息查询与权限设置" class="headerlink" title="五、信息查询与权限设置"></a>五、信息查询与权限设置</h1><h2 id="命令：id"><a href="#命令：id" class="headerlink" title="命令：id"></a>命令：id</h2><p>常规：<br>id        查看当前用户UID、GID、所属组<br>id 用户名    查看指定用户信息<br>注意：UID=0 为 root 用户，拥有最高系统权限</p>
+<h2 id="命令：whoami-who"><a href="#命令：whoami-who" class="headerlink" title="命令：whoami/who"></a>命令：whoami/who</h2><p>常规：<br>whoami        显示当前登录用户名<br>who            查看所有登录用户及终端信息<br>注意：多用户操作时可确认当前操作身份</p>
+<h2 id="命令：ls-l"><a href="#命令：ls-l" class="headerlink" title="命令：ls -l"></a>命令：ls -l</h2><p>常规：<br>ls -l        查看文件/目录权限、属主、属组、大小<br>ls -ld 目录    查看目录本身属性<br>注意：权限字段 rwx 分别对应读、写、执行，前3位属主，中3位属组，后3位其他用户</p>
+<h2 id="命令：chmod"><a href="#命令：chmod" class="headerlink" title="命令：chmod"></a>命令：chmod</h2><p>常规：<br>chmod 755 文件/目录    设置权限 rwxr-xr-x<br>chmod +x 文件        给文件增加执行权限<br>注意：目录必须有执行权限才能进入，敏感文件建议 600/700 防止越权访问</p>
+<h2 id="命令：chown"><a href="#命令：chown" class="headerlink" title="命令：chown"></a>命令：chown</h2><p>常规：<br>chown 用户名 文件        修改文件属主<br>chown 用户名:组名 文件    同时修改属主与属组<br>chown -R 用户名 目录    递归修改目录下所有文件属主<br>注意：普通用户只能修改自己拥有的文件，root 可修改所有</p>
+<h2 id="命令：ps-ef-ps-aux"><a href="#命令：ps-ef-ps-aux" class="headerlink" title="命令：ps -ef/ps aux"></a>命令：ps -ef/ps aux</h2><p>常规：<br>ps -ef        全格式查看所有进程<br>ps aux        查看进程占用CPU、内存<br>注意：可结合 grep 定位服务进程，确认运行用户与权限</p>
+<h2 id="命令：df-h"><a href="#命令：df-h" class="headerlink" title="命令：df -h"></a>命令：df -h</h2><p>常规：<br>df -h        以可读格式查看磁盘使用率、挂载点<br>注意：使用率 100% 会导致服务无法写入、启动失败</p>
+<h2 id="命令：free-h"><a href="#命令：free-h" class="headerlink" title="命令：free -h"></a>命令：free -h</h2><p>常规：<br>free -h        查看内存、swap 使用情况<br>注意：swap 频繁使用说明物理内存不足，可能导致服务卡顿</p>
+<h1 id="六、文本编辑器的使用"><a href="#六、文本编辑器的使用" class="headerlink" title="六、文本编辑器的使用"></a>六、文本编辑器的使用</h1><p>vi可以分为三种状态，分别是命令模式（command mode）、插入模式（Insert mode）和底行模式（last line mode），各模式的功能区分如下：</p>
+<ol>
+<li>命令行模式<br>   控制屏幕光标的移动，字符、字或行的删除，查找，移动复制某区段及进入Insert mode下，或者到 last line mode。<br>   命令行模式下的常用命令：<br>   控制光标移动：↑，↓，j<br>   删除当前行：dd<br>   向前查找：?关键字<br>   向后查找：/关键字<br>   进入编辑模式：i o a<br>   进入底行模式：:</li>
+<li>编辑模式<br>   只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。<br>   编辑模式下常用命令：<br>   ESC 退出编辑模式到命令行模式</li>
+<li>底行模式（last line mode）<br>  将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。<br>  底行模式下常用命令：<br>  退出编辑：   :q<br>  强制退出：   :q!<br>  保存并退出：:wq</li>
+</ol>
+<h1 id="七、运维常用命令（持续追加）"><a href="#七、运维常用命令（持续追加）" class="headerlink" title="七、运维常用命令（持续追加）"></a>七、运维常用命令（持续追加）</h1><h2 id="磁盘清理"><a href="#磁盘清理" class="headerlink" title="磁盘清理"></a>磁盘清理</h2><p>控制台输出日志清理， 用/dev/null(特殊设备-黑洞，内容为空)覆盖控制台输出日志的内容，清空out文件内容但保留文件本身，常用对正在运行的进程输出动态清理<br><code>cat /dev/null &gt; catalina.out</code><br>删除七天前的临时文件（文件已永久存储在ftp上），适用于V4之前的标准版产品，uploadDir根据实际目录名修改<br><code>find /java/uploadDir -mtime +7 -exec rm -rf &#123;&#125; \;</code></p>
+<h2 id="系统时间设置"><a href="#系统时间设置" class="headerlink" title="系统时间设置"></a>系统时间设置</h2><p>查看和修改系统时间<br><code>date</code><br><code>date -s &quot;20191107 14:48:50&quot;</code><br>查看和修改硬件时间<br><code>hwclock --show</code><br><code>hwclock --set --date &quot;20191107 14:48:50&quot;</code><br>以系统时间为基准修改硬件时间（当系统时间准确时）<br><code>hwclock --systohc</code><br>以硬件时间为基准修改系统时间（当硬件时间准确时）<br><code>hwclock --hctosys</code></p>
+<h2 id="服务器内存清理"><a href="#服务器内存清理" class="headerlink" title="服务器内存清理"></a>服务器内存清理</h2><p>top命令查看是否内存耗尽已开始使用swap交换区<br>写入系统缓冲<br><code>sync</code><br>查看内存情况<br><code>free -m</code><br>释放缓存，3表示释放pagecache（1）和dentries&amp;inodes（2）<br><code>echo 3 &gt; /proc/sys/vm/drop_caches</code><br>再次查看内存情况，如果swap仍未释放，手动释放一下<br><code>swapoff -a</code><br><code>swapon -a</code></p>
+<h2 id="进程前台执行转后台"><a href="#进程前台执行转后台" class="headerlink" title="进程前台执行转后台"></a>进程前台执行转后台</h2><p>Ctrl+Z挂起当前任务<br>转为后台<br><code>bg</code><br>通常只有一个被挂起的任务在等待队列里，所以bg不带参数视为执行编号1的任务，可通过jobs -l查看并替换编号1<br><code>bg %1 [1]+ command &amp;  </code></p>
+<p>top常用参数<br>显示完整命令 1分核显示 M按内存 P按CPU<br><code>top + c</code><br>根据进程号分线程显示<br><code>top -Hp [pid]</code></p>
+<h2 id="运维关机前踢人下线"><a href="#运维关机前踢人下线" class="headerlink" title="运维关机前踢人下线"></a>运维关机前踢人下线</h2><p>查看需要踢掉的终端号<br><code>w</code><br><code>who</code><br>杀掉对应本地或远程终端<br><code>pkill -kill -t tty1</code><br><code>pkill -9 -t pts/0</code></p>
+<h2 id="便捷文件操作"><a href="#便捷文件操作" class="headerlink" title="便捷文件操作"></a>便捷文件操作</h2><p>文件dos格式转unix格式，常用于运维本地Windows编辑脚本上传Linux后报不兼容<br><code>vi [文件名].sh</code><br><code>:set ff?</code><br>返回fileformat=dos<br><code>:set ff=unix</code><br>修改文件编码格式为utf8<br><code>:set fileencoding</code><br>返回非utf8格式<br><code>:set fileencoding=utf-8</code><br>控制台输出截取指定时间段并打印到指定文件<br><code>sed -n ‘/2019-10-22 09:00:00/,/2019-10-22 09:15:00/p’ catalina.out &gt;&gt; out19102209.log</code></p>
+<p>cp -r file/dir1 dir2 拷贝文件或目录到dir2 当dir2中已经存在该文件或目录时，将覆盖<br>du -h –max-depth=1 查看各文件夹大小<br>du -h * –max-depth=1 查看当前目录所有文件夹及文件大小</p>
+<p>Ctrl +Z停止进出放入后台  挂起状态 fg bg 可重新启动<br>  Ctrl+C 强制中断程序的执行<br>  jobs 显示当前暂停的进程<br>  bg %N 使第N个任务在后台进行<br>  fg %N 使第N个任务在前台运行 默认bg,fg不带%N时表示对最后一个进程操作</p>
+<h2 id="上传下载文件"><a href="#上传下载文件" class="headerlink" title="上传下载文件"></a>上传下载文件</h2><p>scp -r root@ip:dir dir</p>
+<h2 id="关闭进程"><a href="#关闭进程" class="headerlink" title="关闭进程"></a>关闭进程</h2><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>$ps -ef | grep firefox | grep -v grep | cut -c 9-15 | xargs kill -s 9<br>说明：<br>“grep firefox”的输出结果是，所有含有关键字“firefox”的进程。<br>“grep -v grep”是在列出的进程中去除含有关键字“grep”的进程。<br>“cut -c 9-15”是截取输入行的第9个字符到第15个字符，而这正好是进程号PID。<br>“xargs kill -s 9”中的xargs命令是用来把前面命令的输出结果（PID）作为“kill -s 9”命令的参数，并执行该命令。“kill -s 9”会强行杀掉指定进程。</p>
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>1.tasklist<br>2.强制杀死映像名称为imagename的进程，映像名称可通过任务管理器或tasklist命令查看<br>　　taskkill /im imagename -f<br>3.强制杀死PID为processid的进程，PID可通过tasklist查看<br>　　taskkill /pid processid -f</p>
+<h2 id="压缩和解压缩命令"><a href="#压缩和解压缩命令" class="headerlink" title="压缩和解压缩命令"></a>压缩和解压缩命令</h2><p>打包和压缩。打包是指将一大堆文件或目录什么的变成一个总的文件，压缩则是将一个大的文件通过一些压缩算法变成一个小文件<br>tar<br>  解包：tar zxvf filename.tar<br>  打包：tar czvf filename.tar dirname<br>gz命令<br>  解压1：gunzip filename.gz<br>  解压2：gzip -d filename.gz<br>  压缩：gzip filename<br>      .tar.gz 和  .tgz<br>      解压：tar zxvf filename.tar.gz<br>      压缩：tar zcvf filename.tar.gz dirname<br>      压缩多个文件：tar zcvf filename.tar.gz dirname1 dirname2 dirname3…..<br>bz2命令<br>  解压1：bzip2 -d filename.bz2<br>  解压2：bunzip2 filename.bz2<br>  压缩：bzip2 -z filename</p>
+<pre><code class="hljs">   .tar.bz2
+   解压：tar jxvf filename.tar.bz2
+   压缩：tar jcvf filename.tar.bz2 dirname
+</code></pre>
+<p>bz命令<br>    解压1：bzip2 -d filename.bz<br>    解压2：bunzip2 filename.bz<br>         .tar.bz<br>       解压：tar jxvf filename.tar.bz<br>z命令<br>    解压：uncompress filename.z<br>    压缩：compress filename<br>        .tar.z<br>          解压：tar zxvf filename.tar.z<br>          压缩：tar zcvf filename.tar.z dirname<br>zip命令</p>
+<pre><code class="hljs">解压：unzip filename.zip
+压缩：zip filename.zip dirname
+</code></pre>
+<h2 id="CentOS6防火墙操作"><a href="#CentOS6防火墙操作" class="headerlink" title="CentOS6防火墙操作"></a>CentOS6防火墙操作</h2><pre><code class="hljs">servic iptables status 查看防火墙状态
+
+service iptables stop 关闭防火墙
+service iptables restart 重启防火墙
+    为防火墙添加映射端口
+    -A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 80-j ACCEPT
+    -A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 80-j ACCEPT
+</code></pre>
+<h2 id="CentOS7防火墙操作"><a href="#CentOS7防火墙操作" class="headerlink" title="CentOS7防火墙操作"></a>CentOS7防火墙操作</h2><pre><code class="hljs">1、firewalld的基本使用
+    启动： systemctl start firewalld
+    关闭： systemctl stop firewalld
+    查看状态： systemctl status firewalld 
+    开机禁用  ： systemctl disable firewalld
+    开机启用  ： systemctl enable firewalld
+ 
+ 
+2.systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。
+    启动一个服务：systemctl start firewalld.service
+    关闭一个服务：systemctl stop firewalld.service
+    重启一个服务：systemctl restart firewalld.service
+    显示一个服务的状态：systemctl status firewalld.service
+    在开机时启用一个服务：systemctl enable firewalld.service
+    在开机时禁用一个服务：systemctl disable firewalld.service
+    查看服务是否开机启动：systemctl is-enabled firewalld.service
+    查看已启动的服务列表：systemctl list-unit-files|grep enabled
+    查看启动失败的服务列表：systemctl --failed
+
+3.配置firewalld-cmd
+
+    查看版本： firewall-cmd --version
+    查看帮助： firewall-cmd --help
+    显示状态： firewall-cmd --state
+    查看所有打开的端口： firewall-cmd --zone=public --list-ports
+    更新防火墙规则： firewall-cmd --reload
+    查看区域信息:  firewall-cmd --get-active-zones
+    查看指定接口所属区域： firewall-cmd --get-zone-of-interface=eth0
+    拒绝所有包：firewall-cmd --panic-on
+    取消拒绝状态： firewall-cmd --panic-off
+    查看是否拒绝： firewall-cmd --query-panic
+ 
+那怎么开启一个端口呢
+    添加
+        firewall-cmd --zone=public --add-port=80/tcp --permanent    （--permanent永久生效，没有此参数重启后失效）
+    重新载入
+        firewall-cmd --reload
+    查看
+        firewall-cmd --zone= public --query-port=80/tcp
+    删除
+        firewall-cmd --zone= public --remove-port=80/tcp --permanent
+</code></pre>
+<h2 id="cat-拆分合分压缩包命令cat-copy"><a href="#cat-拆分合分压缩包命令cat-copy" class="headerlink" title="cat 拆分合分压缩包命令cat/copy"></a>cat 拆分合分压缩包命令cat/copy</h2><p>cat workspace_20150624230059.tar.gz | split -b 2G -   workspace_20150624230059.tar.gz.<br>workspace_20150624230059.tar.gz.a*<br>copy /B xx.zip.001+xx.zip.002 xx.zip</p>
+<pre><code class="hljs">Linux拆分         cat filename | split -b NG - filename.
+Windows合分      copy /B filename1+filename2+..  newName
+</code></pre>
+<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><p>3.1. 启动supervisord<br>$supervisord -c /etc/supervisor/supervisord.conf<br>3.2. 关闭supervisord<br>supervisorctl shutdown<br>3.3. 重新载入配置<br>supervisorctl reload<br>3.4.更新新的配置到supervisord<br>supervisorctl update<br>3.5.启动某个进程(program_name=你配置中写的程序名称)<br>supervisorctl start program_name<br>3.6.查看正在守候的进程<br>supervisorctl<br>3.7.停止某一进程 (program_name=你配置中写的程序名称)<br>supervisorctl stop program_name  webcore1<br>3.8.重启某一进程 (program_name=你配置中写的程序名称)<br>supervisorctl restart program_name<br>3.9.停止全部进程<br>supervisorctl stop all  </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%A4%87%E5%BF%98/" class="print-no-link">#备忘</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>linux常用命令</div>
+      <div>https://blog.zhaosn.top/pen/linux_freqcmd/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhao SN</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月23日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年4月9日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Joi-memory/" title="记忆机器的持久化">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">记忆机器的持久化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/OpenclawMemMachine/" title="Openclaw接入MemMachine流程">
+                        <span class="hidden-mobile">Openclaw接入MemMachine流程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <script src="/js/outdated.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
