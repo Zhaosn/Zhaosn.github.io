@@ -61,6 +61,10 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/abcjs-audio.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
@@ -264,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          236 字
+          526 字
         
       </span>
     
@@ -275,7 +279,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -325,7 +329,7 @@
         aria-expanded="true"
       >
         技术备忘
-        <span class="list-group-count">(56)</span>
+        <span class="list-group-count">(57)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -337,6 +341,15 @@
           
   <div class="category-post-list">
     
+    
+      
+      
+        <a href="/Art/abcjs/" title="ABCJS五线谱渲染"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ABCJS五线谱渲染</span>
+        </a>
+      
     
   </div>
 
@@ -937,6 +950,32 @@
 <ul>
 <li><code>Ctrl+b</code> + <code>[</code>，然后使用 <code>Ctrl+u</code> 向上翻页，<code>Ctrl+d</code> 向下翻页。</li>
 </ul>
+<p>在 tmux 中，“标题”通常指<strong>会话名称 (Session Name)</strong> 或**窗口名称 (Window Name)**。以下是创建并设置标题的方法：</p>
+<h3 id="一、创建带名称的会话（最常用）"><a href="#一、创建带名称的会话（最常用）" class="headerlink" title="一、创建带名称的会话（最常用）"></a>一、创建带名称的会话（最常用）</h3><p>直接在命令行新建一个<strong>指定名称</strong>的会话：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">tmux new -s my_session<br><span class="hljs-comment"># 或完整写法</span><br>tmux new-session -s my_session<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>-s</code>：指定会话名称（Session）</li>
+<li>示例：<code>tmux new -s dev</code> 或 <code>tmux new -s training</code></li>
+<li>底部状态栏左侧会显示当前会话名</li>
+</ul>
+<h3 id="二、创建时同时设置会话名-窗口名"><a href="#二、创建时同时设置会话名-窗口名" class="headerlink" title="二、创建时同时设置会话名 + 窗口名"></a>二、创建时同时设置会话名 + 窗口名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tmux new -s my_session -n my_window<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>-s</code>：会话名</li>
+<li><code>-n</code>：窗口名（Tab 标题）</li>
+</ul>
+<h3 id="三、已在-tmux-内：重命名当前会话-窗口"><a href="#三、已在-tmux-内：重命名当前会话-窗口" class="headerlink" title="三、已在 tmux 内：重命名当前会话/窗口"></a>三、已在 tmux 内：重命名当前会话/窗口</h3><p><strong>1. 重命名会话（改大标题）</strong></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">Ctrl</span>+<span class="hljs-keyword">b</span>  $<br></code></pre></td></tr></table></figure>
+<p>按快捷键后底部出现输入框，直接输新名称回车。</p>
+<p><strong>2. 重命名当前窗口（改 Tab 标题）</strong></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">Ctrl</span>+<span class="hljs-keyword">b</span>  ,<br></code></pre></td></tr></table></figure>
+<p>同样输入新名称回车。</p>
+<h3 id="四、外部重命名已有会话"><a href="#四、外部重命名已有会话" class="headerlink" title="四、外部重命名已有会话"></a>四、外部重命名已有会话</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 语法：tmux rename-session -t 旧名 新名</span><br>tmux rename-session -t 0 work<br>tmux rename-session -t old_name new_name<br></code></pre></td></tr></table></figure>
+
+<h3 id="五、常用配套命令"><a href="#五、常用配套命令" class="headerlink" title="五、常用配套命令"></a>五、常用配套命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">tmux ls               <span class="hljs-comment"># 查看所有会话</span><br>tmux attach -t my_session  <span class="hljs-comment"># 重新进入名为 my_session 的会话</span><br>tmux kill-session -t my_session  <span class="hljs-comment"># 关闭会话</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>简单记：<strong>新建用 <code>tmux new -s 名称</code>，已进入用 <code>Ctrl+b $</code> 改名</strong>。</p>
+<p>要不要我帮你整理一份常用 <strong>tmux 快捷键速查表</strong>？</p>
 
                 
               </div>
@@ -1010,7 +1049,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年3月16日</div>
+          <div>2026年4月12日</div>
         </div>
       
       
