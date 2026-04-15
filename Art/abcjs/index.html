@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          389 字
+          390 字
         
       </span>
     
@@ -982,7 +982,7 @@ C,| F, E,/2-D,/2 C,| G, G,,|
   }
 
 <p></style></p>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/abcjs@latest/dist/abcjs-basic-min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/abcjs@latest/dist/abcjs-basic-min.js"></script>
 <script type="text/javascript">
   function CursorControl() {
     var self = this;
@@ -1052,6 +1052,7 @@ C,| F, E,/2-D,/2 C,| G, G,,|
       synthControl.setTune(visualObj[0], false, {}).catch(function(error) {
         console.warn("音频加载失败:", error);
       });
+      initAudio();
     }
   }
   
